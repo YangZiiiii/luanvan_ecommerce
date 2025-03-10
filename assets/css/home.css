@@ -190,6 +190,9 @@ main {
    line-height: 141.667%;
 }
 
+.best-product .info .see-more {
+}
+
 .best-product .list-item {
    gap: 30px;
    margin-top: 30px;
@@ -198,9 +201,10 @@ main {
 }
 
 .best-product .list-item .item {
-   flex-shrink: 0;
+   /* flex-shrink: 0; */
    position: relative;
-   width: calc(20% - 24px);
+   width: 250px;
+   /* width: calc(20% - 24px); */
 }
 
 .best-product .list-item .detail {
