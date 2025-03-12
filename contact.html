@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>Home</title>
+      <title>Contact</title>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!--===============================================================================================-->
@@ -58,27 +58,11 @@
       <link
          rel="stylesheet"
          type="text/css"
-         href="./assets/vendor/daterangepicker/daterangepicker.css"
-      />
-      <!--===============================================================================================-->
-      <link rel="stylesheet" type="text/css" href="./assets/vendor/slick/slick.css" />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/MagnificPopup/magnific-popup.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
          href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css"
       />
       <!--===============================================================================================-->
       <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
       <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
-      <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
-      <!--===============================================================================================-->
 
       <!--Header-Template  -->
       <script src="./assets/js/template/header.js"></script>
@@ -86,22 +70,19 @@
       <!--Cart-Template  -->
       <script src="./assets/js/template/cart.js"></script>
 
-      <!--Home-Slider-Template  -->
-      <script src="./assets/js/template/home/slider.js"></script>
+      <!--Content-Title-Page-Template  -->
+      <script src="./assets/js/template/contact/title-page.js"></script>
 
-      <!--Home-Banner-Template  -->
-      <script src="./assets/js/template/home/banner.js"></script>
-      <!--Home-Banner-Item-Template  -->
-      <script src="./assets/js/template/home/banner-item.js"></script>
+      <!--Content-Content-Page-Template  -->
+      <script src="./assets/js/template/contact/content-page.js"></script>
 
-      <!--Home-Product-Template  -->
-      <script src="./assets/js/template/home/product.js"></script>
-
-      <!--Home-Modal-Template  -->
-      <script src="./assets/js/template/home/modal.js"></script>
+      <!--Content-Map-Template  -->
+      <script src="./assets/js/template/contact/map.js"></script>
 
       <!--Footer-Template  -->
       <script src="./assets/js/template/footer.js"></script>
+
+      <!--===============================================================================================-->
    </head>
    <body class="animsition">
       <!-- Header -->
@@ -110,14 +91,14 @@
       <!-- Cart -->
       <cart-main></cart-main>
 
-      <!-- Slider -->
-      <home-slider></home-slider>
+      <!-- Title page -->
+      <contact-title-page></contact-title-page>
 
-      <!-- Banner -->
-      <home-banner></home-banner>
+      <!-- Content page -->
+      <contact-content-page></contact-content-page>
 
-      <!-- Product -->
-      <home-product></home-product>
+      <!-- Map -->
+      <contact-map></contact-map>
 
       <!-- Footer -->
       <footer-main></footer-main>
@@ -128,9 +109,6 @@
             <i class="zmdi zmdi-chevron-up"></i>
          </span>
       </div>
-
-      <!-- Modal1 -->
-      <home-modal></home-modal>
 
       <!--===============================================================================================-->
       <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -150,85 +128,7 @@
          });
       </script>
       <!--===============================================================================================-->
-      <script src="./assets/vendor/daterangepicker/moment.min.js"></script>
-      <script src="./assets/vendor/daterangepicker/daterangepicker.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/slick/slick.min.js"></script>
-      <script src="./assets/js/slick-custom.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/parallax100/parallax100.js"></script>
-      <script>
-         $(".parallax100").parallax100();
-      </script>
-      <!--===============================================================================================-->
       <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-      <script>
-         $(".gallery-lb").each(function () {
-            // the containers for all your galleries
-            $(this).magnificPopup({
-               delegate: "a", // the selector for gallery item
-               type: "image",
-               gallery: {
-                  enabled: true,
-               },
-               mainClass: "mfp-fade",
-            });
-         });
-      </script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/sweetalert/sweetalert.min.js"></script>
-      <script>
-         $(".js-addwish-b2").on("click", function (e) {
-            e.preventDefault();
-         });
-
-         $(".js-addwish-b2").each(function () {
-            var nameProduct = $(this)
-               .parent()
-               .parent()
-               .find(".js-name-b2")
-               .html();
-            $(this).on("click", function () {
-               swal(nameProduct, "is added to wishlist !", "success");
-
-               $(this).addClass("js-addedwish-b2");
-               $(this).off("click");
-            });
-         });
-
-         $(".js-addwish-detail").each(function () {
-            var nameProduct = $(this)
-               .parent()
-               .parent()
-               .parent()
-               .find(".js-name-detail")
-               .html();
-
-            $(this).on("click", function () {
-               swal(nameProduct, "is added to wishlist !", "success");
-
-               $(this).addClass("js-addedwish-detail");
-               $(this).off("click");
-            });
-         });
-
-         /*---------------------------------------------*/
-
-         $(".js-addcart-detail").each(function () {
-            var nameProduct = $(this)
-               .parent()
-               .parent()
-               .parent()
-               .parent()
-               .find(".js-name-detail")
-               .html();
-            $(this).on("click", function () {
-               swal(nameProduct, "is added to cart !", "success");
-            });
-         });
-      </script>
       <!--===============================================================================================-->
       <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
       <script>
@@ -246,6 +146,9 @@
             });
          });
       </script>
+      <!--===============================================================================================-->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+      <script src="./assets/js/map-custom.js"></script>
       <!--===============================================================================================-->
       <script src="./assets/js/main.js"></script>
    </body>
