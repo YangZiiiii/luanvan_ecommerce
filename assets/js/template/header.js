@@ -13,19 +13,18 @@ class AppHeader extends HTMLElement {
 
                   <div class="right-top-bar flex-w h-full">
                      <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
+                        Sign up
                      </a>
 
                      <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
+                        Sign in
                      </a>
 
-                     <a href="#" class="flex-c-m trans-04 p-lr-25"> EN </a>
-
-                     <a href="#" class="flex-c-m trans-04 p-lr-25"> USD </a>
                   </div>
                </div>
             </div>
+
+            
 
             <div class="wrap-menu-desktop">
                <nav class="limiter-menu-desktop container">
