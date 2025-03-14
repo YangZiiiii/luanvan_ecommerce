@@ -12,25 +12,138 @@ class AppHeader extends HTMLElement {
                   </div>
 
                   <div class="right-top-bar flex-w h-full">
-                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Sign up
-                     </a>
-
-                     <a href="#" class="flex-c-m trans-04 p-lr-25">
+                     <a
+                        href="#"
+                        class="flex-c-m trans-04 p-lr-25 open-modal-log"
+                        data-tab="login"
+                     >
                         Sign in
                      </a>
 
+                     <a
+                        href="#"
+                        class="flex-c-m trans-04 p-lr-25 open-modal-log p-l-sign"
+                        data-tab="register"
+                     >
+                        Sign up
+                     </a>
                   </div>
                </div>
             </div>
 
-            
+            <!-- Modal Login -->
+            <div class="modal-log">
+               <div class="modal-content">
+                  <span class="close-log">&times;</span>
+                  <div class="switch-tabs">
+                     <span class="tab-link active" data-tab="login"
+                        >Đăng nhập</span
+                     >
+                     <span class="tab-link" data-tab="register">Đăng ký</span>
+                  </div>
 
+                  <!-- Form Đăng nhập -->
+                  <div class="tab-content active" data-content="login">
+                     <h2 class="form-title">Đăng nhập</h2>
+                     <form class="form">
+                        <input
+                           type="text"
+                           class="form-input"
+                           placeholder="Tên đăng nhập"
+                           required
+                        />
+                        <input
+                           type="password"
+                           class="form-input"
+                           placeholder="Mật khẩu"
+                           required
+                        />
+                        <div class="options">
+                           <label class="remember"
+                              ><input type="checkbox" />
+                              <span>Nhớ mật khẩu</span></label
+                           >
+                           <a href="#" class="forgot-password"
+                              >Quên mật khẩu?</a
+                           >
+                        </div>
+                        <button type="submit" class="form-btn">
+                           Đăng nhập
+                        </button>
+                        <p class="switch-form">
+                           Chưa có tài khoản?
+                           <a href="#" class="switch-tab" data-tab="register"
+                              >Đăng ký</a
+                           >
+                        </p>
+                     </form>
+                  </div>
+
+                  <!-- Form Đăng ký -->
+                  <div class="tab-content" data-content="register">
+                     <h2 class="form-title">Đăng ký</h2>
+                     <form class="form">
+                        <input
+                           type="text"
+                           class="form-input"
+                           placeholder="Tên đăng nhập"
+                           required
+                        />
+                        <input
+                           type="password"
+                           class="form-input"
+                           placeholder="Mật khẩu"
+                           required
+                        />
+                        <input
+                           type="password"
+                           class="form-input"
+                           placeholder="Nhập lại mật khẩu"
+                           required
+                        />
+                        <button type="submit" class="form-btn">Đăng ký</button>
+                        <p class="switch-form">
+                           Đã có tài khoản?
+                           <a href="#" class="switch-tab" data-tab="login"
+                              >Đăng nhập</a
+                           >
+                        </p>
+                     </form>
+                  </div>
+
+                  <!-- Đăng nhập bằng mạng xã hội -->
+                  <div class="social-login">
+                     <p class="social-text">Hoặc đăng nhập bằng</p>
+                     <button class="social-btn facebook">
+                        <i class="fa fa-facebook"></i>
+                        Facebook
+                     </button>
+                     <button class="social-btn google">
+                        <i class="fa fa-google"></i>
+                        Google
+                     </button>
+                     <button class="social-btn twitter">
+                        <i class="fa fa-twitter"></i>
+                        Twitter
+                     </button>
+                  </div>
+
+                  <!-- Copyright -->
+                  <p class="copyright">
+                     © 2025 Website của bạn. All rights reserved.
+                  </p>
+               </div>
+            </div>
+
+            <!-- Modal -->
             <div class="wrap-menu-desktop">
                <nav class="limiter-menu-desktop container">
                   <!-- Logo desktop -->
                   <a href="#" class="logo">
-                     <img src="./assets/images/icons/logo-01.png" alt="IMG-LOGO" />
+                     <img
+                        src="./assets/images/icons/logo-01.png"
+                        alt="IMG-LOGO"
+                     />
                   </a>
 
                   <!-- Menu desktop -->
@@ -62,12 +175,33 @@ class AppHeader extends HTMLElement {
                      </ul>
                   </div>
 
+                  <!-- Search -->
+
+
+                  <!-- Search product -->
+                  <div
+                     class="dis-none panel-search w-full p-t-10 p-b-15 search-new"
+                  >
+                        <input
+                           class="mtext-107 cl2 size-114 plh2 p-r-15 search-height"
+                           type="text"
+                           name="search-product"
+                           placeholder="Search . . ."
+                        />
+                   
+                  </div>
                   <!-- Icon header -->
                   <div class="wrap-icon-header flex-w flex-r-m">
                      <div
-                        class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search"
+                        class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search"
                      >
-                        <i class="zmdi zmdi-search"></i>
+                        <i
+                           class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"
+                        ></i>
+                        <i
+                           class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"
+                        ></i>
+                        
                      </div>
 
                      <div
@@ -159,7 +293,7 @@ class AppHeader extends HTMLElement {
             <ul class="main-menu-m">
                <li>
                   <a href="index.html">Home</a>
-                  
+
                   <span class="arrow-main-menu-m">
                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                   </span>
@@ -200,7 +334,10 @@ class AppHeader extends HTMLElement {
                <button
                   class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search"
                >
-                  <img src="./assets/images/icons/icon-close2.png" alt="CLOSE" />
+                  <img
+                     src="./assets/images/icons/icon-close2.png"
+                     alt="CLOSE"
+                  />
                </button>
 
                <form class="wrap-search-header flex-w p-l-15">
