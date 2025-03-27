@@ -1,6 +1,6 @@
 class AppHeader extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+   connectedCallback() {
+      this.innerHTML = `
            <header>
          <!-- Header desktop -->
          <div class="container-menu-desktop">
@@ -161,9 +161,7 @@ class AppHeader extends HTMLElement {
                            <a href="shoping-cart.html">Features</a>
                         </li>
 
-                        <li>
-                           <a href="blog.html">Blog</a>
-                        </li>
+   
 
                         <li>
                            <a href="about.html">About</a>
@@ -312,10 +310,7 @@ class AppHeader extends HTMLElement {
                   >
                </li>
 
-               <li>
-                  <a href="blog.html">Blog</a>
-               </li>
-
+             
                <li>
                   <a href="about.html">About</a>
                </li>
@@ -355,6 +350,6 @@ class AppHeader extends HTMLElement {
          </div>
       </header>
         `;
-    }
+   }
 }
 customElements.define("header-main", AppHeader);
