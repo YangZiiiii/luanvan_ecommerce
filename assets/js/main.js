@@ -271,6 +271,8 @@
       $(".js-modal1").removeClass("show-modal1");
    });
 })(jQuery);
+
+
 const modal = document.querySelector(".modal-log");
 const openModalLinks = document.querySelectorAll(".open-modal-log");
 const closeModal = document.querySelector(".close-log");
