@@ -1,1335 +1,882 @@
 <!DOCTYPE html>
 <!-- saved from url=(0131)https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html -->
-<html
-   lang="en"
-   class="layout-navbar-fixed layout-compact dark-style layout-menu-fixed"
-   dir="ltr"
-   data-theme="theme-default"
-   data-assets-path="../../assets/"
-   data-template="vertical-menu-template"
-   data-style="dark"
->
-   <script async="" src="./assets/js/gtm.js"></script>
-   <script
-      src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js"
-      id="eppiocemhmnlbhjplcgkofciiegomcon"
-   ></script>
-   <script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script>
-   <script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script>
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html lang="en" class="layout-navbar-fixed layout-compact dark-style layout-menu-fixed" dir="ltr"
+   data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template" data-style="dark">
+<script async="" src="./assets/js/gtm.js"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js"
+   id="eppiocemhmnlbhjplcgkofciiegomcon"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script>
 
-      <meta
-         name="viewport"
-         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-      />
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-      <title>
-         eCommerce Category List - Apps | Materio - Bootstrap Material Design
-         Admin Template
-      </title>
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-      <meta
-         name="description"
-         content="Start your development with a Dashboard for Bootstrap 5"
-      />
-      <meta
-         name="keywords"
-         content="dashboard, material, material design, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5"
-      />
-      <!-- Canonical SEO -->
-      <link
-         rel="canonical"
-         href="https://themeselection.com/item/materio-bootstrap-html-admin-template/"
-      />
+   <title>
+      eCommerce Category List - Apps | Materio - Bootstrap Material Design
+      Admin Template
+   </title>
 
-      <!-- End Google Tag Manager -->
+   <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+   <meta name="keywords"
+      content="dashboard, material, material design, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
+   <!-- Canonical SEO -->
+   <link rel="canonical" href="https://themeselection.com/item/materio-bootstrap-html-admin-template/" />
 
-      <!-- Favicon -->
-      <link
-         rel="icon"
-         type="image/x-icon"
-         href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/assets/img/favicon/favicon.ico"
-      />
+   <!-- End Google Tag Manager -->
 
-      <!-- Fonts -->
-      <link rel="preconnect" href="https://fonts.googleapis.com/" />
-      <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-      <link href="./assets/css/css2.css" rel="stylesheet" />
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon"
+      href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/assets/img/favicon/favicon.ico" />
 
-      <!-- Icons -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-      <link rel="stylesheet" href="./assets/css/remixicon.css" />
-      <link rel="stylesheet" href="./assets/css/flag-icons.css" />
+   <!-- Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com/" />
+   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+   <link href="./assets/css/css2.css" rel="stylesheet" />
 
-      <!-- Menu waves for no-customizer fix -->
-      <link rel="stylesheet" href="./assets/css/node-waves.css" />
+   <!-- Icons -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   <link rel="stylesheet" href="./assets/css/remixicon.css" />
+   <link rel="stylesheet" href="./assets/css/flag-icons.css" />
 
-      <!-- Core CSS -->
+   <!-- Menu waves for no-customizer fix -->
+   <link rel="stylesheet" href="./assets/css/node-waves.css" />
 
-      <link rel="stylesheet" href="./assets/css/demo.css" />
+   <!-- Core CSS -->
 
-      <!-- Vendors CSS -->
-      <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css" />
-      <link rel="stylesheet" href="./assets/css/typeahead.css" />
-      <link rel="stylesheet" href="./assets/css/datatables.bootstrap5.css" />
-      <link rel="stylesheet" href="./assets/css/responsive.bootstrap5.css" />
-      <link rel="stylesheet" href="./assets/css/buttons.bootstrap5.css" />
-      <link rel="stylesheet" href="./assets/css/datatables.checkboxes.css" />
-      <link rel="stylesheet" href="./assets/css/select2.css" />
-      <link rel="stylesheet" href="./assets/css/form-validation.css" />
-      <link rel="stylesheet" href="./assets/css/typography.css" />
-      <link rel="stylesheet" href="./assets/css/katex.css" />
-      <link rel="stylesheet" href="./assets/css/editor.css" />
+   <link rel="stylesheet" href="./assets/css/demo.css" />
 
-      <!-- Page CSS -->
+   <!-- Vendors CSS -->
+   <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css" />
+   <link rel="stylesheet" href="./assets/css/typeahead.css" />
+   <link rel="stylesheet" href="./assets/css/datatables.bootstrap5.css" />
+   <link rel="stylesheet" href="./assets/css/responsive.bootstrap5.css" />
+   <link rel="stylesheet" href="./assets/css/buttons.bootstrap5.css" />
+   <link rel="stylesheet" href="./assets/css/datatables.checkboxes.css" />
+   <link rel="stylesheet" href="./assets/css/select2.css" />
+   <link rel="stylesheet" href="./assets/css/form-validation.css" />
+   <link rel="stylesheet" href="./assets/css/typography.css" />
+   <link rel="stylesheet" href="./assets/css/katex.css" />
+   <link rel="stylesheet" href="./assets/css/editor.css" />
 
-      <link rel="stylesheet" href="./assets/css/app-ecommerce.css" />
+   <!-- Page CSS -->
 
-      <!-- Helpers -->
-      <script src="./assets/js/helpers.js"></script>
-      <script
-         bis_use="true"
-         type="text/javascript"
-         charset="utf-8"
-         data-bis-config='["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com","docs.google.com","contacts.google.com","github.com","mail.google.com","chat.google.com","audio.xpleer.com","keepa.com","static.xx.fbcdn.net","sas.selleramp.com","1plus1.video","console.googletagservices.com","//lnkd.demdex.net/","//radar.cedexis.com/","//li.protechts.net/","challenges.cloudflare.com/","ogs.google.com"]'
-         src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executers/vi-tr.js"
-      ></script>
+   <link rel="stylesheet" href="./assets/css/app-ecommerce.css" />
 
-      <!-- Template Navigation -->
-      <script src="./assets/js/CategoryList/navigation.js"></script>
+   <!-- Helpers -->
+   <script src="./assets/js/helpers.js"></script>
+   <script bis_use="true" type="text/javascript" charset="utf-8"
+      data-bis-config='["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com","docs.google.com","contacts.google.com","github.com","mail.google.com","chat.google.com","audio.xpleer.com","keepa.com","static.xx.fbcdn.net","sas.selleramp.com","1plus1.video","console.googletagservices.com","//lnkd.demdex.net/","//radar.cedexis.com/","//li.protechts.net/","challenges.cloudflare.com/","ogs.google.com"]'
+      src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executers/vi-tr.js"></script>
 
-      <!-- Template NabBar -->
-      <script src="./assets/js/template/navbar.js"></script>
-     
-      <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-      <script src="./assets/js/config.js"></script>
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/css/core-dark.css"
-         class="template-customizer-core-css"
-      />
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/css/theme-semi-dark-dark.css"
-         class="template-customizer-theme-css"
-      />
+   <!-- Template Navigation -->
+   <script src="./assets/js/CategoryList/navigation.js"></script>
 
-      <script
-         type="text/javascript"
-         src="./assets/js/api.min.js"
-         async=""
-         data-user="252882"
-         data-account="269977"
-      ></script>
-      <link
-         rel="stylesheet"
-         href="./assets/css/api.min.css"
-         id="omapi-css"
-         media="all"
-      />
-   </head>
+   <!-- Template NabBar -->
+   <script src="./assets/js/template/navbar.js"></script>
 
-   <body
-      bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJMSU5LRURJTiI6ImRpc2FibGVkIiwiQ09ORklHIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjIuMC4yMCIsInNjb3JlIjoyMDAyMH1d"
-      __processed_65e5f368-16fe-4f96-8682-f6077e8f706c__="true"
-   >
-    
+   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+   <script src="./assets/js/config.js"></script>
+   <link rel="stylesheet" type="text/css" href="./assets/css/core-dark.css" class="template-customizer-core-css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/theme-semi-dark-dark.css"
+      class="template-customizer-theme-css" />
 
-      <!-- Layout wrapper -->
-      <div class="layout-wrapper layout-content-navbar" bis_skin_checked="1">
-         <div class="layout-container" bis_skin_checked="1">
-            <!-- Menu -->
+   <script type="text/javascript" src="./assets/js/api.min.js" async="" data-user="252882"
+      data-account="269977"></script>
+   <link rel="stylesheet" href="./assets/css/api.min.css" id="omapi-css" media="all" />
+</head>
 
-            <navigation-main></navigation-main>
-            <!-- / Menu -->
+<body
+   bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJMSU5LRURJTiI6ImRpc2FibGVkIiwiQ09ORklHIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjIuMC4yMCIsInNjb3JlIjoyMDAyMH1d"
+   __processed_65e5f368-16fe-4f96-8682-f6077e8f706c__="true">
 
-            <!-- Layout container -->
-            <div class="layout-page" bis_skin_checked="1">
-               <!-- Navbar -->
 
-               <navbar-main></navbar-main>
+   <!-- Layout wrapper -->
+   <div class="layout-wrapper layout-content-navbar" bis_skin_checked="1">
+      <div class="layout-container" bis_skin_checked="1">
+         <!-- Menu -->
 
-               <!-- / Navbar -->
+         <navigation-main></navigation-main>
+         <!-- / Menu -->
 
-               <!-- Content wrapper -->
-               <div class="content-wrapper" bis_skin_checked="1">
-                  <!-- Content -->
+         <!-- Layout container -->
+         <div class="layout-page" bis_skin_checked="1">
+            <!-- Navbar -->
 
-                  <div
-                     class="container-xxl flex-grow-1 container-p-y"
-                     bis_skin_checked="1"
-                  >
-                     <div class="app-ecommerce-category" bis_skin_checked="1">
-                        <!-- Category List Table -->
-                        <div class="card" bis_skin_checked="1">
-                           <div
-                              class="card-datatable table-responsive"
-                              bis_skin_checked="1"
-                           >
-                              <div
-                                 id="DataTables_Table_0_wrapper"
-                                 class="dataTables_wrapper dt-bootstrap5 no-footer"
-                                 bis_skin_checked="1"
-                              >
-                                 <div
-                                    class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0"
-                                    bis_skin_checked="1"
-                                 >
-                                    <div
-                                       class="me-5 ms-n2"
-                                       bis_skin_checked="1"
-                                    >
-                                       <div
-                                          id="DataTables_Table_0_filter"
-                                          class="dataTables_filter"
-                                          bis_skin_checked="1"
-                                       >
-                                          <label
-                                             ><input
-                                                type="search"
-                                                class="form-control form-control-sm"
-                                                placeholder="Search"
-                                                aria-controls="DataTables_Table_0"
-                                          /></label>
-                                       </div>
+            <navbar-main></navbar-main>
+
+            <!-- / Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" bis_skin_checked="1">
+               <!-- Content -->
+
+               <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
+                  <div class="app-ecommerce-category" bis_skin_checked="1">
+                     <!-- Category List Table -->
+                     <div class="card" bis_skin_checked="1">
+                        <div class="card-datatable table-responsive" bis_skin_checked="1">
+                           <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
+                              bis_skin_checked="1">
+                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0"
+                                 bis_skin_checked="1">
+                                 <div class="me-5 ms-n2" bis_skin_checked="1">
+                                    <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
+                                       <label><input type="search" class="form-control form-control-sm"
+                                             placeholder="Search" aria-controls="DataTables_Table_0" /></label>
                                     </div>
+                                 </div>
+                                 <div class="d-flex justify-content-start justify-content-md-end align-items-baseline"
+                                    bis_skin_checked="1">
                                     <div
-                                       class="d-flex justify-content-start justify-content-md-end align-items-baseline"
-                                       bis_skin_checked="1"
-                                    >
-                                       <div
-                                          class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0"
-                                          bis_skin_checked="1"
-                                       >
-                                          <div
-                                             class="dataTables_length my-0"
-                                             id="DataTables_Table_0_length"
-                                             bis_skin_checked="1"
-                                          >
-                                             <label
-                                                ><select
-                                                   name="DataTables_Table_0_length"
-                                                   aria-controls="DataTables_Table_0"
-                                                   class="form-select form-select-sm"
-                                                >
-                                                   <option value="7">7</option>
-                                                   <option value="10">
-                                                      10
-                                                   </option>
-                                                   <option value="20">
-                                                      20
-                                                   </option>
-                                                   <option value="50">
-                                                      50
-                                                   </option>
-                                                   <option value="70">
-                                                      70
-                                                   </option>
-                                                   <option value="100">
-                                                      100
-                                                   </option>
-                                                </select></label
-                                             >
-                                          </div>
-                                          <div
-                                             class="dt-buttons btn-group flex-wrap"
-                                             bis_skin_checked="1"
-                                          >
-                                             <div
-                                                class="btn-group"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-5 waves-effect waves-light"
-                                                   tabindex="0"
-                                                   aria-controls="DataTables_Table_0"
-                                                   type="button"
-                                                   aria-haspopup="dialog"
-                                                   aria-expanded="false"
-                                                >
-                                                   <span
-                                                      ><i
-                                                         class="ri-download-line me-1"
-                                                      ></i>
-                                                      <span
-                                                         class="d-none d-sm-inline-block"
-                                                         >Export</span
-                                                      ></span
-                                                   >
-                                                </button>
-                                             </div>
+                                       class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0"
+                                       bis_skin_checked="1">
+                                       <div class="dataTables_length my-0" id="DataTables_Table_0_length"
+                                          bis_skin_checked="1">
+                                          <label><select name="DataTables_Table_0_length"
+                                                aria-controls="DataTables_Table_0" class="form-select form-select-sm">
+                                                <option value="7">7</option>
+                                                <option value="10">
+                                                   10
+                                                </option>
+                                                <option value="20">
+                                                   20
+                                                </option>
+                                                <option value="50">
+                                                   50
+                                                </option>
+                                                <option value="70">
+                                                   70
+                                                </option>
+                                                <option value="100">
+                                                   100
+                                                </option>
+                                             </select></label>
+                                       </div>
+                                       <div class="dt-buttons btn-group flex-wrap" bis_skin_checked="1">
+                                          <div class="btn-group" bis_skin_checked="1">
                                              <button
-                                                class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
-                                                tabindex="0"
-                                                aria-controls="DataTables_Table_0"
-                                                type="button"
-                                                data-bs-toggle="offcanvas"
-                                                data-bs-target="#offcanvasEcommerceCategoryList"
-                                             >
-                                                <span
-                                                   ><i
-                                                      class="ri-add-line me-0 me-sm-1"
-                                                   ></i
-                                                   ><span
-                                                      class="d-none d-sm-inline-block"
-                                                      >Add Category</span
-                                                   ></span
-                                                >
+                                                class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-5 waves-effect waves-light"
+                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                aria-haspopup="dialog" aria-expanded="false">
+                                                <span><i class="ri-download-line me-1"></i>
+                                                   <span class="d-none d-sm-inline-block">Export</span></span>
                                              </button>
                                           </div>
+                                          <button
+                                             class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
+                                             tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                             data-bs-toggle="offcanvas"
+                                             data-bs-target="#offcanvasEcommerceCategoryList">
+                                             <span><i class="ri-add-line me-0 me-sm-1"></i><span
+                                                   class="d-none d-sm-inline-block">Add Category</span></span>
+                                          </button>
                                        </div>
                                     </div>
                                  </div>
-                                 <table
-                                    class="table dataTable no-footer dtr-column"
-                                    id="DataTables_Table_0"
-                                    aria-describedby="DataTables_Table_0_info"
-                                    style="width: 1394px"
-                                 >
-                                    <thead>
-                                       <tr>
-                                          <th
-                                             class="control sorting_disabled dtr-hidden"
-                                             rowspan="1"
-                                             colspan="1"
-                                             style="width: 0px; display: none"
-                                             aria-label=""
-                                          ></th>
-                                          <th
-                                             class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
-                                             rowspan="1"
-                                             colspan="1"
-                                             style="width: 18px"
-                                             data-col="1"
-                                             aria-label=""
-                                          >
-                                             <input
-                                                type="checkbox"
-                                                class="form-check-input"
-                                             />
-                                          </th>
-                                          <th
-                                             class="sorting sorting_desc"
-                                             tabindex="0"
-                                             aria-controls="DataTables_Table_0"
-                                             rowspan="1"
-                                             colspan="1"
-                                             style="width: 699px"
-                                             aria-label="Categories: activate to sort column ascending"
-                                             aria-sort="descending"
-                                          >
-                                             Categories
-                                          </th>
-                                          <th
-                                             class="text-nowrap text-sm-end sorting"
-                                             tabindex="0"
-                                             aria-controls="DataTables_Table_0"
-                                             rowspan="1"
-                                             colspan="1"
-                                             style="width: 191px"
-                                             aria-label="Total Products &amp;nbsp;: activate to sort column ascending"
-                                          >
-                                             Total Products &nbsp;
-                                          </th>
-                                          <th
-                                             class="text-nowrap text-sm-end sorting_disabled"
-                                             rowspan="1"
-                                             colspan="1"
-                                             style="width: 160px"
-                                             aria-label="Total Earning"
-                                          >
-                                             Total Earning
-                                          </th>
-                                          <th
-                                             class="text-lg-center sorting_disabled"
-                                             rowspan="1"
-                                             colspan="1"
-                                             style="width: 118px"
-                                             aria-label="Actions"
-                                          >
-                                             Actions
-                                          </th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr class="odd">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-16.png"
-                                                         alt="Product-8"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Travel</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Choose from wide range of
-                                                      travel accessories from
-                                                      popular brands</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                4186
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $7912.99
-                                             </div>
-                                          </td>
-                                          <td style="
-                                          text-align: center;">
-                                            <a href="#!"><svg style="width: 35px; height:20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1 0 32c0 8.8 7.2 16 16 16l32 0zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z" fill="white"/></svg></a>
-                                            <a href="#!"><svg style="width: 35px; height:25px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" fill="#e24e4e"/></svg></a>
-                                         </td>
-                                       </tr>
-                                       <tr class="even">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-1.png"
-                                                         alt="Product-1"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Smart Phone</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Choose from wide range of
-                                                      smartphones from popular
-                                                      brands</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                1947
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $99129
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="d-flex align-items-sm-center justify-content-sm-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                >
-                                                   <i
-                                                      class="ri-edit-box-line ri-22px"
-                                                   ></i></button
-                                                ><button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
-                                                   data-bs-toggle="dropdown"
-                                                >
-                                                   <i
-                                                      class="ri-more-2-line ri-22px"
-                                                   ></i>
-                                                </button>
-                                                <div
-                                                   class="dropdown-menu dropdown-menu-end m-0"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >View</a
-                                                   ><a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >Suspend</a
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr class="odd">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-4.png"
-                                                         alt="Product-4"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Shoes</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Explore the latest shoes
-                                                      from Top brands</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                4940
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $3612.98
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="d-flex align-items-sm-center justify-content-sm-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                >
-                                                   <i
-                                                      class="ri-edit-box-line ri-22px"
-                                                   ></i></button
-                                                ><button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
-                                                   data-bs-toggle="dropdown"
-                                                >
-                                                   <i
-                                                      class="ri-more-2-line ri-22px"
-                                                   ></i>
-                                                </button>
-                                                <div
-                                                   class="dropdown-menu dropdown-menu-end m-0"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >View</a
-                                                   ><a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >Suspend</a
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr class="even">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-22.png"
-                                                         alt="Product-10"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Jewellery</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Choose from wide range of
-                                                      Jewellery from popular
-                                                      brands</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                4186
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $7912.99
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="d-flex align-items-sm-center justify-content-sm-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                >
-                                                   <i
-                                                      class="ri-edit-box-line ri-22px"
-                                                   ></i></button
-                                                ><button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
-                                                   data-bs-toggle="dropdown"
-                                                >
-                                                   <i
-                                                      class="ri-more-2-line ri-22px"
-                                                   ></i>
-                                                </button>
-                                                <div
-                                                   class="dropdown-menu dropdown-menu-end m-0"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >View</a
-                                                   ><a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >Suspend</a
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr class="odd">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-10.png"
-                                                         alt="Product-7"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Home Decor</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Choose from wide range of
-                                                      home decor from popular
-                                                      brands</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                9184
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $19120.45
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="d-flex align-items-sm-center justify-content-sm-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                >
-                                                   <i
-                                                      class="ri-edit-box-line ri-22px"
-                                                   ></i></button
-                                                ><button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
-                                                   data-bs-toggle="dropdown"
-                                                >
-                                                   <i
-                                                      class="ri-more-2-line ri-22px"
-                                                   ></i>
-                                                </button>
-                                                <div
-                                                   class="dropdown-menu dropdown-menu-end m-0"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >View</a
-                                                   ><a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >Suspend</a
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr class="even">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-23.png"
-                                                         alt="Product-11"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Grocery</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Get fresh groceries
-                                                      delivered at your
-                                                      doorstep</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                4186
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $7912.99
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="d-flex align-items-sm-center justify-content-sm-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                >
-                                                   <i
-                                                      class="ri-edit-box-line ri-22px"
-                                                   ></i></button
-                                                ><button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
-                                                   data-bs-toggle="dropdown"
-                                                >
-                                                   <i
-                                                      class="ri-more-2-line ri-22px"
-                                                   ></i>
-                                                </button>
-                                                <div
-                                                   class="dropdown-menu dropdown-menu-end m-0"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >View</a
-                                                   ><a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >Suspend</a
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr class="odd">
-                                          <td
-                                             class="control"
-                                             tabindex="0"
-                                             style="display: none"
-                                          ></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                             />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div
-                                                class="d-flex align-items-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <div
-                                                   class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <div
-                                                      class="avatar"
-                                                      bis_skin_checked="1"
-                                                   >
-                                                      <img
-                                                         src="./assets/img/CategoryList/product-6.png"
-                                                         alt="Product-6"
-                                                         class="rounded-2"
-                                                      />
-                                                   </div>
-                                                </div>
-                                                <div
-                                                   class="d-flex flex-column justify-content-center"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <span
-                                                      class="text-heading fw-medium text-wrap"
-                                                      >Games</span
-                                                   ><small
-                                                      class="text-truncate mb-0 d-none d-sm-block"
-                                                      >Dive into world of
-                                                      Virtual Reality with
-                                                      latest games</small
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end pe-3"
-                                                bis_skin_checked="1"
-                                             >
-                                                5764
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="text-sm-end"
-                                                bis_skin_checked="1"
-                                             >
-                                                $29129
-                                             </div>
-                                          </td>
-                                          <td>
-                                             <div
-                                                class="d-flex align-items-sm-center justify-content-sm-center"
-                                                bis_skin_checked="1"
-                                             >
-                                                <button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                >
-                                                   <i
-                                                      class="ri-edit-box-line ri-22px"
-                                                   ></i></button
-                                                ><button
-                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
-                                                   data-bs-toggle="dropdown"
-                                                >
-                                                   <i
-                                                      class="ri-more-2-line ri-22px"
-                                                   ></i>
-                                                </button>
-                                                <div
-                                                   class="dropdown-menu dropdown-menu-end m-0"
-                                                   bis_skin_checked="1"
-                                                >
-                                                   <a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >View</a
-                                                   ><a
-                                                      href="javascript:0;"
-                                                      class="dropdown-item"
-                                                      >Suspend</a
-                                                   >
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                                 <div class="row mx-1" bis_skin_checked="1">
-                                    <div
-                                       class="col-sm-12 col-md-6"
-                                       bis_skin_checked="1"
-                                    >
-                                       <div
-                                          class="dataTables_info"
-                                          id="DataTables_Table_0_info"
-                                          role="status"
-                                          aria-live="polite"
-                                          bis_skin_checked="1"
-                                       >
-                                          Showing 1 to 7 of 14 entries
-                                       </div>
-                                    </div>
-                                    <div
-                                       class="col-sm-12 col-md-6"
-                                       bis_skin_checked="1"
-                                    >
-                                       <div
-                                          class="dataTables_paginate paging_simple_numbers"
-                                          id="DataTables_Table_0_paginate"
-                                          bis_skin_checked="1"
-                                       >
-                                          <ul class="pagination">
-                                             <li
-                                                class="paginate_button page-item previous disabled"
-                                                id="DataTables_Table_0_previous"
-                                             >
-                                                <a
-                                                   aria-controls="DataTables_Table_0"
-                                                   aria-disabled="true"
-                                                   role="link"
-                                                   data-dt-idx="previous"
-                                                   tabindex="-1"
-                                                   class="page-link"
-                                                   >Previous</a
-                                                >
-                                             </li>
-                                             <li
-                                                class="paginate_button page-item active"
-                                             >
-                                                <a
-                                                   href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                   aria-controls="DataTables_Table_0"
-                                                   role="link"
-                                                   aria-current="page"
-                                                   data-dt-idx="0"
-                                                   tabindex="0"
-                                                   class="page-link"
-                                                   >1</a
-                                                >
-                                             </li>
-                                             <li
-                                                class="paginate_button page-item"
-                                             >
-                                                <a
-                                                   href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                   aria-controls="DataTables_Table_0"
-                                                   role="link"
-                                                   data-dt-idx="1"
-                                                   tabindex="0"
-                                                   class="page-link"
-                                                   >2</a
-                                                >
-                                             </li>
-                                             <li
-                                                class="paginate_button page-item next"
-                                                id="DataTables_Table_0_next"
-                                             >
-                                                <a
-                                                   href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                   aria-controls="DataTables_Table_0"
-                                                   role="link"
-                                                   data-dt-idx="next"
-                                                   tabindex="0"
-                                                   class="page-link"
-                                                   >Next</a
-                                                >
-                                             </li>
-                                          </ul>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div
-                                    bis_skin_checked="1"
-                                    style="width: 1%"
-                                 ></div>
                               </div>
+                              <table class="table dataTable no-footer dtr-column" id="DataTables_Table_0"
+                                 aria-describedby="DataTables_Table_0_info" style="width: 1394px">
+                                 <thead>
+                                    <tr>
+                                       <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1"
+                                          style="width: 0px; display: none" aria-label=""></th>
+                                       <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
+                                          rowspan="1" colspan="1" style="width: 18px" data-col="1" aria-label="">
+                                          <input type="checkbox" class="form-check-input" />
+                                       </th>
+                                       <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0"
+                                          rowspan="1" colspan="1" style="width: 699px"
+                                          aria-label="Categories: activate to sort column ascending"
+                                          aria-sort="descending">
+                                          Categories
+                                       </th>
+                                       <th class="text-nowrap text-sm-end sorting" tabindex="0"
+                                          aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                          style="width: 191px"
+                                          aria-label="Total Products &amp;nbsp;: activate to sort column ascending">
+                                          Total Products &nbsp;
+                                       </th>
+                                       <th class="text-nowrap text-sm-end sorting_disabled" rowspan="1" colspan="1"
+                                          style="width: 160px" aria-label="Total Earning">
+                                          Total Earning
+                                       </th>
+                                       <th class="text-lg-center sorting_disabled" rowspan="1" colspan="1"
+                                          style="width: 118px" aria-label="Actions">
+                                          Actions
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr class="odd">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-16.png" alt="Product-8"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Travel</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Choose from wide range
+                                                   of
+                                                   travel accessories from
+                                                   popular brands</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             4186
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $7912.99
+                                          </div>
+                                       </td>
+                                       <td style="
+                                          text-align: center;">
+                                          <a href="#!"><svg style="width: 35px; height:20px;"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path
+                                                   d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1 0 32c0 8.8 7.2 16 16 16l32 0zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+                                                   fill="white" />
+                                             </svg></a>
+                                          <a href="#!"><svg style="width: 35px; height:25px;"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path
+                                                   d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"
+                                                   fill="#e24e4e" />
+                                             </svg></a>
+                                       </td>
+                                    </tr>
+                                    <tr class="even">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-1.png" alt="Product-1"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Smart Phone</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Choose from wide range
+                                                   of
+                                                   smartphones from popular
+                                                   brands</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             1947
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $99129
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center"
+                                             bis_skin_checked="1">
+                                             <button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1">
+                                                <i class="ri-edit-box-line ri-22px"></i></button><button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                             </button>
+                                             <div class="dropdown-menu dropdown-menu-end m-0" bis_skin_checked="1">
+                                                <a href="javascript:0;" class="dropdown-item">View</a><a
+                                                   href="javascript:0;" class="dropdown-item">Suspend</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr class="odd">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-4.png" alt="Product-4"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Shoes</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Explore the latest shoes
+                                                   from Top brands</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             4940
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $3612.98
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center"
+                                             bis_skin_checked="1">
+                                             <button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1">
+                                                <i class="ri-edit-box-line ri-22px"></i></button><button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                             </button>
+                                             <div class="dropdown-menu dropdown-menu-end m-0" bis_skin_checked="1">
+                                                <a href="javascript:0;" class="dropdown-item">View</a><a
+                                                   href="javascript:0;" class="dropdown-item">Suspend</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr class="even">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-22.png" alt="Product-10"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Jewellery</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Choose from wide range
+                                                   of
+                                                   Jewellery from popular
+                                                   brands</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             4186
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $7912.99
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center"
+                                             bis_skin_checked="1">
+                                             <button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1">
+                                                <i class="ri-edit-box-line ri-22px"></i></button><button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                             </button>
+                                             <div class="dropdown-menu dropdown-menu-end m-0" bis_skin_checked="1">
+                                                <a href="javascript:0;" class="dropdown-item">View</a><a
+                                                   href="javascript:0;" class="dropdown-item">Suspend</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr class="odd">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-10.png" alt="Product-7"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Home Decor</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Choose from wide range
+                                                   of
+                                                   home decor from popular
+                                                   brands</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             9184
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $19120.45
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center"
+                                             bis_skin_checked="1">
+                                             <button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1">
+                                                <i class="ri-edit-box-line ri-22px"></i></button><button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                             </button>
+                                             <div class="dropdown-menu dropdown-menu-end m-0" bis_skin_checked="1">
+                                                <a href="javascript:0;" class="dropdown-item">View</a><a
+                                                   href="javascript:0;" class="dropdown-item">Suspend</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr class="even">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-23.png" alt="Product-11"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Grocery</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Get fresh groceries
+                                                   delivered at your
+                                                   doorstep</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             4186
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $7912.99
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center"
+                                             bis_skin_checked="1">
+                                             <button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1">
+                                                <i class="ri-edit-box-line ri-22px"></i></button><button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                             </button>
+                                             <div class="dropdown-menu dropdown-menu-end m-0" bis_skin_checked="1">
+                                                <a href="javascript:0;" class="dropdown-item">View</a><a
+                                                   href="javascript:0;" class="dropdown-item">Suspend</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr class="odd">
+                                       <td class="control" tabindex="0" style="display: none"></td>
+                                       <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                       </td>
+                                       <td class="sorting_1">
+                                          <div class="d-flex align-items-center" bis_skin_checked="1">
+                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name"
+                                                bis_skin_checked="1">
+                                                <div class="avatar" bis_skin_checked="1">
+                                                   <img src="./assets/img/CategoryList/product-6.png" alt="Product-6"
+                                                      class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column justify-content-center"
+                                                bis_skin_checked="1">
+                                                <span class="text-heading fw-medium text-wrap">Games</span><small
+                                                   class="text-truncate mb-0 d-none d-sm-block">Dive into world of
+                                                   Virtual Reality with
+                                                   latest games</small>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end pe-3" bis_skin_checked="1">
+                                             5764
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="text-sm-end" bis_skin_checked="1">
+                                             $29129
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center"
+                                             bis_skin_checked="1">
+                                             <button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1">
+                                                <i class="ri-edit-box-line ri-22px"></i></button><button
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                             </button>
+                                             <div class="dropdown-menu dropdown-menu-end m-0" bis_skin_checked="1">
+                                                <a href="javascript:0;" class="dropdown-item">View</a><a
+                                                   href="javascript:0;" class="dropdown-item">Suspend</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                              <div class="row mx-1" bis_skin_checked="1">
+                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
+                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
+                                       aria-live="polite" bis_skin_checked="1">
+                                       Showing 1 to 7 of 14 entries
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
+                                    <div class="dataTables_paginate paging_simple_numbers"
+                                       id="DataTables_Table_0_paginate" bis_skin_checked="1">
+                                       <ul class="pagination">
+                                          <li class="paginate_button page-item previous disabled"
+                                             id="DataTables_Table_0_previous">
+                                             <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
+                                                data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
+                                          </li>
+                                          <li class="paginate_button page-item active">
+                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
+                                                aria-controls="DataTables_Table_0" role="link" aria-current="page"
+                                                data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                                          </li>
+                                          <li class="paginate_button page-item">
+                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
+                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
+                                                tabindex="0" class="page-link">2</a>
+                                          </li>
+                                          <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
+                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
+                                                tabindex="0" class="page-link">Next</a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div bis_skin_checked="1" style="width: 1%"></div>
                            </div>
                         </div>
-                        <!-- Offcanvas to add new customer -->
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList" aria-labelledby="offcanvasEcommerceCategoryListLabel" bis_skin_checked="1" aria-modal="true" role="dialog">
-                           <!-- Offcanvas Header -->
-                           <div class="offcanvas-header py-6" bis_skin_checked="1">
-                             <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
-                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                           </div>
-                           <!-- Offcanvas Body -->
-                           <div class="offcanvas-body border-top" bis_skin_checked="1">
-                             <form class="pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="eCommerceCategoryListForm" onsubmit="return false" novalidate="novalidate">
-                               <!-- Title -->
-                       
-                               <div class="form-floating form-floating-outline mb-5 fv-plugins-icon-container" bis_skin_checked="1">
-                                 <input type="text" class="form-control" id="ecommerce-category-title" placeholder="Enter category title" name="categoryTitle" aria-label="category title">
+                     </div>
+                     <!-- Offcanvas to add new customer -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList"
+                        aria-labelledby="offcanvasEcommerceCategoryListLabel" bis_skin_checked="1" aria-modal="true"
+                        role="dialog">
+                        <!-- Offcanvas Header -->
+                        <div class="offcanvas-header py-6" bis_skin_checked="1">
+                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+                        <!-- Offcanvas Body -->
+                        <div class="offcanvas-body border-top" bis_skin_checked="1">
+                           <form class="pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="eCommerceCategoryListForm"
+                              onsubmit="return false" novalidate="novalidate">
+                              <!-- Title -->
+
+                              <div class="form-floating form-floating-outline mb-5 fv-plugins-icon-container"
+                                 bis_skin_checked="1">
+                                 <input type="text" class="form-control" id="ecommerce-category-title"
+                                    placeholder="Enter category title" name="categoryTitle" aria-label="category title">
                                  <label for="ecommerce-category-title">Title</label>
-                               <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback" bis_skin_checked="1"></div></div>
-                       
-                               <!-- Slug -->
-                               <div class="form-floating form-floating-outline mb-5 fv-plugins-icon-container" bis_skin_checked="1">
-                                 <input type="text" id="ecommerce-category-slug" class="form-control" placeholder="Enter slug" aria-label="slug" name="slug">
+                                 <div
+                                    class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
+                                    bis_skin_checked="1"></div>
+                              </div>
+
+                              <!-- Slug -->
+                              <div class="form-floating form-floating-outline mb-5 fv-plugins-icon-container"
+                                 bis_skin_checked="1">
+                                 <input type="text" id="ecommerce-category-slug" class="form-control"
+                                    placeholder="Enter slug" aria-label="slug" name="slug">
                                  <label for="ecommerce-category-slug">Slug</label>
-                               <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback" bis_skin_checked="1"></div></div>
-                       
-                               <!-- Image -->
-                               <div class="mb-5" bis_skin_checked="1">
+                                 <div
+                                    class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
+                                    bis_skin_checked="1"></div>
+                              </div>
+
+                              <!-- Image -->
+                              <div class="mb-5" bis_skin_checked="1">
                                  <input class="form-control" type="file" id="ecommerce-category-image">
-                               </div>
-                               <!-- Parent category -->
-                               <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
-                                 <div class="form-floating form-floating-outline form-floating-select2" bis_skin_checked="1">
-                                   <div class="position-relative" bis_skin_checked="1"><select id="ecommerce-category-parent-category" class="select2 form-select select2-hidden-accessible" data-placeholder="Select parent category" data-allow-clear="true" data-select2-id="ecommerce-category-parent-category" tabindex="-1" aria-hidden="true">
-                                     <option value="" data-select2-id="2">Select parent Category</option>
-                                     <option value="Household">Household</option>
-                                     <option value="Management">Management</option>
-                                     <option value="Electronics">Electronics</option>
-                                     <option value="Office">Office</option>
-                                     <option value="Automotive">Automotive</option>
-                                   </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 360px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="" aria-expanded="" tabindex="" aria-disabled="" aria-labelledby="select2-ecommerce-category-parent-category-container"><span class="select2-selection__rendered" id="select2-ecommerce-category-parent-category-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Select parent category</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
-                                   <label for="ecommerce-category-parent-category">Parent category</label>
+                              </div>
+                              <!-- Parent category -->
+                              <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
+                                 <div class="form-floating form-floating-outline form-floating-select2"
+                                    bis_skin_checked="1">
+                                    <div class="position-relative" bis_skin_checked="1"><select
+                                          id="ecommerce-category-parent-category"
+                                          class="select2 form-select select2-hidden-accessible"
+                                          data-placeholder="Select parent category" data-allow-clear="true"
+                                          data-select2-id="ecommerce-category-parent-category" tabindex="-1"
+                                          aria-hidden="true">
+                                          <option value="" data-select2-id="2">Select parent Category</option>
+                                          <option value="Household">Household</option>
+                                          <option value="Management">Management</option>
+                                          <option value="Electronics">Electronics</option>
+                                          <option value="Office">Office</option>
+                                          <option value="Automotive">Automotive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-category-parent-category">Parent category</label>
                                  </div>
-                               </div>
-                               <!-- Description -->
-                               <div class="mb-6" bis_skin_checked="1">
+                              </div>
+                              <!-- Description -->
+                              <div class="mb-6" bis_skin_checked="1">
                                  <div class="form-control p-0 pt-1" bis_skin_checked="1">
-                                   <div class="comment-editor border-0 ql-container ql-snow" id="ecommerce-category-description" bis_skin_checked="1"><div class="ql-editor ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Write a Comment..." bis_skin_checked="1"><p><br></p></div><div class="ql-clipboard" contenteditable="true" tabindex="-1" bis_skin_checked="1"></div><div class="ql-tooltip ql-hidden" bis_skin_checked="1"><a class="ql-preview" rel="noopener noreferrer" target="_blank" href="about:blank"></a><input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL"><a class="ql-action"></a><a class="ql-remove"></a></div></div>
-                                   <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow" bis_skin_checked="1">
-                                     <div class="d-flex justify-content-end" bis_skin_checked="1">
-                                       <span class="ql-formats me-0">
-                                         <button class="ql-bold" type="button"><svg viewBox="0 0 18 18"> <path class="ql-stroke" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path> <path class="ql-stroke" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path> </svg></button>
-                                         <button class="ql-italic" type="button"><svg viewBox="0 0 18 18"> <line class="ql-stroke" x1="7" x2="13" y1="4" y2="4"></line> <line class="ql-stroke" x1="5" x2="11" y1="14" y2="14"></line> <line class="ql-stroke" x1="8" x2="10" y1="14" y2="4"></line> </svg></button>
-                                         <button class="ql-underline" type="button"><svg viewBox="0 0 18 18"> <path class="ql-stroke" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path> <rect class="ql-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect> </svg></button>
-                                         <button class="ql-list" value="ordered" type="button"><svg viewBox="0 0 18 18"> <line class="ql-stroke" x1="7" x2="15" y1="4" y2="4"></line> <line class="ql-stroke" x1="7" x2="15" y1="9" y2="9"></line> <line class="ql-stroke" x1="7" x2="15" y1="14" y2="14"></line> <line class="ql-stroke ql-thin" x1="2.5" x2="4.5" y1="5.5" y2="5.5"></line> <path class="ql-fill" d="M3.5,6A0.5,0.5,0,0,1,3,5.5V3.085l-0.276.138A0.5,0.5,0,0,1,2.053,3c-0.124-.247-0.023-0.324.224-0.447l1-.5A0.5,0.5,0,0,1,4,2.5v3A0.5,0.5,0,0,1,3.5,6Z"></path> <path class="ql-stroke ql-thin" d="M4.5,10.5h-2c0-.234,1.85-1.076,1.85-2.234A0.959,0.959,0,0,0,2.5,8.156"></path> <path class="ql-stroke ql-thin" d="M2.5,14.846a0.959,0.959,0,0,0,1.85-.109A0.7,0.7,0,0,0,3.75,14a0.688,0.688,0,0,0,.6-0.736,0.959,0.959,0,0,0-1.85-.109"></path> </svg></button>
-                                         <button class="ql-list" value="bullet" type="button"><svg viewBox="0 0 18 18"> <line class="ql-stroke" x1="6" x2="15" y1="4" y2="4"></line> <line class="ql-stroke" x1="6" x2="15" y1="9" y2="9"></line> <line class="ql-stroke" x1="6" x2="15" y1="14" y2="14"></line> <line class="ql-stroke" x1="3" x2="3" y1="4" y2="4"></line> <line class="ql-stroke" x1="3" x2="3" y1="9" y2="9"></line> <line class="ql-stroke" x1="3" x2="3" y1="14" y2="14"></line> </svg></button>
-                                         <button class="ql-link" type="button"><svg viewBox="0 0 18 18"> <line class="ql-stroke" x1="7" x2="11" y1="7" y2="11"></line> <path class="ql-even ql-stroke" d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path> <path class="ql-even ql-stroke" d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path> </svg></button>
-                                         <button class="ql-image" type="button"><svg viewBox="0 0 18 18"> <rect class="ql-stroke" height="10" width="12" x="3" y="4"></rect> <circle class="ql-fill" cx="6" cy="7" r="1"></circle> <polyline class="ql-even ql-fill" points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"></polyline> </svg></button>
-                                       </span>
-                                     </div>
-                                   </div>
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-category-description" bis_skin_checked="1">
+                                       <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true"
+                                          data-placeholder="Write a Comment..." bis_skin_checked="1">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"
+                                          bis_skin_checked="1"></div>
+                                       <div class="ql-tooltip ql-hidden" bis_skin_checked="1"><a class="ql-preview"
+                                             rel="noopener noreferrer" target="_blank" href="about:blank"></a><input
+                                             type="text" data-formula="e=mc^2" data-link="https://quilljs.com"
+                                             data-video="Embed URL"><a class="ql-action"></a><a class="ql-remove"></a>
+                                       </div>
+                                    </div>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow"
+                                       bis_skin_checked="1">
+                                       <div class="d-flex justify-content-end" bis_skin_checked="1">
+                                          <span class="ql-formats me-0">
+                                             <button class="ql-bold" type="button"><svg viewBox="0 0 18 18">
+                                                   <path class="ql-stroke"
+                                                      d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z">
+                                                   </path>
+                                                   <path class="ql-stroke"
+                                                      d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
+                                                   </path>
+                                                </svg></button>
+                                             <button class="ql-italic" type="button"><svg viewBox="0 0 18 18">
+                                                   <line class="ql-stroke" x1="7" x2="13" y1="4" y2="4"></line>
+                                                   <line class="ql-stroke" x1="5" x2="11" y1="14" y2="14"></line>
+                                                   <line class="ql-stroke" x1="8" x2="10" y1="14" y2="4"></line>
+                                                </svg></button>
+                                             <button class="ql-underline" type="button"><svg viewBox="0 0 18 18">
+                                                   <path class="ql-stroke"
+                                                      d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
+                                                   <rect class="ql-fill" height="1" rx="0.5" ry="0.5" width="12" x="3"
+                                                      y="15"></rect>
+                                                </svg></button>
+                                             <button class="ql-list" value="ordered" type="button"><svg
+                                                   viewBox="0 0 18 18">
+                                                   <line class="ql-stroke" x1="7" x2="15" y1="4" y2="4"></line>
+                                                   <line class="ql-stroke" x1="7" x2="15" y1="9" y2="9"></line>
+                                                   <line class="ql-stroke" x1="7" x2="15" y1="14" y2="14"></line>
+                                                   <line class="ql-stroke ql-thin" x1="2.5" x2="4.5" y1="5.5" y2="5.5">
+                                                   </line>
+                                                   <path class="ql-fill"
+                                                      d="M3.5,6A0.5,0.5,0,0,1,3,5.5V3.085l-0.276.138A0.5,0.5,0,0,1,2.053,3c-0.124-.247-0.023-0.324.224-0.447l1-.5A0.5,0.5,0,0,1,4,2.5v3A0.5,0.5,0,0,1,3.5,6Z">
+                                                   </path>
+                                                   <path class="ql-stroke ql-thin"
+                                                      d="M4.5,10.5h-2c0-.234,1.85-1.076,1.85-2.234A0.959,0.959,0,0,0,2.5,8.156">
+                                                   </path>
+                                                   <path class="ql-stroke ql-thin"
+                                                      d="M2.5,14.846a0.959,0.959,0,0,0,1.85-.109A0.7,0.7,0,0,0,3.75,14a0.688,0.688,0,0,0,.6-0.736,0.959,0.959,0,0,0-1.85-.109">
+                                                   </path>
+                                                </svg></button>
+                                             <button class="ql-list" value="bullet" type="button"><svg
+                                                   viewBox="0 0 18 18">
+                                                   <line class="ql-stroke" x1="6" x2="15" y1="4" y2="4"></line>
+                                                   <line class="ql-stroke" x1="6" x2="15" y1="9" y2="9"></line>
+                                                   <line class="ql-stroke" x1="6" x2="15" y1="14" y2="14"></line>
+                                                   <line class="ql-stroke" x1="3" x2="3" y1="4" y2="4"></line>
+                                                   <line class="ql-stroke" x1="3" x2="3" y1="9" y2="9"></line>
+                                                   <line class="ql-stroke" x1="3" x2="3" y1="14" y2="14"></line>
+                                                </svg></button>
+                                             <button class="ql-link" type="button"><svg viewBox="0 0 18 18">
+                                                   <line class="ql-stroke" x1="7" x2="11" y1="7" y2="11"></line>
+                                                   <path class="ql-even ql-stroke"
+                                                      d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z">
+                                                   </path>
+                                                   <path class="ql-even ql-stroke"
+                                                      d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z">
+                                                   </path>
+                                                </svg></button>
+                                             <button class="ql-image" type="button"><svg viewBox="0 0 18 18">
+                                                   <rect class="ql-stroke" height="10" width="12" x="3" y="4"></rect>
+                                                   <circle class="ql-fill" cx="6" cy="7" r="1"></circle>
+                                                   <polyline class="ql-even ql-fill"
+                                                      points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"></polyline>
+                                                </svg></button>
+                                          </span>
+                                       </div>
+                                    </div>
                                  </div>
-                               </div>
-                               <!-- Status -->
-                               <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
-                                 <div class="form-floating form-floating-outline form-floating-select2" bis_skin_checked="1">
-                                   <div class="position-relative" bis_skin_checked="1"><select id="ecommerce-category-status" class="select2 form-select select2-hidden-accessible" data-placeholder="Select category status" data-select2-id="ecommerce-category-status" tabindex="-1" aria-hidden="true">
-                                     <option value="" data-select2-id="4">Select category status</option>
-                                     <option value="Scheduled">Scheduled</option>
-                                     <option value="Publish">Publish</option>
-                                     <option value="Inactive">Inactive</option>
-                                   </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="3" style="width: 360px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-ecommerce-category-status-container"><span class="select2-selection__rendered" id="select2-ecommerce-category-status-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Select category status</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
-                                   <label for="ecommerce-category-status">Parent status</label>
+                              </div>
+                              <!-- Status -->
+                              <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
+                                 <div class="form-floating form-floating-outline form-floating-select2"
+                                    bis_skin_checked="1">
+                                    <div class="position-relative" bis_skin_checked="1"><select
+                                          id="ecommerce-category-status"
+                                          class="select2 form-select select2-hidden-accessible"
+                                          data-placeholder="Select category status"
+                                          data-select2-id="ecommerce-category-status" tabindex="-1" aria-hidden="true">
+                                          <option value="" data-select2-id="4">Select category status</option>
+                                          <option value="Scheduled">Scheduled</option>
+                                          <option value="Publish">Publish</option>
+                                          <option value="Inactive">Inactive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-category-status">Parent status</label>
                                  </div>
-                               </div>
-                               <!-- Submit and reset -->
-                               <div class="mb-4" bis_skin_checked="1">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light">Add</button>
-                                 <button type="reset" class="btn btn-outline-danger waves-effect" data-bs-dismiss="offcanvas">Discard</button>
-                               </div>
-                             <input type="hidden"></form>
-                           </div>
-                         </div>
-                        
+                              </div>
+                              <!-- Submit and reset -->
+                              <div class="mb-4" bis_skin_checked="1">
+                                 <button type="submit"
+                                    class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light">Add</button>
+                                 <button type="reset" class="btn btn-outline-danger waves-effect"
+                                    data-bs-dismiss="offcanvas">Discard</button>
+                              </div>
+                              <input type="hidden">
+                           </form>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <!-- / Content -->
+
+               <!-- Footer -->
+               <footer class="content-footer footer bg-footer-theme">
+                  <div class="container-xxl" bis_skin_checked="1">
+                     <div
+                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
+                        bis_skin_checked="1">
+                        <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
+                           ©
+                           <script>
+                              document.write(new Date().getFullYear());
+                           </script>
+                           2025, made with
+                           <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
+                           by
+                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                        </div>
+                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                           <a href="https://themeselection.com/license/" class="footer-link me-4"
+                              target="_blank">License</a>
+                           <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
+                              Themes</a>
+
+                           <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/"
+                              target="_blank" class="footer-link me-4">Documentation</a>
+
+                           <a href="https://themeselection.com/support/" target="_blank"
+                              class="footer-link d-none d-sm-inline-block">Support</a>
+                        </div>
                      </div>
                   </div>
-                  <!-- / Content -->
+               </footer>
+               <!-- / Footer -->
 
-                  <!-- Footer -->
-                  <footer class="content-footer footer bg-footer-theme">
-                     <div class="container-xxl" bis_skin_checked="1">
-                        <div
-                           class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
-                           bis_skin_checked="1"
-                        >
-                           <div
-                              class="text-body mb-2 mb-md-0"
-                              bis_skin_checked="1"
-                           >
-                              ©
-                              <script>
-                                 document.write(new Date().getFullYear());
-                              </script>
-                              2025, made with
-                              <span class="text-danger"
-                                 ><i class="tf-icons ri-heart-fill"></i
-                              ></span>
-                              by
-                              <a
-                                 href="https://themeselection.com/"
-                                 target="_blank"
-                                 class="footer-link"
-                                 >ThemeSelection</a
-                              >
-                           </div>
-                           <div
-                              class="d-none d-lg-inline-block"
-                              bis_skin_checked="1"
-                           >
-                              <a
-                                 href="https://themeselection.com/license/"
-                                 class="footer-link me-4"
-                                 target="_blank"
-                                 >License</a
-                              >
-                              <a
-                                 href="https://themeselection.com/"
-                                 target="_blank"
-                                 class="footer-link me-4"
-                                 >More Themes</a
-                              >
-
-                              <a
-                                 href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/"
-                                 target="_blank"
-                                 class="footer-link me-4"
-                                 >Documentation</a
-                              >
-
-                              <a
-                                 href="https://themeselection.com/support/"
-                                 target="_blank"
-                                 class="footer-link d-none d-sm-inline-block"
-                                 >Support</a
-                              >
-                           </div>
-                        </div>
-                     </div>
-                  </footer>
-                  <!-- / Footer -->
-
-                  <div class="content-backdrop fade" bis_skin_checked="1"></div>
-               </div>
-               <!-- Content wrapper -->
+               <div class="content-backdrop fade" bis_skin_checked="1"></div>
             </div>
-            <!-- / Layout page -->
+            <!-- Content wrapper -->
          </div>
+         <!-- / Layout page -->
+      </div>
 
-         <!-- Overlay -->
-         <div
-            class="layout-overlay layout-menu-toggle"
-            bis_skin_checked="1"
-         ></div>
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle" bis_skin_checked="1"></div>
 
-         <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-         <div
-            class="drag-target"
-            style="
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target" style="
                touch-action: pan-y;
                user-select: none;
                -webkit-user-drag: none;
                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            "
-            bis_skin_checked="1"
-         ></div>
-      </div>
-      <!-- / Layout wrapper -->
-
-   
-
-      <!-- Core JS -->
-      <!-- build:js assets/vendor/js/core.js -->
-      <script src="./assets/js/jquery.js"></script>
-      <script src="./assets/js/popper.js"></script>
-      <script src="./assets/js/bootstrap.js"></script>
-      <script src="./assets/js/node-waves.js"></script>
-      <script src="./assets/js/perfect-scrollbar.js"></script>
-      <script src="./assets/js/hammer.js"></script>
-      <script src="./assets/js/i18n.js"></script>
-      <script src="./assets/js/typeahead.js"></script>
-      <script src="./assets/js/menu.js"></script>
-
-      <!-- endbuild -->
-
-      <!-- Vendors JS -->
-      <script src="./assets/js/moment.js"></script>
-      <script type="text/javascript" id="" charset="">
-         console.log("TS:GTM Worked");
-      </script>
-      <script src="./assets/js/datatables-bootstrap5.js"></script>
-      <script src="./assets/js/select2.js"></script>
-      <script src="./assets/js/popular.js"></script>
-      <script src="./assets/js/bootstrap5.js"></script>
-      <script src="./assets/js/auto-focus.js"></script>
-      <script src="./assets/js/katex.js"></script>
-      <script src="./assets/js/quill.js"></script>
-
-      <!-- Main JS -->
-      <script src="./assets/js/main.js"></script>
-
-      <!-- Page JS -->
-      <script src="./assets/js/CategoryList/app-ecommerce-category-list.js"></script>
+            " bis_skin_checked="1"></div>
+   </div>
+   <!-- / Layout wrapper -->
 
 
 
-   </body>
+   <!-- Core JS -->
+   <!-- build:js assets/vendor/js/core.js -->
+   <script src="./assets/js/jquery.js"></script>
+   <script src="./assets/js/popper.js"></script>
+   <script src="./assets/js/bootstrap.js"></script>
+   <script src="./assets/js/node-waves.js"></script>
+   <script src="./assets/js/perfect-scrollbar.js"></script>
+   <script src="./assets/js/hammer.js"></script>
+   <script src="./assets/js/i18n.js"></script>
+   <script src="./assets/js/typeahead.js"></script>
+   <script src="./assets/js/menu.js"></script>
+
+   <!-- endbuild -->
+
+   <!-- Vendors JS -->
+   <script src="./assets/js/moment.js"></script>
+   <script type="text/javascript" id="" charset="">
+      console.log("TS:GTM Worked");
+   </script>
+   <script src="./assets/js/datatables-bootstrap5.js"></script>
+   <script src="./assets/js/select2.js"></script>
+   <script src="./assets/js/popular.js"></script>
+   <script src="./assets/js/bootstrap5.js"></script>
+   <script src="./assets/js/auto-focus.js"></script>
+   <script src="./assets/js/katex.js"></script>
+   <script src="./assets/js/quill.js"></script>
+
+   <!-- Main JS -->
+   <script src="./assets/js/main.js"></script>
+
+   <!-- Page JS -->
+   <script src="./assets/js/CategoryList/app-ecommerce-category-list.js"></script>
+
+
+
+
+</body>
 
 </html>
