@@ -86,131 +86,11 @@
 <script src="./assets/js/template/navbar.js"></script>
 
 <!-- Chat CSS -->
-<style>
-   .chat-container {
-      z-index: 100;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-   }
 
-   .chat-box {
-      display: none;
-      /* Mặc định ẩn */
-      border: 2px solid rgb(140, 87, 255);
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      margin-bottom: 10px;
-      /* Khoảng cách với cục chat */
-      position: relative;
-   }
-
-   .chat-header {
-      background-color: rgb(140, 87, 255);
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      position: relative;
-   }
-
-   .close-btn {
-      position: absolute;
-      right: 10px;
-      top: 5px;
-      font-size: 20px;
-      cursor: pointer;
-      color: white;
-   }
-
-   .close-btn:hover {
-      color: #ddd;
-   }
-
-   .chat-content {
-      height: 300px;
-      padding: 10px;
-      overflow-y: auto;
-   }
-
-   .chat-footer {
-      display: flex;
-      border-top: 1px solid #ddd;
-      padding: 5px;
-   }
-
-   .chat-footer input {
-      flex: 1;
-      border: none;
-      outline: none;
-      padding: 5px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-   }
-
-   .chat-footer button {
-      background-color: rgb(140, 87, 255);
-      color: #fff;
-      border: none;
-      padding: 5px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-left: 5px;
-   }
-
-   .chat-icon {
-      background-color: rgb(140, 87, 255);
-      color: white;
-      width: 120px;
-      height: 50px;
-      border-radius: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      font-weight: bold;
-      font-size: 16px;
-      user-select: none;
-   }
-
-   .chat-icon:hover {
-      background-color: rgb(120, 67, 235);
-   }
-</style>
 
 <body __processed_63d613dc-e858-4e8b-bb83-194826cb4301__="true"
    bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJMSU5LRURJTiI6ImRpc2FibGVkIiwiQ09ORklHIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjIuMC4yMCIsInNjb3JlIjoyMDAyMH1d">
-   <!-- Chat Button -->
-
-   <div class="chat-container">
-      <div class="chat-box" id="chatBox">
-         <div class="chat-header">
-            Chat
-            <span class="close-btn" id="closeBtn">&times;</span> <!-- Nút đóng -->
-         </div>
-         <div class="chat-content">
-            Xin chào! Mình có thể giúp gì cho bạn?
-         </div>
-         <div class="chat-footer">
-            <input style="background: #fff;" type="text" placeholder="Nhập tin nhắn...">
-            <button>Gửi</button>
-         </div>
-      </div>
-
-      <div class="chat-icon" id="chatIcon">
-         💬 Chat
-      </div>
-   </div>
-
-
-
+ 
    <!-- Layout wrapper -->
    <div class="layout-wrapper layout-content-navbar" bis_skin_checked="1">
       <div class="layout-container" bis_skin_checked="1">
@@ -224,9 +104,6 @@
             <!-- Navbar -->
 
             <navbar-main></navbar-main>
-
-
-            <!-- / Navbar -->
 
             <!-- Content wrapper -->
             <div class="content-wrapper" bis_skin_checked="1">
@@ -1384,20 +1261,5 @@
 
 
 </body>
-<!-- Chat click -->
-<script>
-   const chatIcon = document.getElementById('chatIcon');
-   const chatBox = document.getElementById('chatBox');
-   const closeBtn = document.getElementById('closeBtn');
-   let isChatOpen = false;
-
-   function toggleChat() {
-      isChatOpen = !isChatOpen;
-      chatBox.style.display = isChatOpen ? 'block' : 'none';
-   }
-
-   chatIcon.addEventListener('click', toggleChat);
-   closeBtn.addEventListener('click', toggleChat);
-</script>
 
 </html>

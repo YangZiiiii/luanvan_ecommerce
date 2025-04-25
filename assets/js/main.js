@@ -299,15 +299,8 @@ closeModal.addEventListener("click", () => {
    modal.classList.remove("show-log");
    html.style.overflow = "visible";
 });
-// window.addEventListener("click", (event) => {
-//    if (event.target === modal) {
-//       modal.classList.remove("show-log");
-//       html.style.overflow="visible";
 
-//    }
-// });
-
-// Chuyển đổi giữa đăng nhập & đăng ký (cả trong form và tab trên cùng)
+// Chuyển đổi giữa đăng nhập & đăng ký 
 switchTabs.forEach((tab) => {
    tab.addEventListener("click", function (event) {
       event.preventDefault();
@@ -318,15 +311,28 @@ switchTabs.forEach((tab) => {
 
 // Hàm chuyển tab chung
 function switchTab(targetTab) {
-   // Cập nhật class `active` cho tab link
    tabLinks.forEach((tab) => tab.classList.remove("active"));
    document
       .querySelector(`.tab-link[data-tab="${targetTab}"]`)
       .classList.add("active");
 
-   // Cập nhật class `active` cho nội dung tab
    tabContents.forEach((content) => content.classList.remove("active"));
    document
       .querySelector(`.tab-content[data-content="${targetTab}"]`)
       .classList.add("active");
 }
+
+// ChatButton
+
+const chatIcon = document.getElementById('chatIcon');
+const chatBox = document.getElementById('chatBox');
+const closeBtn = document.getElementById('closeBtn');
+let isChatOpen = false;
+
+function toggleChat() {
+   isChatOpen = !isChatOpen;
+   chatBox.style.display = isChatOpen ? 'block' : 'none';
+}
+
+chatIcon.addEventListener('click', toggleChat);
+closeBtn.addEventListener('click', toggleChat);

@@ -41,7 +41,7 @@ class NavBar extends HTMLElement {
                            <i class="ri-search-line"></i>
                               <span
                                  class="d-none d-md-inline-block text-muted ms-1_5"
-                                 style="padding-right: 1000px;"
+                                 style="padding-right: 950px;"
                                  >Search (Ctrl+/)</span
                               >
                            </a>
