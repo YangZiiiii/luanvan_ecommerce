@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
    <title>
-      eCommerce Add Product - Apps | Materio - Bootstrap Material Design
+      eCommerce Update Product - Apps | Materio - Bootstrap Material Design
       Admin Template
    </title>
 
@@ -461,7 +461,7 @@
                         class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 gap-4 gap-md-0"
                         bis_skin_checked="1">
                         <div class="d-flex flex-column justify-content-center" bis_skin_checked="1">
-                           <h4 class="mb-1">Add a new Product</h4>
+                           <h4 class="mb-1">Update Product</h4>
                            <p class="mb-0">
                               Orders placed across your store
                            </p>
@@ -471,7 +471,7 @@
                               Discard
                            </button>
                            <button type="submit" class="btn btn-primary waves-effect waves-light btn-submit-product">
-                              Publish product
+                              Update product
                            </button>
                         </div>
                      </div>
@@ -653,7 +653,7 @@
                               <span class="text-truncate"
                                  style="padding-left: 20px; padding-bottom: 15px; margin-top: -15px;">
                                  <label class="switch switch-primary switch-sm">
-                                    <input type="checkbox" class="switch-input" id="toggleCardBody" />
+                                    <input type="checkbox" class="switch-input" id="toggleCardBody"  checked/>
                                     <span class="switch-toggle-slider">
                                        <span class="switch-on"></span>
                                        <span class="switch-off"></span>
@@ -661,7 +661,7 @@
                                  </label>
                                  <span class="d-none"></span>
                               </span>
-                              <div class="card-body" id="cardBody" style="display: none;">
+                              <div class="card-body" id="cardBody" style="display: block;">
                                  <form class="form-repeater">
                                     <div data-repeater-list="group-a">
                                        <div data-repeater-item>
@@ -707,6 +707,7 @@
                               </style>
 
                               <script>
+   
                                  document.getElementById("toggleCardBody").addEventListener("change", function () {
                                     const cardBody = document.getElementById("cardBody");
                                     cardBody.style.display = this.checked ? "block" : "none";
@@ -728,9 +729,9 @@
                                              options += `<option value="${variant.type}">${variant.type}</option>`;
                                           });
                                           selectEl.innerHTML = options;
-                                          console.log("✅ Loaded variant types for:", selectEl);
+                                          console.log("Loaded variant types for:", selectEl);
                                        })
-                                       .catch(error => console.error("❌ Error fetching variant types:", error));
+                                       .catch(error => console.error("Error fetching variant types:", error));
                                  }
 
                                  // Gán dữ liệu cho select đầu tiên có sẵn
@@ -1119,9 +1120,9 @@
 
                                                 this.innerHTML = options;
                                                 hasLoadedCategory = true;
-                                                console.log("✅ Categories loaded on first click.");
+                                                console.log("Categories loaded on first click.");
                                              })
-                                             .catch(error => console.error("❌ Error fetching categories:", error));
+                                             .catch(error => console.error("Error fetching categories:", error));
                                        }
                                     });
                                  </script>

@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
    <title>
-      eCommerce Category List - Apps | Materio - Bootstrap Material Design
+      eCommerce Collection List - Apps | Materio - Bootstrap Material Design
       Admin Template
    </title>
 
@@ -48,7 +48,7 @@
    <!-- Core CSS -->
 
    <link rel="stylesheet" href="./assets/css/demo.css" />
-   <link rel="stylesheet" href="./assets/css/styles.css">
+     <link rel="stylesheet" href="./assets/css/styles.css">
 
    <!-- Vendors CSS -->
    <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css" />
@@ -194,9 +194,9 @@
                                              class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
                                              tabindex="0" aria-controls="DataTables_Table_0" type="button"
                                              data-bs-toggle="offcanvas"
-                                             data-bs-target="#offcanvasEcommerceCategoryList">
+                                             data-bs-target="#offcanvasEcommerceCollectionList">
                                              <span><i class="ri-add-line me-0 me-sm-1"></i><span
-                                                   class="d-none d-sm-inline-block">Add Category</span></span>
+                                                   class="d-none d-sm-inline-block">Add Collection</span></span>
                                           </button>
                                        </div>
                                     </div>
@@ -221,12 +221,12 @@
                                        <th class="text-nowrap text-sm-end sorting" tabindex="0"
                                           aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                           style="width: 191px"
-                                          aria-label="Total Products &amp;nbsp;: activate to sort column ascending">
-                                          Total Products &nbsp;
+                                          aria-label="Description &amp;nbsp;: activate to sort column ascending">
+                                          Description &nbsp;
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting_disabled" rowspan="1" colspan="1"
-                                          style="width: 160px" aria-label="Total Earning">
-                                          Total Earning
+                                          style="width: 160px" aria-label="Status">
+                                          Status
                                        </th>
                                        <th class="text-lg-center sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 118px" aria-label="Actions">
@@ -236,64 +236,63 @@
                                  </thead>
                                  <tbody>
                                     <script>
-                                       fetch('http://localhost:8080/api/v1/category')
-                                          .then(response => response.json())
-                                          .then(data => {
-                                             const tableBody = document.querySelector('#DataTables_Table_0 tbody');
-                                             tableBody.innerHTML = ''; // Clear existing rows
-                                             data.data.forEach(category => {
-                                                const row = `
-                                                   <tr>
-                                                      <td class="control" tabindex="0" style="display: none"></td>
-                                                      <td class="dt-checkboxes-cell">
-                                                         <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                                      </td>
-                                                      <td class="sorting_1">
-                                                         <div class="d-flex align-items-center">
-                                                            <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                                               <div class="avatar">
-                                                                  <img src="./assets/img/CategoryList/default.jpg" alt="${category.name}" class="rounded-2" />
-                                                               </div>
-                                                            </div>
-                                                            <div class="d-flex flex-column justify-content-center">
-                                                               <span class="text-heading fw-medium text-wrap">${category.name}</span>
-                                                               <small class="text-truncate mb-0 d-none d-sm-block">${category.slug}</small>
-                                                            </div>
-                                                         </div>
-                                                      </td>
-                                                      <td>
-                                                         <div class="text-sm-end pe-3">
-                                                            N/A
-                                                         </div>
-                                                      </td>
-                                                      <td>
-                                                         <div class="text-sm-end">
-                                                            N/A
-                                                         </div>
-                                                      </td>
-                                                      <td>
-                                                         <div class="d-flex align-items-sm-center justify-content-sm-center">
-                                                          <button 
-                                                               class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                               data-bs-toggle="offcanvas"
-                                                               data-bs-target="#offcanvasEcommerceCategoryListUpdate">
-                                                               <i class="ri-edit-box-line ri-22px"></i>
-                                                               </button>
-                                                            <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                               <i class="ri-more-2-line ri-22px"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end m-0">
-                                                               <a href="javascript:0;" class="dropdown-item">View</a>
-                                                               <a onclick="openModal()" href="javascript:0;" class="dropdown-item">Delete</a>
-                                                            </div>
-                                                         </div>
-                                                      </td>
-                                                   </tr>
-                                                `;
-                                                tableBody.insertAdjacentHTML('beforeend', row);
-                                             });
-                                          })
-                                          .catch(error => console.error('Error fetching categories:', error));
+                                       fetch('http://localhost:8080/api/v1/collection')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                          const tableBody = document.querySelector('#DataTables_Table_0 tbody');
+                                          tableBody.innerHTML = ''; // Clear existing rows
+                                          data.content.forEach(collection => {
+                                           const row = `
+                                             <tr>
+                                               <td class="control" tabindex="0" style="display: none"></td>
+                                               <td class="dt-checkboxes-cell">
+                                                <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                               </td>
+                                               <td class="sorting_1">
+                                                <div class="d-flex align-items-center">
+                                                  <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
+                                                    <div class="avatar">
+                                                      <img src="./assets/img/CategoryList/default.jpg" alt="${collection.collectionName}" class="rounded-2" />
+                                                    </div>
+                                                  </div>
+                                                  <div class="d-flex flex-column justify-content-center">
+                                                    <span class="text-heading fw-medium text-wrap">${collection.collectionName}</span>
+                                                  </div>
+                                                </div>
+                                               </td>
+                                               <td >
+                                                <div class="text-sm-end pe-3">
+                                                  ${collection.collectionDescription || 'N/A'}
+                                                </div>
+                                               </td>
+                                               <td style="text-align: right;">
+                                                <div  class="badge rounded-pill bg-label-${collection.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
+                                                  ${collection.status}
+                                                </div>
+                                               </td>
+                                               <td>
+                                                <div class="d-flex align-items-sm-center justify-content-sm-center">
+                                                  <button 
+                                                    class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
+                                                    data-bs-toggle="offcanvas"
+                                                    data-bs-target="#offcanvasEcommerceCollectionListUpdate">
+                                                    <i class="ri-edit-box-line ri-22px"></i>
+                                                  </button>
+                                                  <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                    <i class="ri-more-2-line ri-22px"></i>
+                                                  </button>
+                                                  <div class="dropdown-menu dropdown-menu-end m-0">
+                                                    <a href="javascript:0;" class="dropdown-item">View</a>
+                                                    <a onclick="openModal()" href="javascript:0;" class="dropdown-item">Delete</a>
+                                                  </div>
+                                                </div>
+                                               </td>
+                                             </tr>
+                                           `;
+                                           tableBody.insertAdjacentHTML('beforeend', row);
+                                          });
+                                        })
+                                        .catch(error => console.error('Error fetching collections:', error));
                                     </script>
                                  </tbody>
                               </table>
@@ -336,47 +335,62 @@
                            </div>
                         </div>
                      </div>
-                     <!-- Offcanvas to add new customer -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList"
-                        aria-labelledby="offcanvasEcommerceCategoryListLabel" role="dialog">
+                     <!-- Offcanvas to add new collection -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCollectionList"
+                        aria-labelledby="offcanvasEcommerceCollectionListLabel" role="dialog">
                         <!-- Offcanvas Header -->
                         <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+                           <h5 id="offcanvasEcommerceCollectionListLabel" class="offcanvas-title">Add Collection</h5>
                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                               aria-label="Close"></button>
                         </div>
 
                         <!-- Offcanvas Body -->
                         <div class="offcanvas-body border-top">
-                           <form class="pt-0" id="eCommerceCategoryListForm" onsubmit="return false" novalidate>
+                           <form class="pt-0" id="eCommerceCollectionListForm" onsubmit="return false" novalidate>
 
                               <!-- Title -->
                               <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control" id="ecommerce-category-title"
-                                    placeholder="Enter category title" name="categoryTitle" aria-label="category title">
-                                 <label for="ecommerce-category-title">Title</label>
+                                 <input type="text" class="form-control" id="ecommerce-collection-title"
+                                    placeholder="Enter collection title" name="collectionTitle"
+                                    aria-label="collection title">
+                                 <label for="ecommerce-collection-title">Title</label>
                               </div>
+
+                       
 
                               <!-- Image -->
                               <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-category-image">
+                                 <input class="form-control" type="file" id="ecommerce-collection-image">
                               </div>
 
-                              <!-- Parent category -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select id="ecommerce-category-parent-category" class="form-select"
-                                          data-placeholder="Select parent category" data-allow-clear="true">
-                                          <option value="">Select parent Category</option>
-                                          <option value="Household">Household</option>
-                                          <option value="Management">Management</option>
-                                          <option value="Electronics">Electronics</option>
-                                          <option value="Office">Office</option>
-                                          <option value="Automotive">Automotive</option>
-                                       </select>
+                     
+
+                              <!-- Description (giữ nguyên trình editor Quill) -->
+                              <div class="mb-6">
+                                 <div class="form-control p-0 pt-1">
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-collection-description">
+                                       <div class="ql-editor ql-blank" contenteditable="true"
+                                          data-placeholder="Write a description...">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                       <div class="ql-tooltip ql-hidden"></div>
                                     </div>
-                                    <label for="ecommerce-category-parent-category">Parent category</label>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                       <div class="d-flex justify-content-end">
+                                          <span class="ql-formats">
+                                             <button class="ql-bold" type="button"></button>
+                                             <button class="ql-italic" type="button"></button>
+                                             <button class="ql-underline" type="button"></button>
+                                             <button class="ql-list" value="ordered" type="button"></button>
+                                             <button class="ql-list" value="bullet" type="button"></button>
+                                             <button class="ql-link" type="button"></button>
+                                             <button class="ql-image" type="button"></button>
+                                          </span>
+                                       </div>
+                                    </div>
                                  </div>
                               </div>
 
@@ -384,71 +398,86 @@
                               <div class="mb-5 ecommerce-select2-dropdown">
                                  <div class="form-floating form-floating-outline form-floating-select2">
                                     <div class="position-relative">
-                                       <select id="ecommerce-category-status" class="form-select"
-                                          data-placeholder="Select category status" data-allow-clear="true">
-                                          <option value="">Select category status</option>
+                                       <select id="ecommerce-collection-status" class="form-select"
+                                          data-placeholder="Select collection status" data-allow-clear="true">
+                                          <option value="">Select collection status</option>
                                           <option value="Scheduled">Scheduled</option>
                                           <option value="Publish">Publish</option>
                                           <option value="Inactive">Inactive</option>
                                        </select>
                                     </div>
-                                    <label for="ecommerce-category-status">Status</label>
+                                    <label for="ecommerce-collection-status">Status</label>
                                  </div>
                               </div>
 
-                              <!-- Submit and reset -->
+                              <!-- Submit & Reset -->
                               <div class="mb-4">
                                  <button type="submit" class="btn btn-primary me-sm-3 me-1">Add</button>
                                  <button type="reset" class="btn btn-outline-danger"
                                     data-bs-dismiss="offcanvas">Discard</button>
                               </div>
+
+                              <input type="hidden">
                            </form>
                         </div>
                      </div>
 
-
-
-                     <!-- Offcanvas to update new customer -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryListUpdate"
-                        aria-labelledby="offcanvasUpdateCategoryLabel" role="dialog">
+                     <!-- Offcanvas to update new collection -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCollectionListUpdate"
+                        aria-labelledby="offcanvasEcommerceCollectionListLabel" role="dialog">
                         <!-- Offcanvas Header -->
                         <div class="offcanvas-header py-6">
-                           <h5 class="offcanvas-title" id="offcanvasUpdateCategoryLabel">Update Category</h5>
-                           <button type="button" class="btn-close text-reset btn-close-update-category"
+                           <h5 id="offcanvasEcommerceCollectionListLabel" class="offcanvas-title">Update Collection</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                               aria-label="Close"></button>
                         </div>
 
                         <!-- Offcanvas Body -->
                         <div class="offcanvas-body border-top">
-                           <form class="pt-0 update-category-form" onsubmit="return false" novalidate>
+                           <form class="pt-0" id="eCommerceCollectionListForm" onsubmit="return false" novalidate>
 
                               <!-- Title -->
                               <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control update-category-title"
-                                    placeholder="Enter category title" name="categoryTitle" aria-label="category title">
-                                 <label>Title</label>
+                                 <input type="text" class="form-control" id="ecommerce-collection-title"
+                                    placeholder="Enter collection title" name="collectionTitle"
+                                    aria-label="collection title">
+                                 <label for="ecommerce-collection-title">Title</label>
                               </div>
+
+                            
 
                               <!-- Image -->
                               <div class="mb-5">
-                                 <input class="form-control update-category-image" type="file">
+                                 <input class="form-control" type="file" id="ecommerce-collection-image">
                               </div>
 
-                              <!-- Parent Category -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select class="form-select update-category-parent"
-                                          data-placeholder="Select parent category" data-allow-clear="true">
-                                          <option value="">Select parent Category</option>
-                                          <option value="Household">Household</option>
-                                          <option value="Management">Management</option>
-                                          <option value="Electronics">Electronics</option>
-                                          <option value="Office">Office</option>
-                                          <option value="Automotive">Automotive</option>
-                                       </select>
+                              
+
+                              <!-- Description (giữ nguyên trình editor Quill) -->
+                              <div class="mb-6">
+                                 <div class="form-control p-0 pt-1">
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-collection-description">
+                                       <div class="ql-editor ql-blank" contenteditable="true"
+                                          data-placeholder="Write a description...">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                       <div class="ql-tooltip ql-hidden"></div>
                                     </div>
-                                    <label>Parent category</label>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                       <div class="d-flex justify-content-end">
+                                          <span class="ql-formats">
+                                             <button class="ql-bold" type="button"></button>
+                                             <button class="ql-italic" type="button"></button>
+                                             <button class="ql-underline" type="button"></button>
+                                             <button class="ql-list" value="ordered" type="button"></button>
+                                             <button class="ql-list" value="bullet" type="button"></button>
+                                             <button class="ql-link" type="button"></button>
+                                             <button class="ql-image" type="button"></button>
+                                          </span>
+                                       </div>
+                                    </div>
                                  </div>
                               </div>
 
@@ -456,25 +485,26 @@
                               <div class="mb-5 ecommerce-select2-dropdown">
                                  <div class="form-floating form-floating-outline form-floating-select2">
                                     <div class="position-relative">
-                                       <select class="form-select update-category-status"
-                                          data-placeholder="Select category status" data-allow-clear="true">
-                                          <option value="">Select category status</option>
+                                       <select id="ecommerce-collection-status" class="form-select"
+                                          data-placeholder="Select collection status" data-allow-clear="true">
+                                          <option value="">Select collection status</option>
                                           <option value="Scheduled">Scheduled</option>
                                           <option value="Publish">Publish</option>
                                           <option value="Inactive">Inactive</option>
                                        </select>
                                     </div>
-                                    <label>Status</label>
+                                    <label for="ecommerce-collection-status">Status</label>
                                  </div>
                               </div>
 
-                              <!-- Submit + Reset -->
+                              <!-- Submit & Reset -->
                               <div class="mb-4">
-                                 <button type="submit"
-                                    class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light">Update</button>
-                                 <button type="reset"
-                                    class="btn btn-outline-danger waves-effect btn-close-update-category">Discard</button>
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>
+                                 <button type="reset" class="btn btn-outline-danger"
+                                    data-bs-dismiss="offcanvas">Discard</button>
                               </div>
+
+                              <input type="hidden">
                            </form>
                         </div>
                      </div>
@@ -576,8 +606,6 @@
 
    <!-- Modal Delete -->
   <script src="./assets/js/modal-delete.js"></script>
-
-
 
 </body>
 

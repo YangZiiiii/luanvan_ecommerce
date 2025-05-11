@@ -143,6 +143,28 @@ class NavigationApp extends HTMLElement {
                               </div>
                            </a>
                         </li>
+
+                        <li class="menu-item">
+                           <a href="./Brand.html" class="menu-link">
+                              <div
+                                 data-i18n="Brand List"
+                                 bis_skin_checked="1"
+                              >
+                                 Brand List
+                              </div>
+                           </a>
+                        </li>
+
+                         <li class="menu-item">
+                           <a href="./Collection.html" class="menu-link">
+                              <div
+                                 data-i18n="Collection List"
+                                 bis_skin_checked="1"
+                              >
+                                 Collection List
+                              </div>
+                           </a>
+                        </li>
                      </ul>
                   </li>
 
@@ -253,6 +275,37 @@ class NavigationApp extends HTMLElement {
                </ul>
             </aside>
          `;
+         
+         const currentPath = window.location.pathname.split("/").pop();
+         const links = this.querySelectorAll(".menu-link");
+   
+         links.forEach((link) => {
+            const href = link.getAttribute("href");
+   
+            if (
+               href &&
+               href !== "javascript:void(0);" &&
+               href.includes(currentPath)
+            ) {
+               // Active cho chính thẻ a
+               link.classList.add("active");
+   
+               // Active cho thẻ li.menu-item chứa nó
+               const menuItem = link.closest(".menu-item");
+               if (menuItem) {
+                  menuItem.classList.add("active");
+               }
+   
+               // Nếu có menu cha (menu-sub), mở cha ra
+               const subMenu = link.closest(".menu-sub");
+               if (subMenu) {
+                  const parentItem = subMenu.closest(".menu-item");
+                  if (parentItem) {
+                     parentItem.classList.add("open", "active");
+                  }
+               }
+            }
+         });
     }
  }
  customElements.define("navigation-main", NavigationApp);
