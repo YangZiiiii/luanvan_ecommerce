@@ -1454,17 +1454,21 @@
             });
 
             return {
-               name: document.querySelector("input[name='productTitle']").value,
-               sku: document.querySelector("input[name='productSku']").value,
-               quantity: parseInt(document.querySelector("input[name='Quantity']").value),
-               description: document.querySelector("#ecommerce-category-description .ql-editor").innerText.trim() || "No description",
-               sellingPrice: parseFloat(document.querySelector("input[name='productPrice']").value),   //  Đổi bestPrice → originalPrice
-               discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value), // Đổi discountedPrice → sellingPrice
+               name: document.querySelector("input[name='productTitle']").value.trim(),
+               sku: document.querySelector("input[name='productSku']").value.trim(),
+               quantity: parseInt(document.querySelector("input[name='Quantity']").value) || 0,
+               description: document.querySelector("#ecommerce-category-description .ql-editor").innerText.trim() || "This is a sample product",
+               originalPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
+               sellingPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
+               discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
+               sellingType: "SALE", // Default value
 
-               categories: [{ id: document.querySelector("#productCategory").value }],
-               collections: [{ id: document.querySelector("#productCollection").value }],
-               brands: [{ id: document.querySelector("#productBrand").value }],
 
+               categories: [document.querySelector("#productCategory").value],
+               collections: [document.querySelector("#productCollection").value ],
+               brands: [ document.querySelector("#productBrand").value ],
+
+                  
                hasVariants: hasVariants,
                variants: Array.from(document.querySelectorAll("[data-repeater-item]")).map(item => {
                   const type = item.querySelector("select.select2.form-select")?.value || "";
