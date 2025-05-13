@@ -1,107 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Home</title>
-      <!-- Reset CSS -->
-      <link rel="stylesheet" href="./assets/css/reset.css" />
-      <!-- Font -->
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-         rel="stylesheet"
-      />
 
-      <!-- Home CSS -->
-      <link rel="stylesheet" href="./assets/css/home.css" />
-      <!-- Render Header -->
-      <script src="./assets/js/home/header.js"></script>
-      <!-- Render Footer -->
-      <script src="./assets/js/home/footer.js"></script>
+<head>
+   <title>Home</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <!--===============================================================================================-->
+   <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/daterangepicker/daterangepicker.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/slick/slick.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/MagnificPopup/magnific-popup.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
+   <link rel="stylesheet" href="./assets/css/chatbutton.css">
+   <!--===============================================================================================-->
 
-      <!-- Render ListItem -->
-      <script src="./assets/js/home/list-item.js"></script>
-   </head>
-   <body>
-      <!-- Header -->
-      <home-header></home-header>
+   <!--Header-Template  -->
+   <script src="./assets/js/template/header.js"></script>
 
-      <main>
-         <!-- Slide show -->
-         <div class="slide-show">
-            <div class="main-content">
-               <div class="body">
-                  <a href="#!"
-                     ><img
-                        src="./assets/img/slide-show.png"
-                        alt="slide-show"
-                        class="img-slide"
-                  /></a>
-               </div>
-            </div>
-         </div>
+   <!--Cart-Template  -->
+   <script src="./assets/js/template/cart.js"></script>
 
-         <!-- Browse Categories -->
-         <div class="browse-categories">
-            <div class="main-content">
-               <a href="#!" class="link-browse">
-                  <h2 class="title">Browse Categories</h2>
-                  <div class="list-browse">
-                     <div class="item">
-                        <img
-                           src="./assets/img/browse-1.jpg"
-                           alt="browse-categories"
-                           class="img-browse"
-                        />
-                        <div class="detail">
-                           <h3 class="price">$24 - $150</h3>
-                           <p class="desc">New sumatra mandeling coffe blend</p>
-                        </div>
-                     </div>
-                     <div class="item">
-                        <img
-                           src="./assets/img/browse-1.jpg"
-                           alt="browse-categories"
-                           class="img-browse"
-                        />
-                        <div class="detail">
-                           <h3 class="price">$24 - $150</h3>
-                           <p class="desc">New sumatra mandeling coffe blend</p>
-                        </div>
-                     </div>
-                     <div class="item">
-                        <img
-                           src="./assets/img/browse-1.jpg"
-                           alt="browse-categories"
-                           class="img-browse"
-                        />
-                        <div class="detail">
-                           <h3 class="price">$24 - $150</h3>
-                           <p class="desc">New sumatra mandeling coffe blend</p>
-                        </div>
-                     </div>
-                  </div>
-               </a>
-            </div>
-         </div>
+   <!--Home-Slider-Template  -->
+   <script src="./assets/js/template/home/slider.js"></script>
 
-         <!-- Best Selling Product -->
-         <div class="best-product">
-            <div class="main-content">
-               <div class="info">
-                  <h3 class="title" >Total LavAzza 1320</h3>
-                  <p class="see-more">See more</p>
-               </div>
+   <!--Home-Banner-Template  -->
+   <script src="./assets/js/template/home/banner.js"></script>
+   <!--Home-Banner-Item-Template  -->
+   <script src="./assets/js/template/home/banner-item.js"></script>
 
-               
-               <home-list__item></home-list__item>
-            </div>
-         </div>
+   <!--Home-Product-Template  -->
+   <script src="./assets/js/template/home/product.js"></script>
 
-         <!-- Footer -->
-         <home-footer></home-footer>
-      </main>
-   </body>
+   <!--Home-Modal-Template  -->
+   <script src="./assets/js/template/home/modal.js"></script>
+
+   <!--Footer-Template  -->
+   <script src="./assets/js/template/footer.js"></script>
+
+   <!-- Chat-Template -->
+   <script src="./assets/js/template/chat-button.js"></script>
+
+</head>
+
+<body class="animsition">
+
+   <!-- Chat Button -->
+   <chat-button></chat-button>
+
+   <!-- Header -->
+   <header-main></header-main>
+
+   <!-- Cart -->
+   <cart-main></cart-main>
+
+   <!-- Slider -->
+   <home-slider></home-slider>
+
+   <!-- Banner -->
+   <home-banner></home-banner>
+
+   <!-- Product -->
+   <home-product></home-product>
+
+   <!-- Footer -->
+   <footer-main></footer-main>
+
+   <!-- Back to top -->
+   <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+         <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+   </div>
+
+   <!-- Modal1 -->
+   <home-modal></home-modal>
+
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/animsition/js/animsition.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/bootstrap/js/popper.js"></script>
+   <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/select2/select2.min.js"></script>
+   <script>
+      $(".js-select2").each(function () {
+         $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next(".dropDownSelect2"),
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/daterangepicker/moment.min.js"></script>
+   <script src="./assets/vendor/daterangepicker/daterangepicker.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/slick/slick.min.js"></script>
+   <script src="./assets/js/slick-custom.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/parallax100/parallax100.js"></script>
+   <script>
+      $(".parallax100").parallax100();
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+   <script>
+      $(".gallery-lb").each(function () {
+         // the containers for all your galleries
+         $(this).magnificPopup({
+            delegate: "a", // the selector for gallery item
+            type: "image",
+            gallery: {
+               enabled: true,
+            },
+            mainClass: "mfp-fade",
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/sweetalert/sweetalert.min.js"></script>
+   <script>
+      $(".js-addwish-b2").on("click", function (e) {
+         e.preventDefault();
+      });
+
+      $(".js-addwish-b2").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .find(".js-name-b2")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-b2");
+            $(this).off("click");
+         });
+      });
+
+      $(".js-addwish-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-detail");
+            $(this).off("click");
+         });
+      });
+
+      /*---------------------------------------------*/
+
+      $(".js-addcart-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to cart !", "success");
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script>
+      $(".js-pscroll").each(function () {
+         $(this).css("position", "relative");
+         $(this).css("overflow", "hidden");
+         var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+         });
+
+         $(window).on("resize", function () {
+            ps.update();
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/js/main.js"></script>
+</body>
+
 </html>
