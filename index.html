@@ -10,7 +10,9 @@
    <!--===============================================================================================-->
    <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
    <!--===============================================================================================-->
-   <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+   <!-- <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" /> -->
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
    <!--===============================================================================================-->
    <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
    <!--===============================================================================================-->
@@ -32,6 +34,7 @@
    <!--===============================================================================================-->
    <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
    <!--===============================================================================================-->
+
    <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
    <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
@@ -75,7 +78,8 @@
    <header-main></header-main>
 
    <!-- Cart -->
-   <cart-main></cart-main>
+   <!-- <cart-main></cart-main> -->
+   
 
    <!-- Slider -->
    <home-slider></home-slider>
@@ -215,6 +219,24 @@
    </script>
    <!--===============================================================================================-->
    <script src="./assets/js/main.js"></script>
+    <!-- Handle selector quantity -->
+   <script>
+      const minusBtn = document.querySelector('.btn-minus');
+      const plusBtn = document.querySelector('.btn-plus');
+      const quantityDiv = document.querySelector('.header__cart-item-quantity');
+
+      minusBtn.addEventListener('click', () => {
+         let current = parseInt(quantityDiv.innerText);
+         if (current > 1) {
+            quantityDiv.innerText = current - 1;
+         }
+      });
+
+      plusBtn.addEventListener('click', () => {
+         let current = parseInt(quantityDiv.innerText);
+         quantityDiv.innerText = current + 1;
+      });
+   </script>
 </body>
 
 </html>

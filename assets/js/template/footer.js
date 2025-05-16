@@ -80,15 +80,15 @@ class AppFooter extends HTMLElement {
  
 				<div class="p-t-27">
 				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-					  <i class="fa fa-facebook"></i>
+					 <i class="fa-brands fa-facebook-f"></i>
 				   </a>
  
 				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-					  <i class="fa fa-instagram"></i>
+					  <i class="fa-brands fa-instagram"></i>
 				   </a>
  
 				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-					  <i class="fa fa-pinterest-p"></i>
+					  <i class="fa-brands fa-pinterest-p"></i>
 				   </a>
 				</div>
 			 </div>
