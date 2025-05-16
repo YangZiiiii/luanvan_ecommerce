@@ -262,75 +262,20 @@
 
    /*==================================================================
     [ Show modal1 ]*/
-   $(".js-show-modal1").on("click", function (e) {
-      e.preventDefault();
-      $(".js-modal1").addClass("show-modal1");
-   });
+  $(".js-show-modal1").on("click", function (e) {
+   e.preventDefault();
+   $(".js-modal1").addClass("show-modal1");
+   $("body").css("overflow", "hidden"); 
+});
 
-   $(".js-hide-modal1").on("click", function () {
-      $(".js-modal1").removeClass("show-modal1");
-   });
+$(".js-hide-modal1").on("click", function () {
+   $(".js-modal1").removeClass("show-modal1");
+   $("body").css("overflow", "auto"); 
+});
+
 })(jQuery);
 
-
-const modal = document.querySelector(".modal-log");
-const openModalLinks = document.querySelectorAll(".open-modal-log");
-const closeModal = document.querySelector(".close-log");
-const tabContents = document.querySelectorAll(".tab-content");
-const switchTabs = document.querySelectorAll(".switch-tab, .tab-link"); // Thêm cả `.tab-link`
-const tabLinks = document.querySelectorAll(".tab-link");
-const html = document.documentElement;
-
-console.log(html);
-// Mở modal và chuyển đến tab đúng
-openModalLinks.forEach((link) => {
-   link.addEventListener("click", function (event) {
-      event.preventDefault();
-      modal.classList.add("show-log");
-      html.style.overflow = "hidden";
-      // Lấy tab cần mở từ thuộc tính data-tab
-      const targetTab = this.getAttribute("data-tab");
-      switchTab(targetTab);
-   });
-});
-
-// Đóng modal
-closeModal.addEventListener("click", () => {
-   modal.classList.remove("show-log");
-   html.style.overflow = "visible";
-});
-
-modal.addEventListener("click", function (event) {
-   if (event.target === modal) {
-      modal.classList.remove("show-log");
-      html.style.overflow = "visible";
-   }
-});
-
-// Chuyển đổi giữa đăng nhập & đăng ký 
-switchTabs.forEach((tab) => {
-   tab.addEventListener("click", function (event) {
-      event.preventDefault();
-      const targetTab = this.getAttribute("data-tab");
-      switchTab(targetTab);
-   });
-});
-
-// Hàm chuyển tab chung
-function switchTab(targetTab) {
-   tabLinks.forEach((tab) => tab.classList.remove("active"));
-   document
-      .querySelector(`.tab-link[data-tab="${targetTab}"]`)
-      .classList.add("active");
-
-   tabContents.forEach((content) => content.classList.remove("active"));
-   document
-      .querySelector(`.tab-content[data-content="${targetTab}"]`)
-      .classList.add("active");
-}
-
 // ChatButton
-
 const chatIcon = document.getElementById('chatIcon');
 const chatBox = document.getElementById('chatBox');
 const closeBtn = document.getElementById('closeBtn');
@@ -338,8 +283,94 @@ let isChatOpen = false;
 
 function toggleChat() {
    isChatOpen = !isChatOpen;
-   chatBox.style.display = isChatOpen ? 'block' : 'none';
+   if (chatBox) {
+      chatBox.style.display = isChatOpen ? 'block' : 'none';
+   }
 }
 
-chatIcon.addEventListener('click', toggleChat);
-closeBtn.addEventListener('click', toggleChat);
+if (chatIcon) chatIcon.addEventListener('click', toggleChat);
+if (closeBtn) closeBtn.addEventListener('click', toggleChat);
+
+
+// Handle selector quantity (nhiều sản phẩm nên dùng forEach)
+const minusBtns = document.querySelectorAll('.btn-minus');
+const plusBtns = document.querySelectorAll('.btn-plus');
+
+minusBtns.forEach(btn => {
+   btn.addEventListener('click', () => {
+      const quantityDiv = btn.parentElement.querySelector('.header__cart-item-quantity');
+      let current = parseInt(quantityDiv.innerText);
+      if (current > 1) {
+         quantityDiv.innerText = current - 1;
+      }
+   });
+});
+
+plusBtns.forEach(btn => {
+   btn.addEventListener('click', () => {
+      const quantityDiv = btn.parentElement.querySelector('.header__cart-item-quantity');
+      let current = parseInt(quantityDiv.innerText);
+      quantityDiv.innerText = current + 1;
+   });
+});
+
+
+// Handle modal
+const modal = document.querySelector(".modal-log");
+const openModalLinks = document.querySelectorAll(".open-modal-log");
+const closeModal = document.querySelector(".close-log");
+const tabContents = document.querySelectorAll(".tab-content");
+const switchTabs = document.querySelectorAll(".switch-tab, .tab-link");
+const tabLinks = document.querySelectorAll(".tab-link");
+const html = document.documentElement;
+
+// Mở modal nếu tồn tại
+if (modal) {
+   openModalLinks.forEach((link) => {
+      link.addEventListener("click", function (event) {
+         event.preventDefault();
+         modal.classList.add("show-log");
+         html.style.overflow = "hidden";
+         const targetTab = this.getAttribute("data-tab");
+         switchTab(targetTab);
+      });
+   });
+
+   // Đóng modal
+   if (closeModal) {
+      closeModal.addEventListener("click", () => {
+         modal.classList.remove("show-log");
+         html.style.overflow = "visible";
+      });
+   }
+
+   modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+         modal.classList.remove("show-log");
+         html.style.overflow = "visible";
+      }
+   });
+}
+
+// Chuyển đổi tab nếu có phần tử
+if (switchTabs.length > 0) {
+   switchTabs.forEach((tab) => {
+      tab.addEventListener("click", function (event) {
+         event.preventDefault();
+         const targetTab = this.getAttribute("data-tab");
+         switchTab(targetTab);
+      });
+   });
+}
+
+// Hàm chuyển tab
+function switchTab(targetTab) {
+   tabLinks.forEach((tab) => tab.classList.remove("active"));
+   const activeLink = document.querySelector(`.tab-link[data-tab="${targetTab}"]`);
+   if (activeLink) activeLink.classList.add("active");
+
+   tabContents.forEach((content) => content.classList.remove("active"));
+   const activeContent = document.querySelector(`.tab-content[data-content="${targetTab}"]`);
+   if (activeContent) activeContent.classList.add("active");
+}
+
