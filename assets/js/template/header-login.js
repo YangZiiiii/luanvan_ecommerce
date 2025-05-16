@@ -250,7 +250,7 @@ class AppHeaderLogin extends HTMLElement {
       </div>
    </header>
    `;
-   this.innerHTML = newLocal;
+      this.innerHTML = newLocal;
    }
-   }
-   customElements.define("header-main-login", AppHeaderLogin);
+}
+customElements.define("header-main-login", AppHeaderLogin);

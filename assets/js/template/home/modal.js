@@ -5,10 +5,23 @@ class AppHomeModal extends HTMLElement {
       <div class="overlay-modal1 js-hide-modal1"></div>
 
       <div class="container">
-         <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-            <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+         <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent container-modal"
+            style="position: relative; padding: 32px 0 0;">
+            <button class="how-pos3 hov3 trans-04 js-hide-modal1 container-close">
                <img src="./assets/images/icons/icon-close.png" alt="CLOSE" />
             </button>
+            <style>
+               .container-close {
+                  position: absolute;
+                  top: 0;
+                  background-color: red;
+                  padding: 5px;
+               }
+
+               body.no-scroll {
+                  overflow: hidden;
+               }
+            </style>
 
             <div class="row">
                <div class="col-md-6 col-lg-7 p-b-30">
