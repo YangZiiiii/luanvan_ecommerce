@@ -45,9 +45,9 @@ class AppHeaderV4 extends HTMLElement {
                            <span>Nhớ mật khẩu</span></label>
                         <a href="#" class="forgot-password">Quên mật khẩu?</a>
                      </div>
-                     <button type="submit" class="form-btn">
+                     <a href="login.html" type="submit" class="form-btn">
                         Đăng nhập
-                     </button>
+                     </a>
                      <p class="switch-form">
                         Chưa có tài khoản?
                         <a href="#" class="switch-tab" data-tab="register">Đăng ký</a>
@@ -74,15 +74,15 @@ class AppHeaderV4 extends HTMLElement {
                <div class="social-login">
                   <p class="social-text">Hoặc đăng nhập bằng</p>
                   <button class="social-btn facebook">
-                     <i class="fa fa-facebook"></i>
+                      <i class="fa-brands fa-facebook-f"></i>
                      Facebook
                   </button>
                   <button class="social-btn google">
-                     <i class="fa fa-google"></i>
+                    <i class="fa-brands fa-google"></i>
                      Google
                   </button>
                   <button class="social-btn twitter">
-                     <i class="fa fa-twitter"></i>
+                     <i class="fa-brands fa-twitter"></i>
                      Twitter
                   </button>
                </div>
@@ -98,7 +98,7 @@ class AppHeaderV4 extends HTMLElement {
             <nav class="limiter-menu-desktop container">
 
                <!-- Logo desktop -->
-               <a href="#" class="logo">
+               <a href="/" class="logo">
                   <img src="./assets/images/icons/logo-01.png" alt="IMG-LOGO">
                </a>
 
@@ -143,9 +143,17 @@ class AppHeaderV4 extends HTMLElement {
 
                   </div>
 
-                  <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                     data-notify="2">
-                     <i class="zmdi zmdi-shopping-cart"></i>
+                  <div class="header__cart-container">
+                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart "
+                        data-notify="2">
+                        <i class="zmdi zmdi-shopping-cart "></i>
+                     </div>
+                     <div class="header__cart-notify empty__cart">
+                        <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+                        <p class="header__cart-msg">Chưa có sản phẩm</p>
+
+
+                     </div>
                   </div>
 
                   <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"

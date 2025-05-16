@@ -283,7 +283,7 @@
                                                   </button>
                                                   <div class="dropdown-menu dropdown-menu-end m-0">
                                                     <a href="javascript:0;" class="dropdown-item">View</a>
-                                                    <a onclick="openModal()" href="javascript:0;" class="dropdown-item">Delete</a>
+                                                   <a onclick="openModal('${collection.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
                                                   </div>
                                                 </div>
                                                </td>
@@ -605,7 +605,73 @@
 
 
    <!-- Modal Delete -->
-  <script src="./assets/js/modal-delete.js"></script>
+<script>
+   function openModal(collectionId) {
+      const overlay = document.getElementById("modalOverlay");
+      const modal = overlay.querySelector(".modal");
+
+      overlay.classList.add("show");
+      modal.style.display = "block";
+      modal.style.transform = "rotateY(90deg)";
+      modal.style.animation = "rotateIn 0.5s forwards";
+
+      document.getElementById("modalContent").style.display = "block";
+      document.getElementById("successMessage").classList.remove("show");
+
+      const yesButton = document.querySelector(".button-yes");
+      yesButton.setAttribute("data-collection-id", collectionId);
+   }
+
+   function closeModal() {
+      const overlay = document.getElementById("modalOverlay");
+      const modal = overlay.querySelector(".modal");
+
+      modal.style.animation = "rotateOut 0.4s forwards";
+
+      setTimeout(() => {
+         overlay.classList.remove("show");
+         modal.style.display = "none";
+      }, 400);
+   }
+
+   async function confirmYes() {
+      const yesButton = document.querySelector(".button-yes");
+      const collectionId = yesButton.getAttribute("data-collection-id");
+
+      if (!collectionId) {
+         alert("Không tìm thấy ID collection để xoá.");
+         return;
+      }
+
+      try {
+         const response = await fetch(`http://localhost:8080/api/v1/collection/${collectionId}`, {
+            method: 'DELETE'
+         });
+
+         if (response.ok) {
+            document.getElementById("modalContent").style.display = "none";
+            document.getElementById("successMessage").classList.add("show");
+
+            setTimeout(() => {
+               window.location.reload();
+            }, 1500);
+         } else {
+            alert("Xoá collection thất bại!");
+         }
+      } catch (error) {
+         console.error('Lỗi khi gọi API xoá:', error);
+         alert("Có lỗi xảy ra.");
+      }
+   }
+
+   function handleOverlayClick(event) {
+      const modal = document.querySelector(".delete-modal .modal");
+      if (!modal.contains(event.target)) {
+         closeModal();
+      }
+   }
+</script>
+
 
 </body>
 

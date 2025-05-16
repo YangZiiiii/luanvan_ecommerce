@@ -300,6 +300,13 @@ closeModal.addEventListener("click", () => {
    html.style.overflow = "visible";
 });
 
+modal.addEventListener("click", function (event) {
+   if (event.target === modal) {
+      modal.classList.remove("show-log");
+      html.style.overflow = "visible";
+   }
+});
+
 // Chuyển đổi giữa đăng nhập & đăng ký 
 switchTabs.forEach((tab) => {
    tab.addEventListener("click", function (event) {
