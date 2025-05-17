@@ -33,7 +33,7 @@ class AppHeader extends HTMLElement {
                </div>
 
                <!-- Form Đăng nhập -->
-               <div class="tab-content active" data-content="login">
+               <div class="tab-content tab-none active" data-content="login">
                   <h2 class="form-title">Đăng nhập</h2>
                   <form class="form">
                      <input type="text" class="form-input" placeholder="Tên đăng nhập" required />
@@ -54,7 +54,7 @@ class AppHeader extends HTMLElement {
                </div>
 
                <!-- Form Đăng ký -->
-               <div class="tab-content" data-content="register">
+               <div class="tab-content tab-none" data-content="register">
                   <h2 class="form-title">Đăng ký</h2>
                   <form class="form">
                      <input type="text" class="form-input" placeholder="Tên đăng nhập" required />
@@ -145,8 +145,8 @@ class AppHeader extends HTMLElement {
                   </div>
 
                   <div class="header__cart-container">
-                  <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart "
-                     data-notify="2">
+                  <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart noti-none"
+                     data-notify="0">
                      <i class="zmdi zmdi-shopping-cart "></i>
                   </div>
                   <div class="header__cart-notify empty__cart">

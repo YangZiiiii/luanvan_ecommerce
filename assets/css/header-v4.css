@@ -122,13 +122,16 @@
 }
 
 /* Chỉ hiển thị tab active */
-.tab-content {
+.tab-content.tab-none {
    display: none;
 }
+
 
 .tab-content.active {
    display: block;
 }
+
+
 
 /* Form */
 .form {

@@ -124,8 +124,12 @@
 }
 
 /* Chỉ hiển thị tab active */
-.tab-content {
+.tab-content.tab-none {
    display: none;
+}
+
+.tab-content.tab-block{
+   display: block;
 }
 
 .tab-content.active {

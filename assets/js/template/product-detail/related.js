@@ -12,7 +12,7 @@ class AppProductDetailRelated extends HTMLElement {
             <div class="slick2">
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-01.jpg" alt="IMG-PRODUCT" />
 
@@ -45,7 +45,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-02.jpg" alt="IMG-PRODUCT" />
 
@@ -78,7 +78,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-03.jpg" alt="IMG-PRODUCT" />
 
@@ -111,7 +111,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-04.jpg" alt="IMG-PRODUCT" />
 
@@ -144,7 +144,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-05.jpg" alt="IMG-PRODUCT" />
 
@@ -177,7 +177,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-06.jpg" alt="IMG-PRODUCT" />
 
@@ -210,7 +210,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-07.jpg" alt="IMG-PRODUCT" />
 
@@ -243,7 +243,7 @@ class AppProductDetailRelated extends HTMLElement {
 
                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                   <!-- Block2 -->
-                  <div class="block2">
+                  <div class="block2 block2-pic">
                      <div class="block2-pic hov-img0">
                         <img src="./assets/images/product-08.jpg" alt="IMG-PRODUCT" />
 
