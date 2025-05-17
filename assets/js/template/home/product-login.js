@@ -1,4 +1,4 @@
-class AppHomeProduct extends HTMLElement {
+class AppHomeProductLogin extends HTMLElement {
    connectedCallback() {
    this.innerHTML = `
      <section class="bg0 p-t-23 p-b-140">
@@ -235,7 +235,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                       <img src="./assets/images/product-01.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                         View Detail
                      </a>
@@ -245,7 +245,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Esprit Ruffle Shirt
                         </a>
 
@@ -270,7 +270,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-02.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -278,7 +278,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Herschel supply
                         </a>
 
@@ -303,7 +303,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-03.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -311,7 +311,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Only Check Trouser
                         </a>
 
@@ -336,7 +336,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-04.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -344,7 +344,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Classic Trench Coat
                         </a>
 
@@ -369,7 +369,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-05.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -377,7 +377,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Front Pocket Jumper
                         </a>
 
@@ -402,7 +402,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-06.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -410,7 +410,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Vintage Inspired Classic
                         </a>
 
@@ -435,7 +435,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-07.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -443,7 +443,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Shirt in Stretch Cotton
                         </a>
 
@@ -468,7 +468,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-08.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -476,7 +476,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Pieces Metallic Printed
                         </a>
 
@@ -501,7 +501,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-09.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -509,7 +509,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Converse All Star Hi Plimsolls
                         </a>
 
@@ -534,7 +534,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-10.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -542,7 +542,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Femme T-Shirt In Stripe
                         </a>
 
@@ -567,7 +567,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-11.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -575,7 +575,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Herschel supply
                         </a>
 
@@ -600,7 +600,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-12.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -608,7 +608,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Herschel supply
                         </a>
 
@@ -633,7 +633,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-13.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -641,7 +641,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            T-Shirt with Sleeve
                         </a>
 
@@ -666,7 +666,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-14.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -674,7 +674,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Pretty Little Thing
                         </a>
 
@@ -699,7 +699,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-15.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -707,7 +707,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Mini Silver Mesh Watch
                         </a>
 
@@ -732,7 +732,7 @@ class AppHomeProduct extends HTMLElement {
                   <div class="block2-pic hov-img0">
                      <img src="./assets/images/product-16.jpg" alt="IMG-PRODUCT" />
 
-                     <a href="product-detail.html"
+                     <a href="loginProductDetail.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                         View Detail
                      </a>
@@ -740,7 +740,7 @@ class AppHomeProduct extends HTMLElement {
 
                   <div class="block2-txt flex-w flex-t p-t-14">
                      <div class="block2-txt-child1 flex-col-l">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="loginProductDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                            Square Neck Back
                         </a>
 
@@ -771,4 +771,4 @@ class AppHomeProduct extends HTMLElement {
    `;
    }
    }
-   customElements.define("home-product", AppHomeProduct);
+   customElements.define("home-product-login", AppHomeProductLogin);
