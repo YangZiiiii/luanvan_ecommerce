@@ -78,7 +78,10 @@
       class="template-customizer-theme-css" />
 
 
-   <link rel="stylesheet" href="./assets/css/api.min.css" id="omapi-css" media="all" />
+
+   <!-- Dropzone -->
+   <script src="https://cdn.jsdelivr.net/npm/dropzone@5/dist/min/dropzone.min.js"></script>
+
 </head>
 
 <body __processed_bb539775-74b8-4236-b43d-afe4400b922e__="true"
@@ -107,100 +110,103 @@
 
                <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
                   <div class="app-ecommerce" bis_skin_checked="1">
-               
+
                      <!-- Offcanvas Add Category -->
-                      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList"
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList"
                         aria-labelledby="offcanvasEcommerceCategoryListLabel" bis_skin_checked="1" aria-modal="true"
                         role="dialog">
                         <!-- Offcanvas Header -->
                         <div class="offcanvas-header py-6" bis_skin_checked="1">
                            <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                             aria-label="Close"></button>
+                              aria-label="Close"></button>
                         </div>
                         <!-- Offcanvas Body -->
                         <div class="offcanvas-body border-top" bis_skin_checked="1">
                            <form class="pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="eCommerceCategoryListForm"
-                             onsubmit="return false" novalidate="novalidate">
-                             <!-- Title -->
-                             <div class="form-floating form-floating-outline mb-5 fv-plugins-icon-container"
-                               bis_skin_checked="1">
-                               <input type="text" class="form-control" id="ecommerce-category-title"
-                                 placeholder="Enter category name" name="categoryTitle" aria-label="category title">
-                               <label for="ecommerce-category-title">Name</label>
-                               <div
-                                 class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
-                                 bis_skin_checked="1"></div>
-                             </div>
-
-                             <!-- Image -->
-                             <div class="mb-5" bis_skin_checked="1">
-                               <input class="form-control" type="file" id="ecommerce-category-image">
-                             </div>
-                             
-                             <!-- Parent category -->
-                             <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
-                               <div class="form-floating form-floating-outline form-floating-select2" bis_skin_checked="1">
-                                 <div class="position-relative" bis_skin_checked="1">
-                                    <select id="ecommerce-category-parent-category" class="form-select" data-placeholder="Select parent category" data-allow-clear="true">
-                                      <option value="">Select parent Category</option>
-                                    </select>
-                                 </div>
-                                 <label for="ecommerce-category-parent-category">Parent category</label>
-                               </div>
-                             </div>
-
-                             <script>
-                               document.addEventListener("DOMContentLoaded", function () {
-                                 const parentCategorySelect = document.getElementById("ecommerce-category-parent-category");
-
-                                 // Fetch categories and populate the select element
-                                 fetch("http://localhost:8080/api/v1/category")
-                                    .then(response => response.json())
-                                    .then(data => {
-                                      if (data.statusCode === 200 && Array.isArray(data.data)) {
-                                        let options = `<option value="">Select parent Category</option>`;
-                                        data.data.forEach(category => {
-                                          options += `<option value="${category.id}">${category.name}</option>`;
-                                        });
-                                        parentCategorySelect.innerHTML = options;
-                                        console.log("Categories loaded successfully.");
-                                      } else {
-                                        console.error(" Failed to load categories:", data.message);
-                                      }
-                                    })
-                                    .catch(error => console.error(" Error fetching categories:", error));
-                               });
-                             </script>
-
-                             <!-- Status -->
-                             <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
-                               <div class="form-floating form-floating-outline form-floating-select2"
+                              onsubmit="return false" novalidate="novalidate">
+                              <!-- Title -->
+                              <div class="form-floating form-floating-outline mb-5 fv-plugins-icon-container"
                                  bis_skin_checked="1">
-                                 <div class="position-relative" bis_skin_checked="1">
-                                    <select id="ecommerce-category-status" class=" form-select"
-                                      data-placeholder="Select category status">
-                                      <option value="">Select category status</option>
-                                      <option value="Publish">Active</option>
-                                      <option value="Inactive">Inactive</option>
-                                    </select>
+                                 <input type="text" class="form-control" id="ecommerce-category-title"
+                                    placeholder="Enter category name" name="categoryTitle" aria-label="category title">
+                                 <label for="ecommerce-category-title">Name</label>
+                                 <div
+                                    class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
+                                    bis_skin_checked="1"></div>
+                              </div>
+
+                              <!-- Image -->
+                              <div class="mb-5" bis_skin_checked="1">
+                                 <input class="form-control" type="file" id="ecommerce-category-image">
+                              </div>
+
+                              <!-- Parent category -->
+                              <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
+                                 <div class="form-floating form-floating-outline form-floating-select2"
+                                    bis_skin_checked="1">
+                                    <div class="position-relative" bis_skin_checked="1">
+                                       <select id="ecommerce-category-parent-category" class="form-select"
+                                          data-placeholder="Select parent category" data-allow-clear="true">
+                                          <option value="">Select parent Category</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-category-parent-category">Parent category</label>
                                  </div>
-                                 <label for="ecommerce-category-status">Status</label>
-                               </div>
-                             </div>
-                             <!-- Submit and reset -->
-                             <div class="mb-4" bis_skin_checked="1">
-                               <button type="submit"
-                                 class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light" id="btnAddCategory">Add</button>
-                               <button type="reset" class="btn btn-outline-danger waves-effect"
-                                 data-bs-dismiss="offcanvas">Discard</button>
-                             </div>
-                             <input type="hidden">
+                              </div>
+
+                              <script>
+                                 document.addEventListener("DOMContentLoaded", function () {
+                                    const parentCategorySelect = document.getElementById("ecommerce-category-parent-category");
+
+                                    // Fetch categories and populate the select element
+                                    fetch("http://localhost:8080/api/v1/category")
+                                       .then(response => response.json())
+                                       .then(data => {
+                                          if (data.statusCode === 200 && Array.isArray(data.data)) {
+                                             let options = `<option value="">Select parent Category</option>`;
+                                             data.data.forEach(category => {
+                                                options += `<option value="${category.id}">${category.name}</option>`;
+                                             });
+                                             parentCategorySelect.innerHTML = options;
+                                             console.log("Categories loaded successfully.");
+                                          } else {
+                                             console.error(" Failed to load categories:", data.message);
+                                          }
+                                       })
+                                       .catch(error => console.error(" Error fetching categories:", error));
+                                 });
+                              </script>
+
+                              <!-- Status -->
+                              <div class="mb-5 ecommerce-select2-dropdown" bis_skin_checked="1">
+                                 <div class="form-floating form-floating-outline form-floating-select2"
+                                    bis_skin_checked="1">
+                                    <div class="position-relative" bis_skin_checked="1">
+                                       <select id="ecommerce-category-status" class=" form-select"
+                                          data-placeholder="Select category status">
+                                          <option value="">Select category status</option>
+                                          <option value="Publish">Active</option>
+                                          <option value="Inactive">Inactive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-category-status">Status</label>
+                                 </div>
+                              </div>
+                              <!-- Submit and reset -->
+                              <div class="mb-4" bis_skin_checked="1">
+                                 <button type="submit"
+                                    class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light"
+                                    id="btnAddCategory">Add</button>
+                                 <button type="reset" class="btn btn-outline-danger waves-effect"
+                                    data-bs-dismiss="offcanvas">Discard</button>
+                              </div>
+                              <input type="hidden">
                            </form>
                         </div>
-                      </div>
+                     </div>
 
-                      <script>
+                     <script>
                         document.getElementById("btnAddCategory").addEventListener("click", async function (e) {
                            e.preventDefault();
 
@@ -208,37 +214,37 @@
                            const status = document.getElementById("ecommerce-category-status").value;
 
                            if (!name || !status) {
-                             alert("Please fill in all fields.");
-                             return;
+                              alert("Please fill in all fields.");
+                              return;
                            }
 
                            const categoryData = {
-                             name: name,
-                             status: status
+                              name: name,
+                              status: status
                            };
 
                            try {
-                             const response = await fetch("http://localhost:8080/api/v1/category", {
-                               method: "POST",
-                               headers: { "Content-Type": "application/json" },
-                               body: JSON.stringify(categoryData)
-                             });
+                              const response = await fetch("http://localhost:8080/api/v1/category", {
+                                 method: "POST",
+                                 headers: { "Content-Type": "application/json" },
+                                 body: JSON.stringify(categoryData)
+                              });
 
-                             const result = await response.json();
-                             console.log("Response from API:", result);
+                              const result = await response.json();
+                              console.log("Response from API:", result);
 
-                             if (result.statusCode === 201) {
-                               alert("🎉 Category added successfully!");
-                               document.getElementById("eCommerceCategoryListForm").reset();
-                             } else {
-                               throw new Error(result.message || "Failed to add category.");
-                             }
+                              if (result.statusCode === 201) {
+                                 alert("🎉 Category added successfully!");
+                                 document.getElementById("eCommerceCategoryListForm").reset();
+                              } else {
+                                 throw new Error(result.message || "Failed to add category.");
+                              }
                            } catch (error) {
-                             console.error(" Error adding category:", error);
-                             alert("Failed to add category. Please try again.");
+                              console.error(" Error adding category:", error);
+                              alert("Failed to add category. Please try again.");
                            }
                         });
-                      </script>
+                     </script>
 
                      <!-- Add Collection -->
                      <!-- Offcanvas Add Collection -->
@@ -298,9 +304,9 @@
                                  <input class="form-control" type="file" id="ecommerce-collection-image">
                               </div>
 
-                           
 
-                              
+
+
 
                               <!-- Status -->
                               <div class="mb-5 ecommerce-select2-dropdown">
@@ -360,7 +366,8 @@
                                     <div class="comment-editor border-0 ql-container ql-snow"
                                        id="ecommerce-brand-description">
                                        <div class="ql-editor ql-blank" contenteditable="true"
-                                          data-placeholder="Description brand" onfocus="this.setAttribute('data-placeholder', '')"
+                                          data-placeholder="Description brand"
+                                          onfocus="this.setAttribute('data-placeholder', '')"
                                           onblur="this.setAttribute('data-placeholder', 'Write a description...')">
                                           <p><br></p>
                                        </div>
@@ -653,7 +660,7 @@
                               <span class="text-truncate"
                                  style="padding-left: 20px; padding-bottom: 15px; margin-top: -15px;">
                                  <label class="switch switch-primary switch-sm">
-                                    <input type="checkbox" class="switch-input" id="toggleCardBody"  checked/>
+                                    <input type="checkbox" class="switch-input" id="toggleCardBody" checked />
                                     <span class="switch-toggle-slider">
                                        <span class="switch-on"></span>
                                        <span class="switch-off"></span>
@@ -669,7 +676,7 @@
                                              <div class="mb-6 col-sm-4">
                                                 <div class="form-floating form-floating-outline form-floating-select2">
                                                    <div class="position-relative">
-                                                      <select class="select2 form-select" id="variantTypeSelect"
+                                                      <select class=" select2 form-select variant-type" id="variantTypeSelect"
                                                          data-placeholder="Option" data-allow-clear="true">
                                                          <option value="">Option</option>
                                                       </select>
@@ -679,7 +686,8 @@
                                              </div>
                                              <div class="mb-6 col-sm-8">
                                                 <div class="form-floating form-floating-outline">
-                                                   <input type="text" class="form-control" placeholder="Enter size" />
+                                                   <input type="text" class="form-control variant-value"
+                                                      placeholder="Enter size" />
                                                    <label>Value</label>
                                                 </div>
                                              </div>
@@ -707,7 +715,7 @@
                               </style>
 
                               <script>
-   
+
                                  document.getElementById("toggleCardBody").addEventListener("change", function () {
                                     const cardBody = document.getElementById("cardBody");
                                     cardBody.style.display = this.checked ? "block" : "none";
@@ -748,6 +756,8 @@
                                     }, 50); // nhỏ delay để DOM kịp render
                                  });
                               });
+
+
                            </script>
 
 
@@ -1060,8 +1070,8 @@
                                  <!-- Base Price -->
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="number" class="form-control" id="ecommerce-product-price"
-                                       placeholder="Price" name="productPrice" aria-label="Product price" />
-                                    <label for="ecommerce-product-price">Best Price</label>
+                                       placeholder="Price" name="originalPrice" aria-label="Product price" />
+                                    <label for="ecommerce-product-price">original Price</label>
                                  </div>
 
                                  <!-- Discounted Price -->
@@ -1094,38 +1104,14 @@
                                     </div>
                                     <div bis_skin_checked="1">
                                        <button class="btn btn-outline-primary btn-icon waves-effect btn-category"
-                                       data-bs-toggle="offcanvas"
-                                       data-bs-target="#offcanvasEcommerceCategoryList">
+                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceCategoryList">
                                           <i class="ri-add-line"></i>
                                        </button>
                                     </div>
                                  </div>
 
 
-                                 <script>
 
-
-                                    let hasLoadedCategory = false;
-
-                                    document.getElementById("productCategory").addEventListener("mousedown", function (e) {
-                                       // Gọi API khi select đang ở trạng thái mặc định (value = "")
-                                       if (!hasLoadedCategory && this.value === "") {
-                                          fetch("http://localhost:8080/api/v1/category")
-                                             .then(response => response.json())
-                                             .then(data => {
-                                                let options = `<option value="">Select Category</option>`;
-                                                data.data.forEach(category => {
-                                                   options += `<option value="${category.id}">${category.name}</option>`;
-                                                });
-
-                                                this.innerHTML = options;
-                                                hasLoadedCategory = true;
-                                                console.log("Categories loaded on first click.");
-                                             })
-                                             .catch(error => console.error("Error fetching categories:", error));
-                                       }
-                                    });
-                                 </script>
 
 
 
@@ -1140,35 +1126,13 @@
                                     </div>
                                     <div bis_skin_checked="1">
                                        <button class="btn-collection btn btn-outline-primary btn-icon waves-effect"
-                                       data-bs-toggle="offcanvas"
-                                       data-bs-target="#offcanvasEcommerceCollectionList">
+                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceCollectionList">
                                           <i class="ri-add-line"></i>
                                        </button>
                                     </div>
                                  </div>
 
-                                 <script>
-                                    let hasLoadedCollection = false;
 
-                                    document.getElementById("productCollection").addEventListener("mousedown", function (e) {
-                                       // Gọi API khi select đang ở trạng thái mặc định (value = "")
-                                       if (!hasLoadedCollection && this.value === "") {
-                                          fetch("http://localhost:8080/api/v1/collection/list/all")
-                                             .then(response => response.json())
-                                             .then(data => {
-                                                let options = `<option value="">Select Collection</option>`;
-                                                data.data.forEach(collection => {
-                                                   options += `<option value="${collection.id}">${collection.collectionName}</option>`;
-                                                });
-
-                                                this.innerHTML = options;
-                                                hasLoadedCollection = true;
-                                                console.log("Collections loaded on first click.");
-                                             })
-                                             .catch(error => console.error("Error fetching collections:", error));
-                                       }
-                                    });
-                                 </script>
 
                                  <!-- Brand -->
                                  <div
@@ -1181,39 +1145,13 @@
                                     </div>
                                     <div bis_skin_checked="1">
                                        <button class=" btn-brand btn btn-outline-primary btn-icon waves-effect"
-                                       data-bs-toggle="offcanvas"
-                                       data-bs-target="#offcanvasEcommerceBrandList">
+                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceBrandList">
                                           <i class="ri-add-line"></i>
                                        </button>
                                     </div>
                                  </div>
 
-                                 <script>
-                                    let hasLoadedBrand = false;
 
-                                    document.getElementById("productBrand").addEventListener("mousedown", function () {
-                                       if (!hasLoadedBrand && this.value === "") {
-                                          const selectElement = this;
-
-                                          fetch("http://localhost:8080/api/v1/brand/list/all")
-                                             .then(response => response.json())
-                                             .then(data => {
-                                                console.log("Data from API:", data);
-
-                                                let options = `<option value="">Select Brand</option>`;
-                                                data.data.forEach(brand => {
-                                                   options += `<option value="${brand.id}">${brand.name}</option>`;
-                                                });
-
-                                                selectElement.innerHTML = options;
-                                                hasLoadedBrand = true;
-
-                                                console.log("Brands loaded on first click (no Select2).");
-                                             })
-                                             .catch(error => console.error("Error fetching brands:", error));
-                                       }
-                                    });
-                                 </script>
 
 
                                  <!-- Status -->
@@ -1440,111 +1378,216 @@
       </div>
    </div>
 
+
+
+
    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-         const dropzone = Dropzone.forElement("#dropzone-basic");
+      let product = null;
 
-         // 🔹 1. Lấy dữ liệu sản phẩm từ form
-         function getProductData() {
-            const allCheckboxes = document.querySelectorAll("[data-repeater-item] input[type='checkbox']");
-            let hasVariants = false;
-            allCheckboxes.forEach(checkbox => {
-               if (checkbox.checked) {
-                  hasVariants = true;
-               }
-            });
-
-            return {
-               name: document.querySelector("input[name='productTitle']").value,
-               sku: document.querySelector("input[name='productSku']").value,
-               quantity: parseInt(document.querySelector("input[name='Quantity']").value),
-               description: document.querySelector("#ecommerce-category-description .ql-editor").innerText.trim() || "No description",
-               sellingPrice: parseFloat(document.querySelector("input[name='productPrice']").value),   //  Đổi bestPrice → originalPrice
-               discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value), // Đổi discountedPrice → sellingPrice
-
-               categories: [{ id: document.querySelector("#productCategory").value }],
-               collections: [{ id: document.querySelector("#productCollection").value }],
-               brands: [{ id: document.querySelector("#productBrand").value }],
-
-               hasVariants: hasVariants,
-               variants: Array.from(document.querySelectorAll("[data-repeater-item]")).map(item => {
-                  const type = item.querySelector("select.select2.form-select")?.value || "";
-                  const value = item.querySelector("input.form-control[type='text']")?.value || "";
-                  return { type, value };
-               })
-            };
+      document.addEventListener("DOMContentLoaded", async function () {
+         const productId = new URLSearchParams(window.location.search).get("id");
+         if (!productId) {
+            alert("Không tìm thấy Product ID trên URL!");
+            return;
          }
 
+         try {
+            const response = await fetch(`http://localhost:8080/api/v1/product/${productId}`);
+            const result = await response.json();
 
-
-         // 🔹 2. Gọi API để tạo sản phẩm
-         async function createProduct(productData) {
-            console.log("🧾 Final productData gửi lên:", JSON.stringify(productData, null, 2));
-
-            const res = await fetch("http://localhost:8080/api/v1/product", {
-               method: "POST",
-               headers: { "Content-Type": "application/json" },
-               body: JSON.stringify(productData)
-            });
-
-            const result = await res.json();
-            console.log("Response từ API tạo product:", result);
-
-            if (!result.data || !result.data.id) {
-               throw new Error("Không nhận được productId!");
-            }
-
-            return result.data.id; // Trả về productId
-         }
-
-         // 🔹 3. Upload ảnh lên product đã tạo
-         async function uploadProductImages(productId) {
-            const acceptedFiles = dropzone.getAcceptedFiles();
-            if (acceptedFiles.length === 0) {
-               console.warn("Không có ảnh nào để upload.");
+            if (!result.data) {
+               alert("Không tìm thấy dữ liệu sản phẩm!");
                return;
             }
 
-            const formData = new FormData();
-            acceptedFiles.forEach(file => formData.append("images", file));
+            product = result.data;
 
-            const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
-               method: "POST",
-               body: formData
-            });
+            // Gán dữ liệu vào form
+            document.querySelector("input[name='productTitle']").value = product.name || "";
+            document.querySelector("input[name='productSku']").value = product.sku || "";
+            document.querySelector("input[name='Quantity']").value = product.quantity || 0;
+            document.querySelector("input[name='originalPrice']").value = product.originalPrice || 0;
+            document.querySelector("input[name='productDiscountedPrice']").value = product.discountedPrice || 0;
 
-            const result = await res.json();
-            console.log("Upload result:", result);
+            const quillEditor = document.querySelector("#ecommerce-category-description .ql-editor");
+            if (quillEditor) {
+               quillEditor.innerHTML = product.description || "";
+            }
+
+            loadCategories(product);
+            loadBrands(product);
+            loadCollections(product);
+
+
+            // 🖼️ Load ảnh product
+            if (product.primaryImageURL) {
+               initDropzoneWithImage(product.primaryImageURL);
+            }
+
+
+
+            console.log("✅ Đã load đầy đủ dữ liệu sản phẩm.");
+         } catch (err) {
+            console.error("❌ Lỗi khi load product:", err);
+            alert("Lỗi khi load dữ liệu sản phẩm.");
+         }
+      });
+
+      function loadCategories(product) {
+         fetch("http://localhost:8080/api/v1/category")
+            .then(res => res.json())
+            .then(data => {
+               const select = document.getElementById("productCategory");
+               let options = `<option value="">Select Category</option>`;
+               const selectedIds = product.categories?.map(c => c.id.toString()) || [];
+
+               data.data.forEach(category => {
+                  const selected = selectedIds.includes(category.id.toString()) ? "selected" : "";
+                  options += `<option value="${category.id}" ${selected}>${category.name}</option>`;
+               });
+
+               select.innerHTML = options;
+               if ($(select).hasClass("select2-hidden-accessible")) {
+                  $(select).trigger("change");
+               }
+
+               console.log("✅ Categories loaded.");
+            })
+            .catch(err => console.error("❌ Error loading categories:", err));
+      }
+
+      function loadBrands(product) {
+         fetch("http://localhost:8080/api/v1/brand/list/all")
+            .then(res => res.json())
+            .then(data => {
+               const select = document.getElementById("productBrand");
+               let options = `<option value="">Select Brand</option>`;
+               const selectedIds = product.brands?.map(b => b.id.toString()) || [];
+
+               data.data.forEach(brand => {
+                  const selected = selectedIds.includes(brand.id.toString()) ? "selected" : "";
+                  options += `<option value="${brand.id}" ${selected}>${brand.name}</option>`;
+               });
+
+               select.innerHTML = options;
+               if ($(select).hasClass("select2-hidden-accessible")) {
+                  $(select).trigger("change");
+               }
+
+               console.log("✅ Brands loaded.");
+            })
+            .catch(err => console.error("❌ Error loading brands:", err));
+      }
+
+      function loadCollections(product) {
+         fetch("http://localhost:8080/api/v1/collection/list/all")
+            .then(res => res.json())
+            .then(data => {
+               const select = document.getElementById("productCollection");
+               let options = `<option value="">Select Collection</option>`;
+               const selectedIds = product.collections?.map(c => c.id.toString()) || [];
+
+               data.data.forEach(collection => {
+                  const selected = selectedIds.includes(collection.id.toString()) ? "selected" : "";
+                  options += `<option value="${collection.id}" ${selected}>${collection.collectionName}</option>`;
+               });
+
+               select.innerHTML = options;
+               if ($(select).hasClass("select2-hidden-accessible")) {
+                  $(select).trigger("change");
+               }
+
+               console.log("✅ Collections loaded.");
+            })
+            .catch(err => console.error("❌ Error loading collections:", err));
+      }
+
+      function initDropzoneWithImage(imageUrl) {
+         const dropzone = Dropzone.forElement("#dropzone-basic");
+
+         const mockFile = {
+            name: "primary-image.jpg",
+            size: 123456,
+            type: "image/jpeg",
+            status: Dropzone.SUCCESS,
+            accepted: true
+         };
+
+         dropzone.emit("addedfile", mockFile);
+         dropzone.emit("thumbnail", mockFile, imageUrl);
+         dropzone.emit("complete", mockFile);
+
+         dropzone.files.push(mockFile);
+      }
+
+      function renderVariants(variants) {
+         const typeSelect = newItem.querySelector('.variant-type');
+         const valueInput = newItem.querySelector('.variant-value');
+
+         if (typeSelect) typeSelect.value = variant.type || "";
+         if (valueInput) valueInput.value = variant.value || "";
+         
+         if (!templateItem) {
+            console.error("❌ Không tìm thấy template [data-repeater-item]");
+            return;
          }
 
-         // 🔹 4. Bắt sự kiện khi người dùng bấm nút Publish
-         document.querySelector(".btn-submit-product").addEventListener("click", async function (e) {
-            e.preventDefault();
-            try {
-               const productData = getProductData();
-               console.log("Data sắp gửi:", productData);
+         const templateHTML = templateItem.outerHTML;
+         repeaterList.innerHTML = "";
 
-               const productId = await createProduct(productData);
-               console.log("Product created with ID:", productId);
+         variants.forEach((variant) => {
+            const wrapper = document.createElement("div");
+            wrapper.innerHTML = templateHTML;
+            const newItem = wrapper.firstElementChild;
 
-               await uploadProductImages(productId);
-               alert("🎉 Sản phẩm và ảnh đã được đăng thành công!");
-            } catch (err) {
-               console.error("Lỗi khi xử lý publish:", err);
-               alert("Đăng sản phẩm thất bại. Vui lòng thử lại.");
+            const select = newItem.querySelector("select");
+            const input = newItem.querySelector("input");
+
+            if (input) input.value = variant.value || "";
+
+            populateVariantTypeSelect(select);
+            setTimeout(() => {
+               if (select) select.value = variant.type || "";
+               if ($(select).hasClass("select2-hidden-accessible")) {
+                  $(select).trigger("change");
+               }
+            }, 100);
+
+            repeaterList.appendChild(newItem);
+         });
+
+         // ✅ Re-init repeater
+         $('.form-repeater').repeater({
+            initEmpty: false,
+            defaultValues: {
+               'text-input': ''
+            },
+            show: function () {
+               $(this).slideDown();
+            },
+            hide: function (deleteElement) {
+               $(this).slideUp(deleteElement);
             }
          });
-      });
+
+         console.log("✅ Đã render variants.");
+      }
+
    </script>
+
+
+
+
+
 
 
 
 
    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-   
-   
-  
+
+
+
 
 
 
