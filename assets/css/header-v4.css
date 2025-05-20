@@ -1,3 +1,31 @@
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #4CAF50; /* default: success */
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  padding: 16px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 17px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#toast.error {
+  background-color: #e74c3c; /* đỏ */
+}
+
 /* Cài đặt chung */
 
 .p-l-sign {
@@ -228,9 +256,9 @@
    z-index: 9999;
 }
 
-.header__cart-notify.empty__cart{
+/* .header__cart-notify.empty__cart{
    width: 300px;
-}
+} */
 
 .icon-header-item:hover+.header__cart-notify,
 .header__cart-notify:hover {
@@ -246,14 +274,19 @@
     color: #717fe0;
 }
 
-.header__cart-msg {
-   text-align: center;
+.empty__cart{
+   width: 300px;
    display: block;
 }
 
+.header__cart-msg {
+   text-align: center;
+}
+
 .header__cart-img-nocart {
+
    width: 100%;
-   display: block;
+   object-fit: cover;
 }
 
 /* Header__nocart */
@@ -320,9 +353,10 @@
 
 .header__cart-img {
    border: 1px solid #c8c4c4;
-   width: 20%;
+   min-width: 20%;
    height: 60px;
-   /* object-fit:contain ; */
+   object-fit: cover;
+
 }
 
 .header__cart-item-content {
@@ -491,4 +525,9 @@
 .btn.btn--primary {
    background-color: #fe6433;
    color: var(--white-color);
+}
+
+
+.cart-btn:hover{
+   background-color: #717fe0;
 }

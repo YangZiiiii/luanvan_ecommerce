@@ -344,12 +344,12 @@ if (modal) {
       });
    }
 
-   modal.addEventListener("click", function (event) {
-      if (event.target === modal) {
-         modal.classList.remove("show-log");
-         html.style.overflow = "visible";
-      }
-   });
+   // modal.addEventListener("click", function (event) {
+   //    if (event.target === modal) {
+   //       modal.classList.remove("show-log");
+   //       html.style.overflow = "visible";
+   //    }
+   // });
 }
 
 // Chuyển đổi tab nếu có phần tử

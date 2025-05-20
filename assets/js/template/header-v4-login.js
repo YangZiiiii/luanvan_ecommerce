@@ -3,6 +3,10 @@ class AppHeaderV4Login extends HTMLElement {
    this.innerHTML = `
    <header class="header-v4">
       <!-- Header desktop -->
+       <div id="toast">
+            Đăng nhập thành công!
+         <div id="toast-progress"></div>
+         </div>
       <div class="container-menu-desktop">
          <!-- Topbar -->
          <div class="top-bar">
@@ -85,54 +89,61 @@ class AppHeaderV4Login extends HTMLElement {
                      data-notify="2">
                      <i class="zmdi zmdi-shopping-cart "></i>
                   </div>
-                  <div class="header__cart-notify">
-      <img src="assets/img/emptycart.png" alt="" class="header__cart-img-nocart" />
-      <p class="header__cart-msg">Chưa có sản phẩm</p>
 
-      <h3 class="header__cart-content-product-add">
-         Sản phẩm đã thêm
-      </h3>
-      <ul class="header__cart-list">
-         <li class="header__cart-item">
-            <img src="./assets/images/trangsucgiohang1.jpg" alt="" class="header__cart-img" />
-            <div class="header__cart-item-content">
-               <div class="header__cart-item-des">
-                  <span class="header__cart-des-product">Bộ kem đặc trị vùng mắt kem đặc trị
-                     vùng mắt kem đặc trị vùng mắt kem đặc
-                     trị vùng mắt kem đặc trị vùng
-                     mắt</span>
-                  <div class="header__cart-item-price-quantity">
-                     <div class="header__cart-item-price">2.000.000đ</div>
 
-                     <div class="header__cart-item-quantity-wrapper">
-                        <button class="btn-minus">-</button>
-                        <div class="header__cart-item-quantity">1</div>
-                        <button class="btn-plus">+</button>
+
+                   <div class="header__cart-notify empty__cart">
+                        <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+                        <p class="header__cart-msg">Chưa có sản phẩm</p>
+
+                        <h3 class="header__cart-content-product-add">
+                        Sản phẩm đã thêm
+                           </h3>
+                           <ul class="header__cart-list">
+                              <li class="header__cart-item">
+                                 <img src="./assets/images/trangsucgiohang1.jpg" alt="" class="header__cart-img" />
+                                 <div class="header__cart-item-content">
+                                    <div class="header__cart-item-des">
+                                       <span class="header__cart-des-product">Bộ kem đặc trị vùng mắt kem đặc trị
+                                          vùng mắt kem đặc trị vùng mắt kem đặc
+                                          trị vùng mắt kem đặc trị vùng
+                                          mắt</span>
+                                       <div class="header__cart-item-price-quantity">
+                                          <div class="header__cart-item-price">2.000.000đ</div>
+
+                                          <div class="header__cart-item-quantity-wrapper">
+                                             <button class="btn-minus">-</button>
+                                             <div class="header__cart-item-quantity">1</div>
+                                             <button class="btn-plus">+</button>
+                                          </div>
+
+                                       </div>
+                                       <div class="header__cart-item-delete">
+                                          Xóa
+                                       </div>
+                                    </div>
+                                    <div class="header__cart-item-classify">
+                                       <span class="header__cart-item-type">Phân loại: Bạc</span>
+
+                                    </div>
+                                 </div>
+                              </li>
+
+
+                           </ul>
+                           <div class="header__cart-list">
+                           <div class="header__cart-item-btn">
+                              <a href="#" class="btn btn--primary cart-btn">Check out</a>
+                           </div>
+                           <div class="header__cart-item-btn">
+                              <a href="loginShoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
+                           </div>
+                           </div>
+                        </div>
+
                      </div>
 
                   </div>
-                  <div class="header__cart-item-delete">
-                     Xóa
-                  </div>
-               </div>
-               <div class="header__cart-item-classify">
-                  <span class="header__cart-item-type">Phân loại: Bạc</span>
-
-               </div>
-            </div>
-         </li>
-
-
-      </ul>
-     <div class="header__cart-list">
-      <div class="header__cart-item-btn">
-         <a href="#" class="btn btn--primary cart-btn">Check out</a>
-      </div>
-       <div class="header__cart-item-btn">
-         <a href="loginShoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
-      </div>
-      </div>
-   </div></div>
 
                   <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
                      data-notify="0">
@@ -217,7 +228,7 @@ class AppHeaderV4Login extends HTMLElement {
             </li>
 
             <li>
-               <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+               <a href="shoppingCart.html" class="label1 rs1" data-label1="hot">Features</a>
             </li>
             s
 
@@ -248,6 +259,29 @@ class AppHeaderV4Login extends HTMLElement {
       </div>
    </header>
    `;
+   document.addEventListener("DOMContentLoaded", function () {
+         const isLoggedIn = localStorage.getItem("loginSuccess");
+         const role = localStorage.getItem("role");
+
+         if (isLoggedIn === "true") {
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+
+            // Sau 1.5s xóa cờ và ẩn toast
+            setTimeout(() => {
+               toast.classList.remove("show");
+               localStorage.removeItem("loginSuccess");
+            }, 2500);
+         }
+
+         if (role) {
+            const loginMenu = document.querySelector(".login-menu-toggle span");
+            if (loginMenu) {
+               loginMenu.textContent = role;
+            }
+         }
+      });
+
    }
    }
    customElements.define("header-main-v4-login", AppHeaderV4Login);

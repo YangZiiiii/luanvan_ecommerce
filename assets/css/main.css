@@ -2047,11 +2047,11 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .block2-txt-child1 {
-   width: calc(100% - 30px);
+   width: calc(100% - 50px);
 }
 
 .block2-txt-child2 {
-   width: 30px;
+   width: 50px;
 }
 
 .btn-addwish-b2 .icon-heart2 {
@@ -3164,13 +3164,17 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .hov-img0 {
+   height: 390px;
    display: block;
    overflow: hidden;
+   object-fit: cover;
 
 }
 
 .hov-img0 img {
    width: 100%;
+   min-height: 100%;
+   object-fit: cover;
    -webkit-transition: transform 0.9s ease;
    -o-transition: transform 0.9s ease;
    -moz-transition: transform 0.9s ease;
@@ -3671,3 +3675,39 @@ input.num-product::-webkit-inner-spin-button {
       padding: 20px;
    }
 }
+
+/* ------------------------------------------------ */
+/* Item product */
+
+.original-price {
+   text-decoration: line-through;
+   color: #999;
+   font-style: italic;
+   font-size: 14px;
+   margin-left: 4px;
+}
+
+.heart-and-cart{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   font-size: 16px;
+}
+
+.heart-and-cart img{
+   font-size: 20px;
+}
+
+.heart-and-cart a i:hover{
+   color: #717fe0;
+}
+
+.heart-and-cart a i{
+   color: #555;
+   font-size: 20px;
+   padding: 10px;
+}
+
+
+/* ------------------------------------ */
