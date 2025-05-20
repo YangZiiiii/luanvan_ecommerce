@@ -1,6 +1,6 @@
 class AppHeaderV4 extends HTMLElement {
    connectedCallback() {
-   this.innerHTML = `
+      this.innerHTML = `
    <header class="header-v4">
       <!-- Header desktop -->
       <div class="container-menu-desktop">
@@ -27,6 +27,8 @@ class AppHeaderV4 extends HTMLElement {
 
          <!-- Modal Login -->
          <div class="modal-log">
+            <div id="toast"></div>
+
             <div class="modal-content">
                <span class="close-log">&times;</span>
                <div class="switch-tabs">
@@ -45,9 +47,7 @@ class AppHeaderV4 extends HTMLElement {
                            <span>Nhớ mật khẩu</span></label>
                         <a href="#" class="forgot-password">Quên mật khẩu?</a>
                      </div>
-                     <a href="login.html" type="submit" class="form-btn">
-                        Đăng nhập
-                     </a>
+                   <button type="submit" class="form-btn">Đăng nhập</button>
                      <p class="switch-form">
                         Chưa có tài khoản?
                         <a href="#" class="switch-tab" data-tab="register">Đăng ký</a>
@@ -74,15 +74,15 @@ class AppHeaderV4 extends HTMLElement {
                <div class="social-login">
                   <p class="social-text">Hoặc đăng nhập bằng</p>
                   <button class="social-btn facebook">
-                      <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
                      Facebook
                   </button>
                   <button class="social-btn google">
-                    <i class="fa-brands fa-google"></i>
+                     <i class="fa-brands fa-google"></i>
                      Google
                   </button>
                   <button class="social-btn twitter">
-                     <i class="fa-brands fa-twitter"></i>
+                   <i class="fa-brands fa-twitter"></i>
                      Twitter
                   </button>
                </div>
@@ -115,7 +115,7 @@ class AppHeaderV4 extends HTMLElement {
                      </li>
 
                      <li class="label1" data-label1="hot">
-                        <a href="shoping-cart.html">Features</a>
+                        <a href="shoppingCart.html">Features</a>
                      </li>
 
                      <li>
@@ -239,7 +239,7 @@ class AppHeaderV4 extends HTMLElement {
             </li>
 
             <li>
-               <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+               <a href="shoppingCart.html" class="label1 rs1" data-label1="hot">Features</a>
             </li>
             s
 
@@ -270,6 +270,97 @@ class AppHeaderV4 extends HTMLElement {
       </div>
    </header>
    `;
+
+
+
+    // Toast Message
+      function showToast(message, isError = false) {
+         const toast = document.getElementById("toast");
+         toast.className = "show";
+         toast.textContent = message;
+
+         if (isError) {
+            toast.classList.add("error");
+         } else {
+            toast.classList.remove("error");
+         }
+
+         // Hiện toast trong 2s
+         setTimeout(() => {
+            toast.className = toast.className.replace("show", "");
+         }, 2000);
+      }
+
+
+      const loginForm = this.querySelector('[data-content="login"] .form');
+      if (loginForm) {
+         loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const username = loginForm.querySelectorAll(".form-input")[0].value;
+            const password = loginForm.querySelectorAll(".form-input")[1].value;
+
+            console.log("Đang gửi request đăng nhập...");
+            console.log("Username:", username);
+            console.log("Password:", password);
+
+            fetch("http://localhost:8080/api/v1/auth/login", {
+               method: "POST",
+               headers: {
+                  "Content-Type": "application/json"
+               },
+               body: JSON.stringify({
+                  username: username,
+                  password: password
+               })
+            })
+               .then((response) => {
+                  if (!response.ok) {
+                     throw new Error("Đăng nhập thất bại");
+                  }
+                  return response.json();
+               })
+               .then((data) => {
+                  console.log("Phản hồi từ server:", data);
+
+                  if (data.statusCode === 200) {
+                     // Lưu token và thông tin user vào localStorage
+                     localStorage.setItem("token", data.data.token);
+                     localStorage.setItem("userId", data.data.userId);
+                     localStorage.setItem("role", data.data.role);
+
+                     console.log("Đăng nhập thành công! Token đã được lưu.");
+                     // Chuyển hướng sau khi đăng nhập thành công
+
+                     localStorage.setItem("loginSuccess", "true");
+
+                     // Xác định chuyển tới trang login tương ứng dựa vào trang hiện tại
+                     const currentPath = window.location.pathname;
+                     let loginPage = "login.html"; // mặc định
+
+                     if (currentPath.includes("product.html")) {
+                        loginPage = "loginProduct.html";
+                     } else if (currentPath.includes("shoppingCart.html")) {
+                        loginPage = "loginShoppingCart.html";
+                     } else if (currentPath.includes("productDetail.html")) {
+                        loginPage = "loginProductDetail.html";
+                     }
+
+                     // Chuyển hướng
+                     window.location.href = loginPage;
+
+                     // Chuyển hướng tới trang login tương ứng
+                     window.location.href = loginPage;
+                  } else {
+                     alert("Đăng nhập không thành công. Vui lòng kiểm tra lại.");
+                  }
+               })
+               .catch((error) => {
+                  console.error("Lỗi khi đăng nhập:", error);
+                  showToast("Đăng nhập thất bại. Vui lòng thử lại.", true);
+               });
+         });
+      }
    }
-   }
-   customElements.define("header-main-v4", AppHeaderV4);
+}
+customElements.define("header-main-v4", AppHeaderV4);

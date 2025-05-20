@@ -3,6 +3,10 @@ class AppHeaderLogin extends HTMLElement {
       const newLocal = `
    <header>
       <!-- Header desktop -->
+         <div id="toast">
+            Đăng nhập thành công!
+         <div id="toast-progress"></div>
+         </div>
       <div class="container-menu-desktop">
          <!-- Topbar -->
          <div class="top-bar">
@@ -219,7 +223,7 @@ class AppHeaderLogin extends HTMLElement {
             </li>
 
             <li>
-               <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+               <a href="shoppingCart.html" class="label1 rs1" data-label1="hot">Features</a>
             </li>
 
 
@@ -251,6 +255,34 @@ class AppHeaderLogin extends HTMLElement {
    </header>
    `;
       this.innerHTML = newLocal;
+
+
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+         const isLoggedIn = localStorage.getItem("loginSuccess");
+         const role = localStorage.getItem("role");
+
+         if (isLoggedIn === "true") {
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+
+            // Sau 1.5s xóa cờ và ẩn toast
+            setTimeout(() => {
+               toast.classList.remove("show");
+               localStorage.removeItem("loginSuccess");
+            }, 2500);
+         }
+
+         if (role) {
+            const loginMenu = document.querySelector(".login-menu-toggle span");
+            if (loginMenu) {
+               loginMenu.textContent = role;
+            }
+         }
+      });
+
+
    }
 }
 customElements.define("header-main-login", AppHeaderLogin);
