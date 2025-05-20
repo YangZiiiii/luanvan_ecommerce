@@ -89,54 +89,61 @@ class AppHeaderV4Login extends HTMLElement {
                      data-notify="2">
                      <i class="zmdi zmdi-shopping-cart "></i>
                   </div>
-                  <div class="header__cart-notify">
-      <img src="assets/img/emptycart.png" alt="" class="header__cart-img-nocart" />
-      <p class="header__cart-msg">Chưa có sản phẩm</p>
 
-      <h3 class="header__cart-content-product-add">
-         Sản phẩm đã thêm
-      </h3>
-      <ul class="header__cart-list">
-         <li class="header__cart-item">
-            <img src="./assets/images/trangsucgiohang1.jpg" alt="" class="header__cart-img" />
-            <div class="header__cart-item-content">
-               <div class="header__cart-item-des">
-                  <span class="header__cart-des-product">Bộ kem đặc trị vùng mắt kem đặc trị
-                     vùng mắt kem đặc trị vùng mắt kem đặc
-                     trị vùng mắt kem đặc trị vùng
-                     mắt</span>
-                  <div class="header__cart-item-price-quantity">
-                     <div class="header__cart-item-price">2.000.000đ</div>
 
-                     <div class="header__cart-item-quantity-wrapper">
-                        <button class="btn-minus">-</button>
-                        <div class="header__cart-item-quantity">1</div>
-                        <button class="btn-plus">+</button>
+
+                   <div class="header__cart-notify empty__cart">
+                        <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+                        <p class="header__cart-msg">Chưa có sản phẩm</p>
+
+                        <h3 class="header__cart-content-product-add">
+                        Sản phẩm đã thêm
+                           </h3>
+                           <ul class="header__cart-list">
+                              <li class="header__cart-item">
+                                 <img src="./assets/images/trangsucgiohang1.jpg" alt="" class="header__cart-img" />
+                                 <div class="header__cart-item-content">
+                                    <div class="header__cart-item-des">
+                                       <span class="header__cart-des-product">Bộ kem đặc trị vùng mắt kem đặc trị
+                                          vùng mắt kem đặc trị vùng mắt kem đặc
+                                          trị vùng mắt kem đặc trị vùng
+                                          mắt</span>
+                                       <div class="header__cart-item-price-quantity">
+                                          <div class="header__cart-item-price">2.000.000đ</div>
+
+                                          <div class="header__cart-item-quantity-wrapper">
+                                             <button class="btn-minus">-</button>
+                                             <div class="header__cart-item-quantity">1</div>
+                                             <button class="btn-plus">+</button>
+                                          </div>
+
+                                       </div>
+                                       <div class="header__cart-item-delete">
+                                          Xóa
+                                       </div>
+                                    </div>
+                                    <div class="header__cart-item-classify">
+                                       <span class="header__cart-item-type">Phân loại: Bạc</span>
+
+                                    </div>
+                                 </div>
+                              </li>
+
+
+                           </ul>
+                           <div class="header__cart-list">
+                           <div class="header__cart-item-btn">
+                              <a href="#" class="btn btn--primary cart-btn">Check out</a>
+                           </div>
+                           <div class="header__cart-item-btn">
+                              <a href="loginShoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
+                           </div>
+                           </div>
+                        </div>
+
                      </div>
 
                   </div>
-                  <div class="header__cart-item-delete">
-                     Xóa
-                  </div>
-               </div>
-               <div class="header__cart-item-classify">
-                  <span class="header__cart-item-type">Phân loại: Bạc</span>
-
-               </div>
-            </div>
-         </li>
-
-
-      </ul>
-     <div class="header__cart-list">
-      <div class="header__cart-item-btn">
-         <a href="#" class="btn btn--primary cart-btn">Check out</a>
-      </div>
-       <div class="header__cart-item-btn">
-         <a href="loginShoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
-      </div>
-      </div>
-   </div></div>
 
                   <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
                      data-notify="0">

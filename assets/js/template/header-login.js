@@ -91,6 +91,9 @@ class AppHeaderLogin extends HTMLElement {
                      data-notify="2">
                      <i class="zmdi zmdi-shopping-cart "></i>
                   </div>
+
+
+                  
                   <div class="header__cart-notify">
       <img src="assets/img/emptycart.png" alt="" class="header__cart-img-nocart" />
       <p class="header__cart-msg">Chưa có sản phẩm</p>
