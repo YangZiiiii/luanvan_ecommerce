@@ -1,50 +1,4 @@
-  /* Container thông báo */
-  #toast {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #4CAF50; /* xanh lá */
-    color: white;
-    text-align: center;
-    border-radius: 4px;
-    padding: 16px;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 17px;
-    z-index: 9999;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
-
-  /* Hiện thông báo */
-#toast.show {
-  visibility: visible;
-  animation: fadein 0.3s, fadeout 0.3s 2.2s;
-}
-
-  /* Thanh tiến trình */
-  #toast-progress {
-    height: 4px;
-    background: #2ecc71; /* xanh sáng */
-    width: 0%;
-    border-radius: 4px;
-    margin-top: 10px;
-    animation: progressBar 2.5s linear forwards;
-  }
-
-  @keyframes fadein {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  @keyframes fadeout {
-    from {opacity: 1;}
-    to {opacity: 0;}
-  }
-
-  @keyframes progressBar {
-    from {width: 0%;}
-    to {width: 100%;}
-  }
+  
 
 .none-underline{
     text-decoration: none;
@@ -52,7 +6,12 @@
 /* Container để định vị tương đối cho submenu */
 .login-menu-container {
   position: relative;
-  display: inline-block;
+  display: none;
+}
+
+
+.login-menu-container.show-menu--login{
+   display: block;
 }
 
 /* Ẩn submenu mặc định */

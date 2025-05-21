@@ -37,7 +37,9 @@
 
    <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+
    <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
+   <link rel="stylesheet" href="./assets/css/header-login.css">
    <link rel="stylesheet" href="./assets/css/chatbutton.css">
    <!--===============================================================================================-->
 
@@ -75,8 +77,393 @@
    <chat-button></chat-button>
 
    <!-- Header -->
-   <header-main></header-main>
-   
+   <!-- <header-main></header-main> -->
+   <header>
+      <!-- Header desktop -->
+      <div class="container-menu-desktop">
+         <!-- Topbar -->
+         <div class="top-bar">
+            <div class="content-topbar flex-sb-m h-full container">
+               <div class="left-top-bar">
+                  Free shipping for standard order over $100
+               </div>
+
+               <div class="right-top-bar flex-w h-full">
+                  <div class="login-menu-container show-menu--login" id="login-menu-sign">
+                     <a href="#" class="flex-c-m trans-04 p-lr-25 open-modal-log" data-tab="login">
+                        Sign in
+                     </a>
+                     <a href="#" class="flex-c-m trans-04 p-lr-25 open-modal-log p-l-sign" data-tab="register">
+                        Sign up
+                     </a>
+                  </div>
+                  <div class="login-menu-container" id="login-menu-user">
+                     <a href="#" class="none-underline flex-c-m trans-04 p-lr-25 login-menu-toggle"
+                        style="padding: 0 10px; height: 100%;">
+                        <i class="fa fa-user"></i> <span class="ml-2">Username</span>
+                     </a>
+                     <div class="sub-menu-login">
+                        <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
+                        <a href="/orders" class="sub-menu-login-item">Lịch sử mua hàng</a>
+                        <a href="#" class="sub-menu-login-item" id="logout-btn">Đăng xuất</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Modal Login -->
+         <div class="modal-log">
+            <!-- Toast error trong modal login -->
+            <div id="login-toast" style="position:absolute; top:100px;z-index:10;"></div>
+            <div class="modal-content">
+               <span class="close-log">&times;</span>
+               <div class="switch-tabs">
+                  <span class="tab-link active" data-tab="login">Đăng nhập</span>
+                  <span class="tab-link" data-tab="register">Đăng ký</span>
+               </div>
+
+               <!-- Form Đăng nhập -->
+               <div class="tab-content tab-none active" data-content="login">
+
+                  <h2 class="form-title">Đăng nhập</h2>
+
+                  <form class="form" id="login-form">
+                     <input type="text" class="form-input" placeholder="Tên đăng nhập" required />
+                     <input type="password" class="form-input" placeholder="Mật khẩu" required />
+                     <div class="options">
+                        <label class="remember"><input type="checkbox" />
+                           <span>Nhớ mật khẩu</span></label>
+                        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                     </div>
+                     <button type="submit" class="form-btn">Đăng nhập</button>
+                     <p class="switch-form">
+                        Chưa có tài khoản?
+                        <a href="#" class="switch-tab" data-tab="register">Đăng ký</a>
+                     </p>
+                  </form>
+               </div>
+
+               <!-- Form Đăng ký -->
+               <div class="tab-content tab-none" data-content="register">
+                  <h2 class="form-title">Đăng ký</h2>
+                  <form class="form">
+                     <input type="text" class="form-input" placeholder="Tên đăng nhập" required />
+                     <input type="password" class="form-input" placeholder="Mật khẩu" required />
+                     <input type="password" class="form-input" placeholder="Nhập lại mật khẩu" required />
+                     <button type="submit" class="form-btn">Đăng ký</button>
+                     <p class="switch-form">
+                        Đã có tài khoản?
+                        <a href="#" class="switch-tab" data-tab="login">Đăng nhập</a>
+                     </p>
+                  </form>
+               </div>
+
+               <!-- Đăng nhập bằng mạng xã hội -->
+               <div class="social-login">
+                  <p class="social-text">Hoặc đăng nhập bằng</p>
+                  <button class="social-btn facebook">
+                     <i class="fa-brands fa-facebook-f"></i>
+                     Facebook
+                  </button>
+                  <button class="social-btn google">
+                     <i class="fa-brands fa-google"></i>
+                     Google
+                  </button>
+                  <button class="social-btn twitter">
+                     <i class="fa-brands fa-twitter"></i>
+                     Twitter
+                  </button>
+               </div>
+
+               <!-- Copyright -->
+               <p class="copyright">
+                  © 2025 Website của bạn. All rights reserved.
+               </p>
+            </div>
+         </div>
+
+         <!-- Modal -->
+         <div class="wrap-menu-desktop">
+            <nav class="limiter-menu-desktop container">
+               <!-- Logo desktop -->
+               <a href="/" class="logo">
+                  <img src="./assets/images/icons/logo-01.png" alt="IMG-LOGO" />
+               </a>
+
+               <!-- Menu desktop -->
+               <div class="menu-desktop">
+                  <ul class="main-menu">
+                     <li class="active-menu">
+                        <a href="index.html">Home</a>
+                     </li>
+
+                     <li>
+                        <a href="product.html">Shop</a>
+                     </li>
+
+                     <li class="label1" data-label1="hot">
+                        <a href="shoppingCart.html">Features</a>
+                     </li>
+
+                     <li>
+                        <a href="about.html">About</a>
+                     </li>
+
+                     <li>
+                        <a href="contact.html">Contact</a>
+                     </li>
+                  </ul>
+               </div>
+
+               <!-- Search -->
+
+
+               <!-- Search product -->
+               <div class="dis-none panel-search w-full p-t-10 p-b-15 search-new">
+                  <input class="mtext-107 cl2 size-114 plh2 p-r-15 search-height" type="text" name="search-product"
+                     placeholder="Search . . ." />
+
+               </div>
+               <!-- Icon header -->
+               <!-- Change for cart -->
+               <div class="wrap-icon-header flex-w flex-r-m">
+                  <div class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search">
+                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+
+                  </div>
+
+                  <div class="header__cart-container">
+                     <div
+                        class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart noti-none"
+                        data-notify="0" id="cart-icon-header">
+                        <i class="zmdi zmdi-shopping-cart "></i>
+                     </div>
+
+                     <div class="header__cart-notify" style="width:300px;">
+                        <div class="empty__cart" style="display:block;">
+                           <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+                           <p class="header__cart-msg">No products yet</p>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                  data-notify="0">
+                  <i class="zmdi zmdi-favorite-outline"></i>
+               </a>
+         </div>
+         </nav>
+      </div>
+      </div>
+
+      <!-- Modal Search -->
+      <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+         <div class="container-search-header">
+            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+               <img src="./assets/images/icons/icon-close2.png" alt="CLOSE" />
+            </button>
+
+            <form class="wrap-search-header flex-w p-l-15">
+               <button class="flex-c-m trans-04">
+                  <i class="zmdi zmdi-search"></i>
+               </button>
+               <input class="plh3" type="text" name="search" placeholder="Search..." />
+            </form>
+         </div>
+      </div>
+      <!-- Toast Message Global -->
+      <div id="toast" style="position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 9999;"></div>
+   </header>
+
+   <script>
+      // Ẩn/hiện menu login theo token
+      function toggleLoginMenu() {
+         var token = localStorage.getItem('token');
+         var loginMenuSign = document.getElementById('login-menu-sign');
+         var loginMenuUser = document.getElementById('login-menu-user');
+         if (token && token !== 'null') {
+            // Đã đăng nhập
+            loginMenuSign.classList.remove('show-menu--login');
+            loginMenuUser.classList.add('show-menu--login');
+         } else {
+            // Chưa đăng nhập
+            loginMenuSign.classList.add('show-menu--login');
+            loginMenuUser.classList.remove('show-menu--login');
+         }
+      }
+      // Gọi khi load trang
+      toggleLoginMenu();
+      // Nếu có logic đăng nhập thành công thì gọi lại toggleLoginMenu()
+
+      // Đăng xuất
+      document.addEventListener('DOMContentLoaded', function () {
+         var logoutBtn = document.getElementById('logout-btn');
+         if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+               e.preventDefault();
+               // Check if token exists
+               var token = localStorage.getItem('token');
+               if (token && token !== 'null') {
+                  // Xóa token và các thông tin liên quan
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('userId');
+                  localStorage.removeItem('role');
+                  localStorage.removeItem('loginSuccess');
+                  // Hiện toast trước khi reload
+                  showToast("Đăng xuất thành công!");
+                  setTimeout(function () {
+                     // Reload về đúng trang gốc, không có dấu ?
+                     window.location.href = window.location.origin + window.location.pathname;
+                  }, 200);
+               }
+            });
+         }
+
+         // Đăng nhập
+         var loginForm = document.getElementById('login-form');
+         if (loginForm) {
+            loginForm.addEventListener("submit", function (e) {
+               e.preventDefault();
+
+               // Xóa toast lỗi cũ trong modal nếu có
+               showLoginToast(""); // Ẩn đi trước
+
+               const username = loginForm.querySelectorAll(".form-input")[0].value;
+               const password = loginForm.querySelectorAll(".form-input")[1].value;
+
+               fetch("http://localhost:8080/api/v1/auth/login", {
+                  method: "POST",
+                  headers: {
+                     "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                     username: username,
+                     password: password
+                  })
+               })
+                  .then((response) => {
+                     if (!response.ok) {
+                        throw new Error("Đăng nhập thất bại");
+                     }
+                     return response.json();
+                  })
+                  .then((data) => {
+                     if (data && data.data && data.data.token) {
+                        // Lưu token và thông tin user vào localStorage
+                        localStorage.setItem("token", data.data.token);
+                        localStorage.setItem("userId", data.data.userId);
+                        localStorage.setItem("role", data.data.role);
+                        localStorage.setItem("loginSuccess", "true");
+                        toggleLoginMenu();
+                        // Hiện toast thành công ngoài modal login
+                        showToast("Đăng nhập thành công!", false, 2500);
+                        // Đóng modal đăng nhập nếu thành công
+                        setTimeout(function () {
+                           var modal = document.querySelector('.modal-log');
+                           if (modal) {
+                              modal.style.display = 'none';
+                           }
+                        }, 50); // Đóng modal sớm, toast vẫn còn hiển thị
+                     } else {
+                        showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
+                     }
+                  })
+                  .catch((error) => {
+                     showLoginToast("Đăng nhập thất bại. Vui lòng thử lại.");
+                  });
+            });
+         }
+      });
+
+      // Toast Message ngoài modal
+      function showToast(message, isError = false, duration = 2500) {
+         const toast = document.getElementById("toast");
+         if (!toast) return;
+         toast.textContent = message;
+         toast.className = "show" + (isError ? " error" : "");
+         // Nếu là lỗi thì không có progress bar
+         if (!isError) {
+            // Remove old progress bar if exists
+            let oldProgress = document.getElementById('toast-progress');
+            if (oldProgress) oldProgress.remove();
+            // Add progress bar
+            const progress = document.createElement('div');
+            progress.id = 'toast-progress';
+            progress.style.animationDuration = (duration / 1000) + 's';
+            progress.style.height = '3px';
+            progress.style.background = '#4caf50';
+            progress.style.position = 'absolute';
+            progress.style.left = 0;
+            progress.style.bottom = 0;
+            progress.style.width = '100%';
+            progress.style.animationName = 'toast-progress-bar';
+            progress.style.animationTimingFunction = 'linear';
+            toast.appendChild(progress);
+         } else {
+            // Remove progress bar if exists
+            let oldProgress = document.getElementById('toast-progress');
+            if (oldProgress) oldProgress.remove();
+         }
+         // Hiện toast trong duration ms
+         setTimeout(() => {
+            toast.className = toast.className.replace("show", "");
+            // Remove progress bar
+            let oldProgress = document.getElementById('toast-progress');
+            if (oldProgress) oldProgress.remove();
+         }, duration);
+      }
+
+      // Toast error trong modal login
+      function showLoginToast(message, duration = 2000) {
+         const toast = document.getElementById("login-toast");
+         if (!toast) return;
+         toast.innerHTML = "";
+         if (!message) {
+            toast.className = "";
+            return;
+         }
+         toast.textContent = message;
+         toast.className = "show error";
+         toast.style.background = "#e74c3c";
+         toast.style.color = "#fff";
+         toast.style.borderRadius = "4px";
+         toast.style.padding = "10px 18px";
+         toast.style.marginBottom = "10px";
+         toast.style.textAlign = "center";
+         toast.style.fontSize = "15px";
+         toast.style.opacity = "1";
+         toast.style.transition = "opacity 0.3s";
+         setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => {
+               toast.className = "";
+               toast.innerHTML = "";
+               toast.style.opacity = "";
+               toast.style.background = "";
+               toast.style.color = "";
+               toast.style.borderRadius = "";
+               toast.style.padding = "";
+               toast.style.marginBottom = "";
+               toast.style.textAlign = "";
+               toast.style.fontSize = "";
+               toast.style.transition = "";
+            }, 350);
+         }, duration);
+      }
+
+      // Thêm CSS cho toast nếu chưa có
+      (function () {
+         if (!document.getElementById('toast-style')) {
+            const style = document.createElement('style');
+            style.id = 'toast-style';
+            document.head.appendChild(style);
+         }
+      })();
+   </script>
 
    <!-- Cart -->
    <!-- <cart-main></cart-main> -->
@@ -89,8 +476,10 @@
    <home-banner></home-banner>
 
    <!-- Product -->
-   <!-- <home-product></home-product> -->
-   <section class="bg0 p-t-23 p-b-140">
+   <home-product></home-product>
+
+
+   <!-- <section class="bg0 p-t-23 p-b-140">
       <div class="container">
          <div class="p-b-10">
             <h3 class="ltext-103 cl5">Product Overview</h3>
@@ -134,7 +523,7 @@
             </div>
 
 
-            <!-- Filter -->
+        
             <div class="dis-none panel-filter w-full p-t-10">
                <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                   <div class="filter-col1 p-r-15 p-b-27">
@@ -317,86 +706,96 @@
          </div>
 
          <div class="row isotope-grid" id="product-list">
-            <!-- Products will be rendered here by JavaScript -->
+            
 
             
 
          </div>
 
-         <!-- Load more -->
          <div class="flex-c-m flex-w w-full p-t-45">
             <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                Load More
             </a>
          </div>
       </div>
-   </section>
-   <script>
-               fetch('http://localhost:8080/api/v1/product?page=0&size=10&sortBy=createdAt&direction')
-                  .then(res => res.json())
-                  .then(data => {
-                     const products = data.content || [];
-                     const container = document.getElementById('product-list');
-                     container.innerHTML = products.map((product, idx) => `
-                       <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                         <div class="block2 block2-pic">
-                            <div class="block2-pic hov-img0">
-                              <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
-                              <a href="productDetail.html"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04">
-                                View Detail
-                              </a>
-                            </div>
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                              <div class="block2-txt-child1 flex-col-l">
-                                <a href="productDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                  ${product.name}
-                                </a>
-                               <div class="price-and-cart">
-                                    <span class="stext-106 cl10"> $${product.sellingPrice}</span>
-                                    <span class="original-price">$${product.originalPrice}</span>
-                               </div>
-                              </div>
-                              <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                  <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                     alt="ICON" />
-                                  <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
-                                     src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                                </a>
-                                <a href="#" class="btn-addcart" data-product-index="${idx}"> 
-                                  <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
-                                </a>
-                              </div>
-                            </div>
-                         </div>
-                       </div>
-                     `).join('');
+   </section> -->
+   <!-- <script>
+      fetch('http://localhost:8080/api/v1/product?page=0&size=10&sortBy=createdAt&direction')
+         .then(res => res.json())
+         .then(data => {
+            const products = data.content || [];
+            const container = document.getElementById('product-list');
+            container.innerHTML = products.map((product, idx) => `
+              <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                <div class="block2 block2-pic">
+                   <div class="block2-pic hov-img0">
+                     <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
+                     <a href="productDetail.html?productId=${product.id}"
+                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04">
+                       View Detail
+                     </a>
+                   </div>
+                   <div class="block2-txt flex-w flex-t p-t-14">
+                     <div class="block2-txt-child1 flex-col-l">
+                       <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
+                         ${product.name}
+                       </a>
+                      <div class="price-and-cart">
+                           <span class="stext-106 cl10"> $${product.sellingPrice}</span>
+                           <span class="original-price">$${product.originalPrice}</span>
+                      </div>
+                     </div>
+                     <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
+                       <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                         <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
+                            alt="ICON" />
+                         <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
+                            src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
+                       </a>
+                       <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
+                         <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
+                       </a>
+                     </div>
+                   </div>
+                </div>
+              </div>
+            `).join('');
 
-                     // Add event listeners for add-to-cart buttons
-                     container.querySelectorAll('.btn-addcart').forEach(btn => {
-                        btn.addEventListener('click', function (e) {
-                           e.preventDefault();
-                           const idx = this.getAttribute('data-product-index');
-                           const product = products[idx];
-                           let items = [];
-                           try {
-                              items = JSON.parse(localStorage.getItem('items')) || [];
-                           } catch (e) {
-                              items = [];
-                           }
-                           // Check if product already exists (by id), if not, add
-                           if (!items.some(p => p.id === product.id)) {
-                              items.push(product);
-                              localStorage.setItem('items', JSON.stringify(items));
-                           }
-                        });
-                     });
-                  })
-                  .catch(err => {
-                     document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';
-                  });
-            </script>
+            // Add event listeners for add-to-cart buttons
+            container.querySelectorAll('.btn-addcart').forEach(btn => {
+               btn.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  let items = [];
+                  try {
+                     items = JSON.parse(localStorage.getItem('items')) || [];
+                  } catch (e) {
+                     items = [];
+                  }
+                  // Check if product already exists (by id), if not, add
+                  if (!items.some(p => p.id === product.id)) {
+                     items.push(product);
+                     localStorage.setItem('items', JSON.stringify(items));
+                  }
+               });
+            });
+
+            // Hiển thị swal khi thêm vào giỏ hàng
+            $(".js-addcart-detail").each(function () {
+               var nameProduct = $(this)
+                  .closest('.block2')
+                  .find(".js-name-detail")
+                  .html();
+               $(this).on("click", function () {
+                  swal(nameProduct, "is added to cart !", "success");
+               });
+            });
+         })
+         .catch(err => {
+            document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';
+         });
+   </script> -->
 
    <!-- Footer -->
    <footer-main></footer-main>

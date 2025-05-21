@@ -273,6 +273,7 @@
 .icon-header-item:hover i{
     color: #717fe0;
 }
+/* Css for cart */
 
 .empty__cart{
    width: 300px;
@@ -287,6 +288,10 @@
 
    width: 100%;
    object-fit: cover;
+}
+
+.cart-none{
+   display: none;
 }
 
 /* Header__nocart */
