@@ -401,7 +401,7 @@ class AppHeader extends HTMLElement {
                               <a href="#" class="btn btn--primary cart-btn">Check out</a>
                             </div>
                             <div class="header__cart-item-btn">
-                              <a href="loginShoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
+                              <a href="shoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
                             </div>
                            `;
             container.appendChild(btnsDiv);

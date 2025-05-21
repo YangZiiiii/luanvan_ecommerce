@@ -243,70 +243,84 @@ class AppHomeProduct extends HTMLElement {
       </div>
    </section>
    `;
-   fetch('http://localhost:8080/api/v1/product?page=0&size=10&sortBy=createdAt&direction')
-                  .then(res => res.json())
-                  .then(data => {
-                     const products = data.content || [];
-                     const container = document.getElementById('product-list');
-                     container.innerHTML = products.map((product, idx) => `
-                       <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                         <div class="block2 block2-pic">
-                            <div class="block2-pic hov-img0">
-                              <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
-                              <a href="productDetail.html"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04">
-                                View Detail
-                              </a>
-                            </div>
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                              <div class="block2-txt-child1 flex-col-l">
-                                <a href="productDetail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                  ${product.name}
-                                </a>
-                               <div class="price-and-cart">
-                                    <span class="stext-106 cl10"> $${product.sellingPrice}</span>
-                                    <span class="original-price">$${product.originalPrice}</span>
-                               </div>
-                              </div>
-                              <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                  <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                     alt="ICON" />
-                                  <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
-                                     src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                                </a>
-                                <a href="#" class="btn-addcart" data-product-index="${idx}"> 
-                                  <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
-                                </a>
-                              </div>
-                            </div>
-                         </div>
-                       </div>
-                     `).join('');
 
-                     // Add event listeners for add-to-cart buttons
-                     container.querySelectorAll('.btn-addcart').forEach(btn => {
-                        btn.addEventListener('click', function (e) {
-                           e.preventDefault();
-                           const idx = this.getAttribute('data-product-index');
-                           const product = products[idx];
-                           let items = [];
-                           try {
-                              items = JSON.parse(localStorage.getItem('items')) || [];
-                           } catch (e) {
-                              items = [];
-                           }
-                           // Check if product already exists (by id), if not, add
-                           if (!items.some(p => p.id === product.id)) {
-                              items.push(product);
-                              localStorage.setItem('items', JSON.stringify(items));
-                           }
-                        });
-                     });
-                  })
-                  .catch(err => {
-                     document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';
-                  });
+
+   
+    fetch('http://localhost:8080/api/v1/product?page=0&size=10&sortBy=createdAt&direction')
+         .then(res => res.json())
+         .then(data => {
+            const products = data.content || [];
+            const container = document.getElementById('product-list');
+            container.innerHTML = products.map((product, idx) => `
+              <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                <div class="block2 block2-pic">
+                   <div class="block2-pic hov-img0">
+                     <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
+                     <a href="productDetail.html?productId=${product.id}"
+                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04">
+                       View Detail
+                     </a>
+                   </div>
+                   <div class="block2-txt flex-w flex-t p-t-14">
+                     <div class="block2-txt-child1 flex-col-l">
+                       <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
+                         ${product.name}
+                       </a>
+                      <div class="price-and-cart">
+                           <span class="stext-106 cl10"> $${product.sellingPrice}</span>
+                           <span class="original-price">$${product.originalPrice}</span>
+                      </div>
+                     </div>
+                     <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
+                       <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                         <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
+                            alt="ICON" />
+                         <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
+                            src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
+                       </a>
+                       <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
+                         <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
+                       </a>
+                     </div>
+                   </div>
+                </div>
+              </div>
+            `).join('');
+
+            // Add event listeners for add-to-cart buttons
+            container.querySelectorAll('.btn-addcart').forEach(btn => {
+               btn.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  let items = [];
+                  try {
+                     items = JSON.parse(localStorage.getItem('items')) || [];
+                  } catch (e) {
+                     items = [];
+                  }
+                  // Check if product already exists (by id), if not, add
+                  if (!items.some(p => p.id === product.id)) {
+                     items.push(product);
+                     localStorage.setItem('items', JSON.stringify(items));
+                  }
+               });
+            });
+
+            // Hiển thị swal khi thêm vào giỏ hàng
+            $(".js-addcart-detail").each(function () {
+               var nameProduct = $(this)
+                  .closest('.block2')
+                  .find(".js-name-detail")
+                  .html();
+               $(this).on("click", function () {
+                  swal(nameProduct, "is added to cart !", "success");
+               });
+            });
+         })
+         .catch(err => {
+            document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';
+         });
    }
    }
    customElements.define("home-product", AppHomeProduct);

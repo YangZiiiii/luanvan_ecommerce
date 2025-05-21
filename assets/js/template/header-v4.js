@@ -406,7 +406,7 @@ class AppHeaderV4 extends HTMLElement {
                               <a href="#" class="btn btn--primary cart-btn">Check out</a>
                             </div>
                             <div class="header__cart-item-btn">
-                              <a href="loginShoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
+                              <a href="shoppingCart.html" class="btn btn--primary cart-btn">View Cart</a>
                             </div>
                            `;
             container.appendChild(btnsDiv);
@@ -479,6 +479,7 @@ class AppHeaderV4 extends HTMLElement {
          // For dynamically loaded products
          const productList = document.getElementById('product-list');
          function patchAddToCartButtons() {
+            if (!productList) return;
             productList.querySelectorAll('.btn-addcart').forEach(btn => {
                if (!btn.dataset.cartListener) {
                   btn.dataset.cartListener = '1';
