@@ -504,7 +504,7 @@ class AppHeaderV4 extends HTMLElement {
             console.log("Username:", username);
             console.log("Password:", password);
 
-            fetch("http://localhost:8080/api/v1/auth/login", {
+            fetch("http://103.172.79.116:8080/api/v1/auth/login", {
                method: "POST",
                headers: {
                   "Content-Type": "application/json"

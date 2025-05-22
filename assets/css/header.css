@@ -1,48 +1,73 @@
 #toast {
-               min-width: 200px;
-               max-width: 350px;
-               background: #4CAF50;
-               color: #fff;
-               text-align: center;
-               border-radius: 4px;
-               padding: 14px 24px;
-               position: fixed;
-               z-index: 9999;
-               left: 50%;
-               top: 30px;
-               transform: translateX(-50%);
-               font-size: 16px;
-               opacity: 0;
-               pointer-events: none;
-               transition: opacity 0.3s;
-            }
-            #toast.show {
-               opacity: 1;
-               pointer-events: auto;
-            }
-            #toast.error {
-               background: #e74c3c;
-            }
-            @keyframes toast-progress-bar {
-               from { width: 100%; }
-               to { width: 0; }
-            }
+   min-width: 200px;
+   max-width: 350px;
+   background: #4CAF50;
+   color: #fff;
+   text-align: center;
+   border-radius: 4px;
+   padding: 14px 24px;
+   position: fixed;
+   z-index: 9999;
+   left: 50%;
+   top: 30px;
+   transform: translateX(-50%);
+   font-size: 16px;
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity 0.3s;
+}
+
+#toast.show {
+   opacity: 1;
+   pointer-events: auto;
+}
+
+#toast.error {
+   background: #e74c3c;
+}
+
+@keyframes toast-progress-bar {
+   from {
+      width: 100%;
+   }
+
+   to {
+      width: 0;
+   }
+}
 
 /* Animation */
 @keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
 }
 
 @keyframes fadeout {
-  from { opacity: 1; }
-  to { opacity: 0; }
+   from {
+      opacity: 1;
+   }
+
+   to {
+      opacity: 0;
+   }
 }
 
 @keyframes progressBar {
-  from { width: 0%; }
-  to { width: 100%; }
+   from {
+      width: 0%;
+   }
+
+   to {
+      width: 100%;
+   }
 }
+
+
 
 
 /* Cài đặt chung */
@@ -55,8 +80,73 @@
 }
 
 
-.none-underline{
-    text-decoration: none;
+.none-underline {
+   text-decoration: none;
+}
+
+
+/* Container để định vị tương đối cho submenu */
+.login-menu-container {
+  position: relative;
+  display: none;
+}
+
+
+.login-menu-container.show-menu--login{
+   display: block;
+}
+
+/* Ẩn submenu mặc định */
+.sub-menu-login {
+  display: none;
+  position: absolute;
+  top: 100%; /* Dưới menu chính */
+  right: 0;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  z-index: 10000;
+}
+
+/* Hiện submenu khi hover */
+.login-menu-container:hover .sub-menu-login {
+  display: block;
+}
+
+/* Item trong submenu */
+.sub-menu-login-item {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+/* Hover item */
+.sub-menu-login-item:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Search New */
+.box-search.box-search {
+   min-width: 0;
+   height: 0;
+}
+.search-new {
+   width: 43%;
+   height: 40px;
+   padding: 0;
+}
+
+.search-height.size-114 {
+   width: 100%;
+   padding: 10px 20px;
+   height: 40px;
+   border-radius: 10px;
+   border: 2px solid #ccc;
 }
 
 /* Thẻ a mở modal */
@@ -179,7 +269,7 @@
    display: none;
 }
 
-.tab-content.tab-block{
+.tab-content.tab-block {
    display: block;
 }
 
@@ -267,12 +357,12 @@
 
 /* Container để định vị tương đối cho submenu */
 .login-menu-container {
-  position: relative;
-  display: none;
+   position: relative;
+   display: none;
 }
 
 
-.login-menu-container.show-menu--login{
+.login-menu-container.show-menu--login {
    display: block;
 }
 
@@ -282,8 +372,8 @@
    z-index: 1;
    cursor: default;
    position: absolute;
-   top: 80%;
-   right: 324px;
+   top: 50px;
+   right: 0;
    width: 500px;
    background-color: var(--white-color);
    box-shadow: 1px 1px 5px #ccc;
@@ -295,22 +385,13 @@
 
 
 
-.icon-header-item:hover+.header__cart-notify,
-.header__cart-notify:hover {
-   visibility: visible;
-   opacity: 1;
-}
 
-.header__cart-container:hover .header__cart-notify {
-   display: block;
-}
-
-.icon-header-item:hover i{
-    color: #717fe0;
+.icon-header-item:hover i {
+   color: #717fe0;
 }
 
 /* Css for cart */
-.empty__cart{
+.empty__cart {
    width: 300px;
    display: block;
 }
@@ -325,7 +406,7 @@
    object-fit: cover;
 }
 
-.cart-none{
+.cart-none {
    display: none;
 }
 
@@ -434,7 +515,7 @@
 
 .header__cart-item-price {
    text-align: center;
-   color: var(--primary-color);
+   color: #717fe0;
    font-weight: 600;
 }
 
@@ -451,10 +532,10 @@
 }
 
 .header__cart-item-quantity {
-   color: var(--primary-color);
+  color: #717fe0;
    font-size: 15px;
    width: 25px;
-  text-align: center;
+   text-align: center;
 }
 
 .btn-minus,
@@ -474,6 +555,10 @@
    justify-content: space-between;
 }
 
+.header__cart-list{
+  
+}
+
 .header__cart-item-type {
    color: #999;
    font-weight: 600;
@@ -485,7 +570,7 @@
 
 .header__cart-item-delete:hover {
    cursor: pointer;
-   color: var(--primary-color);
+   color: #717fe0;
 }
 
 
@@ -565,11 +650,14 @@
 }
 
 .btn.btn--primary {
-   background-color: #fe6433;
+   background-color: #717fe0;
    color: var(--white-color);
 }
 
 /* Css for cart */
-.cart-btn:hover{
-   background-color: #717fe0;
+.cart-btn-delete:hover {
+   background-color: #fa6630;
+}
+.cart-btn-view:hover,.cart-btn-checkout:hover  {
+   background-color: #1ecf29;
 }
