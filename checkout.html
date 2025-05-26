@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shoping Cart</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <!-- <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" /> -->
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+    
+
+    <link rel="stylesheet" href="./assets/css/gridInfo.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/check_out.css">
+
+
+
+    <!--===============================================================================================-->
+
+    <!--Header-Template  -->
+    <script src="./assets/js/template/header.js"></script>
+
+    <!--Cart-Template  -->
+    <script src="./assets/js/template/cart.js"></script>
+
+    <!--Cart-Bread-Template  -->
+    <script src="./assets/js/template/cart/bread-crumb.js"></script>
+
+    <!--Cart-Item-Template  -->
+    <script src="./assets/js/template/cart/item-cart.js"></script>
+
+    <!--Footer-Template  -->
+    <script src="./assets/js/template/footer.js"></script>
+</head>
+
+<body class="animsition">
+    <!-- Header -->
+   <header-main></header-main>
+
+
+	<div class="banner" bis_skin_checked="1">
+		<div class="wrap" bis_skin_checked="1">
+			<a href="https://tinhocngoisao.com/" class="logo">
+
+				<h1 class="logo-text">TINHOCNGOISAO.COM</h1>
+
+			</a>
+		</div>
+	</div>
+	<button class="order-summary-toggle order-summary-toggle-hide">
+		<div class="wrap" bis_skin_checked="1">
+			<div class="order-summary-toggle-inner" bis_skin_checked="1">
+				<div class="order-summary-toggle-icon-wrapper" bis_skin_checked="1">
+					<svg width="20" height="19" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle-icon">
+						<path
+							d="M17.178 13.088H5.453c-.454 0-.91-.364-.91-.818L3.727 1.818H0V0h4.544c.455 0 .91.364.91.818l.09 1.272h13.45c.274 0 .547.09.73.364.18.182.27.454.18.727l-1.817 9.18c-.09.455-.455.728-.91.728zM6.27 11.27h10.09l1.454-7.362H5.634l.637 7.362zm.092 7.715c1.004 0 1.818-.813 1.818-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817zm9.18 0c1.004 0 1.817-.813 1.817-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817z">
+						</path>
+					</svg>
+				</div>
+				<div class="order-summary-toggle-text order-summary-toggle-text-show" bis_skin_checked="1">
+					<span>Hiển thị thông tin đơn hàng</span>
+					<svg width="11" height="6" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle-dropdown"
+						fill="#000">
+						<path
+							d="M.504 1.813l4.358 3.845.496.438.496-.438 4.642-4.096L9.504.438 4.862 4.534h.992L1.496.69.504 1.812z">
+						</path>
+					</svg>
+				</div>
+				<div class="order-summary-toggle-text order-summary-toggle-text-hide" bis_skin_checked="1">
+					<span>Ẩn thông tin đơn hàng</span>
+					<svg width="11" height="7" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle-dropdown"
+						fill="#000">
+						<path
+							d="M6.138.876L5.642.438l-.496.438L.504 4.972l.992 1.124L6.138 2l-.496.436 3.862 3.408.992-1.122L6.138.876z">
+						</path>
+					</svg>
+				</div>
+				<div class="order-summary-toggle-total-recap" data-checkout-payment-due-target="1163900000"
+					bis_skin_checked="1">
+					<span class="total-recap-final-price">11,639,000₫</span>
+				</div>
+			</div>
+		</div>
+	</button>
+	<div class="content content-second" bis_skin_checked="1">
+		<div class="wrap" bis_skin_checked="1">
+			<div class="sidebar sidebar-second" bis_skin_checked="1">
+				<div class="sidebar-content" bis_skin_checked="1">
+					<div class="order-summary" bis_skin_checked="1">
+						<div class="order-summary-sections" bis_skin_checked="1">
+							<div class="order-summary-section order-summary-section-discount"
+								data-order-summary-section="discount" bis_skin_checked="1">
+								<form id="form_discount_add" accept-charset="UTF-8" method="post">
+									<input name="utf8" type="hidden" value="✓">
+
+									<div class="fieldset" bis_skin_checked="1">
+										<div class="field  " bis_skin_checked="1">
+											<div class="field-input-btn-wrapper" bis_skin_checked="1">
+												<div class="field-input-wrapper" bis_skin_checked="1">
+													<label class="field-label" for="discount.code">Mã giảm giá</label>
+													<input placeholder="Mã giảm giá" class="field-input"
+														data-discount-field="true" autocomplete="false"
+														autocapitalize="off" spellcheck="false" size="30" type="text"
+														id="discount.code" name="discount.code" value="">
+												</div>
+												<button type="submit"
+													class="field-input-btn btn btn-default btn-disabled">
+													<span class="btn-content">Sử dụng</span>
+													<i class="btn-spinner icon icon-button-spinner"></i>
+												</button>
+											</div>
+
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content" bis_skin_checked="1">
+		<div class="wrap" bis_skin_checked="1">
+			<div class="sidebar" bis_skin_checked="1">
+				<div class="sidebar-content" bis_skin_checked="1">
+					<div class="order-summary order-summary-is-collapsed" bis_skin_checked="1">
+						<h2 class="visually-hidden">Thông tin đơn hàng</h2>
+						<div class="order-summary-sections" bis_skin_checked="1">
+							<div class="order-summary-section order-summary-section-product-list"
+								data-order-summary-section="line-items" bis_skin_checked="1">
+								<table class="product-table">
+									<thead>
+										<tr>
+											<th scope="col"><span class="visually-hidden">Hình ảnh</span></th>
+											<th scope="col"><span class="visually-hidden">Mô tả</span></th>
+											<th scope="col"><span class="visually-hidden">Số lượng</span></th>
+											<th scope="col"><span class="visually-hidden">Giá</span></th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="product" data-product-id="1056108170" data-variant-id="1126889972">
+											<td class="product-image">
+												<div class="product-thumbnail" bis_skin_checked="1">
+													<div class="product-thumbnail-wrapper" bis_skin_checked="1">
+														<img class="product-thumbnail-image"
+															alt="Nguồn Acer AC550 | 80 plus bronze, full modular"
+															src="./assets/images/product-03.jpg">
+													</div>
+													<span class="product-thumbnail-quantity" aria-hidden="true">1</span>
+												</div>
+											</td>
+											<td class="product-description">
+												<span class="product-description-name order-summary-emphasis">Nguồn Acer
+													AC550 | 80 plus bronze, full modular</span>
+
+											</td>
+											<td class="product-quantity visually-hidden">1</td>
+											<td class="product-price">
+												<span class="order-summary-emphasis">930,000₫</span>
+											</td>
+										</tr>
+
+										<tr class="product" data-product-id="1057437165" data-variant-id="1131386273">
+											<td class="product-image">
+												<div class="product-thumbnail" bis_skin_checked="1">
+													<div class="product-thumbnail-wrapper" bis_skin_checked="1">
+														<img class="product-thumbnail-image"
+															alt="Mini PC ASUS NUC Prodesk | i5 1340P (RNUC13VYKi50006)"
+															src="./assets/images/product-04.jpg">
+													</div>
+													<span class="product-thumbnail-quantity" aria-hidden="true">1</span>
+												</div>
+											</td>
+											<td class="product-description">
+												<span class="product-description-name order-summary-emphasis">Mini PC
+													ASUS NUC Prodesk | i5 1340P (RNUC13VYKi50006)</span>
+
+											</td>
+											<td class="product-quantity visually-hidden">1</td>
+											<td class="product-price">
+												<span class="order-summary-emphasis">11,500,000₫</span>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+							<div class="order-summary-section order-summary-section-discount"
+								data-order-summary-section="discount" bis_skin_checked="1">
+								<form id="form_discount_add" accept-charset="UTF-8" method="post">
+									<input name="utf8" type="hidden" value="✓">
+									<div class="fieldset" bis_skin_checked="1">
+										<div class="field  " bis_skin_checked="1">
+											<div class="field-input-btn-wrapper" bis_skin_checked="1">
+												<div class="field-input-wrapper" bis_skin_checked="1">
+													<label class="field-label" for="discount.code">Mã giảm giá</label>
+													<input placeholder="Mã giảm giá" class="field-input"
+														data-discount-field="true" autocomplete="false"
+														autocapitalize="off" spellcheck="false" size="30" type="text"
+														id="discount.code" name="discount.code" value="">
+												</div>
+												<button type="submit"
+													class="field-input-btn btn btn-default btn-disabled">
+													<span class="btn-content">Sử dụng</span>
+													<i class="btn-spinner icon icon-button-spinner"></i>
+												</button>
+											</div>
+
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="order-summary-section order-summary-section-redeem redeem-login-section"
+								data-order-summary-section="discount" bis_skin_checked="1">
+								<div class="redeem-login" bis_skin_checked="1">
+									<div class="redeem-login-title" bis_skin_checked="1">
+										<h2>Chương trình khách hàng thân thiết</h2>
+										<i class="btn-redeem-spinner icon-redeem-button-spinner"></i>
+									</div>
+									<div class="redeem-login-btn" bis_skin_checked="1">
+										<a
+											href="https://tinhocngoisao.com/account/login?urlredirect=%2Fcheckouts%2F3323e49bc9bb4143a96926fbe08f820f%3Fstep%3D1">Đăng
+											nhập</a>
+									</div>
+								</div>
+							</div>
+							<div class="order-summary-section order-summary-section-total-lines payment-lines"
+								data-order-summary-section="payment-lines" bis_skin_checked="1">
+								<table class="total-line-table">
+									<thead>
+										<tr>
+											<th scope="col"><span class="visually-hidden">Mô tả</span></th>
+											<th scope="col"><span class="visually-hidden">Giá</span></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="total-line total-line-subtotal">
+											<td class="total-line-name">Tạm tính</td>
+											<td class="total-line-price">
+												<span class="order-summary-emphasis"
+													data-checkout-subtotal-price-target="1163900000">
+													11,639,000₫
+												</span>
+											</td>
+										</tr>
+										<tr class="total-line total-line-shipping">
+											<td class="total-line-name">Phí vận chuyển</td>
+											<td class="total-line-price">
+												<span class="order-summary-emphasis"
+													data-checkout-total-shipping-target="0">
+
+													—
+
+												</span>
+											</td>
+										</tr>
+									</tbody>
+									<tfoot class="total-line-table-footer">
+										<tr class="total-line">
+											<td class="total-line-name payment-due-label">
+												<span class="payment-due-label-total">Tổng cộng</span>
+											</td>
+											<td class="total-line-name payment-due">
+												<span class="payment-due-currency">VND</span>
+												<span class="payment-due-price"
+													data-checkout-payment-due-target="1163900000">
+													11,639,000₫
+												</span>
+												<span class="checkout_version" display:none=""
+													data_checkout_version="4">
+												</span>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main" bis_skin_checked="1">
+
+				<div class="main-content" bis_skin_checked="1">
+
+					<div id="checkout_order_information_changed_error_message" class="hidden" style="margin-bottom:15px"
+						bis_skin_checked="1">
+						<p class="field-message field-message-error alert alert-danger"><svg x="0px" y="0px"
+								viewBox="0 0 286.054 286.054" style="enable-background:new 0 0 286.054 286.054;"
+								xml:space="preserve">
+								<g>
+									<path style="fill:#E2574C;"
+										d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027 c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236 c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209 S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972 c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723 c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843 C160.878,195.732,152.878,187.723,143.036,187.723z">
+									</path>
+								</g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+								<g> </g>
+							</svg>
+							<span>
+							</span>
+
+						</p>
+					</div>
+					<script>
+						$("html, body").animate({ scrollTop: 0 }, "slow");
+					</script>
+
+
+					<div class="step" bis_skin_checked="1">
+
+						<div class="step-sections steps-onepage" step="1" bis_skin_checked="1">
+
+
+
+							<div class="section" bis_skin_checked="1">
+								<div class="section-header" bis_skin_checked="1">
+									<h2 class="section-title">Thông tin giao hàng</h2>
+								</div>
+								<div class="section-content section-customer-information no-mb" bis_skin_checked="1">
+
+
+									<p class="section-content-text">
+										Bạn đã có tài khoản?
+										<a href="#!">Đăng
+											nhập</a>
+									</p>
+									<div class="fieldset" bis_skin_checked="1">
+										<div class="field field-required  " bis_skin_checked="1">
+											<div class="field-input-wrapper" bis_skin_checked="1">
+												<label class="field-label" for="billing_address_full_name">Họ và
+													tên</label>
+												<input placeholder="Họ và tên" autocapitalize="off" spellcheck="false"
+													class="field-input" size="30" type="text"
+													id="billing_address_full_name" name="billing_address[full_name]"
+													value="" autocomplete="false">
+											</div>
+
+										</div>
+										<div class="field  field-two-thirds  " bis_skin_checked="1">
+											<div class="field-input-wrapper" bis_skin_checked="1">
+												<label class="field-label" for="checkout_user_email">Email</label>
+												<input autocomplete="false" placeholder="Email" autocapitalize="off"
+													spellcheck="false" class="field-input" size="30" type="email"
+													id="checkout_user_email" name="checkout_user[email]" value="">
+											</div>
+
+										</div>
+										<div class="field field-required field-third  " bis_skin_checked="1">
+											<div class="field-input-wrapper" bis_skin_checked="1">
+												<label class="field-label" for="billing_address_phone">Số điện
+													thoại</label>
+												<input autocomplete="false" placeholder="Số điện thoại"
+													autocapitalize="off" spellcheck="false" class="field-input"
+													size="30" maxlength="15" type="tel" id="billing_address_phone"
+													name="billing_address[phone]" value="">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="section-content" bis_skin_checked="1">
+									<div class="fieldset" bis_skin_checked="1">
+										<form autocomplete="off" id="form_update_shipping_method" class="field default"
+											accept-charset="UTF-8" method="post">
+											<input name="utf8" type="hidden" value="✓">
+											<div class="content-box mt0" bis_skin_checked="1">
+
+												<div id="form_update_location_customer_shipping"
+													class="order-checkout__loading radio-wrapper content-box-row content-box-row-padding content-box-row-secondary "
+													for="customer_pick_at_location_false" bis_skin_checked="1">
+													<input name="utf8" type="hidden" value="✓">
+													<div class="order-checkout__loading--box" bis_skin_checked="1">
+														<div class="order-checkout__loading--circle"
+															bis_skin_checked="1"></div>
+													</div>
+
+													<div class="field field-required  " bis_skin_checked="1">
+														<div class="field-input-wrapper" bis_skin_checked="1">
+															<label class="field-label"
+																for="billing_address_address1">Địa chỉ</label>
+															<input placeholder="Địa chỉ" autocapitalize="off"
+																spellcheck="false" class="field-input" size="30"
+																type="text" id="billing_address_address1"
+																name="billing_address[address1]" value="">
+														</div>
+
+													</div>
+													<input name="selected_customer_shipping_country" type="hidden"
+														value="">
+													<input name="selected_customer_shipping_province" type="hidden"
+														value="">
+													<input name="selected_customer_shipping_district" type="hidden"
+														value="">
+													<input name="selected_customer_shipping_ward" type="hidden"
+														value="">
+													<div id="div_location_country_not_vietnam"
+														class="section-customer-information " bis_skin_checked="1"
+														style="display: none;">
+														<div class="field field-two-thirds" bis_skin_checked="1">
+															<div class="field-input-wrapper" bis_skin_checked="1">
+																<label class="field-label"
+																	for="billing_address_city">Thành phố</label>
+																<input placeholder="Thành phố" autocapitalize="off"
+																	spellcheck="false" class="field-input" size="30"
+																	type="text" id="billing_address_city"
+																	name="billing_address[city]" value="">
+															</div>
+														</div>
+														<div class="field field-third" bis_skin_checked="1">
+															<div class="field-input-wrapper" bis_skin_checked="1">
+																<label class="field-label" for="billing_address_zip">Mã
+																	bưu chính</label>
+																<input placeholder="Mã bưu chính" autocapitalize="off"
+																	spellcheck="false" class="field-input" size="30"
+																	type="text" id="billing_address_zip"
+																	name="billing_address[zip]" value="">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div id="change_pick_location_or_shipping" bis_skin_checked="1">
+									<div id="section-payment-method" class="section" bis_skin_checked="1">
+										<div class="order-checkout__loading--box" bis_skin_checked="1">
+											<div class="order-checkout__loading--circle" bis_skin_checked="1"></div>
+										</div>
+										<div class="section-header" bis_skin_checked="1">
+											<h2 class="section-title">Phương thức thanh toán</h2>
+										</div>
+										<div class="section-content" bis_skin_checked="1">
+											<div class="content-box" bis_skin_checked="1">
+												<div class="radio-wrapper content-box-row" bis_skin_checked="1">
+													<label class="radio-label" for="payment_method_id_1002987540">
+														<div class="radio-input payment-method-checkbox"
+															bis_skin_checked="1">
+															<input type-id="1" id="payment_method_id_1002987540"
+																class="input-radio" name="payment_method_id"
+																type="radio" value="1002987540" checked="">
+														</div>
+														<div class="radio-content-input" bis_skin_checked="1">
+															<img class="main-img" src="./assets/images/cod.svg">
+															<div bis_skin_checked="1">
+																<span class="radio-label-primary">Thanh toán khi giao
+																	hàng (COD)</span>
+																<span class="quick-tagline hidden"></span>
+															</div>
+														</div>
+													</label>
+												</div>
+												<div class="radio-wrapper content-box-row content-box-row-secondary "
+													for="payment_method_id_1002987540" bis_skin_checked="1">
+													<div class="blank-slate" bis_skin_checked="1">
+														Lưu ý: Vui lòng liên hệ nhân viên hỗ trợ kiểm tra tồn kho sản
+														phẩm trước khi thanh toán!
+													</div>
+												</div>
+												<div class="radio-wrapper content-box-row" bis_skin_checked="1">
+													<label class="radio-label" for="payment_method_id_1002987542">
+														<div class="radio-input payment-method-checkbox"
+															bis_skin_checked="1">
+															<input type-id="2" id="payment_method_id_1002987542"
+																class="input-radio" name="payment_method_id"
+																type="radio" value="1002987542">
+														</div>
+														<div class="radio-content-input" bis_skin_checked="1">
+															<img class="main-img" src="./assets/images/other.svg">
+															<div bis_skin_checked="1">
+																<span class="radio-label-primary">Chuyển khoản qua ngân
+																	hàng</span>
+																<span class="quick-tagline hidden"></span>
+															</div>
+														</div>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="step-footer" id="step-footer-checkout" bis_skin_checked="1">
+							<form id="form_next_step" accept-charset="UTF-8" method="post">
+								<input name="utf8" type="hidden" value="✓">
+								<button type="submit" class="step-footer-continue-btn btn" style="display: flex;">
+									<span class="btn-content">Hoàn tất đơn hàng</span>
+									<i class="btn-spinner icon icon-button-spinner"></i>
+								</button>
+							</form>
+							<a class="step-footer-previous-link" href="https://tinhocngoisao.com/cart">
+								Giỏ hàng
+							</a>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="hrv-coupons-popup-site-overlay" bis_skin_checked="1"></div>
+				
+			</div>
+		</div>
+
+	</div>
+    
+
+    <!-- Footer -->
+    <footer-main></footer-main>
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="./assets/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="./assets/vendor/bootstrap/js/popper.js"></script>
+    <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="./assets/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next(".dropDownSelect2"),
+            });
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $(".js-pscroll").each(function () {
+            $(this).css("position", "relative");
+            $(this).css("overflow", "hidden");
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on("resize", function () {
+                ps.update();
+            });
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

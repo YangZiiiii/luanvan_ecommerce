@@ -109,6 +109,24 @@
   z-index: 10000;
 }
 
+.sub-menu-login.user-login {
+    display: none;
+    position: absolute;
+    top: 66%;
+    right: 145px;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    z-index: 10000;
+    
+}
+
+/* Hiện submenu khi hover */
+.user-menu-scroll:hover .sub-menu-login {
+  display: block;
+}
+
 /* Hiện submenu khi hover */
 .login-menu-container:hover .sub-menu-login {
   display: block;

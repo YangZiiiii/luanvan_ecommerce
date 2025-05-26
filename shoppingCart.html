@@ -362,15 +362,39 @@
       //    cartIcon.classList.add('cart-none');
       //    }
       // });
+
       function formatPrice(price) {
          if (!price) return '0₫';
          return price.toLocaleString('vi-VN') + '₫';
       }
 
+      // Helper for local cart quantities
+      function getCartQuantities() {
+         let cartQty = {};
+         try {
+            cartQty = JSON.parse(localStorage.getItem('cartQuantities')) || {};
+         } catch (e) {
+            cartQty = {};
+         }
+         return cartQty;
+      }
+
+      function setCartQuantities(cartQty) {
+         localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
+      }
+
       async function fetchAndRenderCartTable() {
          const userId = localStorage.getItem('userId');
          if (!userId) {
-            renderCartTable([], {});
+            // Local cart
+            let items = [];
+            try {
+               items = JSON.parse(localStorage.getItem('cartLocal')) || [];
+            } catch (e) {
+               items = [];
+            }
+            const cartQty = getCartQuantities();
+            renderCartTable(items, cartQty, false);
             return;
          }
 
@@ -382,23 +406,23 @@
                   id: item.productId,
                   name: item.productName,
                   primaryImageURL: item.imageUrl,
-                  sellingPrice: item.sellingPrice
+                  unitPrice: item.unitPrice // use unitPrice for price
                }));
                const cartQty = {};
                data.data.items.forEach(item => {
                   cartQty[item.productId] = item.quantity;
                });
-               renderCartTable(items, cartQty);
+               renderCartTable(items, cartQty, true);
             } else {
-               renderCartTable([], {});
+               renderCartTable([], {}, true);
             }
          } catch (e) {
             console.error('Error fetching cart:', e);
-            renderCartTable([], {});
+            renderCartTable([], {}, true);
          }
       }
 
-      function renderCartTable(items = [], cartQty = {}) {
+      function renderCartTable(items = [], cartQty = {}, isUser = true) {
          const table = document.getElementById('cart-table');
          while (table.rows.length > 1) table.deleteRow(1);
          let total = 0;
@@ -411,7 +435,7 @@
          } else {
             items.forEach((item, idx) => {
                const quantity = cartQty[item.id] ?? 0;
-               const price = item.sellingPrice || 0;
+               const price = item.unitPrice || 0; // always use unitPrice
                const totalPrice = price * quantity;
                total += totalPrice;
 
@@ -433,15 +457,15 @@
                cell = row.insertCell(3);
                cell.className = 'column-4';
                cell.innerHTML = `
-        <div class="wrap-num-product flex-w m-l-auto m-r-0">
-          <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" data-idx="${idx}">
-            <i class="fs-16 zmdi zmdi-minus"></i>
-          </div>
-          <input class="mtext-104 cl3 txt-center num-product" type="number" min="1" value="${quantity}" readonly />
-          <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-idx="${idx}">
-            <i class="fs-16 zmdi zmdi-plus"></i>
-          </div>
-        </div>`;
+            <div class="wrap-num-product flex-w m-l-auto m-r-0">
+               <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" data-idx="${idx}">
+                  <i class="fs-16 zmdi zmdi-minus"></i>
+               </div>
+               <input class="mtext-104 cl3 txt-center num-product" type="number" min="1" value="${quantity}" readonly />
+               <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-idx="${idx}">
+                  <i class="fs-16 zmdi zmdi-plus"></i>
+               </div>
+            </div>`;
 
                cell = row.insertCell(4);
                cell.className = 'column-5';
@@ -458,9 +482,8 @@
 
          document.getElementById('cart-total-price').textContent = formatPrice(total);
 
-         // Gắn sự kiện delete
-         const userId = localStorage.getItem('userId');
-         if (userId) {
+         if (isUser) {
+            // API cart: only delete
             document.querySelectorAll('.btn-delete-item').forEach(btn => {
                btn.addEventListener('click', async function () {
                   let idx = parseInt(this.getAttribute('data-idx'));
@@ -469,20 +492,81 @@
 
                   try {
                      await fetch(
-                        `http://localhost:8080/api/v1/cart/remove?userId=${encodeURIComponent(userId)}&productId=${encodeURIComponent(productId)}`,
+                        `http://localhost:8080/api/v1/cart/remove?userId=${encodeURIComponent(localStorage.getItem('userId'))}&productId=${encodeURIComponent(productId)}`,
                         {
                            method: 'DELETE',
                            headers: { 'Content-Type': 'application/json' }
                         }
                      );
-                     // Xóa tại chỗ
                      items.splice(idx, 1);
                      delete cartQty[productId];
 
-                     renderCartTable(items, cartQty);
+                     renderCartTable(items, cartQty, true);
                      if (typeof updateCartNotify === 'function') updateCartNotify();
                   } catch (e) {
                      console.error('Error deleting item:', e);
+                  }
+               });
+            });
+         } else {
+            // Local cart: delete, plus, minus
+            document.querySelectorAll('.btn-delete-item').forEach(btn => {
+               btn.addEventListener('click', function () {
+                  let idx = parseInt(this.getAttribute('data-idx'));
+                  let itemsLocal = [];
+                  try {
+                     itemsLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                  } catch (e) {
+                     itemsLocal = [];
+                  }
+                  let cartQtyLocal = getCartQuantities();
+                  const id = itemsLocal[idx]?.id;
+                  if (id !== undefined) {
+                     itemsLocal.splice(idx, 1);
+                     delete cartQtyLocal[id];
+                     localStorage.setItem('cartLocal', JSON.stringify(itemsLocal));
+                     setCartQuantities(cartQtyLocal);
+                  }
+                  renderCartTable(itemsLocal, cartQtyLocal, false);
+                  if (typeof updateCartNotify === 'function') updateCartNotify();
+               });
+            });
+
+            document.querySelectorAll('.btn-num-product-down').forEach(btn => {
+               btn.addEventListener('click', function () {
+                  let idx = parseInt(this.getAttribute('data-idx'));
+                  let itemsLocal = [];
+                  try {
+                     itemsLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                  } catch (e) {
+                     itemsLocal = [];
+                  }
+                  let cartQtyLocal = getCartQuantities();
+                  const id = itemsLocal[idx]?.id;
+                  if (id !== undefined && (cartQtyLocal[id] ?? 0) > 1) {
+                     cartQtyLocal[id] = (cartQtyLocal[id] ?? 1) - 1;
+                     setCartQuantities(cartQtyLocal);
+                     renderCartTable(itemsLocal, cartQtyLocal, false);
+                     if (typeof updateCartNotify === 'function') updateCartNotify();
+                  }
+               });
+            });
+            document.querySelectorAll('.btn-num-product-up').forEach(btn => {
+               btn.addEventListener('click', function () {
+                  let idx = parseInt(this.getAttribute('data-idx'));
+                  let itemsLocal = [];
+                  try {
+                     itemsLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                  } catch (e) {
+                     itemsLocal = [];
+                  }
+                  let cartQtyLocal = getCartQuantities();
+                  const id = itemsLocal[idx]?.id;
+                  if (id !== undefined) {
+                     cartQtyLocal[id] = (cartQtyLocal[id] ?? 1) + 1;
+                     setCartQuantities(cartQtyLocal);
+                     renderCartTable(itemsLocal, cartQtyLocal, false);
+                     if (typeof updateCartNotify === 'function') updateCartNotify();
                   }
                });
             });
