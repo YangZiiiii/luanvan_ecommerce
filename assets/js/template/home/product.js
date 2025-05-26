@@ -1,7 +1,7 @@
 class AppHomeProduct extends HTMLElement {
    connectedCallback() {
    this.innerHTML = `
-     <section class="bg0 p-t-23 p-b-140">
+     <section class="bg0 p-t-90 p-b-140">
       <div class="container">
          <div class="p-b-10">
             <h3 class="ltext-103 cl5">Product Overview</h3>
@@ -293,16 +293,43 @@ class AppHomeProduct extends HTMLElement {
                   e.preventDefault();
                   const idx = this.getAttribute('data-product-index');
                   const product = products[idx];
-                  let items = [];
-                  try {
-                     items = JSON.parse(localStorage.getItem('items')) || [];
-                  } catch (e) {
-                     items = [];
-                  }
-                  // Check if product already exists (by id), if not, add
-                  if (!items.some(p => p.id === product.id)) {
-                     items.push(product);
-                     localStorage.setItem('items', JSON.stringify(items));
+                  const userId = localStorage.getItem('userId');
+                  if (!userId || userId === 'null') {
+                     // Xử lý localStorage: nếu chưa có thì thêm với quantity = 1, nếu đã có thì chỉ tăng lên 1
+                     let cartLocal = [];
+                     try {
+                        cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                     } catch (e) {
+                        cartLocal = [];
+                     }
+                     let cartQty = {};
+                     try {
+                        cartQty = JSON.parse(localStorage.getItem('cartQuantities')) || {};
+                     } catch (e) {
+                        cartQty = {};
+                     }
+                     const existIdx = cartLocal.findIndex(p => p.id === product.id);
+                     if (existIdx !== -1) {
+                        cartQty[product.id] = (cartQty[product.id] ?? 1);
+                     } else {
+                        cartLocal.push(product);
+                        cartQty[product.id] = 0; // Đảm bảo lần đầu là 1
+                     }
+                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                     localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
+                     window.dispatchEvent(new Event('cart-updated'));
+                  } else {
+                     // Gọi API thêm vào cart cho user đã đăng nhập
+                     fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+                        method: 'POST'
+                     })
+                        .then(res => res.json())
+                        .then(data => {
+                           if (data && data.statusCode === 201) {
+                              window.dispatchEvent(new Event('cart-updated'));
+                           }
+                        })
+                        .catch(() => { });
                   }
                });
             });

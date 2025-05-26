@@ -39,7 +39,7 @@
    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
 
    <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
-   <link rel="stylesheet" href="./assets/css/header-login.css">
+
    <link rel="stylesheet" href="./assets/css/chatbutton.css">
    <!--===============================================================================================-->
 
@@ -104,7 +104,7 @@
                      </a>
                      <div class="sub-menu-login">
                         <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
-                        <a href="/orders" class="sub-menu-login-item">Lịch sử mua hàng</a>
+                        <a href="orderInfo.html" class="sub-menu-login-item">Lịch sử mua hàng</a>
                         <a href="#" class="sub-menu-login-item" id="logout-btn">Đăng xuất</a>
                      </div>
                   </div>
@@ -227,26 +227,25 @@
                </div>
                <!-- Icon header -->
                <!-- Change for cart -->
-               <div class="wrap-icon-header flex-w flex-r-m">
-                  <div class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search">
-                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+               <div class="wrap-icon-header flex-w flex-r-m"></div>
+               <div class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search">
+                  <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+                  <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+               </div>
 
+               <div class="header__cart-container" style="position:relative;">
+                  <div
+                     class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart noti-none"
+                     data-notify="0" id="cart-icon-header" tabindex="0">
+                     <i class="zmdi zmdi-shopping-cart "></i>
                   </div>
 
-                  <div class="header__cart-container">
-                     <div
-                        class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart noti-none"
-                        data-notify="0" id="cart-icon-header">
-                        <i class="zmdi zmdi-shopping-cart "></i>
-                     </div>
-
+                  <div class="header__cart-notify" style="width:300px; display:none;">
                      <div class="header__cart-notify" style="width:300px;">
-                        <div class="empty__cart" style="display:block;">
+                        <div class="empty__cart">
                            <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
                            <p class="header__cart-msg">No products yet</p>
                         </div>
-
                      </div>
                   </div>
                </div>
@@ -255,6 +254,19 @@
                   data-notify="0">
                   <i class="zmdi zmdi-favorite-outline"></i>
                </a>
+               <div class="user-menu-scroll">
+                  <a href="#!" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti  "
+                     data-notify="!">
+                     <i class="fa fa-user"></i>
+                  </a>
+                  <div class="sub-menu-login user-login">
+                     <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
+                     <a href="orderInfo.html" class="sub-menu-login-item">Lịch sử mua hàng</a>
+                     <a href="#" class="sub-menu-login-item" id="logout-btn">Đăng xuất</a>
+                  </div>
+               </div>
+
+
          </div>
          </nav>
       </div>
@@ -280,6 +292,541 @@
    </header>
 
    <script>
+      // --- BEGIN: Cart show/hide on click instead of hover ---
+      document.addEventListener('DOMContentLoaded', function () {
+         const cartIcon = document.getElementById('cart-icon-header');
+         const cartNotify = cartIcon && cartIcon.parentElement.querySelector('.header__cart-notify');
+         let cartVisible = false;
+
+         function showCart() {
+         if (cartNotify) {
+            cartNotify.style.display = 'block';
+            cartNotify.style.visibility = 'visible';
+            cartNotify.style.opacity = '1';
+            cartVisible = true;
+         }
+         }
+         function hideCart() {
+         if (cartNotify) {
+            cartNotify.style.display = 'none';
+            cartNotify.style.visibility = 'hidden';
+            cartNotify.style.opacity = '0';
+            cartVisible = false;
+         }
+         }
+         // Toggle cart on icon click
+         if (cartIcon && cartNotify) {
+         cartIcon.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const userId = localStorage.getItem('userId');
+            if (userId && userId !== 'null') {
+            if (!cartVisible) { // Only fetch if opening cart
+               fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+               .then(res => res.json())
+               .then(cartData => {
+                  if (
+                  cartData &&
+                  cartData.statusCode === 200 &&
+                  cartData.data &&
+                  Array.isArray(cartData.data.items)
+                  ) {
+                  const items = cartData.data.items;
+                  const cartLocal = [];
+                  const cartQuantities = {};
+
+                  items.forEach(item => {
+                     cartLocal.push({
+                     id: item.productId,
+                     name: item.productName,
+                     primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                     unitPrice: item.unitPrice,
+                     // Add total for convenience
+                     total: item.unitPrice * item.quantity
+                     });
+                     cartQuantities[item.productId] = item.quantity ?? 1;
+                  });
+
+                  localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                  localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                  window.dispatchEvent(new Event('cart-updated'));
+                  showCart();
+                  } else {
+                  showCart();
+                  }
+               })
+               .catch(() => {
+                  showCart();
+               });
+            } else {
+               hideCart();
+            }
+            } else {
+            // Không fetch, chỉ toggle cart
+            if (!cartVisible) {
+               showCart();
+            } else {
+               hideCart();
+            }
+            }
+         });
+         // Hide cart when clicking outside
+         document.addEventListener('click', function (e) {
+            if (cartVisible && !cartNotify.contains(e.target) && e.target !== cartIcon) {
+            hideCart();
+            }
+         });
+         // Prevent click inside cart from closing it
+         cartNotify.addEventListener('click', function (e) {
+            e.stopPropagation();
+         });
+         }
+         // Hide cart on ESC
+         document.addEventListener('keydown', function (e) {
+         if (cartVisible && e.key === 'Escape') {
+            hideCart();
+         }
+         });
+         // Hide cart on page navigation
+         window.addEventListener('hashchange', hideCart);
+      });
+      // --- END: Cart show/hide on click instead of hover ---
+
+      // Helper to format price as "1.000.000đ"
+      function formatPrice(price) {
+         if (isNaN(price)) return '0đ';
+         return price.toLocaleString('vi-VN') + 'đ';
+      }
+
+      // Update cart icon notify badge
+      function updateCartNotify() {
+         const cartIcon = document.getElementById('cart-icon-header');
+         let cartLocal = [];
+         try {
+         cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+         } catch (e) {
+         cartLocal = [];
+         }
+         cartIcon && cartIcon.setAttribute('data-notify', cartLocal.length);
+      }
+
+      // Get cart quantities from localStorage
+      function getCartQuantities() {
+         let cartQty = {};
+         try {
+         cartQty = JSON.parse(localStorage.getItem('cartQuantities')) || {};
+         } catch (e) {
+         cartQty = {};
+         }
+         return cartQty;
+      }
+
+      // Set cart quantities to localStorage
+      function setCartQuantities(cartQty) {
+         localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
+      }
+
+      // Render cart items from localStorage
+      function renderCartItems() {
+         const cartList = document.createElement('ul');
+         cartList.className = 'header__cart-list';
+
+         let cartLocal = [];
+         try {
+         cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+         } catch (e) {
+         cartLocal = [];
+         }
+         let cartQty = getCartQuantities();
+
+         if (cartLocal.length === 0) {
+         cartList.innerHTML = `<li class="header__cart-item"><div class="header__cart-msg">No products yet</div></li>`;
+         } else {
+         cartLocal.forEach((item, idx) => {
+            // Determine quantity and price logic
+            let quantity = cartQty[item.id] ?? 0;
+            let price = 0;
+            // If userId exists, use unitPrice from API, else use sellingPrice from product
+            const userId = localStorage.getItem('userId');
+            if (userId && userId !== 'null') {
+            price = (item.unitPrice ?? 0) * quantity;
+            } else {
+            price = (item.sellingPrice ?? 0) * quantity;
+            }
+            // Debug log for checking values
+            // console.log('item:', item, 'quantity:', quantity, 'price:', price);
+
+            cartList.innerHTML += `
+            <li class="header__cart-item" data-idx="${idx}">
+               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" class="header__cart-img" />
+               <div class="header__cart-item-content">
+               <div class="header__cart-item-des">
+                  <span class="header__cart-des-product">${item.name}</span>
+                  <div class="header__cart-item-price-quantity">
+                  <div class="header__cart-item-price">${formatPrice(price)}</div>
+                  <div class="header__cart-item-quantity-wrapper">
+                     <button class="btn-minus">-</button>
+                     <div class="header__cart-item-quantity">${quantity}</div>
+                     <button class="btn-plus">+</button>
+                  </div>
+                  </div>
+                  <div class="header__cart-item-delete" style="cursor:pointer;">Xóa</div>
+               </div>
+               <div class="header__cart-item-classify">
+                  <span class="header__cart-item-type">${item.description || ''}</span>
+               </div>
+               </div>
+            </li>
+            `;
+         });
+         }
+         return cartList;
+      }
+
+      // Main render
+      function renderCart() {
+         const cartNotify = document.querySelector('.header__cart-notify');
+         const emptyCart = cartNotify.querySelector('.empty__cart');
+         let cartLocal = [];
+         try {
+         cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+         } catch (e) {
+         cartLocal = [];
+         }
+
+         // Show/hide empty cart and set width
+         if (cartLocal.length === 0) {
+         // Show empty cart
+         if (emptyCart) emptyCart.style.display = 'block';
+         cartNotify.style.width = '300px';
+         // Ensure only empty__cart is shown
+         cartNotify.innerHTML = emptyCart ? emptyCart.outerHTML : `
+            <div class="empty__cart" style="display:block;">
+            <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+            <p class="header__cart-msg">Chưa có sản phẩm</p>
+            </div>
+         `;
+         } else {
+         // Hide empty cart
+         if (emptyCart) emptyCart.style.display = 'none';
+         cartNotify.style.width = '500px';
+         cartNotify.innerHTML = '';
+         const container = document.createElement('div');
+         container.className = 'items-in__cart';
+         container.innerHTML = `
+            <h3 class="header__cart-content-product-add">Added products</h3>
+         `;
+         const cartList = renderCartItems();
+         container.appendChild(cartList);
+
+         // Cart buttons
+         const btnsDiv = document.createElement('div');
+         btnsDiv.className = 'header__cart-list';
+         btnsDiv.innerHTML = `
+            <div class="header__cart-item-btn">
+            <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Check out</a>
+            </div>
+            <div class="header__cart-item-btn">
+            <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
+            </div>
+            <div class="header__cart-item-btn">
+            <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>
+            </div>
+         `;
+         container.appendChild(btnsDiv);
+
+         cartNotify.appendChild(container);
+
+         // Add event listeners for quantity and delete
+         cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
+            const minusBtn = li.querySelector('.btn-minus');
+            const plusBtn = li.querySelector('.btn-plus');
+            const qtyDiv = li.querySelector('.header__cart-item-quantity');
+            const priceDiv = li.querySelector('.header__cart-item-price');
+            const delBtn = li.querySelector('.header__cart-item-delete');
+
+            let cartLocal = [];
+            try {
+            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+            } catch (e) {
+            cartLocal = [];
+            }
+            let cartQty = getCartQuantities();
+            const item = cartLocal[idx];
+            const id = item.id;
+            const userId = localStorage.getItem('userId');
+
+            // --- BEGIN: btn-minus ---
+            minusBtn && minusBtn.addEventListener('click', () => {
+            let cartQty = getCartQuantities();
+            if (!userId || userId === 'null') {
+               // Xử lý local như cũ
+               if ((cartQty[id] ?? 0) > 0) {
+               cartQty[id] = (cartQty[id] ?? 0) - 1;
+               setCartQuantities(cartQty);
+               renderCart();
+               updateCartNotify();
+               }
+            } else {
+               // Gọi API update khi có userId
+               let newQuantity = (cartQty[id] ?? 0) - 1;
+               if (newQuantity < 0) newQuantity = 0;
+               fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${newQuantity}`, {
+               method: 'PUT'
+               })
+               .then(res => res.json())
+               .then(data => {
+                  cartQty[id] = newQuantity;
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+               })
+               .catch(() => {
+                  cartQty[id] = newQuantity;
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+               });
+            }
+            });
+            // --- END: btn-minus ---
+
+            // --- BEGIN: btn-plus ---
+            plusBtn && plusBtn.addEventListener('click', () => {
+            let cartQty = getCartQuantities();
+            if (!userId || userId === 'null') {
+               // Xử lý local như cũ
+               cartQty[id] = (cartQty[id] ?? 0) + 1;
+               setCartQuantities(cartQty);
+               renderCart();
+               updateCartNotify();
+            } else {
+               // Gọi API update khi có userId
+               let newQuantity = (cartQty[id] ?? 0) + 1;
+               fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${newQuantity}`, {
+               method: 'PUT'
+               })
+               .then(res => res.json())
+               .then(data => {
+                  cartQty[id] = newQuantity;
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+               })
+               .catch(() => {
+                  cartQty[id] = newQuantity;
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+               });
+            }
+            });
+            // --- END: btn-plus ---
+
+            // --- BEGIN: Xóa item trong cart, xử lý theo userId ---
+            delBtn && delBtn.addEventListener('click', () => {
+            const userId = localStorage.getItem('userId');
+            if (!userId || userId === 'null') {
+               // Xóa local như cũ
+               let cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               let cartQty = getCartQuantities();
+               cartLocal.splice(idx, 1);
+               delete cartQty[id];
+               localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+               setCartQuantities(cartQty);
+               renderCart();
+               updateCartNotify();
+            } else {
+               // Gọi API DELETE
+               let cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               let cartQty = getCartQuantities();
+               // Chuẩn bị body với toàn bộ items còn lại (trừ item bị xóa)
+               const items = cartLocal
+               .filter((p, i) => i !== idx)
+               .map(p => ({
+                  productId: p.id,
+                  quantity: cartQty[p.id] ?? 1
+               }));
+               // Nếu không còn item nào thì gửi mảng rỗng
+               fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
+               method: 'DELETE',
+               headers: {
+                  'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({
+                  userId: userId,
+                  items: items
+               })
+               })
+               .then(res => res.json())
+               .then(data => {
+                  // Xóa local
+                  cartLocal.splice(idx, 1);
+                  delete cartQty[id];
+                  localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+               })
+               .catch(() => {
+                  // Nếu lỗi vẫn xóa local
+                  cartLocal.splice(idx, 1);
+                  delete cartQty[id];
+                  localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+               });
+            }
+            });
+            // --- END: Xóa item trong cart, xử lý theo userId ---
+         });
+
+         // --- BEGIN: Delete All Cart Items ---
+         const deleteAllBtn = btnsDiv.querySelector('.cart-btn-delete');
+         if (deleteAllBtn) {
+            deleteAllBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const userId = localStorage.getItem('userId');
+            let cartLocal = [];
+            try {
+               cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+            } catch (e) {
+               cartLocal = [];
+            }
+            let cartQty = getCartQuantities();
+            if (!userId || userId === 'null') {
+               // Xóa toàn bộ localStorage cart
+               localStorage.removeItem('cartLocal');
+               localStorage.removeItem('cartQuantities');
+               renderCart();
+               updateCartNotify();
+            } else {
+               // Chuẩn bị body với toàn bộ items hiện tại
+               const items = cartLocal.map(p => ({
+               productId: p.id,
+               quantity: cartQty[p.id] ?? 1
+               }));
+               fetch(`http://localhost:8080/api/v1/cart/clear?userId=${userId}`, {
+               method: 'DELETE',
+               headers: {
+                  'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({
+                  userId: userId,
+                  items: items
+               })
+               })
+               .then(res => res.json())
+               .then(data => {
+                  // Xóa local
+                  localStorage.removeItem('cartLocal');
+                  localStorage.removeItem('cartQuantities');
+                  renderCart();
+                  updateCartNotify();
+               })
+               .catch(() => {
+                  // Nếu lỗi vẫn xóa local
+                  localStorage.removeItem('cartLocal');
+                  localStorage.removeItem('cartQuantities');
+                  renderCart();
+                  updateCartNotify();
+               });
+            }
+            });
+         }
+         // --- END: Delete All Cart Items ---
+         }
+         updateCartNotify();
+      }
+
+      // Initial render
+      renderCart();
+
+      // Listen for custom event to update cart without reload
+      window.addEventListener('cart-updated', function () {
+         renderCart();
+         updateCartNotify();
+      });
+
+      // Patch add-to-cart buttons to update cart immediately
+      document.addEventListener('DOMContentLoaded', function () {
+         // For dynamically loaded products
+         const productList = document.getElementById('product-list');
+         function patchAddToCartButtons() {
+         productList.querySelectorAll('.btn-addcart').forEach(btn => {
+            if (!btn.dataset.cartListener) {
+            btn.dataset.cartListener = '1';
+            btn.addEventListener('click', function (e) {
+               e.preventDefault();
+               // Get product index from button
+               const idx = this.getAttribute('data-product-index');
+               // Get products from last fetch
+               let products = [];
+               try {
+               products = window._lastFetchedProducts || [];
+               } catch (e) { }
+               // Fallback: try to get from DOM
+               if (!products.length && window.productsFromDOM) {
+               products = window.productsFromDOM;
+               }
+               const product = products[idx];
+               if (!product) return;
+               let cartLocal = [];
+               try {
+               cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               } catch (e) {
+               cartLocal = [];
+               }
+               let cartQty = getCartQuantities();
+               // Check if product already exists (by id), if yes, increase quantity by 1, else add with quantity 1
+               const existIdx = cartLocal.findIndex(p => p.id === product.id);
+               if (existIdx !== -1) {
+               // Nếu đã tồn tại thì chỉ tăng lên 1
+               cartQty[product.id] = (cartQty[product.id] ?? 1) + 1;
+               } else {
+               // Nếu chưa có thì thêm vào cartLocal và set quantity là 1
+               cartLocal.push(product);
+               cartQty[product.id] = 1;
+               }
+               localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+               setCartQuantities(cartQty);
+               // Always update cart after add
+               setTimeout(() => {
+               window.dispatchEvent(new Event('cart-updated'));
+               }, 10);
+            });
+            }
+         });
+         }
+         // Observe product list for changes
+         if (productList) {
+         const observer = new MutationObserver(() => {
+            patchAddToCartButtons();
+         });
+         observer.observe(productList, { childList: true, subtree: true });
+         }
+         // Patch already rendered buttons
+         patchAddToCartButtons();
+      });
+
+      // Save products to window for access in add-to-cart
+      (function () {
+         const origFetch = window.fetch;
+         window.fetch = function () {
+         return origFetch.apply(this, arguments).then(res => {
+            // Only patch for product API
+            if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('/api/v1/product')) {
+            res.clone().json().then(data => {
+               window._lastFetchedProducts = data.content || [];
+            }).catch(() => { });
+            }
+            return res;
+         });
+         };
+      })();
+
+
+
       // Ẩn/hiện menu login theo token
       function toggleLoginMenu() {
          var token = localStorage.getItem('token');
@@ -367,6 +914,9 @@
                            if (modal) {
                               modal.style.display = 'none';
                            }
+                           // Enable scroll on body and html after modal closes
+                           document.body.style.overflow = '';
+                           document.documentElement.style.overflow = '';
                         }, 50); // Đóng modal sớm, toast vẫn còn hiển thị
                      } else {
                         showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
@@ -476,10 +1026,10 @@
    <home-banner></home-banner>
 
    <!-- Product -->
-   <home-product></home-product>
+   <!-- <home-product></home-product> -->
 
 
-   <!-- <section class="bg0 p-t-23 p-b-140">
+   <section class="bg0 p-t-90 p-b-140">
       <div class="container">
          <div class="p-b-10">
             <h3 class="ltext-103 cl5">Product Overview</h3>
@@ -523,7 +1073,7 @@
             </div>
 
 
-        
+            <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10">
                <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                   <div class="filter-col1 p-r-15 p-b-27">
@@ -705,21 +1255,24 @@
             </div>
          </div>
 
-         <div class="row isotope-grid" id="product-list">
-            
+         <div class="row isotope-grid" id="product-list" style="min-height: 504px;">
+            <!-- Products will be rendered here by JavaScript -->
 
-            
+
 
          </div>
 
+         <!-- Load more -->
          <div class="flex-c-m flex-w w-full p-t-45">
             <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                Load More
             </a>
          </div>
       </div>
-   </section> -->
-   <!-- <script>
+   </section>
+
+
+   <script>
       fetch('http://localhost:8080/api/v1/product?page=0&size=10&sortBy=createdAt&direction')
          .then(res => res.json())
          .then(data => {
@@ -767,16 +1320,43 @@
                   e.preventDefault();
                   const idx = this.getAttribute('data-product-index');
                   const product = products[idx];
-                  let items = [];
-                  try {
-                     items = JSON.parse(localStorage.getItem('items')) || [];
-                  } catch (e) {
-                     items = [];
-                  }
-                  // Check if product already exists (by id), if not, add
-                  if (!items.some(p => p.id === product.id)) {
-                     items.push(product);
-                     localStorage.setItem('items', JSON.stringify(items));
+                  const userId = localStorage.getItem('userId');
+                  if (!userId || userId === 'null') {
+                     // Xử lý localStorage: nếu chưa có thì thêm với quantity = 1, nếu đã có thì chỉ tăng lên 1
+                     let cartLocal = [];
+                     try {
+                        cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                     } catch (e) {
+                        cartLocal = [];
+                     }
+                     let cartQty = {};
+                     try {
+                        cartQty = JSON.parse(localStorage.getItem('cartQuantities')) || {};
+                     } catch (e) {
+                        cartQty = {};
+                     }
+                     const existIdx = cartLocal.findIndex(p => p.id === product.id);
+                     if (existIdx !== -1) {
+                        cartQty[product.id] = (cartQty[product.id] ?? 1);
+                     } else {
+                        cartLocal.push(product);
+                        cartQty[product.id] = 0; // Đảm bảo lần đầu là 1
+                     }
+                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                     localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
+                     window.dispatchEvent(new Event('cart-updated'));
+                  } else {
+                     // Gọi API thêm vào cart cho user đã đăng nhập
+                     fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+                        method: 'POST'
+                     })
+                        .then(res => res.json())
+                        .then(data => {
+                           if (data && data.statusCode === 201) {
+                              window.dispatchEvent(new Event('cart-updated'));
+                           }
+                        })
+                        .catch(() => { });
                   }
                });
             });
@@ -795,7 +1375,7 @@
          .catch(err => {
             document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';
          });
-   </script> -->
+   </script>
 
    <!-- Footer -->
    <footer-main></footer-main>
