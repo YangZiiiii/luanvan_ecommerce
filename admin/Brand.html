@@ -48,7 +48,7 @@
    <!-- Core CSS -->
 
    <link rel="stylesheet" href="./assets/css/demo.css" />
-  <link rel="stylesheet" href="./assets/css/styles.css">
+   <link rel="stylesheet" href="./assets/css/styles.css">
 
    <!-- Vendors CSS -->
    <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css" />
@@ -112,7 +112,7 @@
             <div class="content-wrapper" bis_skin_checked="1">
                <!-- Content -->
 
-               
+
 
                <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
                   <div class="app-ecommerce-category" bis_skin_checked="1">
@@ -169,8 +169,7 @@
                                           <button
                                              class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light btn-brand"
                                              tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                             data-bs-toggle="offcanvas"
-                                             data-bs-target="#offcanvasEcommerceBrandList">
+                                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceBrandList">
                                              <span><i class="ri-add-line me-0 me-sm-1"></i><span
                                                    class="d-none d-sm-inline-block">Add Brand</span></span>
                                           </button>
@@ -211,294 +210,426 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <script>
-                                       fetch('http://localhost:8080/api/v1/brand')
-                                         .then(response => response.json())
-                                         .then(data => {
-                                           const tableBody = document.querySelector('#DataTables_Table_0 tbody');
-                                           tableBody.innerHTML = ''; // Clear existing rows
-                                           data.content.forEach(brand => {
-                                             const row = `
-                                                <tr>
-                                                  <td class="control" tabindex="0" style="display: none"></td>
-                                                  <td class="dt-checkboxes-cell">
-                                                    <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                                  </td>
-                                                  <td class="sorting_1">
-                                                    <div class="d-flex align-items-center">
-                                                      <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                                         <div class="avatar">
-                                                           <img src="./assets/img/CategoryList/default.jpg" alt="${brand.name}" class="rounded-2" />
-                                                         </div>
-                                                      </div>
-                                                      <div class="d-flex flex-column justify-content-center">
-                                                         <span class="text-heading fw-medium text-wrap">${brand.name}</span>
-                                                      </div>
-                                                    </div>
-                                                  </td>
-                                                  <td >
-                                                    <div class="text-sm-end pe-3">
-                                                      ${brand.description || 'N/A'}
-                                                    </div>
-                                                  </td>
-                                                  <td style="text-align: right;">
-                                                    <div  class="badge rounded-pill bg-label-${brand.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
-                                                      ${brand.status}
-                                                    </div>
-                                                  </td>
-                                                  <td>
-                                                    <div class="d-flex align-items-sm-center justify-content-sm-center">
-                                                      <button 
-                                                         class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                         data-bs-toggle="offcanvas"
-                                                         data-bs-target="#offcanvasEcommerceBrandListUpdate">
-                                                         <i class="ri-edit-box-line ri-22px"></i>
-                                                      </button>
-                                                      <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                         <i class="ri-more-2-line ri-22px"></i>
-                                                      </button>
-                                                      <div class="dropdown-menu dropdown-menu-end m-0">
-                                                         <a href="javascript:0;" class="dropdown-item">View</a>
-                                                         <a onclick="openModal('${brand.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
-                                                      </div>
-                                                    </div>
-                                                  </td>
-                                                </tr>
-                                             `;
-                                             tableBody.insertAdjacentHTML('beforeend', row);
-                                           });
-                                         })
-                                         .catch(error => console.error('Error fetching brands:', error));
-                                    </script>
+                                 <script>
+                                    // Lưu brands vào biến toàn cục để dùng lại khi update
+                                    let brandsData = [];
+
+                                    fetch('http://localhost:8080/api/v1/brand')
+                                     .then(response => response.json())
+                                     .then(data => {
+                                       brandsData = data.content || [];
+                                       const tableBody = document.querySelector('#DataTables_Table_0 tbody');
+                                       tableBody.innerHTML = ''; // Clear existing rows
+                                       brandsData.forEach(brand => {
+                                        const row = `
+                                        <tr>
+                                          <td class="control" tabindex="0" style="display: none"></td>
+                                          <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                          </td>
+                                          <td class="sorting_1">
+                                          <div class="d-flex align-items-center">
+                                            <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
+                                             <div class="avatar">
+                                               <img src="./assets/img/CategoryList/default.jpg" alt="${brand.name}" class="rounded-2" />
+                                             </div>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                             <span class="text-heading fw-medium text-wrap">${brand.name}</span>
+                                            </div>
+                                          </div>
+                                          </td>
+                                          <td >
+                                          <div class="text-sm-end pe-3">
+                                            ${brand.description || 'N/A'}
+                                          </div>
+                                          </td>
+                                          <td style="text-align: right;">
+                                          <div  class="badge rounded-pill bg-label-${brand.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
+                                            ${brand.status}
+                                          </div>
+                                          </td>
+                                          <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center">
+                                            <button 
+                                             class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1 btn-edit-brand"
+                                             data-bs-toggle="offcanvas"
+                                             data-bs-target="#offcanvasEcommerceBrandListUpdate"
+                                             data-brand-id="${brand.id}">
+                                             <i class="ri-edit-box-line ri-22px"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                             <i class="ri-more-2-line ri-22px"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end m-0">
+                                             <a href="javascript:0;" class="dropdown-item">View</a>
+                                             <a onclick="openModal('${brand.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
+                                            </div>
+                                          </div>
+                                          </td>
+                                        </tr>
+                                       `;
+                                        tableBody.insertAdjacentHTML('beforeend', row);
+                                       });
+
+                                       // Gán sự kiện cho nút edit sau khi render xong
+                                       document.querySelectorAll('.btn-edit-brand').forEach(btn => {
+                                        btn.addEventListener('click', async function () {
+                                          const brandId = this.getAttribute('data-brand-id');
+                                          if (!brandId) return;
+                                          try {
+                                            const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
+                                            const result = await res.json();
+                                            if (result && result.data) {
+                                             // Gán dữ liệu vào modal update
+                                             document.getElementById('ecommerce-brand-title').value = result.data.name || '';
+                                             // Gán description vào editor
+                                             const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
+                                             if (descElem) {
+                                               descElem.innerText = result.data.description || '';
+                                             }
+                                             // Gán status (chỉ ACTIVE/INACTIVE)
+                                             const statusSelect = document.getElementById('ecommerce-brand-status');
+                                             if (statusSelect) {
+                                               statusSelect.value = result.data.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE';
+                                               statusSelect.setAttribute('data-brand-id', brandId);
+                                             }
+                                             // Lưu id vào form để dùng khi update
+                                             document.getElementById('eCommerceBrandListForm').setAttribute('data-brand-id', brandId);
+                                            }
+                                          } catch (err) {
+                                            alert('Không lấy được dữ liệu brand!');
+                                          }
+                                        });
+                                       });
+
+                                       // Gán sự kiện đổi status cho select trong modal update
+                                       const statusSelect = document.getElementById('ecommerce-brand-status');
+                                       if (statusSelect) {
+                                         statusSelect.onchange = async function () {
+                                           const brandId = statusSelect.getAttribute('data-brand-id');
+                                           const newStatus = statusSelect.value;
+                                           if (!brandId || !newStatus) return;
+                                           try {
+                                             const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}/status`, {
+                                               method: 'PUT',
+                                               headers: { 'Content-Type': 'application/json' },
+                                               body: JSON.stringify({ status: newStatus })
+                                             });
+                                             if (res.ok) {
+                                               // Optionally show a toast or reload
+                                               // window.location.reload();
+                                             } else {
+                                               alert('Update status failed!');
+                                             }
+                                           } catch (err) {
+                                             alert('Error updating status!');
+                                           }
+                                         };
+                                       }
+                                     })
+                                     .catch(error => console.error('Error fetching brands:', error));
+                                 </script>
                                  </tbody>
-                              </table>
-                              <!-- Modal delete item -->
-               <div class="modal-overlay delete-modal" id="modalOverlay" onclick="handleOverlayClick(event)">
-                  <div class="modal">
-                     <span class="close-btn" onclick="closeModal()">&times;</span>
+                                 </table>
+                                 <!-- Modal delete item -->
+                                 <div class="modal-overlay delete-modal" id="modalOverlay"
+                                   onclick="handleOverlayClick(event)">
+                                   <div class="modal">
+                                    <span class="close-btn" onclick="closeModal()">&times;</span>
 
-                     <!-- Nội dung ban đầu -->
-                     <div id="modalContent">
-                        <h3 class="modalInfo">Are you sure you want to delete this product?</h3>
-                        <div class="buttons">
-                           <button class="button button-no" onclick="closeModal()">No</button>
-                           <button class="button button-yes" onclick="confirmYes()">Yes</button>
-                        </div>
-                     </div>
+                                    <!-- Nội dung ban đầu -->
+                                    <div id="modalContent">
+                                       <h3 class="modalInfo">Are you sure you want to delete this product?</h3>
+                                       <div class="buttons">
+                                        <button class="button button-no" onclick="closeModal()">No</button>
+                                        <button class="button button-yes" onclick="confirmYes()">Yes</button>
+                                       </div>
+                                    </div>
 
-                     <!-- Hiển thị sau khi xác nhận -->
-                     <div class="success" id="successMessage">
-                        <div class="checkmark">✔</div>
-                        <p style="margin-top: 10px; color: #22c55e; font-weight: bold;">Confirmed!</p>
-                        <button class="ok-btn" onclick="closeModal()">OK</button>
-                     </div>
-                  </div>
-               </div>
-               <!-- End delete modal item -->
-                              <div class="row mx-1" bis_skin_checked="1">
-                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
+                                    <!-- Hiển thị sau khi xác nhận -->
+                                    <div class="success" id="successMessage">
+                                       <div class="checkmark">✔</div>
+                                       <p style="margin-top: 10px; color: #22c55e; font-weight: bold;">Confirmed!</p>
+                                       <button class="ok-btn" onclick="closeModal()">OK</button>
+                                    </div>
+                                   </div>
+                                 </div>
+                                 <!-- End delete modal item -->
+                                 <div class="row mx-1" bis_skin_checked="1">
+                                   <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
                                        aria-live="polite" bis_skin_checked="1">
                                        Showing 1 to 7 of 14 entries
                                     </div>
-                                 </div>
-                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
+                                   </div>
+                                   <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                     <div class="dataTables_paginate paging_simple_numbers"
                                        id="DataTables_Table_0_paginate" bis_skin_checked="1">
                                        <ul class="pagination">
-                                          <li class="paginate_button page-item previous disabled"
-                                             id="DataTables_Table_0_previous">
-                                             <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                                data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
-                                          </li>
-                                          <li class="paginate_button page-item active">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" aria-current="page"
-                                                data-dt-idx="0" tabindex="0" class="page-link">1</a>
-                                          </li>
-                                          <li class="paginate_button page-item">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
-                                                tabindex="0" class="page-link">2</a>
-                                          </li>
-                                          <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
-                                                tabindex="0" class="page-link">Next</a>
-                                          </li>
+                                        <li class="paginate_button page-item previous disabled"
+                                          id="DataTables_Table_0_previous">
+                                          <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
+                                           data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
+                                        </li>
+                                        <li class="paginate_button page-item active">
+                                          <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page"
+                                           data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                                        </li>
+                                        <li class="paginate_button page-item">
+                                          <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
+                                           tabindex="0" class="page-link">2</a>
+                                        </li>
+                                        <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                                          <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
+                                           tabindex="0" class="page-link">Next</a>
+                                        </li>
                                        </ul>
                                     </div>
+                                   </div>
                                  </div>
-                              </div>
-                              <div bis_skin_checked="1" style="width: 1%"></div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Offcanvas to add new brand -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandList"
-                        aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
-                        <!-- Offcanvas Header -->
-                        <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Add Brand</h5>
-                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                              aria-label="Close"></button>
-                        </div>
-
-                        <!-- Offcanvas Body -->
-                        <div class="offcanvas-body border-top">
-                           <form class="pt-0" id="eCommerceBrandListForm" onsubmit="return false" novalidate>
-
-                              <!-- Title -->
-                              <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control" id="ecommerce-brand-title"
-                                    placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
-                                 <label for="ecommerce-brand-title">Title</label>
-                              </div>
-
-
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-brand-image">
-                              </div>
-
-
-                              <!-- Description -->
-                              <div class="mb-6">
-                                 <div class="form-control p-0 pt-1">
-                                    <div class="comment-editor border-0 ql-container ql-snow"
-                                       id="ecommerce-collection-description">
-                                       <div class="ql-editor ql-blank" contenteditable="true"
-                                          data-placeholder="Write a description...">
-                                          <p><br></p>
-                                       </div>
-                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                       <div class="ql-tooltip ql-hidden"></div>
-                                    </div>
-                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
-                                       <div class="d-flex justify-content-end">
-                                          <span class="ql-formats">
-                                             <button class="ql-bold" type="button"></button>
-                                             <button class="ql-italic" type="button"></button>
-                                             <button class="ql-underline" type="button"></button>
-                                             <button class="ql-list" value="ordered" type="button"></button>
-                                             <button class="ql-list" value="bullet" type="button"></button>
-                                             <button class="ql-link" type="button"></button>
-                                             <button class="ql-image" type="button"></button>
-                                          </span>
-                                       </div>
-                                    </div>
+                                 <div bis_skin_checked="1" style="width: 1%"></div>
                                  </div>
-                              </div>
-
-                              <!-- Status -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select id="ecommerce-brand-status" class="form-select"
-                                          data-placeholder="Select brand status" data-allow-clear="true">
-                                          <option value="">Select brand status</option>
-                                          <option value="Scheduled">Scheduled</option>
-                                          <option value="Publish">Publish</option>
-                                          <option value="Inactive">Inactive</option>
-                                       </select>
-                                    </div>
-                                    <label for="ecommerce-brand-status">Status</label>
                                  </div>
-                              </div>
-
-                              <!-- Submit and reset -->
-                              <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Add</button>
-                                 <button type="reset" class="btn btn-outline-danger"
-                                    data-bs-dismiss="offcanvas">Discard</button>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
-
-
-
-                     <!-- Offcanvas to update new brand -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandListUpdate"
-                        aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
-                        <!-- Offcanvas Header -->
-                        <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Update Brand</h5>
-                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                              aria-label="Close"></button>
-                        </div>
-
-                        <!-- Offcanvas Body -->
-                        <div class="offcanvas-body border-top">
-                           <form class="pt-0" id="eCommerceBrandListForm" onsubmit="return false" novalidate>
-
-                              <!-- Title -->
-                              <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control" id="ecommerce-brand-title"
-                                    placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
-                                 <label for="ecommerce-brand-title">Title</label>
-                              </div>
-
-
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-brand-image">
-                              </div>
-
-
-                              <!-- Description -->
-                              <div class="mb-6">
-                                 <div class="form-control p-0 pt-1">
-                                    <div class="comment-editor border-0 ql-container ql-snow"
-                                       id="ecommerce-collection-description">
-                                       <div class="ql-editor ql-blank" contenteditable="true"
-                                          data-placeholder="Write a description...">
-                                          <p><br></p>
-                                       </div>
-                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                       <div class="ql-tooltip ql-hidden"></div>
-                                    </div>
-                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
-                                       <div class="d-flex justify-content-end">
-                                          <span class="ql-formats">
-                                             <button class="ql-bold" type="button"></button>
-                                             <button class="ql-italic" type="button"></button>
-                                             <button class="ql-underline" type="button"></button>
-                                             <button class="ql-list" value="ordered" type="button"></button>
-                                             <button class="ql-list" value="bullet" type="button"></button>
-                                             <button class="ql-link" type="button"></button>
-                                             <button class="ql-image" type="button"></button>
-                                          </span>
-                                       </div>
-                                    </div>
                                  </div>
-                              </div>
+                                 <!-- Offcanvas to add new brand -->
+                                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandList"
+                                   aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
+                                   <!-- Offcanvas Header -->
+                                   <div class="offcanvas-header py-6">
+                                     <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Add Brand</h5>
+                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                      aria-label="Close"></button>
+                                   </div>
 
-                              <!-- Status -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select id="ecommerce-brand-status" class="form-select"
-                                          data-placeholder="Select brand status" data-allow-clear="true">
-                                          <option value="">Select brand status</option>
-                                          <option value="Scheduled">Scheduled</option>
-                                          <option value="Publish">Publish</option>
-                                          <option value="Inactive">Inactive</option>
-                                       </select>
-                                    </div>
-                                    <label for="ecommerce-brand-status">Status</label>
+                                   <!-- Offcanvas Body -->
+                                   <div class="offcanvas-body border-top">
+                                     <form class="pt-0" id="eCommerceBrandListFormAdd" onsubmit="return false" novalidate>
+                                      <!-- Title -->
+                                      <div class="form-floating form-floating-outline mb-5">
+                                        <input type="text" class="form-control" id="ecommerce-brand-title-add"
+                                         placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
+                                        <label for="ecommerce-brand-title-add">Name</label>
+                                      </div>
+
+                                      <!-- Image -->
+                                      <div class="mb-5">
+                                        <input class="form-control" type="file" id="ecommerce-brand-image-add">
+                                      </div>
+
+                                      <!-- Description -->
+                                      <div class="mb-6">
+                                        <div class="form-control p-0 pt-1">
+                                         <div class="comment-editor border-0 ql-container ql-snow"
+                                            id="ecommerce-collection-description-add">
+                                            <div class="ql-editor ql-blank" contenteditable="true"
+                                             data-placeholder="Write a description...">
+                                             <p><br></p>
+                                            </div>
+                                            <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                            <div class="ql-tooltip ql-hidden"></div>
+                                         </div>
+                                         <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                            <div class="d-flex justify-content-end">
+                                             <span class="ql-formats">
+                                               <button class="ql-bold" type="button"></button>
+                                               <button class="ql-italic" type="button"></button>
+                                               <button class="ql-underline" type="button"></button>
+                                               <button class="ql-list" value="ordered" type="button"></button>
+                                               <button class="ql-list" value="bullet" type="button"></button>
+                                               <button class="ql-link" type="button"></button>
+                                               <button class="ql-image" type="button"></button>
+                                             </span>
+                                            </div>
+                                         </div>
+                                        </div>
+                                      </div>
+
+                                      <!-- Status -->
+                                      <div class="mb-5 ecommerce-select2-dropdown">
+                                        <div class="form-floating form-floating-outline form-floating-select2">
+                                         <div class="position-relative">
+                                            <select id="ecommerce-brand-status-add" class="form-select"
+                                             data-placeholder="Select brand status" data-allow-clear="true">
+                                             <option value="">Select brand status</option>
+                                             <option value="ACTIVE">Active</option>
+                                             <option value="INACTIVE">Inactive</option>
+                                            </select>
+                                         </div>
+                                         <label for="ecommerce-brand-status-add">Status</label>
+                                        </div>
+                                      </div>
+
+                                      <!-- Submit and reset -->
+                                      <div class="mb-4">
+                                        <button type="submit" class="btn btn-primary me-sm-3 me-1"
+                                         id="btnAddBrand">Add</button>
+                                        <button type="reset" class="btn btn-outline-danger"
+                                         data-bs-dismiss="offcanvas">Discard</button>
+                                      </div>
+                                     </form>
+                                   </div>
                                  </div>
-                              </div>
+                                 <script>
+                                   document.getElementById('btnAddBrand').onclick = async function (e) {
+                                     e.preventDefault();
+                                     const name = document.getElementById('ecommerce-brand-title-add').value.trim();
+                                     // Lấy description từ editor
+                                     const descElem = document.querySelector('#ecommerce-collection-description-add .ql-editor');
+                                     const description = descElem ? descElem.innerText.trim() : '';
+                                     // Lấy status (chỉ ACTIVE/INACTIVE, mặc định INACTIVE nếu không chọn)
+                                     const status = document.getElementById('ecommerce-brand-status-add').value || 'INACTIVE';
 
-                              <!-- Submit and reset -->
-                              <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>
-                                 <button type="reset" class="btn btn-outline-danger"
-                                    data-bs-dismiss="offcanvas">Discard</button>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
+                                     if (!name) {
+                                      alert('Please enter brand name!');
+                                      return;
+                                     }
+
+                                     try {
+                                      const response = await fetch('http://localhost:8080/api/v1/brand', {
+                                        method: 'POST',
+                                        headers: {
+                                         'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                         name: name,
+                                         description: description,
+                                         status: status
+                                        })
+                                      });
+                                      if (response.ok) {
+                                        window.location.reload();
+                                      } else {
+                                        alert('Add brand failed!');
+                                      }
+                                     } catch (err) {
+                                      alert('Error: ' + err);
+                                     }
+                                   };
+                                 </script>
+
+
+
+                                 <!-- Offcanvas to update new brand -->
+                                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandListUpdate"
+                                   aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
+                                   <!-- Offcanvas Header -->
+                                   <div class="offcanvas-header py-6">
+                                     <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Update Brand</h5>
+                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                      aria-label="Close"></button>
+                                   </div>
+
+                                   <!-- Offcanvas Body -->
+                                   <div class="offcanvas-body border-top">
+                                     <form class="pt-0" id="eCommerceBrandListForm" onsubmit="return false" novalidate>
+
+                                      <!-- Title -->
+                                      <div class="form-floating form-floating-outline mb-5">
+                                        <input type="text" class="form-control" id="ecommerce-brand-title"
+                                         placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
+                                        <label for="ecommerce-brand-title">Title</label>
+                                      </div>
+
+
+                                      <!-- Image -->
+                                      <div class="mb-5">
+                                        <input class="form-control" type="file" id="ecommerce-brand-image">
+                                      </div>
+
+
+                                      <!-- Description -->
+                                      <div class="mb-6">
+                                        <div class="form-control p-0 pt-1">
+                                         <div class="comment-editor border-0 ql-container ql-snow"
+                                            id="ecommerce-collection-description">
+                                            <div class="ql-editor ql-blank" contenteditable="true"
+                                             data-placeholder="">
+                                             <p><br></p>
+                                            </div>
+                                            <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                            <div class="ql-tooltip ql-hidden"></div>
+                                         </div>
+                                         <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                            <div class="d-flex justify-content-end">
+                                             <span class="ql-formats">
+                                               <button class="ql-bold" type="button"></button>
+                                               <button class="ql-italic" type="button"></button>
+                                               <button class="ql-underline" type="button"></button>
+                                               <button class="ql-list" value="ordered" type="button"></button>
+                                               <button class="ql-list" value="bullet" type="button"></button>
+                                               <button class="ql-link" type="button"></button>
+                                               <button class="ql-image" type="button"></button>
+                                             </span>
+                                            </div>
+                                         </div>
+                                        </div>
+                                      </div>
+
+                                      <!-- Status -->
+                                      <div class="mb-5 ecommerce-select2-dropdown">
+                                        <div class="form-floating form-floating-outline form-floating-select2">
+                                         <div class="position-relative">
+                                            <select id="ecommerce-brand-status" class="form-select"
+                                             data-placeholder="Select brand status" data-allow-clear="true">
+                                             <option value="">Select brand status</option>
+                                             <option value="ACTIVE">Active</option>
+                                             <option value="INACTIVE">Inactive</option>
+                                            </select>
+                                         </div>
+                                         <label for="ecommerce-brand-status">Status</label>
+                                        </div>
+                                      </div>
+
+                                      <!-- Submit and reset -->
+                                      <div class="mb-4">
+                                        <button type="submit" class="btn btn-primary me-sm-3 me-1" id="btnUpdateBrand">Update</button>
+                                        <button type="reset" class="btn btn-outline-danger"
+                                         data-bs-dismiss="offcanvas">Discard</button>
+                                      </div>
+                                     </form>
+                                   </div>
+                                 </div>
+                                 <script>
+                                   // Xử lý update brand khi submit form update
+                                   document.getElementById('btnUpdateBrand').onclick = async function (e) {
+                                     e.preventDefault();
+                                     const form = document.getElementById('eCommerceBrandListForm');
+                                     const brandId = form.getAttribute('data-brand-id');
+                                     const name = document.getElementById('ecommerce-brand-title').value.trim();
+                                     const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
+                                     const description = descElem ? descElem.innerText.trim() : '';
+                                     const status = document.getElementById('ecommerce-brand-status').value || 'INACTIVE';
+
+                                     if (!brandId) {
+                                       alert('Không tìm thấy brand để update!');
+                                       return;
+                                     }
+                                     if (!name) {
+                                       alert('Vui lòng nhập tên brand!');
+                                       return;
+                                     }
+
+                                     try {
+                                       const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
+                                         method: 'PUT',
+                                         headers: { 'Content-Type': 'application/json' },
+                                         body: JSON.stringify({
+                                           name: name,
+                                           description: description,
+                                           status: status
+                                         })
+                                       });
+                                       if (response.ok) {
+                                         window.location.reload();
+                                       } else {
+                                         alert('Update brand failed!');
+                                       }
+                                     } catch (err) {
+                                       alert('Error: ' + err);
+                                     }
+                                   };
+                                 </script>
 
 
 
@@ -596,72 +727,72 @@
 
 
    <!-- Modal Delete -->
-  <script>
-   function openModal(brandId) {
-      const overlay = document.getElementById("modalOverlay");
-      const modal = overlay.querySelector(".modal");
+   <script>
+      function openModal(brandId) {
+         const overlay = document.getElementById("modalOverlay");
+         const modal = overlay.querySelector(".modal");
 
-      overlay.classList.add("show");
-      modal.style.display = "block";
-      modal.style.transform = "rotateY(90deg)";
-      modal.style.animation = "rotateIn 0.5s forwards";
+         overlay.classList.add("show");
+         modal.style.display = "block";
+         modal.style.transform = "rotateY(90deg)";
+         modal.style.animation = "rotateIn 0.5s forwards";
 
-      document.getElementById("modalContent").style.display = "block";
-      document.getElementById("successMessage").classList.remove("show");
+         document.getElementById("modalContent").style.display = "block";
+         document.getElementById("successMessage").classList.remove("show");
 
-      const yesButton = document.querySelector(".button-yes");
-      yesButton.setAttribute("data-brand-id", brandId);
-   }
-
-   function closeModal() {
-      const overlay = document.getElementById("modalOverlay");
-      const modal = overlay.querySelector(".modal");
-
-      modal.style.animation = "rotateOut 0.4s forwards";
-
-      setTimeout(() => {
-         overlay.classList.remove("show");
-         modal.style.display = "none";
-      }, 400);
-   }
-
-   async function confirmYes() {
-      const yesButton = document.querySelector(".button-yes");
-      const brandId = yesButton.getAttribute("data-brand-id");
-
-      if (!brandId) {
-         alert("Không tìm thấy ID brand để xoá.");
-         return;
+         const yesButton = document.querySelector(".button-yes");
+         yesButton.setAttribute("data-brand-id", brandId);
       }
 
-      try {
-         const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
-            method: 'DELETE'
-         });
+      function closeModal() {
+         const overlay = document.getElementById("modalOverlay");
+         const modal = overlay.querySelector(".modal");
 
-         if (response.ok) {
-            document.getElementById("modalContent").style.display = "none";
-            document.getElementById("successMessage").classList.add("show");
+         modal.style.animation = "rotateOut 0.4s forwards";
 
-            setTimeout(() => {
-               window.location.reload();
-            }, 1500);
-         } else {
-            alert("Xoá brand thất bại!");
+         setTimeout(() => {
+            overlay.classList.remove("show");
+            modal.style.display = "none";
+         }, 400);
+      }
+
+      async function confirmYes() {
+         const yesButton = document.querySelector(".button-yes");
+         const brandId = yesButton.getAttribute("data-brand-id");
+
+         if (!brandId) {
+            alert("Không tìm thấy ID brand để xoá.");
+            return;
          }
-      } catch (error) {
-         console.error('Lỗi khi gọi API xoá:', error);
-         alert("Có lỗi xảy ra.");
-      }
-   }
 
-   function handleOverlayClick(event) {
-      const modal = document.querySelector(".delete-modal .modal");
-      if (!modal.contains(event.target)) {
-         closeModal();
+         try {
+            const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
+               method: 'DELETE'
+            });
+
+            if (response.ok) {
+               document.getElementById("modalContent").style.display = "none";
+               document.getElementById("successMessage").classList.add("show");
+
+               setTimeout(() => {
+                  window.location.reload();
+               }, 1500);
+            } else {
+               alert("Xoá brand thất bại!");
+            }
+         } catch (error) {
+            console.error('Lỗi khi gọi API xoá:', error);
+            alert("Có lỗi xảy ra.");
+         }
       }
-   }
-</script>
+
+      function handleOverlayClick(event) {
+         const modal = document.querySelector(".delete-modal .modal");
+         if (!modal.contains(event.target)) {
+            closeModal();
+         }
+      }
+   </script>
 
 
 </body>

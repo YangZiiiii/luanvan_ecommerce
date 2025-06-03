@@ -83,21 +83,7 @@ class AppHeader extends HTMLElement {
                </div>
 
                <!-- Đăng nhập bằng mạng xã hội -->
-               <div class="social-login">
-                  <p class="social-text">Hoặc đăng nhập bằng</p>
-                  <button class="social-btn facebook">
-                     <i class="fa-brands fa-facebook-f"></i>
-                     Facebook
-                  </button>
-                  <button class="social-btn google">
-                     <i class="fa-brands fa-google"></i>
-                     Google
-                  </button>
-                  <button class="social-btn twitter">
-                     <i class="fa-brands fa-twitter"></i>
-                     Twitter
-                  </button>
-               </div>
+               
 
                <!-- Copyright -->
                <p class="copyright">
@@ -177,6 +163,17 @@ class AppHeader extends HTMLElement {
                   data-notify="0">
                   <i class="zmdi zmdi-favorite-outline"></i>
                </a>
+                  <div class="user-menu-scroll" id="user-menu-scroll" style="display: none;">
+                    <a href="#!" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                      data-notify="!">
+                      <i class="fa fa-user"></i>
+                    </a>
+                    <div class="sub-menu-login user-login">
+                      <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
+                      <a href="orderInfo.html" class="sub-menu-login-item">Lịch sử mua hàng</a>
+                      <a href="#" class="sub-menu-login-item" id="logout-btn">Đăng xuất</a>
+                    </div>
+                  </div>
          </div>
          </nav>
       </div>
@@ -202,8 +199,27 @@ class AppHeader extends HTMLElement {
    </header>
    `;
 
+    // Show/hide user menu scroll based on userId
+                    function toggleUserMenuScroll() {
+                      var userId = localStorage.getItem('userId');
+                      var userMenu = document.getElementById('user-menu-scroll');
+                      if (userMenu) {
+                         userMenu.style.display = (userId && userId !== 'null') ? 'block' : 'none';
+                      }
+                    }
+                    document.addEventListener('DOMContentLoaded', function () {
+                      toggleUserMenuScroll();
+                      // Also update on login/logout
+                      window.addEventListener('storage', toggleUserMenuScroll);
+                      window.addEventListener('cart-updated', toggleUserMenuScroll);
+                    });
+                    // Listen for login success and update menu immediately
+                    window.addEventListener('login-success', function() {
+                      toggleUserMenuScroll();
+                    });
 
-     // --- BEGIN: Cart show/hide on click instead of hover ---
+
+      // --- BEGIN: Cart show/hide on click instead of hover ---
       document.addEventListener('DOMContentLoaded', function () {
          const cartIcon = document.getElementById('cart-icon-header');
          const cartNotify = cartIcon && cartIcon.parentElement.querySelector('.header__cart-notify');
@@ -226,71 +242,71 @@ class AppHeader extends HTMLElement {
             }
          }
          // Toggle cart on icon click
-          if (cartIcon && cartNotify) {
+         if (cartIcon && cartNotify) {
             cartIcon.addEventListener('click', function (e) {
                e.stopPropagation();
                const userId = localStorage.getItem('userId');
                if (userId && userId !== 'null') {
-                 if (!cartVisible) { // Only fetch if opening cart
-                   fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
-                     .then(res => res.json())
-                     .then(cartData => {
-                        if (
-                          cartData &&
-                          cartData.statusCode === 200 &&
-                          cartData.data &&
-                          Array.isArray(cartData.data.items)
-                        ) {
-                          const items = cartData.data.items;
-                          const cartLocal = [];
-                          const cartQuantities = {};
+                  if (!cartVisible) { // Only fetch if opening cart
+                     fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                        .then(res => res.json())
+                        .then(cartData => {
+                           if (
+                              cartData &&
+                              cartData.statusCode === 200 &&
+                              cartData.data &&
+                              Array.isArray(cartData.data.items)
+                           ) {
+                              const items = cartData.data.items;
+                              const cartLocal = [];
+                              const cartQuantities = {};
 
-                          items.forEach(item => {
-                            cartLocal.push({
-                              id: item.productId,
-                              name: item.productName,
-                              primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
-                              sellingPrice: item.sellingPrice,
-                              originalPrice: item.originalPrice,
-                              description: '',
-                            });
-                            cartQuantities[item.productId] = item.quantity ?? 1;
-                          });
+                              items.forEach(item => {
+                                 cartLocal.push({
+                                    id: item.productId,
+                                    name: item.productName,
+                                    primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                                    unitPrice: item.unitPrice,
+                                    // Add total for convenience
+                                    total: item.unitPrice * item.quantity
+                                 });
+                                 cartQuantities[item.productId] = item.quantity ?? 1;
+                              });
 
-                          localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                          localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
-                          window.dispatchEvent(new Event('cart-updated'));
-                          showCart();
-                        } else {
-                          showCart();
-                        }
-                     })
-                     .catch(() => {
-                        showCart();
-                     });
-                 } else {
-                   hideCart();
-                 }
+                              localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                              localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                              window.dispatchEvent(new Event('cart-updated'));
+                              showCart();
+                           } else {
+                              showCart();
+                           }
+                        })
+                        .catch(() => {
+                           showCart();
+                        });
+                  } else {
+                     hideCart();
+                  }
                } else {
-                 // Không fetch, chỉ toggle cart
-                 if (!cartVisible) {
-                   showCart();
-                 } else {
-                   hideCart();
-                 }
+                  // Không fetch, chỉ toggle cart
+                  if (!cartVisible) {
+                     showCart();
+                  } else {
+                     hideCart();
+                  }
                }
             });
             // Hide cart when clicking outside
             document.addEventListener('click', function (e) {
                if (cartVisible && !cartNotify.contains(e.target) && e.target !== cartIcon) {
-                 hideCart();
+                  hideCart();
                }
             });
             // Prevent click inside cart from closing it
             cartNotify.addEventListener('click', function (e) {
                e.stopPropagation();
             });
-          }
+         }
          // Hide cart on ESC
          document.addEventListener('keydown', function (e) {
             if (cartVisible && e.key === 'Escape') {
@@ -302,9 +318,48 @@ class AppHeader extends HTMLElement {
       });
       // --- END: Cart show/hide on click instead of hover ---
 
-      // Logic for cart 
+      // --- BEGIN: Fetch cart API on page load/refresh if userId exists ---
+      document.addEventListener('DOMContentLoaded', function () {
+         const userId = localStorage.getItem('userId');
+         if (userId && userId !== 'null') {
+            fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+               .then(res => res.json())
+               .then(cartData => {
+                  if (
+                     cartData &&
+                     cartData.statusCode === 200 &&
+                     cartData.data &&
+                     Array.isArray(cartData.data.items)
+                  ) {
+                     const items = cartData.data.items;
+                     const cartLocal = [];
+                     const cartQuantities = {};
+
+                     items.forEach(item => {
+                        cartLocal.push({
+                           id: item.productId,
+                           name: item.productName,
+                           primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                           unitPrice: item.unitPrice,
+                           // Add total for convenience
+                           total: item.unitPrice * item.quantity
+                        });
+                        cartQuantities[item.productId] = item.quantity ?? 1;
+                     });
+
+                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                     localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                     window.dispatchEvent(new Event('cart-updated'));
+                  }
+               })
+               .catch(() => { });
+         }
+      });
+      // --- END: Fetch cart API on page load/refresh if userId exists ---
+
       // Helper to format price as "1.000.000đ"
       function formatPrice(price) {
+         if (isNaN(price)) return '0đ';
          return price.toLocaleString('vi-VN') + 'đ';
       }
 
@@ -353,31 +408,41 @@ class AppHeader extends HTMLElement {
             cartList.innerHTML = `<li class="header__cart-item"><div class="header__cart-msg">No products yet</div></li>`;
          } else {
             cartLocal.forEach((item, idx) => {
-               // Always use quantity from cartQuantities, default 0
-               const quantity = cartQty[item.id] ?? 0;
-               const totalPrice = item.sellingPrice * quantity;
+               // Determine quantity and price logic
+               let quantity = cartQty[item.id] ?? 0;
+               let price = 0;
+               // If userId exists, use unitPrice from API, else use sellingPrice from product
+               const userId = localStorage.getItem('userId');
+               if (userId && userId !== 'null') {
+                  price = (item.unitPrice ?? 0) * quantity;
+               } else {
+                  price = (item.sellingPrice ?? 0) * quantity;
+               }
+               // Debug log for checking values
+               // console.log('item:', item, 'quantity:', quantity, 'price:', price);
+
                cartList.innerHTML += `
-                           <li class="header__cart-item" data-idx="${idx}">
-                           <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" class="header__cart-img" />
-                           <div class="header__cart-item-content">
-                           <div class="header__cart-item-des">
-                           <span class="header__cart-des-product">${item.name}</span>
-                           <div class="header__cart-item-price-quantity">
-                              <div class="header__cart-item-price">${formatPrice(totalPrice)}</div>
-                              <div class="header__cart-item-quantity-wrapper">
-                              <button class="btn-minus">-</button>
-                              <div class="header__cart-item-quantity">${quantity}</div>
-                              <button class="btn-plus">+</button>
-                              </div>
-                           </div>
-                           <div class="header__cart-item-delete" style="cursor:pointer;">Xóa</div>
-                           </div>
-                           <div class="header__cart-item-classify">
-                           <span class="header__cart-item-type">${item.description || ''}</span>
-                           </div>
-                           </div>
-                           </li>
-                           `;
+               <li class="header__cart-item" data-idx="${idx}">
+                  <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" class="header__cart-img" />
+                  <div class="header__cart-item-content">
+                  <div class="header__cart-item-des">
+                     <span class="header__cart-des-product">${item.name}</span>
+                     <div class="header__cart-item-price-quantity">
+                     <div class="header__cart-item-price">${formatPrice(price)}</div>
+                     <div class="header__cart-item-quantity-wrapper">
+                        <button class="btn-minus">-</button>
+                        <div class="header__cart-item-quantity">${quantity}</div>
+                        <button class="btn-plus">+</button>
+                     </div>
+                     </div>
+                     <div class="header__cart-item-delete" style="cursor:pointer;">Xóa</div>
+                  </div>
+                  <div class="header__cart-item-classify">
+                     <span class="header__cart-item-type">${item.description || ''}</span>
+                  </div>
+                  </div>
+               </li>
+               `;
             });
          }
          return cartList;
@@ -401,11 +466,11 @@ class AppHeader extends HTMLElement {
             cartNotify.style.width = '300px';
             // Ensure only empty__cart is shown
             cartNotify.innerHTML = emptyCart ? emptyCart.outerHTML : `
-                           <div class="empty__cart" style="display:block;">
-                           <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
-                           <p class="header__cart-msg">Chưa có sản phẩm</p>
-                           </div>
-                           `;
+               <div class="empty__cart" style="display:block;">
+               <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+               <p class="header__cart-msg">Chưa có sản phẩm</p>
+               </div>
+            `;
          } else {
             // Hide empty cart
             if (emptyCart) emptyCart.style.display = 'none';
@@ -414,8 +479,8 @@ class AppHeader extends HTMLElement {
             const container = document.createElement('div');
             container.className = 'items-in__cart';
             container.innerHTML = `
-                           <h3 class="header__cart-content-product-add">Added products</h3>
-                           `;
+               <h3 class="header__cart-content-product-add">Added products</h3>
+            `;
             const cartList = renderCartItems();
             container.appendChild(cartList);
 
@@ -423,16 +488,16 @@ class AppHeader extends HTMLElement {
             const btnsDiv = document.createElement('div');
             btnsDiv.className = 'header__cart-list';
             btnsDiv.innerHTML = `
-                           <div class="header__cart-item-btn">
-                           <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Check out</a>
-                           </div>
-                           <div class="header__cart-item-btn">
-                           <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
-                           </div>
-                           <div class="header__cart-item-btn">
-                           <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>
-                           </div>
-                           `;
+               <div class="header__cart-item-btn">
+               <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Check out</a>
+               </div>
+               <div class="header__cart-item-btn">
+               <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
+               </div>
+               <div class="header__cart-item-btn">
+               <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>
+               </div>
+            `;
             container.appendChild(btnsDiv);
 
             cartNotify.appendChild(container);
@@ -654,7 +719,6 @@ class AppHeader extends HTMLElement {
          // For dynamically loaded products
          const productList = document.getElementById('product-list');
          function patchAddToCartButtons() {
-            if(!productList) return;
             productList.querySelectorAll('.btn-addcart').forEach(btn => {
                if (!btn.dataset.cartListener) {
                   btn.dataset.cartListener = '1';
@@ -773,8 +837,8 @@ class AppHeader extends HTMLElement {
          }
 
          // Đăng nhập
-         var loginForm = document.getElementById('login-form');
-         if (loginForm) {
+          var loginForm = document.getElementById('login-form');
+          if (loginForm) {
             loginForm.addEventListener("submit", function (e) {
                e.preventDefault();
 
@@ -785,50 +849,53 @@ class AppHeader extends HTMLElement {
                const password = loginForm.querySelectorAll(".form-input")[1].value;
 
                fetch("http://localhost:8080/api/v1/auth/login", {
-                  method: "POST",
-                  headers: {
-                     "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({
-                     username: username,
-                     password: password
-                  })
+                 method: "POST",
+                 headers: {
+                   "Content-Type": "application/json"
+                 },
+                 body: JSON.stringify({
+                   username: username,
+                   password: password
+                 })
                })
-                  .then((response) => {
-                     if (!response.ok) {
-                        throw new Error("Đăng nhập thất bại");
-                     }
-                     return response.json();
-                  })
-                  .then((data) => {
-                     if (data && data.data && data.data.token) {
-                        // Lưu token và thông tin user vào localStorage
-                        localStorage.setItem("token", data.data.token);
-                        localStorage.setItem("userId", data.data.userId);
-                        localStorage.setItem("role", data.data.role);
-                        localStorage.setItem("loginSuccess", "true");
-                        toggleLoginMenu();
-                        // Hiện toast thành công ngoài modal login
-                        showToast("Đăng nhập thành công!", false, 2500);
-                        // Đóng modal đăng nhập nếu thành công
-                        setTimeout(function () {
-                           var modal = document.querySelector('.modal-log');
-                           if (modal) {
-                              modal.style.display = 'none';
-                           }
-                           // Enable scroll on body and html after modal closes
-                           document.body.style.overflow = '';
-                           document.documentElement.style.overflow = '';
-                        }, 50); // Đóng modal sớm, toast vẫn còn hiển thị
-                     } else {
-                        showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
-                     }
-                  })
-                  .catch((error) => {
-                     showLoginToast("Đăng nhập thất bại. Vui lòng thử lại.");
-                  });
+                 .then((response) => {
+                   if (!response.ok) {
+                     throw new Error("Đăng nhập thất bại");
+                   }
+                   return response.json();
+                 })
+                 .then((data) => {
+                   if (data && data.statusCode === 200 && data.data && data.data.accessToken) {
+                     // Lưu token và thông tin user vào localStorage
+                     localStorage.setItem("token", data.data.accessToken);
+                     localStorage.setItem("refreshToken", data.data.refreshToken || "");
+                     localStorage.setItem("userId", data.data.userId);
+                     localStorage.setItem("role", data.data.role);
+                     localStorage.setItem("loginSuccess", "true");
+                     toggleLoginMenu();
+                     // Hiện toast thành công ngoài modal login
+                     showToast("Đăng nhập thành công!", false, 2500);
+                     // Đóng modal đăng nhập nếu thành công
+                     setTimeout(function () {
+                        var modal = document.querySelector('.modal-log');
+                        if (modal) {
+                          modal.style.display = 'none';
+                        }
+                        // Enable scroll on body and html after modal closes
+                        document.body.style.overflow = '';
+                        document.documentElement.style.overflow = '';
+                        // Trigger event to update user menu scroll immediately
+                        window.dispatchEvent(new Event('login-success'));
+                     }, 50); // Đóng modal sớm, toast vẫn còn hiển thị
+                   } else {
+                     showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
+                   }
+                 })
+                 .catch((error) => {
+                   showLoginToast("Đăng nhập thất bại. Vui lòng thử lại.");
+                 });
             });
-         }
+          }
       });
 
       // Toast Message ngoài modal

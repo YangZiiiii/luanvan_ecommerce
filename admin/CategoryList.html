@@ -141,10 +141,8 @@
                      <!-- Category List Table -->
                      <div class="card" bis_skin_checked="1">
                         <div class="card-datatable table-responsive" bis_skin_checked="1">
-                           <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
-                              bis_skin_checked="1">
-                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0"
-                                 bis_skin_checked="1">
+                           <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer" bis_skin_checked="1">
+                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0" bis_skin_checked="1">
                                  <div class="me-5 ms-n2" bis_skin_checked="1">
                                     <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
                                        <label><input type="search" class="form-control form-control-sm"
@@ -232,67 +230,7 @@
                                        </th>
                                     </tr>
                                  </thead>
-                                 <tbody>
-                                    <script>
-                                       fetch('http://localhost:8080/api/v1/category')
-                                          .then(response => response.json())
-                                          .then(data => {
-                                             const tableBody = document.querySelector('#DataTables_Table_0 tbody');
-                                             tableBody.innerHTML = ''; // Clear existing rows
-                                             data.data.forEach(category => {
-                                                const row = `
-                                                   <tr>
-                                                      <td class="control" tabindex="0" style="display: none"></td>
-                                                      <td class="dt-checkboxes-cell">
-                                                         <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                                      </td>
-                                                      <td class="sorting_1">
-                                                         <div class="d-flex align-items-center">
-                                                            <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                                               <div class="avatar">
-                                                                  <img src="./assets/img/CategoryList/default.jpg" alt="${category.name}" class="rounded-2" />
-                                                               </div>
-                                                            </div>
-                                                            <div class="d-flex flex-column justify-content-center">
-                                                               <span class="text-heading fw-medium text-wrap">${category.name}</span>
-                                                               <small class="text-truncate mb-0 d-none d-sm-block">${category.slug}</small>
-                                                            </div>
-                                                         </div>
-                                                      </td>
-                                                      <td>
-                                                         <div class="text-sm-end pe-3">
-                                                            N/A
-                                                         </div>
-                                                      </td>
-                                                      <td>
-                                                         <div class="text-sm-end">
-                                                            N/A
-                                                         </div>
-                                                      </td>
-                                                      <td>
-                                                         <div class="d-flex align-items-sm-center justify-content-sm-center">
-                                                          <button 
-                                                               class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                               data-bs-toggle="offcanvas"
-                                                               data-bs-target="#offcanvasEcommerceCategoryListUpdate">
-                                                               <i class="ri-edit-box-line ri-22px"></i>
-                                                               </button>
-                                                            <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                               <i class="ri-more-2-line ri-22px"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end m-0">
-                                                               <a href="javascript:0;" class="dropdown-item">View</a>
-                                                               <a onclick="openModal()" href="javascript:0;" class="dropdown-item">Delete</a>
-                                                            </div>
-                                                         </div>
-                                                      </td>
-                                                   </tr>
-                                                `;
-                                                tableBody.insertAdjacentHTML('beforeend', row);
-                                             });
-                                          })
-                                          .catch(error => console.error('Error fetching categories:', error));
-                                    </script>
+                                 <tbody id="category-table-body">
                                  </tbody>
                               </table>
                               <div class="row mx-1" bis_skin_checked="1">
@@ -312,18 +250,15 @@
                                                 data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
                                           </li>
                                           <li class="paginate_button page-item active">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" aria-current="page"
+                                             <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page"
                                                 data-dt-idx="0" tabindex="0" class="page-link">1</a>
                                           </li>
                                           <li class="paginate_button page-item">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
+                                             <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
                                                 tabindex="0" class="page-link">2</a>
                                           </li>
                                           <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
+                                             <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
                                                 tabindex="0" class="page-link">Next</a>
                                           </li>
                                        </ul>
@@ -334,6 +269,7 @@
                            </div>
                         </div>
                      </div>
+
                      <!-- Offcanvas to add new customer -->
                      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList"
                         aria-labelledby="offcanvasEcommerceCategoryListLabel" role="dialog">
@@ -347,11 +283,10 @@
                         <!-- Offcanvas Body -->
                         <div class="offcanvas-body border-top">
                            <form class="pt-0" id="eCommerceCategoryListForm" onsubmit="return false" novalidate>
-
                               <!-- Title -->
                               <div class="form-floating form-floating-outline mb-5">
                                  <input type="text" class="form-control" id="ecommerce-category-title"
-                                    placeholder="Enter category title" name="categoryTitle" aria-label="category title">
+                                    placeholder="Enter category title" name="categoryTitle" aria-label="category title" required>
                                  <label for="ecommerce-category-title">Title</label>
                               </div>
 
@@ -367,11 +302,238 @@
                                        <select id="ecommerce-category-parent-category" class="form-select"
                                           data-placeholder="Select parent category" data-allow-clear="true">
                                           <option value="">Select parent Category</option>
-                                          <option value="Household">Household</option>
-                                          <option value="Management">Management</option>
-                                          <option value="Electronics">Electronics</option>
-                                          <option value="Office">Office</option>
-                                          <option value="Automotive">Automotive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-category-parent-category">Parent category</label>
+                                 </div>
+                              </div>
+
+                              <!-- Status -->
+                              <div class="mb-5 ecommerce-select2-dropdown">
+                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                    <div class="position-relative">
+                                       <select id="ecommerce-category-status" class="form-select"
+                                          data-placeholder="Select category status" data-allow-clear="true" required>
+                                          <option value="">Select category status</option>
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-category-status">Status</label>
+                                 </div>
+                              </div>
+
+                              <!-- Submit and reset -->
+                              <div class="mb-4">
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1" id="add-category-btn">Add</button>
+                                 <button type="reset" class="btn btn-outline-danger"
+                                    data-bs-dismiss="offcanvas">Discard</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+
+                     <script>
+                     // Fetch and render parent categories
+                     function loadParentCategories() {
+                        fetch('http://localhost:8080/api/v1/category')
+                           .then(res => res.json())
+                           .then(data => {
+                              const select = document.getElementById('ecommerce-category-parent-category');
+                              select.innerHTML = '<option value="">Select parent Category</option>';
+                              if (data.data && Array.isArray(data.data)) {
+                                 data.data.forEach(cat => {
+                                    select.insertAdjacentHTML('beforeend', `<option value="${cat.id}">${cat.name}</option>`);
+                                 });
+                              }
+                           });
+                     }
+
+                     // Render category table
+                     function renderCategoryTable() {
+                        fetch('http://localhost:8080/api/v1/category')
+                           .then(response => response.json())
+                           .then(data => {
+                              const tableBody = document.getElementById('category-table-body');
+                              tableBody.innerHTML = '';
+                              if (data.data && Array.isArray(data.data)) {
+                                 data.data.forEach(category => {
+                                    const row = `
+                                       <tr>
+                                          <td class="control" tabindex="0" style="display: none"></td>
+                                          <td class="dt-checkboxes-cell">
+                                             <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                          </td>
+                                          <td class="sorting_1">
+                                             <div class="d-flex align-items-center">
+                                                <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
+                                                   <div class="avatar">
+                                                      <img src="./assets/img/CategoryList/default.jpg" alt="${category.name}" class="rounded-2" />
+                                                   </div>
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                   <span class="text-heading fw-medium text-wrap">${category.name}</span>
+                                                   <small class="text-truncate mb-0 d-none d-sm-block">${category.slug || ''}</small>
+                                                </div>
+                                             </div>
+                                          </td>
+                                          <td>
+                                             <div class="text-sm-end pe-3">
+                                                N/A
+                                             </div>
+                                          </td>
+                                          <td>
+                                             <div class="text-sm-end">
+                                                N/A
+                                             </div>
+                                          </td>
+                                          <td>
+                                             <div class="d-flex align-items-sm-center justify-content-sm-center">
+                                              <button 
+                                                   class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1 btn-edit-category"
+                                                   data-category-id="${category.id}"
+                                                   data-bs-toggle="offcanvas"
+                                                   data-bs-target="#offcanvasEcommerceCategoryListUpdate">
+                                                   <i class="ri-edit-box-line ri-22px"></i>
+                                                   </button>
+                                                <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                   <i class="ri-more-2-line ri-22px"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end m-0">
+                                                   <a href="javascript:0;" class="dropdown-item">View</a>
+                                                   <a onclick="openModal()" href="javascript:0;" class="dropdown-item">Delete</a>
+                                                </div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    `;
+                                    tableBody.insertAdjacentHTML('beforeend', row);
+                                 });
+                              }
+                           })
+                           .catch(error => console.error('Error fetching categories:', error));
+                     }
+
+                     // Handle add category
+                     document.addEventListener('DOMContentLoaded', function () {
+                        loadParentCategories();
+                        renderCategoryTable();
+
+                        document.getElementById('add-category-btn').onclick = function (e) {
+                           e.preventDefault();
+                           const name = document.getElementById('ecommerce-category-title').value.trim();
+                           const parentId = document.getElementById('ecommerce-category-parent-category').value;
+                           const status = document.getElementById('ecommerce-category-status').value;
+                           // For now, icon and banner are empty strings, childId is always []
+                           if (!name || !status) {
+                              alert('Please fill all required fields');
+                              return;
+                           }
+                           fetch('http://localhost:8080/api/v1/category', {
+                              method: 'POST',
+                              headers: {
+                                 'Content-Type': 'application/json'
+                              },
+                              body: JSON.stringify({
+                                 name: name,
+                                 icon: "",
+                                 banner: "",
+                                 parentId: parentId || "",
+                                 childId: [],
+                                 status: status
+                              })
+                           })
+                           .then(res => res.json())
+                           .then(() => {
+                              renderCategoryTable();
+                              document.getElementById('eCommerceCategoryListForm').reset();
+                              // Close offcanvas
+                              const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('offcanvasEcommerceCategoryList'));
+                              offcanvas.hide();
+                           })
+                           .catch(err => {
+                              alert('Error adding category');
+                              console.error(err);
+                           });
+                        };
+
+                        // --- UPDATE CATEGORY LOGIC (fetch by id and fill modal) ---
+                        // Listen for click on edit buttons
+                        document.body.addEventListener('click', function (e) {
+                           if (e.target.closest('.btn-edit-category')) {
+                              const btn = e.target.closest('.btn-edit-category');
+                              const categoryId = btn.getAttribute('data-category-id');
+                              if (!categoryId) return;
+
+                              // Fetch category by id
+                              fetch(`http://localhost:8080/api/v1/category/${categoryId}`)
+                                 .then(res => res.json())
+                                 .then(result => {
+                                    if (result.data) {
+                                       // Fill name
+                                       document.querySelector('#offcanvasEcommerceCategoryListUpdate #ecommerce-category-title').value = result.data.name || '';
+                                       // Fetch parent categories for update modal
+                                       fetch('http://localhost:8080/api/v1/category')
+                                          .then(res => res.json())
+                                          .then(data => {
+                                             const select = document.querySelector('#offcanvasEcommerceCategoryListUpdate #ecommerce-category-parent-category');
+                                             select.innerHTML = '<option value="">Select parent Category</option>';
+                                             if (data.data && Array.isArray(data.data)) {
+                                                data.data.forEach(cat => {
+                                                   select.insertAdjacentHTML('beforeend', `<option value="${cat.id}">${cat.name}</option>`);
+                                                });
+                                             }
+                                             // Optionally, set selected parent if your API returns it
+                                             // select.value = result.data.parentId || '';
+                                          });
+                                       // Set status (only ACTIVE/INACTIVE)
+                                       const statusSelect = document.querySelector('#offcanvasEcommerceCategoryListUpdate #ecommerce-category-status');
+                                       statusSelect.innerHTML = `
+                                          <option value="">Select category status</option>
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
+                                       `;
+                                       // Optionally, set selected status if your API returns it
+                                       // statusSelect.value = result.data.status || '';
+                                    }
+                                 });
+                           }
+                        });
+                     });
+                     </script>
+
+                     <!-- Offcanvas to update new customer -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryListUpdate"
+                        aria-labelledby="offcanvasEcommerceCategoryListLabel" role="dialog">
+                        <!-- Offcanvas Header -->
+                        <div class="offcanvas-header py-6">
+                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Update Category</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+
+                        <!-- Offcanvas Body -->
+                        <div class="offcanvas-body border-top">
+                           <form class="pt-0" id="eCommerceCategoryListFormUpdate" onsubmit="return false" novalidate>
+                              <!-- Title -->
+                              <div class="form-floating form-floating-outline mb-5">
+                                 <input type="text" class="form-control" id="ecommerce-category-title"
+                                    placeholder="Category name" name="categoryTitle" aria-label="category title">
+                                 <label for="ecommerce-category-title">Name</label>
+                              </div>
+
+                              <!-- Image -->
+                              <div class="mb-5">
+                                 <input class="form-control" type="file" id="ecommerce-category-image">
+                              </div>
+
+                              <!-- Parent category -->
+                              <div class="mb-5 ecommerce-select2-dropdown">
+                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                    <div class="position-relative">
+                                       <select id="ecommerce-category-parent-category" class="form-select"
+                                          data-placeholder="Select parent category" data-allow-clear="true">
+                                          <option value="">Select parent Category</option>
                                        </select>
                                     </div>
                                     <label for="ecommerce-category-parent-category">Parent category</label>
@@ -385,9 +547,8 @@
                                        <select id="ecommerce-category-status" class="form-select"
                                           data-placeholder="Select category status" data-allow-clear="true">
                                           <option value="">Select category status</option>
-                                          <option value="Scheduled">Scheduled</option>
-                                          <option value="Publish">Publish</option>
-                                          <option value="Inactive">Inactive</option>
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
                                        </select>
                                     </div>
                                     <label for="ecommerce-category-status">Status</label>
@@ -396,82 +557,9 @@
 
                               <!-- Submit and reset -->
                               <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Add</button>
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>
                                  <button type="reset" class="btn btn-outline-danger"
                                     data-bs-dismiss="offcanvas">Discard</button>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
-
-
-
-                     <!-- Offcanvas to update new customer -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryListUpdate"
-                        aria-labelledby="offcanvasUpdateCategoryLabel" role="dialog">
-                        <!-- Offcanvas Header -->
-                        <div class="offcanvas-header py-6">
-                           <h5 class="offcanvas-title" id="offcanvasUpdateCategoryLabel">Update Category</h5>
-                           <button type="button" class="btn-close text-reset btn-close-update-category"
-                              aria-label="Close"></button>
-                        </div>
-
-                        <!-- Offcanvas Body -->
-                        <div class="offcanvas-body border-top">
-                           <form class="pt-0 update-category-form" onsubmit="return false" novalidate>
-
-                              <!-- Title -->
-                              <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control update-category-title"
-                                    placeholder="Enter category title" name="categoryTitle" aria-label="category title">
-                                 <label>Title</label>
-                              </div>
-
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control update-category-image" type="file">
-                              </div>
-
-                              <!-- Parent Category -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select class="form-select update-category-parent"
-                                          data-placeholder="Select parent category" data-allow-clear="true">
-                                          <option value="">Select parent Category</option>
-                                          <option value="Household">Household</option>
-                                          <option value="Management">Management</option>
-                                          <option value="Electronics">Electronics</option>
-                                          <option value="Office">Office</option>
-                                          <option value="Automotive">Automotive</option>
-                                       </select>
-                                    </div>
-                                    <label>Parent category</label>
-                                 </div>
-                              </div>
-
-                              <!-- Status -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select class="form-select update-category-status"
-                                          data-placeholder="Select category status" data-allow-clear="true">
-                                          <option value="">Select category status</option>
-                                          <option value="Scheduled">Scheduled</option>
-                                          <option value="Publish">Publish</option>
-                                          <option value="Inactive">Inactive</option>
-                                       </select>
-                                    </div>
-                                    <label>Status</label>
-                                 </div>
-                              </div>
-
-                              <!-- Submit + Reset -->
-                              <div class="mb-4">
-                                 <button type="submit"
-                                    class="btn btn-primary me-sm-3 me-1 data-submit waves-effect waves-light">Update</button>
-                                 <button type="reset"
-                                    class="btn btn-outline-danger waves-effect btn-close-update-category">Discard</button>
                               </div>
                            </form>
                         </div>
@@ -553,7 +641,7 @@
    <!-- endbuild -->
 
    <!-- Vendors JS -->
-   <script src="./assets/js/moment.js"></script>
+   <!-- <script src="./assets/js/moment.js"></script>
    <script type="text/javascript" id="" charset="">
       console.log("TS:GTM Worked");
    </script>
@@ -563,13 +651,13 @@
    <script src="./assets/js/bootstrap5.js"></script>
    <script src="./assets/js/auto-focus.js"></script>
    <script src="./assets/js/katex.js"></script>
-   <script src="./assets/js/quill.js"></script>
+   <script src="./assets/js/quill.js"></script> -->
 
    <!-- Main JS -->
    <script src="./assets/js/main.js"></script>
 
    <!-- Page JS -->
-   <script src="./assets/js/CategoryList/app-ecommerce-category-list.js"></script>
+   <!-- <script src="./assets/js/CategoryList/app-ecommerce-category-list.js"></script> -->
 
 
    <!-- Modal Delete -->

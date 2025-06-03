@@ -232,280 +232,405 @@
                                        </th>
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                  <tbody>
                                     <script>
+                                       // Lưu collections vào biến toàn cục để dùng lại khi update
+                                       let collectionsData = [];
+
                                        fetch('http://localhost:8080/api/v1/collection')
-                                        .then(response => response.json())
-                                        .then(data => {
-                                          const tableBody = document.querySelector('#DataTables_Table_0 tbody');
-                                          tableBody.innerHTML = ''; // Clear existing rows
-                                          data.content.forEach(collection => {
-                                           const row = `
-                                             <tr>
-                                               <td class="control" tabindex="0" style="display: none"></td>
-                                               <td class="dt-checkboxes-cell">
-                                                <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                               </td>
-                                               <td class="sorting_1">
-                                                <div class="d-flex align-items-center">
-                                                  <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                                    <div class="avatar">
-                                                      <img src="./assets/img/CategoryList/default.jpg" alt="${collection.collectionName}" class="rounded-2" />
-                                                    </div>
-                                                  </div>
-                                                  <div class="d-flex flex-column justify-content-center">
-                                                    <span class="text-heading fw-medium text-wrap">${collection.collectionName}</span>
-                                                  </div>
+                                       .then(response => response.json())
+                                       .then(data => {
+                                         collectionsData = data.content || [];
+                                         const tableBody = document.querySelector('#DataTables_Table_0 tbody');
+                                         tableBody.innerHTML = ''; // Clear existing rows
+                                         collectionsData.forEach(collection => {
+                                          const row = `
+                                           <tr>
+                                             <td class="control" tabindex="0" style="display: none"></td>
+                                             <td class="dt-checkboxes-cell">
+                                             <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                             </td>
+                                             <td class="sorting_1">
+                                             <div class="d-flex align-items-center">
+                                               <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
+                                                <div class="avatar">
+                                                  <img src="./assets/img/CategoryList/default.jpg" alt="${collection.collectionName}" class="rounded-2" />
                                                 </div>
-                                               </td>
-                                               <td >
-                                                <div class="text-sm-end pe-3">
-                                                  ${collection.collectionDescription || 'N/A'}
-                                                </div>
-                                               </td>
-                                               <td style="text-align: right;">
-                                                <div  class="badge rounded-pill bg-label-${collection.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
-                                                  ${collection.status}
-                                                </div>
-                                               </td>
-                                               <td>
-                                                <div class="d-flex align-items-sm-center justify-content-sm-center">
-                                                  <button 
-                                                    class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1"
-                                                    data-bs-toggle="offcanvas"
-                                                    data-bs-target="#offcanvasEcommerceCollectionListUpdate">
-                                                    <i class="ri-edit-box-line ri-22px"></i>
-                                                  </button>
-                                                  <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="ri-more-2-line ri-22px"></i>
-                                                  </button>
-                                                  <div class="dropdown-menu dropdown-menu-end m-0">
-                                                    <a href="javascript:0;" class="dropdown-item">View</a>
-                                                   <a onclick="openModal('${collection.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
-                                                  </div>
-                                                </div>
-                                               </td>
-                                             </tr>
-                                           `;
-                                           tableBody.insertAdjacentHTML('beforeend', row);
+                                               </div>
+                                               <div class="d-flex flex-column justify-content-center">
+                                                <span class="text-heading fw-medium text-wrap">${collection.collectionName}</span>
+                                               </div>
+                                             </div>
+                                             </td>
+                                             <td >
+                                             <div class="text-sm-end pe-3">
+                                               ${collection.collectionDescription || 'N/A'}
+                                             </div>
+                                             </td>
+                                             <td style="text-align: right;">
+                                             <div  class="badge rounded-pill bg-label-${collection.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
+                                               ${collection.status}
+                                             </div>
+                                             </td>
+                                             <td>
+                                             <div class="d-flex align-items-sm-center justify-content-sm-center">
+                                               <button 
+                                                class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1 btn-edit-collection"
+                                                data-bs-toggle="offcanvas"
+                                                data-bs-target="#offcanvasEcommerceCollectionListUpdate"
+                                                data-collection-id="${collection.id}">
+                                                <i class="ri-edit-box-line ri-22px"></i>
+                                               </button>
+                                               <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="ri-more-2-line ri-22px"></i>
+                                               </button>
+                                               <div class="dropdown-menu dropdown-menu-end m-0">
+                                                <a href="javascript:0;" class="dropdown-item">View</a>
+                                                <a onclick="openModal('${collection.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
+                                               </div>
+                                             </div>
+                                             </td>
+                                           </tr>
+                                          `;
+                                          tableBody.insertAdjacentHTML('beforeend', row);
+                                         });
+
+                                         // Gán sự kiện cho nút edit sau khi render xong
+                                         document.querySelectorAll('.btn-edit-collection').forEach(btn => {
+                                          btn.addEventListener('click', async function () {
+                                            const collectionId = this.getAttribute('data-collection-id');
+                                            if (!collectionId) return;
+                                            try {
+                                             const res = await fetch(`http://localhost:8080/api/v1/collection/${collectionId}`);
+                                             const result = await res.json();
+                                             if (result && result.data) {
+                                               // Gán dữ liệu vào modal update
+                                               document.getElementById('ecommerce-collection-title').value = result.data.collectionName || '';
+                                               // Gán description vào editor
+                                               const descElem = document.querySelector('#offcanvasEcommerceCollectionListUpdate #ecommerce-collection-description .ql-editor');
+                                               if (descElem) {
+                                                descElem.innerText = result.data.collectionDescription || '';
+                                               }
+                                               // Gán status (chỉ ACTIVE/INACTIVE)
+                                               const statusSelect = document.getElementById('ecommerce-collection-status');
+                                               if (statusSelect) {
+                                                statusSelect.value = result.data.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE';
+                                                statusSelect.setAttribute('data-collection-id', collectionId);
+                                               }
+                                               // Lưu id vào form để dùng khi update
+                                               document.getElementById('eCommerceCollectionListForm').setAttribute('data-collection-id', collectionId);
+                                             }
+                                            } catch (err) {
+                                             alert('Không lấy được dữ liệu collection!');
+                                            }
                                           });
-                                        })
-                                        .catch(error => console.error('Error fetching collections:', error));
+                                         });
+
+                                         // Gán sự kiện đổi status cho select trong modal update
+                                         const statusSelect = document.getElementById('ecommerce-collection-status');
+                                         if (statusSelect) {
+                                          statusSelect.onchange = async function () {
+                                            const collectionId = statusSelect.getAttribute('data-collection-id');
+                                            const newStatus = statusSelect.value;
+                                            if (!collectionId || !newStatus) return;
+                                            try {
+                                             const res = await fetch(`http://localhost:8080/api/v1/collection/${collectionId}/status`, {
+                                               method: 'PUT',
+                                               headers: { 'Content-Type': 'application/json' },
+                                               body: JSON.stringify({ status: newStatus })
+                                             });
+                                             if (res.ok) {
+                                               // Optionally show a toast or reload
+                                               // window.location.reload();
+                                             } else {
+                                               alert('Update status failed!');
+                                             }
+                                            } catch (err) {
+                                             alert('Error updating status!');
+                                            }
+                                          };
+                                         }
+                                       })
+                                       .catch(error => console.error('Error fetching collections:', error));
                                     </script>
-                                 </tbody>
-                              </table>
-                              <div class="row mx-1" bis_skin_checked="1">
-                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
+                                  </tbody>
+                                </table>
+                                <div class="row mx-1" bis_skin_checked="1">
+                                  <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
                                        aria-live="polite" bis_skin_checked="1">
                                        Showing 1 to 7 of 14 entries
                                     </div>
-                                 </div>
-                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
+                                  </div>
+                                  <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                     <div class="dataTables_paginate paging_simple_numbers"
                                        id="DataTables_Table_0_paginate" bis_skin_checked="1">
                                        <ul class="pagination">
-                                          <li class="paginate_button page-item previous disabled"
-                                             id="DataTables_Table_0_previous">
-                                             <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                                data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
-                                          </li>
-                                          <li class="paginate_button page-item active">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" aria-current="page"
-                                                data-dt-idx="0" tabindex="0" class="page-link">1</a>
-                                          </li>
-                                          <li class="paginate_button page-item">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
-                                                tabindex="0" class="page-link">2</a>
-                                          </li>
-                                          <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                             <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html#"
-                                                aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
-                                                tabindex="0" class="page-link">Next</a>
-                                          </li>
+                                         <li class="paginate_button page-item previous disabled"
+                                           id="DataTables_Table_0_previous">
+                                           <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
+                                             data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
+                                         </li>
+                                         <li class="paginate_button page-item active">
+                                           <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page"
+                                             data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                                         </li>
+                                         <li class="paginate_button page-item">
+                                           <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
+                                             tabindex="0" class="page-link">2</a>
+                                         </li>
+                                         <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                                           <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
+                                             tabindex="0" class="page-link">Next</a>
+                                         </li>
                                        </ul>
                                     </div>
-                                 </div>
+                                  </div>
+                                </div>
+                                <div bis_skin_checked="1" style="width: 1%"></div>
                               </div>
-                              <div bis_skin_checked="1" style="width: 1%"></div>
                            </div>
-                        </div>
-                     </div>
-                     <!-- Offcanvas to add new collection -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCollectionList"
-                        aria-labelledby="offcanvasEcommerceCollectionListLabel" role="dialog">
-                        <!-- Offcanvas Header -->
-                        <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceCollectionListLabel" class="offcanvas-title">Add Collection</h5>
-                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                              aria-label="Close"></button>
-                        </div>
+                         </div>
+                         <!-- Offcanvas to add new collection -->
+                         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCollectionList"
+                           aria-labelledby="offcanvasEcommerceCollectionListLabel" role="dialog">
+                           <!-- Offcanvas Header -->
+                           <div class="offcanvas-header py-6">
+                              <h5 id="offcanvasEcommerceCollectionListLabel" class="offcanvas-title">Add Collection</h5>
+                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                           </div>
 
-                        <!-- Offcanvas Body -->
-                        <div class="offcanvas-body border-top">
-                           <form class="pt-0" id="eCommerceCollectionListForm" onsubmit="return false" novalidate>
+                           <!-- Offcanvas Body -->
+                           <div class="offcanvas-body border-top">
+                              <form class="pt-0" id="eCommerceCollectionListFormAdd" onsubmit="return false" novalidate>
 
-                              <!-- Title -->
-                              <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control" id="ecommerce-collection-title"
+                                <!-- Title -->
+                                <div class="form-floating form-floating-outline mb-5">
+                                  <input type="text" class="form-control" id="ecommerce-collection-title-add"
                                     placeholder="Enter collection title" name="collectionTitle"
                                     aria-label="collection title">
-                                 <label for="ecommerce-collection-title">Title</label>
-                              </div>
+                                  <label for="ecommerce-collection-title-add">Title</label>
+                                </div>
 
-                       
+                                <!-- Image -->
+                                <div class="mb-5">
+                                  <input class="form-control" type="file" id="ecommerce-collection-image-add">
+                                </div>
 
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-collection-image">
-                              </div>
-
-                     
-
-                              <!-- Description (giữ nguyên trình editor Quill) -->
-                              <div class="mb-6">
-                                 <div class="form-control p-0 pt-1">
+                                <!-- Description (giữ nguyên trình editor Quill) -->
+                                <div class="mb-6">
+                                  <div class="form-control p-0 pt-1">
                                     <div class="comment-editor border-0 ql-container ql-snow"
-                                       id="ecommerce-collection-description">
+                                       id="ecommerce-collection-description-add">
                                        <div class="ql-editor ql-blank" contenteditable="true"
-                                          data-placeholder="Write a description...">
-                                          <p><br></p>
+                                         data-placeholder="">
+                                         <p><br></p>
                                        </div>
                                        <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
                                        <div class="ql-tooltip ql-hidden"></div>
                                     </div>
                                     <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
                                        <div class="d-flex justify-content-end">
-                                          <span class="ql-formats">
-                                             <button class="ql-bold" type="button"></button>
-                                             <button class="ql-italic" type="button"></button>
-                                             <button class="ql-underline" type="button"></button>
-                                             <button class="ql-list" value="ordered" type="button"></button>
-                                             <button class="ql-list" value="bullet" type="button"></button>
-                                             <button class="ql-link" type="button"></button>
-                                             <button class="ql-image" type="button"></button>
-                                          </span>
+                                         <span class="ql-formats">
+                                           <button class="ql-bold" type="button"></button>
+                                           <button class="ql-italic" type="button"></button>
+                                           <button class="ql-underline" type="button"></button>
+                                           <button class="ql-list" value="ordered" type="button"></button>
+                                           <button class="ql-list" value="bullet" type="button"></button>
+                                           <button class="ql-link" type="button"></button>
+                                           <button class="ql-image" type="button"></button>
+                                         </span>
                                        </div>
                                     </div>
-                                 </div>
-                              </div>
+                                  </div>
+                                </div>
 
-                              <!-- Status -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                <!-- Status -->
+                                <div class="mb-5 ecommerce-select2-dropdown">
+                                  <div class="form-floating form-floating-outline form-floating-select2">
                                     <div class="position-relative">
-                                       <select id="ecommerce-collection-status" class="form-select"
-                                          data-placeholder="Select collection status" data-allow-clear="true">
-                                          <option value="">Select collection status</option>
-                                          <option value="Scheduled">Scheduled</option>
-                                          <option value="Publish">Publish</option>
-                                          <option value="Inactive">Inactive</option>
+                                       <select id="ecommerce-collection-status-add" class="form-select"
+                                         data-placeholder="Select collection status" data-allow-clear="true">
+                                         <option value="">Select collection status</option>
+                                         <option value="ACTIVE">Active</option>
+                                         <option value="INACTIVE">Inactive</option>
                                        </select>
                                     </div>
-                                    <label for="ecommerce-collection-status">Status</label>
-                                 </div>
-                              </div>
+                                    <label for="ecommerce-collection-status-add">Status</label>
+                                  </div>
+                                </div>
 
-                              <!-- Submit & Reset -->
-                              <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Add</button>
-                                 <button type="reset" class="btn btn-outline-danger"
+                                <!-- Submit & Reset -->
+                                <div class="mb-4">
+                                  <button type="submit" class="btn btn-primary me-sm-3 me-1" id="btnAddCollection">Add</button>
+                                  <button type="reset" class="btn btn-outline-danger"
                                     data-bs-dismiss="offcanvas">Discard</button>
-                              </div>
+                                </div>
 
-                              <input type="hidden">
-                           </form>
-                        </div>
-                     </div>
+                                <input type="hidden">
+                              </form>
+                           </div>
+                         </div>
+                         <script>
+                           document.getElementById('btnAddCollection').onclick = async function (e) {
+                             e.preventDefault();
+                             const name = document.getElementById('ecommerce-collection-title-add').value.trim();
+                             // Lấy description từ editor
+                             const descElem = document.querySelector('#ecommerce-collection-description-add .ql-editor');
+                             const description = descElem ? descElem.innerText.trim() : '';
+                             // Lấy status (chỉ ACTIVE/INACTIVE, mặc định INACTIVE nếu không chọn)
+                             const status = document.getElementById('ecommerce-collection-status-add').value || 'INACTIVE';
 
-                     <!-- Offcanvas to update new collection -->
-                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCollectionListUpdate"
-                        aria-labelledby="offcanvasEcommerceCollectionListLabel" role="dialog">
-                        <!-- Offcanvas Header -->
-                        <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceCollectionListLabel" class="offcanvas-title">Update Collection</h5>
-                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                              aria-label="Close"></button>
-                        </div>
+                             if (!name) {
+                              alert('Please enter collection name!');
+                              return;
+                             }
 
-                        <!-- Offcanvas Body -->
-                        <div class="offcanvas-body border-top">
-                           <form class="pt-0" id="eCommerceCollectionListForm" onsubmit="return false" novalidate>
+                             try {
+                              const response = await fetch('http://localhost:8080/api/v1/collection', {
+                                method: 'POST',
+                                headers: {
+                                 'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                 collectionName: name,
+                                 collectionDescription: description,
+                                 status: status
+                                })
+                              });
+                              if (response.ok) {
+                                window.location.reload();
+                              } else {
+                                alert('Add collection failed!');
+                              }
+                             } catch (err) {
+                              alert('Error: ' + err);
+                             }
+                           };
+                         </script>
 
-                              <!-- Title -->
-                              <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control" id="ecommerce-collection-title"
+                         <!-- Offcanvas to update new collection -->
+                         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCollectionListUpdate"
+                           aria-labelledby="offcanvasEcommerceCollectionListLabel" role="dialog">
+                           <!-- Offcanvas Header -->
+                           <div class="offcanvas-header py-6">
+                              <h5 id="offcanvasEcommerceCollectionListLabel" class="offcanvas-title">Update Collection</h5>
+                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                           </div>
+
+                           <!-- Offcanvas Body -->
+                           <div class="offcanvas-body border-top">
+                              <form class="pt-0" id="eCommerceCollectionListForm" onsubmit="return false" novalidate>
+
+                                <!-- Title -->
+                                <div class="form-floating form-floating-outline mb-5">
+                                  <input type="text" class="form-control" id="ecommerce-collection-title"
                                     placeholder="Enter collection title" name="collectionTitle"
                                     aria-label="collection title">
-                                 <label for="ecommerce-collection-title">Title</label>
-                              </div>
+                                  <label for="ecommerce-collection-title">Title</label>
+                                </div>
 
-                            
+                                <!-- Image -->
+                                <div class="mb-5">
+                                  <input class="form-control" type="file" id="ecommerce-collection-image">
+                                </div>
 
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-collection-image">
-                              </div>
-
-                              
-
-                              <!-- Description (giữ nguyên trình editor Quill) -->
-                              <div class="mb-6">
-                                 <div class="form-control p-0 pt-1">
+                                <!-- Description (giữ nguyên trình editor Quill) -->
+                                <div class="mb-6">
+                                  <div class="form-control p-0 pt-1">
                                     <div class="comment-editor border-0 ql-container ql-snow"
                                        id="ecommerce-collection-description">
                                        <div class="ql-editor ql-blank" contenteditable="true"
-                                          data-placeholder="Write a description...">
-                                          <p><br></p>
+                                         data-placeholder="Write a description...">
+                                         <p><br></p>
                                        </div>
                                        <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
                                        <div class="ql-tooltip ql-hidden"></div>
                                     </div>
                                     <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
                                        <div class="d-flex justify-content-end">
-                                          <span class="ql-formats">
-                                             <button class="ql-bold" type="button"></button>
-                                             <button class="ql-italic" type="button"></button>
-                                             <button class="ql-underline" type="button"></button>
-                                             <button class="ql-list" value="ordered" type="button"></button>
-                                             <button class="ql-list" value="bullet" type="button"></button>
-                                             <button class="ql-link" type="button"></button>
-                                             <button class="ql-image" type="button"></button>
-                                          </span>
+                                         <span class="ql-formats">
+                                           <button class="ql-bold" type="button"></button>
+                                           <button class="ql-italic" type="button"></button>
+                                           <button class="ql-underline" type="button"></button>
+                                           <button class="ql-list" value="ordered" type="button"></button>
+                                           <button class="ql-list" value="bullet" type="button"></button>
+                                           <button class="ql-link" type="button"></button>
+                                           <button class="ql-image" type="button"></button>
+                                         </span>
                                        </div>
                                     </div>
-                                 </div>
-                              </div>
+                                  </div>
+                                </div>
 
-                              <!-- Status -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                <!-- Status -->
+                                <div class="mb-5 ecommerce-select2-dropdown">
+                                  <div class="form-floating form-floating-outline form-floating-select2">
                                     <div class="position-relative">
                                        <select id="ecommerce-collection-status" class="form-select"
-                                          data-placeholder="Select collection status" data-allow-clear="true">
-                                          <option value="">Select collection status</option>
-                                          <option value="Scheduled">Scheduled</option>
-                                          <option value="Publish">Publish</option>
-                                          <option value="Inactive">Inactive</option>
+                                         data-placeholder="Select collection status" data-allow-clear="true">
+                                         <option value="">Select collection status</option>
+                                         <option value="ACTIVE">Active</option>
+                                         <option value="INACTIVE">Inactive</option>
                                        </select>
                                     </div>
                                     <label for="ecommerce-collection-status">Status</label>
-                                 </div>
-                              </div>
+                                  </div>
+                                </div>
 
-                              <!-- Submit & Reset -->
-                              <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>
-                                 <button type="reset" class="btn btn-outline-danger"
+                                <!-- Submit & Reset -->
+                                <div class="mb-4">
+                                  <button type="submit" class="btn btn-primary me-sm-3 me-1" id="btnUpdateCollection">Update</button>
+                                  <button type="reset" class="btn btn-outline-danger"
                                     data-bs-dismiss="offcanvas">Discard</button>
-                              </div>
+                                </div>
 
-                              <input type="hidden">
-                           </form>
-                        </div>
-                     </div>
+                                <input type="hidden">
+                              </form>
+                           </div>
+                         </div>
+                         <script>
+                           // Xử lý update collection khi submit form update
+                           document.getElementById('btnUpdateCollection').onclick = async function (e) {
+                             e.preventDefault();
+                             const form = document.getElementById('eCommerceCollectionListForm');
+                             const collectionId = form.getAttribute('data-collection-id');
+                             const name = document.getElementById('ecommerce-collection-title').value.trim();
+                             const descElem = document.querySelector('#offcanvasEcommerceCollectionListUpdate #ecommerce-collection-description .ql-editor');
+                             const description = descElem ? descElem.innerText.trim() : '';
+                             const status = document.getElementById('ecommerce-collection-status').value || 'INACTIVE';
+
+                             if (!collectionId) {
+                              alert('Không tìm thấy collection để update!');
+                              return;
+                             }
+                             if (!name) {
+                              alert('Vui lòng nhập tên collection!');
+                              return;
+                             }
+
+                             try {
+                              const response = await fetch(`http://localhost:8080/api/v1/collection/${collectionId}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                 collectionName: name,
+                                 collectionDescription: description,
+                                 status: status
+                                })
+                              });
+                              if (response.ok) {
+                                window.location.reload();
+                              } else {
+                                alert('Update collection failed!');
+                              }
+                             } catch (err) {
+                              alert('Error: ' + err);
+                             }
+                           };
+                         </script>
 
 
 

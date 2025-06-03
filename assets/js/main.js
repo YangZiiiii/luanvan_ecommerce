@@ -262,16 +262,16 @@
 
    /*==================================================================
     [ Show modal1 ]*/
-  $(".js-show-modal1").on("click", function (e) {
-   e.preventDefault();
-   $(".js-modal1").addClass("show-modal1");
-   $("body").css("overflow", "hidden"); 
-});
+   $(".js-show-modal1").on("click", function (e) {
+      e.preventDefault();
+      $(".js-modal1").addClass("show-modal1");
+      $("body").css("overflow", "hidden");
+   });
 
-$(".js-hide-modal1").on("click", function () {
-   $(".js-modal1").removeClass("show-modal1");
-   $("body").css("overflow", "auto"); 
-});
+   $(".js-hide-modal1").on("click", function () {
+      $(".js-modal1").removeClass("show-modal1");
+      $("body").css("overflow", "auto");
+   });
 
 })(jQuery);
 
@@ -373,4 +373,42 @@ function switchTab(targetTab) {
    const activeContent = document.querySelector(`.tab-content[data-content="${targetTab}"]`);
    if (activeContent) activeContent.classList.add("active");
 }
+
+// modal order success
+document.addEventListener('DOMContentLoaded', function () {
+   const btn = document.querySelector('.order-button.step-footer-continue-btn');
+   const modal = document.getElementById('modal-order-success');
+   const closeEls = modal.querySelectorAll('.order-close-modal');
+   const okeBtn = modal.querySelector('.order-modal-oke');
+   const tick = modal.querySelector('.order-success-tick');
+   const modalContent = modal.querySelector('.modal-order-content');
+
+   function showModal() {
+      modal.classList.add('show');
+      tick.style.animation = 'none';
+      void tick.offsetWidth;
+      tick.style.animation = '';
+   }
+
+   function hideModal() {
+      modal.classList.remove('show');
+      setTimeout(() => {
+         modal.style.display = 'none';
+      }, 300);
+   }
+
+   btn.addEventListener('click', function () {
+      modal.style.display = 'flex';
+      html.style.overflow = "hidden";
+      setTimeout(showModal, 10);
+   });
+   closeEls.forEach(el => {
+      el.addEventListener('click', hideModal);
+   });
+   modalContent.addEventListener('click', function (e) {
+      e.stopPropagation();
+   });
+   okeBtn.addEventListener('click', hideModal);
+});
+
 
