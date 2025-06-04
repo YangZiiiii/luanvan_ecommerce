@@ -399,8 +399,10 @@
 
       // --- BEGIN: Fetch cart API on page load/refresh if userId exists ---
       document.addEventListener('DOMContentLoaded', function () {
+         // Only fetch cart if user is actually logged in (token exists and valid)
+         const token = localStorage.getItem('token');
          const userId = localStorage.getItem('userId');
-         if (userId && userId !== 'null') {
+         if (token && token !== 'null' && userId && userId !== 'null') {
             fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
                .then(res => res.json())
                .then(cartData => {
@@ -497,8 +499,6 @@
                } else {
                   price = (item.sellingPrice ?? 0) * quantity;
                }
-               // Debug log for checking values
-               // console.log('item:', item, 'quantity:', quantity, 'price:', price);
 
                cartList.innerHTML += `
                <li class="header__cart-item" data-idx="${idx}">
@@ -798,6 +798,7 @@
          // For dynamically loaded products
          const productList = document.getElementById('product-list');
          function patchAddToCartButtons() {
+            if (!productList) return;
             productList.querySelectorAll('.btn-addcart').forEach(btn => {
                if (!btn.dataset.cartListener) {
                   btn.dataset.cartListener = '1';

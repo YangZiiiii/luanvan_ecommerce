@@ -157,7 +157,7 @@
 								data-order-summary-section="line-items" bis_skin_checked="1">
 								<style>
 									.product-table-wrapper {
-										max-height: 195px;
+										max-height: 255px;
 										overflow-y: auto;
 										display: block;
 									}
@@ -172,6 +172,7 @@
 										top: 0;
 										background: white;
 										z-index: 2;
+										min-width: 135px;
 									}
 								</style>
 
@@ -181,7 +182,7 @@
 											<tr>
 												<th scope="col"><span>Hình ảnh</span></th>
 												<th scope="col"><span>Mô tả</span></th>
-												<th scope="col"><span style="min-width: 200px;">Số lượng</span></th>
+												<th scope="col"><span style="min-width: 200px;">SL</span></th>
 												<th scope="col"><span>Giá</span></th>
 											</tr>
 										</thead>
@@ -276,20 +277,7 @@
 										</div>
 									</form>
 								</div>
-								<div class="order-summary-section order-summary-section-redeem redeem-login-section"
-									data-order-summary-section="discount" bis_skin_checked="1">
-									<div class="redeem-login" bis_skin_checked="1">
-										<div class="redeem-login-title" bis_skin_checked="1">
-											<h2>Chương trình khách hàng thân thiết</h2>
-											<i class="btn-redeem-spinner icon-redeem-button-spinner"></i>
-										</div>
-										<div class="redeem-login-btn" bis_skin_checked="1">
-											<a
-												href="https://tinhocngoisao.com/account/login?urlredirect=%2Fcheckouts%2F3323e49bc9bb4143a96926fbe08f820f%3Fstep%3D1">Đăng
-												nhập</a>
-										</div>
-									</div>
-								</div>
+								
 								<div class="order-summary-section order-summary-section-total-lines payment-lines"
 									data-order-summary-section="payment-lines" bis_skin_checked="1">
 									<table class="total-line-table">
@@ -397,11 +385,7 @@
 								<div class="section-content section-customer-information no-mb" bis_skin_checked="1">
 
 
-									<p class="section-content-text">
-										Bạn đã có tài khoản?
-										<a href="#!">Đăng
-											nhập</a>
-									</p>
+									
 									<div class="fieldset" bis_skin_checked="1">
 										<div class="field field-required  " bis_skin_checked="1">
 											<div class="field-input-wrapper" bis_skin_checked="1">
@@ -564,7 +548,7 @@
 								<input name="utf8" type="hidden" value="✓">
 								<button type="button" class="step-footer-continue-btn btn order-button"
 									style="display: flex;" id="btn-complete-order">
-									<span class="btn-content">Hoàn tất đơn hàng</span>
+									<span class="btn-content">Đặt hàng</span>
 									<i class="btn-spinner icon icon-button-spinner"></i>
 								</button>
 								<script>

@@ -374,6 +374,7 @@ function switchTab(targetTab) {
    if (activeContent) activeContent.classList.add("active");
 }
 
+
 // modal order success
 document.addEventListener('DOMContentLoaded', function () {
    const btn = document.querySelector('.order-button.step-footer-continue-btn');
@@ -384,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
    const modalContent = modal.querySelector('.modal-order-content');
 
    function showModal() {
+      if( !modal) return;
       modal.classList.add('show');
       tick.style.animation = 'none';
       void tick.offsetWidth;
@@ -410,5 +412,4 @@ document.addEventListener('DOMContentLoaded', function () {
    });
    okeBtn.addEventListener('click', hideModal);
 });
-
 

@@ -1,28 +1,33 @@
-*{
+* {
     box-sizing: border-box;
 }
-:root{
+
+:root {
     --primary-color: #ee4d2d;
     --text-primary: rgb(39, 38, 38);
 }
 
-.container-info{
+.container-info {
     padding-top: 90px;
     background-color: #f5f5f5;
 }
+
 .myAccount__link-list.active {
     color: var(--primary-color);
 }
-.category{
+
+.category {
     margin-top: 10px;
 }
-.category__user{
+
+.category__user {
     display: flex;
     align-items: center;
     padding: 15px 0;
     position: relative;
 }
-.category__user::after{
+
+.category__user::after {
     position: absolute;
     content: "";
     display: block;
@@ -31,106 +36,128 @@
     border-bottom: 1px dotted rgb(227, 224, 224);
 
 }
-.category__img{
+
+.category__img {
     border-radius: 50%;
     width: 50px;
 }
-.category__information{
-    margin: 0 8px;
-}
-.category__name{
-    font-weight: 700;
-}
-.category__edit{
-    color: #9b9b9b;
-}
-.category__icon{
-    padding: 0 4px;
-    font-size: 13px;
-}
-.myAccount{
-    margin-top: 27px;
-}
-div .myAccount__icon{
-    padding-bottom: 6px;
-}
-.myAccount__icon{
-    color:#1655b6;
+
+.category__information {
     margin: 0 8px;
 }
 
-.myAccount__text{
+.category__name {
+    font-weight: 700;
+}
+
+.category__edit {
+    color: #9b9b9b;
+}
+
+.category__icon {
+    padding: 0 4px;
+    font-size: 13px;
+}
+
+.myAccount {
+    margin-top: 27px;
+}
+
+div .myAccount__icon {
+    padding-bottom: 6px;
+}
+
+.myAccount__icon {
+    color: #1655b6;
+    margin: 0 8px;
+}
+
+.myAccount__text {
     color: var(--text-primary);
 }
 
 
-.myAccount__list{
+.myAccount__list {
     padding: 0;
     margin: 0;
     list-style-type: none;
     padding-left: 26px;
 }
-.myAccount__item{
+
+.myAccount__item {
     padding: 6px;
     color: rgb(93, 92, 92);
 }
 
-.myAccount__icon-list{
-    color:#1655b6;
+.myAccount__icon-list {
+    color: #1655b6;
     margin: 0 10px;
 }
-.myAccount__icon-bell{
+
+.myAccount__icon-bell {
     color: var(--primary-color);
     margin: 0 9px;
-    
+
 }
-.myAccount__icon-ticket{
+
+.myAccount__icon-ticket {
     color: var(--primary-color);
     margin: 0 7.6px;
 }
 
-.myAccount__icon-coin{
+.myAccount__icon-coin {
     color: #eda500;
     margin: 0 9px;
 }
-.myAccount__icon-bell,.myAccount__icon-coin
-,.myAccount__icon-list,.myAccount__icon-ticket{
+
+.myAccount__icon-bell,
+.myAccount__icon-coin,
+.myAccount__icon-list,
+.myAccount__icon-ticket {
     padding: 6px 0;
 }
-.myAccount__link{
-    
+
+.myAccount__link {
+
     color: rgb(120, 118, 118);
     text-decoration: none;
 }
-.myAccount__link:hover{
-    color: var(--primary-color);
-}
-.myAccount__link-list{
-    
-    color: var(--text-primary);
-    text-decoration: none;
-}
-.myAccount__link-list:hover{
-    color: var(--primary-color);
-}
-.myAccount__item-active{
+
+.myAccount__link:hover {
     color: var(--primary-color);
 }
 
-.follow__menu{
+.myAccount__link-list {
+
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.myAccount__link-list:hover {
+    color: var(--primary-color);
+}
+
+.myAccount__item-active {
+    color: var(--primary-color);
+}
+
+.follow__menu {
     border-radius: 3px;
     background-color: white;
 }
-.follow__list{
+
+.follow__list {
     padding-left: 0;
     display: flex;
     justify-content: space-around;
     list-style-type: none;
 }
-.follow__item{
+
+.follow__item {
     width: 100%;
 }
-.follow__link{
+
+.follow__link {
     text-align: center;
     width: 100%;
     font-size: 18px;
@@ -139,24 +166,29 @@ div .myAccount__icon{
     text-decoration: none;
     color: var(--text-primary);
 }
-.follow__link:hover{
+
+.follow__link:hover {
     color: var(--primary-color);
 }
-.follow__link:focus{
-    border-bottom: 2px solid var(--primary-color);   
+
+.follow__link:focus {
+    border-bottom: 2px solid var(--primary-color);
 
 }
-.follow__link-active{
+
+.follow__link-active {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);   
+    border-bottom: 2px solid var(--primary-color);
 }
-.search{
+
+.search {
     border-radius: 3px;
     overflow: hidden;
     background-color: #eaeaea;
     display: flex;
 }
-.search__icon-link{
+
+.search__icon-link {
     cursor: inherit;
     display: flex;
     align-items: center;
@@ -164,20 +196,38 @@ div .myAccount__icon{
     padding: 5px 14px;
     text-decoration: none;
 }
-.search__icon{
+
+.search__icon {
     color: var(--text-primary);
     font-weight: 600;
     font-size: 20px;
-  
+
 }
-.search__input{
+
+.search__input {
     outline: none;
     border: none;
     flex: 1;
     padding: 14px 0px;
     background-color: #eaeaea;
 }
-.price{
+
+.no-order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 56vh;
+    background-color: #fff;
+    position: relative;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin: 16px 0;
+    padding: 20px;
+}
+
+.price {
     position: relative;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -187,7 +237,8 @@ div .myAccount__icon{
     margin-top: 16px;
     padding: 20px;
 }
-.price::after{
+
+.price::after {
     position: absolute;
     content: "";
     width: 98%;
@@ -197,24 +248,27 @@ div .myAccount__icon{
 
 }
 
-.manipulation{
+.manipulation {
     position: relative;
     display: flex;
     justify-content: space-between;
 }
-.manipulation::after{
+
+.manipulation::after {
     position: absolute;
     content: "";
     border-bottom: 1px solid rgb(218, 214, 214);
     width: 100%;
     bottom: -14px;
 }
-.manipulation__menu{
-    display: flex ;
+
+.manipulation__menu {
+    display: flex;
     align-items: center;
 
 }
-.manipulation__favorite{
+
+.manipulation__favorite {
     margin: 0;
     font-size: 14px;
     background-color: var(--primary-color);
@@ -222,12 +276,19 @@ div .myAccount__icon{
     border-radius: 3px;
     padding: 2px;
 }
-.manipulation__content{
+
+.manipulation__content {
     margin: 0;
+    color: royalblue;
     font-weight: 600;
     margin-left: 8px;
 }
-.manipulation__chat-link{
+
+.order-date__title {
+    color: var(--primary-color);
+}
+
+.manipulation__chat-link {
     text-decoration: none;
     background-color: var(--primary-color);
     color: white;
@@ -235,13 +296,16 @@ div .myAccount__icon{
     border-radius: 3px;
     padding: 3px 6px;
 }
-.manipulation__chat-link:hover{
+
+.manipulation__chat-link:hover {
     opacity: 0.8;
 }
-.manipulation__icon-chat{
+
+.manipulation__icon-chat {
     font-size: 13px;
 }
-.manipulation__show-link{
+
+.manipulation__show-link {
     font-size: 14px;
     margin-left: 8px;
     text-decoration: none;
@@ -251,27 +315,33 @@ div .myAccount__icon{
     color: #706a6a;
 }
 
-.assess{
+.assess {
     display: flex;
-    align-items: center ;
+    align-items: center;
 }
-.assess__delivery-link{
+
+.assess__delivery-link {
     text-decoration: none;
-    color: #26aa99;;
+    color: #26aa99;
+    ;
     margin-right: 8px;
 }
-.assess__icon-question{
+
+.assess__icon-question {
     margin-right: 20px;
     color: var(--primary-color);
-    
+
 }
-.assess__evaluated{
+
+.assess__evaluated {
     position: relative;
     font-size: 15px;
-    color: #ee4d2d;;
+    color: #ee4d2d;
+    ;
     margin: 0;
 }
-.assess__evaluated::after{
+
+.assess__evaluated::after {
     content: "";
     position: absolute;
     height: 20px;
@@ -280,53 +350,65 @@ div .myAccount__icon{
     left: -10px;
     transform: translateY(-50%);
 }
-.product__list-item{
+
+.product__list-item {
     margin-top: 28px;
     overflow-y: auto;
-    height: 56vh;
+    max-height: 56vh;
 }
-.product__item{
+
+.product__item {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.product__item + .product__item{
+
+.product__item+.product__item {
     margin-top: 14px;
 }
-.product__introduce{
+
+.product__introduce {
     display: flex;
 }
-.product__img{
+
+.product__img {
     width: 90px;
-    object-fit: contain;
+    height: 90px;
+    object-fit: cover;
 }
-.product__content{
+
+.product__content {
     padding-left: 8px;
 }
-.product__name{
+
+.product__name {
     font-weight: 600;
     margin: 0;
     font-size: 16px;
-    
+
 }
-.product__type{
+
+.product__type {
     margin: 0;
     margin-top: 8px;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
 }
-.product__quantity{
+
+.product__quantity {
     margin: 0;
     margin-top: 8px;
 }
 
-.product__price-old{
+.product__price-old {
     color: #bdbdbd;
     text-decoration: line-through;
 }
-.product__price-new{
+
+.product__price-new {
     color: var(--primary-color);
 }
-.total{
+
+.total {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 26px 20px 20px 20px;
@@ -334,36 +416,41 @@ div .myAccount__icon{
     margin-bottom: 20px;
 }
 
-.total__money{
+.total__money {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.total__icon{
+
+.total__icon {
     color: var(--primary-color);
 }
-.total__content{
+
+.total__content {
     padding-left: 4px;
     padding-right: 8px;
     font-size: 20px;
 }
-.total__price{
+
+.total__price {
     color: var(--primary-color);
     font-size: 25px;
 }
-.total__btn{
+
+.total__btn {
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
 }
-.total__btn-content{
-    font-size: 15px;
-    color: rgba(0,0,0,.54);
-}
-.total__btn-all{
 
+.total__btn-content {
+    font-size: 15px;
+    color: rgba(0, 0, 0, .54);
 }
-.total__btn-buy{
+
+.total__btn-all {}
+
+.total__btn-buy {
     min-width: 150px;
     background-color: var(--primary-color);
     color: white;
@@ -371,27 +458,31 @@ div .myAccount__icon{
     padding: 12px 0;
     border-radius: 3px;
 }
-.total__btn-contact{
+
+.total__btn-contact {
     min-width: 170px;
     margin: 0 6px;
     padding: 12px 0;
     color: #555;
     border-radius: 3px;
-    border: 1px solid rgba(0,0,0,.09);
+    border: 1px solid rgba(0, 0, 0, .09);
 }
-.total__btn-see{
+
+.total__btn-see {
     min-width: 170px;
     padding: 12px 0;
     color: #555;
     border-radius: 3px;
-    border: 1px solid rgba(0,0,0,.09);
+    border: 1px solid rgba(0, 0, 0, .09);
 }
-.total__btn-buy:hover{
+
+.total__btn-buy:hover {
     cursor: pointer;
     background-color: #c1432a;
 }
+
 .total__btn-contact:hover,
-.total__btn-see:hover{
+.total__btn-see:hover {
     opacity: 0.8;
     cursor: pointer;
 }
