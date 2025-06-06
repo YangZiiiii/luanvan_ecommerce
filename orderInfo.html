@@ -235,23 +235,29 @@
                                 }
                             }
 
-                            fetch("http://localhost:8080/api/v1/order/user/909717")
-                                .then(res => res.json())
-                                .then(json => {
-                                    if (json.statusCode === 200 && Array.isArray(json.data)) {
-                                        allOrders = json.data;
-                                        renderOrdersByStatus(""); // Mặc định lấy tất cả
-                                    } else {
-                                        document.getElementById("orders-container").innerHTML = `
-                                            <div class="no-order">
-                                                <img src="./assets/images/image.png" alt="">
-                                            </div>
-                                        `;
-                                    }
-                                })
-                                .catch(() => {
-                                    document.getElementById("orders-container").innerHTML = "<p>Lỗi khi tải đơn hàng.</p>";
-                                });
+                            // Lấy userId từ localStorage (giả sử lưu dưới key 'userId')
+                            const userId = localStorage.getItem('userId');
+                            if (userId) {
+                                fetch(`http://localhost:8080/api/v1/order/user/${userId}`)
+                                    .then(res => res.json())
+                                    .then(json => {
+                                        if (json.statusCode === 200 && Array.isArray(json.data)) {
+                                            allOrders = json.data;
+                                            renderOrdersByStatus(""); // Mặc định lấy tất cả
+                                        } else {
+                                            document.getElementById("orders-container").innerHTML = `
+                                                <div class="no-order">
+                                                    <img src="./assets/images/image.png" alt="">
+                                                </div>
+                                            `;
+                                        }
+                                    })
+                                    .catch(() => {
+                                        document.getElementById("orders-container").innerHTML = "<p>Lỗi khi tải đơn hàng.</p>";
+                                    });
+                            } else {
+                                document.getElementById("orders-container").innerHTML = "<p>Vui lòng đăng nhập để xem đơn hàng.</p>";
+                            }
 
                             // Handle tab click
                             document.getElementById("order-filter-list").addEventListener("click", function (e) {

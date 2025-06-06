@@ -374,18 +374,18 @@ function switchTab(targetTab) {
    if (activeContent) activeContent.classList.add("active");
 }
 
-
-// modal order success
 document.addEventListener('DOMContentLoaded', function () {
    const btn = document.querySelector('.order-button.step-footer-continue-btn');
    const modal = document.getElementById('modal-order-success');
+
+   if (!modal) return; // ✅ Dừng luôn nếu không có modal
+
    const closeEls = modal.querySelectorAll('.order-close-modal');
    const okeBtn = modal.querySelector('.order-modal-oke');
    const tick = modal.querySelector('.order-success-tick');
    const modalContent = modal.querySelector('.modal-order-content');
 
    function showModal() {
-      if( !modal) return;
       modal.classList.add('show');
       tick.style.animation = 'none';
       void tick.offsetWidth;
@@ -399,17 +399,21 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 300);
    }
 
-   btn.addEventListener('click', function () {
+   btn?.addEventListener('click', function () {
       modal.style.display = 'flex';
-      html.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
       setTimeout(showModal, 10);
    });
+
    closeEls.forEach(el => {
       el.addEventListener('click', hideModal);
    });
-   modalContent.addEventListener('click', function (e) {
+
+   modalContent?.addEventListener('click', function (e) {
       e.stopPropagation();
    });
-   okeBtn.addEventListener('click', hideModal);
+
+   okeBtn?.addEventListener('click', hideModal);
 });
+
 
