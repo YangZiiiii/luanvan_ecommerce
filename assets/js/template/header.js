@@ -719,6 +719,7 @@ class AppHeader extends HTMLElement {
          // For dynamically loaded products
          const productList = document.getElementById('product-list');
          function patchAddToCartButtons() {
+            if (!productList) return;
             productList.querySelectorAll('.btn-addcart').forEach(btn => {
                if (!btn.dataset.cartListener) {
                   btn.dataset.cartListener = '1';
