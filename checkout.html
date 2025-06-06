@@ -107,7 +107,7 @@
 								</div>
 								<script>
 									document.addEventListener("DOMContentLoaded", function () {
-										const userId = localStorage.getItem("userId");
+										const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
 										const tbody = document.getElementById("cart-items-tbody");
 										const subtotalSpan = document.querySelector('[data-checkout-subtotal-price-target]');
 										const totalSpan = document.querySelector('.payment-due-price[data-checkout-payment-due-target]');
@@ -466,12 +466,11 @@
 									<i class="btn-spinner icon icon-button-spinner"></i>
 								</button>
 								<script>
-									
 									document.addEventListener("DOMContentLoaded", function () {
 										const btn = document.getElementById("btn-complete-order");
 										btn.addEventListener("click", async function () {
 											btn.disabled = true;
-											const userId = localStorage.getItem("userId");
+											const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
 											const cardId = "be5dfed4-7ed9-4595-b88c-b8909144c849";
 											const payType = document.querySelector('input[name="payment_method_id"]:checked')?.getAttribute("type-id") === "2" ? "BANK_TRANSFER" : "COD";
 											const shippingFee = 123;
@@ -548,7 +547,7 @@
 							const okeBtn = document.getElementById("order-modal-oke-btn");
 							if (okeBtn) {
 								okeBtn.addEventListener("click", async function () {
-									const userId = localStorage.getItem("userId");
+									const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
 									try {
 										// Lấy cart hiện tại để lấy danh sách items
 										const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
