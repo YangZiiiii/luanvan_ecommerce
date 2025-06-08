@@ -74,7 +74,7 @@
 
    <!-- Product Detail -->
    <!-- <product-detail-desc></product-detail-desc> -->
-    <section class="sec-product-detail bg0 p-t-65 p-b-60">
+   <section class="sec-product-detail bg0 p-t-65 p-b-60">
       <div class="container">
          <div class="row" id="product-detail-row">
             <!-- Product detail will be rendered here by JS -->
@@ -96,6 +96,15 @@
                return params.get('productId');
             }
 
+            // Get userId from localStorage (or other source)
+            function getUserId() {
+               try {
+                  return localStorage.getItem('userId');
+               } catch (e) {
+                  return null;
+               }
+            }
+
             // Get cart quantities from localStorage
             function getCartQuantities() {
                let cartQty = {};
@@ -112,6 +121,22 @@
                localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
             }
 
+            // Get cartLocal from localStorage
+            function getCartLocal() {
+               let cart = [];
+               try {
+                  cart = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               } catch (e) {
+                  cart = [];
+               }
+               return cart;
+            }
+
+            // Set cartLocal to localStorage
+            function setCartLocal(cart) {
+               localStorage.setItem('cartLocal', JSON.stringify(cart));
+            }
+
             // Update cart icon notify badge
             function updateCartNotify() {
                const cartIcon = document.getElementById('cart-icon-header');
@@ -124,23 +149,18 @@
                cartIcon && cartIcon.setAttribute('data-notify', items.length);
             }
 
-            // Add product to cart
-            function addToCart(product, quantity) {
-               let items = [];
-               try {
-                  items = JSON.parse(localStorage.getItem('items')) || [];
-               } catch (e) {
-                  items = [];
-               }
+            // Add product to cartLocal (local)
+            function addToCartLocal(product, quantity) {
+               let cart = getCartLocal();
                let cartQty = getCartQuantities();
-               const existIdx = items.findIndex(p => p.id === product.id);
+               const existIdx = cart.findIndex(p => p.id === product.id);
                if (existIdx !== -1) {
                   cartQty[product.id] = (cartQty[product.id] ?? 0) + quantity;
                } else {
-                  items.push(product);
+                  cart.push(product);
                   cartQty[product.id] = quantity;
                }
-               localStorage.setItem('items', JSON.stringify(items));
+               setCartLocal(cart);
                setCartQuantities(cartQty);
                setTimeout(() => {
                   window.dispatchEvent(new Event('cart-updated'));
@@ -338,10 +358,36 @@
                   // Add to cart logic
                   const btnAddToCart = document.getElementById('btn-add-to-cart');
                   if (btnAddToCart) {
-                     btnAddToCart.onclick = function () {
+                     btnAddToCart.onclick = async function () {
                         const qty = parseInt(document.getElementById('num-product').value) || 1;
-                        addToCart(data, qty);
-                        swal(data.name, "đã được thêm vào giỏ hàng!", "success");
+                        const userId = getUserId();
+                        if (userId) {
+                           // Nếu có userId thì gọi API add to cart
+                           try {
+                              const url = `http://localhost:8080/api/v1/cart/add?userId=${encodeURIComponent(userId)}&productId=${encodeURIComponent(data.id)}&quantity=${qty}`;
+                              const res = await fetch(url, {
+                                 method: 'POST'
+                              });
+                              const result = await res.json();
+                              // Accept statusCode 200 or 201 as success
+                              if (result.statusCode === 200 || result.statusCode === 201) {
+                                 // Gọi luôn API get cart sau khi add thành công
+                                 await fetch(`http://localhost:8080/api/v1/cart?userId=${encodeURIComponent(userId)}`);
+                                 // Lưu vào cartLocal và cartQuantities luôn
+                                 addToCartLocal(data, qty);
+                                 swal(data.name, "đã được thêm vào giỏ hàng!", "success");
+                                 window.dispatchEvent(new Event('cart-updated'));
+                              } else {
+                                 swal("Lỗi", result.message || "Không thể thêm vào giỏ hàng", "error");
+                              }
+                           } catch (err) {
+                              swal("Lỗi", "Không thể thêm vào giỏ hàng", "error");
+                           }
+                        } else {
+                           // Không có userId thì xử lý local: lưu vào cartLocal và cartQuantities
+                           addToCartLocal(data, qty);
+                           swal(data.name, "đã được thêm vào giỏ hàng!", "success");
+                        }
                      };
                   }
                } catch (e) {

@@ -250,42 +250,6 @@
 
 				<div class="main-content" bis_skin_checked="1">
 
-					<div id="checkout_order_information_changed_error_message" class="hidden" style="margin-bottom:15px"
-						bis_skin_checked="1">
-						<p class="field-message field-message-error alert alert-danger"><svg x="0px" y="0px"
-								viewBox="0 0 286.054 286.054" style="enable-background:new 0 0 286.054 286.054;"
-								xml:space="preserve">
-								<g>
-									<path style="fill:#E2574C;"
-										d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027 c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236 c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209 S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972 c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723 c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843 C160.878,195.732,152.878,187.723,143.036,187.723z">
-									</path>
-								</g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-								<g> </g>
-							</svg>
-							<span>
-							</span>
-
-						</p>
-					</div>
-					<script>
-						$("html, body").animate({ scrollTop: 0 }, "slow");
-					</script>
-
-
 					<div class="step" bis_skin_checked="1">
 
 						<div class="step-sections steps-onepage" step="1" bis_skin_checked="1">
@@ -360,14 +324,7 @@
 														</div>
 
 													</div>
-													<input name="selected_customer_shipping_country" type="hidden"
-														value="">
-													<input name="selected_customer_shipping_province" type="hidden"
-														value="">
-													<input name="selected_customer_shipping_district" type="hidden"
-														value="">
-													<input name="selected_customer_shipping_ward" type="hidden"
-														value="">
+													
 													<div id="div_location_country_not_vietnam"
 														class="section-customer-information " bis_skin_checked="1"
 														style="display: none;">
@@ -409,8 +366,7 @@
 											<div class="content-box" bis_skin_checked="1">
 												<div class="radio-wrapper content-box-row" bis_skin_checked="1">
 													<label class="radio-label" for="payment_method_id_1002987540">
-														<div class="radio-input payment-method-checkbox"
-															bis_skin_checked="1">
+														<div class="radio-input payment-method-checkbox" bis_skin_checked="1">
 															<input type-id="1" id="payment_method_id_1002987540"
 																class="input-radio" name="payment_method_id"
 																type="radio" value="1002987540" checked="">
@@ -434,8 +390,7 @@
 												</div>
 												<div class="radio-wrapper content-box-row" bis_skin_checked="1">
 													<label class="radio-label" for="payment_method_id_1002987542">
-														<div class="radio-input payment-method-checkbox"
-															bis_skin_checked="1">
+														<div class="radio-input payment-method-checkbox" bis_skin_checked="1">
 															<input type-id="2" id="payment_method_id_1002987542"
 																class="input-radio" name="payment_method_id"
 																type="radio" value="1002987542">
@@ -453,76 +408,113 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
-							</div>
-						</div>
-						<div class="step-footer" id="step-footer-checkout" bis_skin_checked="1">
-							<form id="form_next_step" accept-charset="UTF-8" method="post">
-								<input name="utf8" type="hidden" value="✓">
-								<button type="button" class="step-footer-continue-btn btn order-button"
-									style="display: flex;" id="btn-complete-order">
-									<span class="btn-content">Đặt hàng</span>
-									<i class="btn-spinner icon icon-button-spinner"></i>
-								</button>
-								<script>
-									document.addEventListener("DOMContentLoaded", function () {
-										const btn = document.getElementById("btn-complete-order");
-										btn.addEventListener("click", async function () {
-											btn.disabled = true;
-											const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
-											const cardId = "be5dfed4-7ed9-4595-b88c-b8909144c849";
-											const payType = document.querySelector('input[name="payment_method_id"]:checked')?.getAttribute("type-id") === "2" ? "BANK_TRANSFER" : "COD";
-											const shippingFee = 123;
+								</div>
+								</div>
+								<div class="step-footer" id="step-footer-checkout" bis_skin_checked="1">
+									<form id="form_next_step" accept-charset="UTF-8" method="post">
+										<input name="utf8" type="hidden" value="✓">
+										<button type="button" class="step-footer-continue-btn btn order-button"
+											style="display: flex;" id="btn-complete-order">
+											<span class="btn-content">Đặt hàng</span>
+											<i class="btn-spinner icon icon-button-spinner"></i>
+										</button>
+										<button type="button" class="step-footer-continue-btn btn order-button"
+											style="display: none;" id="btn-complete-order-online">
+											<span class="btn-content">Thanh toán </span>
+											<i class="btn-spinner icon icon-button-spinner"></i>
+										</button>
+										<script>
+											document.addEventListener("DOMContentLoaded", function () {
+												const btnOrder = document.getElementById("btn-complete-order");
+												const btnOrderOnline = document.getElementById("btn-complete-order-online");
+												const radios = document.querySelectorAll('input[name="payment_method_id"]');
 
-											try {
-												const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
-												const cartJson = await cartRes.json();
-												const items = cartJson.data?.items || [];
-												const itemIdsToBuy = items.map(item => item.id);
+												// Toggle buttons based on payment method
+												function toggleButtons() {
+													const payType = document.querySelector('input[name="payment_method_id"]:checked')?.getAttribute("type-id");
+													if (payType === "2") {
+														btnOrder.style.display = "none";
+														btnOrderOnline.style.display = "flex";
+													} else {
+														btnOrder.style.display = "flex";
+														btnOrderOnline.style.display = "none";
+													}
+												}
+												radios.forEach(radio => {
+													radio.addEventListener("change", toggleButtons);
+												});
+												toggleButtons();
 
-												const body = {
-													userId,
-													cardId,
-													itemIdsToBuy,
-													payType,
-													shippingFee
-												};
+												// Đặt hàng (COD)
+												btnOrder.addEventListener("click", async function () {
+													btnOrder.disabled = true;
+													const userId = localStorage.getItem("userId");
+													let cartId = null;
+													const cartLocal = localStorage.getItem("cartLocal");
+													if (cartLocal) {
+														try {
+															const cartObj = JSON.parse(cartLocal);
+															cartId = cartObj.id || null;
+														} catch (e) {
+															cartId = null;
+														}
+													}
+													const payType = "COD";
+													const shippingFee = 0;
 
-												const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
-													method: "POST",
-													headers: {
-														"Content-Type": "application/json"
-													},
-													body: JSON.stringify(body)
+													try {
+														const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+														const cartJson = await cartRes.json();
+														const items = cartJson.data?.items || [];
+														const itemIdsToBuy = items.map(item => item.id);
+
+														const body = {
+															userId,
+															cartId,
+															itemIdsToBuy,
+															payType,
+															shippingFee
+														};
+
+														const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
+															method: "POST",
+															headers: {
+																"Content-Type": "application/json"
+															},
+															body: JSON.stringify(body)
+														});
+
+														if (orderRes.ok) {
+															document.getElementById("modal-order-success").style.display = "block";
+														} else {
+															alert("Đặt hàng thất bại!");
+														}
+													} catch (e) {
+														alert("Có lỗi xảy ra khi đặt hàng!");
+													} finally {
+														btnOrder.disabled = false;
+													}
 												});
 
-												if (orderRes.ok) {
-													// Show modal order success
-													document.getElementById("modal-order-success").style.display = "block";
-												} else {
-													alert("Đặt hàng thất bại!");
-												}
-											} catch (e) {
-												alert("Có lỗi xảy ra khi đặt hàng!");
-											} finally {
-												btn.disabled = false;
-											}
-										});
+												// Thanh toán online (chỉ alert)
+												btnOrderOnline.addEventListener("click", function () {
+													alert("Tính năng thanh toán online sẽ được cập nhật sau!");
+												});
 
-										// Modal close handlers
-										document.querySelectorAll(".order-close-modal, .order-modal-oke").forEach(el => {
-											el.addEventListener("click", function () {
-												document.getElementById("modal-order-success").style.display = "none";
+												// Modal close handlers
+												document.querySelectorAll(".order-close-modal, .order-modal-oke").forEach(el => {
+													el.addEventListener("click", function () {
+														document.getElementById("modal-order-success").style.display = "none";
+													});
+												});
 											});
-										});
-									});
-								</script>
-							</form>
-							<a class="step-footer-previous-link" href="">
-								Giỏ hàng
-							</a>
-						</div>
+										</script>
+									</form>
+									<a class="step-footer-previous-link" href="">
+										Giỏ hàng
+									</a>
+								</div>
 
 						<!-- Modal Order Success -->
 						<div class="modal-order" id="modal-order-success">
