@@ -219,7 +219,7 @@ class AppHeader extends HTMLElement {
                     });
 
 
-      // --- BEGIN: Cart show/hide on click instead of hover ---
+       // --- BEGIN: Cart show/hide on click instead of hover ---
       document.addEventListener('DOMContentLoaded', function () {
          const cartIcon = document.getElementById('cart-icon-header');
          const cartNotify = cartIcon && cartIcon.parentElement.querySelector('.header__cart-notify');
@@ -320,8 +320,10 @@ class AppHeader extends HTMLElement {
 
       // --- BEGIN: Fetch cart API on page load/refresh if userId exists ---
       document.addEventListener('DOMContentLoaded', function () {
+         // Only fetch cart if user is actually logged in (token exists and valid)
+         const token = localStorage.getItem('token');
          const userId = localStorage.getItem('userId');
-         if (userId && userId !== 'null') {
+         if (token && token !== 'null' && userId && userId !== 'null') {
             fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
                .then(res => res.json())
                .then(cartData => {
@@ -406,7 +408,7 @@ class AppHeader extends HTMLElement {
 
          if (cartLocal.length === 0) {
             cartList.innerHTML = `<li class="header__cart-item"><div class="header__cart-msg">No products yet</div></li>`;
-         } else {
+            } else {
             cartLocal.forEach((item, idx) => {
                // Determine quantity and price logic
                let quantity = cartQty[item.id] ?? 0;
@@ -414,53 +416,52 @@ class AppHeader extends HTMLElement {
                // If userId exists, use unitPrice from API, else use sellingPrice from product
                const userId = localStorage.getItem('userId');
                if (userId && userId !== 'null') {
-                  price = (item.unitPrice ?? 0) * quantity;
+               price = (item.unitPrice ?? 0) * quantity;
                } else {
-                  price = (item.sellingPrice ?? 0) * quantity;
+               price = (item.sellingPrice ?? 0) * quantity;
                }
-               // Debug log for checking values
-               // console.log('item:', item, 'quantity:', quantity, 'price:', price);
 
                cartList.innerHTML += `
                <li class="header__cart-item" data-idx="${idx}">
-                  <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" class="header__cart-img" />
-                  <div class="header__cart-item-content">
-                  <div class="header__cart-item-des">
-                     <span class="header__cart-des-product">${item.name}</span>
-                     <div class="header__cart-item-price-quantity">
-                     <div class="header__cart-item-price">${formatPrice(price)}</div>
-                     <div class="header__cart-item-quantity-wrapper">
-                        <button class="btn-minus">-</button>
-                        <div class="header__cart-item-quantity">${quantity}</div>
-                        <button class="btn-plus">+</button>
-                     </div>
-                     </div>
-                     <div class="header__cart-item-delete" style="cursor:pointer;">Xóa</div>
-                  </div>
-                  <div class="header__cart-item-classify">
-                     <span class="header__cart-item-type">${item.description || ''}</span>
-                  </div>
-                  </div>
+               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" class="header__cart-img" />
+               <div class="header__cart-item-content">
+               <div class="header__cart-item-des">
+                 <span class="header__cart-des-product">${item.name}</span>
+                 <div class="header__cart-item-price-quantity">
+                 <div class="header__cart-item-price">${formatPrice(price)}</div>
+                 <div class="header__cart-item-quantity-wrapper">
+                  <!-- <button class="btn-minus">-</button> -->
+                  <input type="number" min="0" class="header__cart-item-quantity" value="${quantity}" style="width:60px;text-align:center;border: 1px solid; margin: 8px;" />
+                  <button class="btn-oke" style="border: 1px solid; padding: 0 8px;">OK</button>
+                  <!-- <button class="btn-plus">+</button> -->
+                 </div>
+                 </div>
+                 <div class="header__cart-item-delete" style="cursor:pointer;">Xóa</div>
+               </div>
+               <div class="header__cart-item-classify">
+                 <span class="header__cart-item-type">${item.description || ''}</span>
+               </div>
+               </div>
                </li>
                `;
             });
-         }
-         return cartList;
-      }
+            }
+            return cartList;
+          }
 
-      // Main render
-      function renderCart() {
-         const cartNotify = document.querySelector('.header__cart-notify');
-         const emptyCart = cartNotify.querySelector('.empty__cart');
-         let cartLocal = [];
-         try {
+          // Main render
+          function renderCart() {
+            const cartNotify = document.querySelector('.header__cart-notify');
+            const emptyCart = cartNotify.querySelector('.empty__cart');
+            let cartLocal = [];
+            try {
             cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
-         } catch (e) {
+            } catch (e) {
             cartLocal = [];
-         }
+            }
 
-         // Show/hide empty cart and set width
-         if (cartLocal.length === 0) {
+            // Show/hide empty cart and set width
+            if (cartLocal.length === 0) {
             // Show empty cart
             if (emptyCart) emptyCart.style.display = 'block';
             cartNotify.style.width = '300px';
@@ -471,7 +472,7 @@ class AppHeader extends HTMLElement {
                <p class="header__cart-msg">Chưa có sản phẩm</p>
                </div>
             `;
-         } else {
+            } else {
             // Hide empty cart
             if (emptyCart) emptyCart.style.display = 'none';
             cartNotify.style.width = '500px';
@@ -504,17 +505,18 @@ class AppHeader extends HTMLElement {
 
             // Add event listeners for quantity and delete
             cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
-               const minusBtn = li.querySelector('.btn-minus');
-               const plusBtn = li.querySelector('.btn-plus');
-               const qtyDiv = li.querySelector('.header__cart-item-quantity');
+               // const minusBtn = li.querySelector('.btn-minus');
+               // const plusBtn = li.querySelector('.btn-plus');
+               const qtyInput = li.querySelector('.header__cart-item-quantity');
+               const okeBtn = li.querySelector('.btn-oke');
                const priceDiv = li.querySelector('.header__cart-item-price');
                const delBtn = li.querySelector('.header__cart-item-delete');
 
                let cartLocal = [];
                try {
-                  cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
                } catch (e) {
-                  cartLocal = [];
+               cartLocal = [];
                }
                let cartQty = getCartQuantities();
                const item = cartLocal[idx];
@@ -522,70 +524,138 @@ class AppHeader extends HTMLElement {
                const userId = localStorage.getItem('userId');
 
                // --- BEGIN: btn-minus ---
-               minusBtn && minusBtn.addEventListener('click', () => {
-                  let cartQty = getCartQuantities();
-                  if (!userId || userId === 'null') {
-                     // Xử lý local như cũ
-                     if ((cartQty[id] ?? 0) > 0) {
-                        cartQty[id] = (cartQty[id] ?? 0) - 1;
-                        setCartQuantities(cartQty);
-                        renderCart();
-                        updateCartNotify();
-                     }
-                  } else {
-                     // Gọi API update khi có userId
-                     let newQuantity = (cartQty[id] ?? 0) - 1;
-                     if (newQuantity < 0) newQuantity = 0;
-                     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${newQuantity}`, {
-                        method: 'PUT'
-                     })
-                        .then(res => res.json())
-                        .then(data => {
-                           cartQty[id] = newQuantity;
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
-                        })
-                        .catch(() => {
-                           cartQty[id] = newQuantity;
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
-                        });
-                  }
-               });
+               // minusBtn && minusBtn.addEventListener('click', () => {
+               //   let cartQty = getCartQuantities();
+               //   if (!userId || userId === 'null') {
+               //     // Xử lý local như cũ
+               //     if ((cartQty[id] ?? 0) > 0) {
+               //       cartQty[id] = (cartQty[id] ?? 0) - 1;
+               //       setCartQuantities(cartQty);
+               //       renderCart();
+               //       updateCartNotify();
+               //     }
+               //   } else {
+               //     // Gọi API update khi có userId
+               //     let newQuantity = (cartQty[id] ?? 0) - 1;
+               //     if (newQuantity < 0) newQuantity = 0;
+               //     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${newQuantity}`, {
+               //       method: 'PUT'
+               //     })
+               //       .then(res => res.json())
+               //       .then(data => {
+               //          cartQty[id] = newQuantity;
+               //          setCartQuantities(cartQty);
+               //          renderCart();
+               //          updateCartNotify();
+               //       })
+               //       .catch(() => {
+               //          cartQty[id] = newQuantity;
+               //          setCartQuantities(cartQty);
+               //          renderCart();
+               //          updateCartNotify();
+               //       });
+               //   }
+               // });
                // --- END: btn-minus ---
 
                // --- BEGIN: btn-plus ---
-               plusBtn && plusBtn.addEventListener('click', () => {
-                  let cartQty = getCartQuantities();
-                  if (!userId || userId === 'null') {
-                     // Xử lý local như cũ
-                     cartQty[id] = (cartQty[id] ?? 0) + 1;
+               // plusBtn && plusBtn.addEventListener('click', () => {
+               //   let cartQty = getCartQuantities();
+               //   if (!userId || userId === 'null') {
+               //     // Xử lý local như cũ
+               //     cartQty[id] = (cartQty[id] ?? 0) + 1;
+               //     setCartQuantities(cartQty);
+               //     renderCart();
+               //     updateCartNotify();
+               //   } else {
+               //     // Gọi API update khi có userId
+               //     let newQuantity = (cartQty[id] ?? 0) + 1;
+               //     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${newQuantity}`, {
+               //       method: 'PUT'
+               //     })
+               //       .then(res => res.json())
+               //       .then(data => {
+               //          cartQty[id] = newQuantity;
+               //          setCartQuantities(cartQty);
+               //          renderCart();
+               //          updateCartNotify();
+               //       })
+               //       .catch(() => {
+               //          cartQty[id] = newQuantity;
+               //          setCartQuantities(cartQty);
+               //          renderCart();
+               //          updateCartNotify();
+               //       });
+               //   }
+               // });
+
+               // --- BEGIN: input quantity change + OK button ---
+               if (qtyInput && okeBtn) {
+               // OK button click
+               okeBtn.addEventListener('click', function () {
+                 let val = parseInt(qtyInput.value);
+                 if (isNaN(val) || val < 0) val = 0;
+                 // Nếu không đổi thì thôi
+                 if (val === (cartQty[id] ?? 0)) return;
+                 if (!userId || userId === 'null') {
+                  cartQty[id] = val;
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+                 } else {
+                  fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
+                   method: 'PUT'
+                  })
+                   .then(res => res.json())
+                   .then(data => {
+                     cartQty[id] = val;
                      setCartQuantities(cartQty);
                      renderCart();
                      updateCartNotify();
-                  } else {
-                     // Gọi API update khi có userId
-                     let newQuantity = (cartQty[id] ?? 0) + 1;
-                     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${newQuantity}`, {
-                        method: 'PUT'
-                     })
-                        .then(res => res.json())
-                        .then(data => {
-                           cartQty[id] = newQuantity;
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
-                        })
-                        .catch(() => {
-                           cartQty[id] = newQuantity;
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
-                        });
-                  }
+                   })
+                   .catch(() => {
+                     cartQty[id] = val;
+                     setCartQuantities(cartQty);
+                     renderCart();
+                     updateCartNotify();
+                   });
+                 }
                });
+               // Prevent typing negative numbers
+               qtyInput.addEventListener('input', function (e) {
+                 if (this.value < 0) this.value = 0;
+               });
+               // Update on arrow up/down (change event)
+               qtyInput.addEventListener('change', function () {
+                 let val = parseInt(this.value);
+                 if (isNaN(val) || val < 0) val = 0;
+                 if (val === (cartQty[id] ?? 0)) return;
+                 if (!userId || userId === 'null') {
+                  cartQty[id] = val;
+                  setCartQuantities(cartQty);
+                  renderCart();
+                  updateCartNotify();
+                 } else {
+                  fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
+                    method: 'PUT'
+                  })
+                    .then(res => res.json())
+                    .then(data => {
+                     cartQty[id] = val;
+                     setCartQuantities(cartQty);
+                     renderCart();
+                     updateCartNotify();
+                    })
+                    .catch(() => {
+                     cartQty[id] = val;
+                     setCartQuantities(cartQty);
+                     renderCart();
+                     updateCartNotify();
+                    });
+                 }
+               });
+               }
+               // --- END: input quantity change + OK button ---
                // --- END: btn-plus ---
 
                // --- BEGIN: Xóa item trong cart, xử lý theo userId ---

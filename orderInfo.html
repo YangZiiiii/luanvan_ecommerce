@@ -164,6 +164,9 @@
                                 return date.toLocaleString("vi-VN");
                             }
                             function renderOrder(order) {
+                                // Trừ shippingFee khỏi tổng nếu shippingFee có cộng vào totalPrice
+                                // Giả sử order.totalPrice đã bao gồm shippingFee, ta sẽ hiển thị tổng tiền sản phẩm = totalPrice - shippingFee
+                                const productTotal = order.totalPrice && order.shippingFee ? (order.totalPrice - order.shippingFee) : order.totalPrice;
                                 return `
                                 <div class="price">
                                     <div class="product">
@@ -195,9 +198,25 @@
                                     </div>
                                     <hr>
                                     <div class="total">
-                                        <div class="total__money">
-                                            <i class="total__icon fa-solid fa-sack-dollar"></i>
-                                            <span class="total__content">Tổng số tiền:</span>
+                                        <div class="total__money" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <span style="display: flex; align-items: center; gap: 8px;">
+                                                <i class="total__icon fa-solid fa-sack-dollar"></i>
+                                                <span class="total__content">Tổng tiền sản phẩm:</span>
+                                            </span>
+                                            <span class="total__price">${formatCurrency(productTotal)}</span>
+                                        </div>
+                                        <div class="total__money" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <span style="display: flex; align-items: center; gap: 8px;">
+                                                <i class="total__icon fa-solid fa-truck"></i>
+                                                <span class="total__content">Phí vận chuyển:</span>
+                                            </span>
+                                            <span class="total__price">${formatCurrency(order.shippingFee)}</span>
+                                        </div>
+                                        <div class="total__money" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <span style="display: flex; align-items: center; gap: 8px;">
+                                                <i class="total__icon fa-solid fa-money-bill-wave"></i>
+                                                <span class="total__content">Tổng số tiền:</span>
+                                            </span>
                                             <span class="total__price">${formatCurrency(order.totalPrice)}</span>
                                         </div>
                                         <div class="total__btn">
@@ -242,7 +261,8 @@
                                     .then(res => res.json())
                                     .then(json => {
                                         if (json.statusCode === 200 && Array.isArray(json.data)) {
-                                            allOrders = json.data;
+                                            // Sắp xếp order mới nhất lên đầu (giả sử orderDate là timestamp lớn hơn là mới hơn)
+                                            allOrders = json.data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
                                             renderOrdersByStatus(""); // Mặc định lấy tất cả
                                         } else {
                                             document.getElementById("orders-container").innerHTML = `
