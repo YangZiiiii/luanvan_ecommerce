@@ -30,7 +30,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
-    
+
 
     <link rel="stylesheet" href="./assets/css/gridInfo.css">
     <link rel="stylesheet" href="./assets/css/loginInfo.css">
@@ -57,8 +57,8 @@
 
 <body class="animsition">
     <!-- Header -->
-   <header-main></header-main>
-  
+    <header-main></header-main>
+
 
     <div class="container-info">
         <div class="grid wide">
@@ -112,41 +112,174 @@
                         </div>
                         <div class="row form__infor">
                             <div class="col l-8">
-                                <form action="" class="form__user">
-                                    <div class="login">
+                                <form action="" class="form__user" id="userForm">
+                                    <div class="login input-locked">
                                         <p class="login__text">First name</p>
-                                        <input type="text" name="" id="" class="login__input-text"
-                                            placeholder="bla bla bla">
+                                        <input type="text" class="login__input-text" id="firstName" readonly
+                                            tabindex="-1">
                                     </div>
-                                    <div class="name mt-12">
-                                        <p class="name__text">Class name</p>
-                                        <input type="text" name="" id="" class="login__input-text"
-                                            placeholder="bla bla bla">
+                                    <div class="name mt-12 input-locked">
+                                        <p class="name__text">Last name</p>
+                                        <input type="text" class="login__input-text" id="lastName" readonly
+                                            tabindex="-1">
                                     </div>
-                                    <div class="email mt-12">
-                                        <p class="email__add">Email</p>
-                                        <input type="text" name="" id="" class="login__input-text"
-                                            placeholder="bla bla bla">
-                                    </div>
-                                    <div class="phone mt-12">
+                                    <div class="phone mt-12 input-locked">
                                         <p class="phone__change">Phone</p>
-                                        <input type="text" name="" id="" class="login__input-text"
-                                            placeholder="bla bla bla">
-                                        <a href="" class="phone__link">Thay đổi</a>
+                                        <input type="text" class="login__input-text" id="phone" readonly tabindex="-1">
                                     </div>
-
-
-
-                                    <a href="" class="link__save">Lưu</a>
+                                    <div class="form__actions">
+                                        <button type="button" class="link__edit" id="editBtn">Sửa</button>
+                                        <button type="button" class="link__cancel" id="cancelBtn"
+                                            style="display:none;">Hủy</button>
+                                    </div>
                                 </form>
+                                <div id="toast-container"
+                                    style="position: fixed; top: 100px; right: 45%; z-index: 9999;"></div>
+                                <script>
+                                    function showToast(message, type = 'info') {
+                                        const toast = document.createElement('div');
+                                        toast.className = `toast toast-${type}`;
+                                        toast.textContent = message;
+                                        toast.style.minWidth = '200px';
+                                        toast.style.marginBottom = '12px';
+                                        toast.style.padding = '12px 24px';
+                                        toast.style.borderRadius = '6px';
+                                        toast.style.background = type === 'success' ? '#4caf50' : (type === 'error' ? '#f44336' : '#2196f3');
+                                        toast.style.color = '#fff';
+                                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                                        toast.style.fontSize = '16px';
+                                        toast.style.opacity = '0.95';
+                                        document.getElementById('toast-container').appendChild(toast);
+                                        setTimeout(() => {
+                                            toast.style.transition = 'opacity 0.5s';
+                                            toast.style.opacity = '0';
+                                            setTimeout(() => toast.remove(), 500);
+                                        }, 2000);
+                                    }
+
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const userId = localStorage.getItem('userId');
+                                        if (!userId) return;
+                                        fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+                                            .then(res => res.json())
+                                            .then(json => {
+                                                if (json.statusCode === 200 && json.data) {
+                                                    document.getElementById('firstName').value = json.data.firstName || '';
+                                                    document.getElementById('lastName').value = json.data.lastName || '';
+                                                    document.getElementById('phone').value = json.data.phone || '';
+                                                }
+                                            })
+                                            .catch(() => { });
+                                    });
+                                </script>
                             </div>
+                            <script>
+                                const userForm = document.getElementById('userForm');
+                                const editBtn = document.getElementById('editBtn');
+                                const cancelBtn = document.getElementById('cancelBtn');
+                                const inputs = userForm.querySelectorAll('.login__input-text');
+                                let originalValues = [];
+                                let isEditing = false;
+
+                                function setReadonlyState(isReadonly) {
+                                    inputs.forEach(input => {
+                                        if (isReadonly) {
+                                            input.setAttribute('readonly', true);
+                                            input.setAttribute('tabindex', -1);
+                                            input.style.pointerEvents = 'none';
+                                            input.addEventListener('focus', preventFocus, true);
+                                        } else {
+                                            input.removeAttribute('readonly');
+                                            input.setAttribute('tabindex', 0);
+                                            input.style.pointerEvents = 'auto';
+                                            input.removeEventListener('focus', preventFocus, true);
+                                        }
+                                    });
+                                }
+
+                                function preventFocus(e) {
+                                    e.target.blur();
+                                    e.preventDefault();
+                                }
+
+                                setReadonlyState(true);
+
+                                editBtn.addEventListener('click', async function (e) {
+                                    e.preventDefault();
+                                    const userId = localStorage.getItem('userId');
+                                    if (!isEditing) {
+                                        // Start editing
+                                        originalValues = Array.from(inputs).map(input => input.value);
+                                        setReadonlyState(false);
+                                        editBtn.textContent = 'Lưu';
+                                        cancelBtn.style.display = '';
+                                        isEditing = true;
+                                        if (inputs[0]) {
+                                            inputs[0].focus();
+                                            inputs[0].setSelectionRange(inputs[0].value.length, inputs[0].value.length);
+                                        }
+                                    } else {
+                                        // Save
+                                        setReadonlyState(true);
+                                        editBtn.textContent = 'Sửa';
+                                        cancelBtn.style.display = 'none';
+                                        isEditing = false;
+
+                                        // Call API to update user info
+                                        if (!userId) return;
+                                        const body = {
+                                            firstName: document.getElementById('firstName').value,
+                                            lastName: document.getElementById('lastName').value,
+                                            phone: document.getElementById('phone').value
+                                        };
+                                        try {
+                                            const res = await fetch(`http://localhost:8080/api/v1/user/${userId}`, {
+                                                method: 'PUT',
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify(body)
+                                            });
+                                            const json = await res.json();
+                                            if (json.statusCode === 200 && json.data) {
+                                                // Show success toast
+                                                showToast('Cập nhật thành công!', 'success');
+                                                originalValues = [
+                                                    json.data.firstName || '',
+                                                    json.data.lastName || '',
+                                                    json.data.phone || ''
+                                                ];
+                                            } else {
+                                                showToast('Cập nhật thất bại!', 'error');
+                                            }
+                                        } catch (err) {
+                                            showToast('Có lỗi xảy ra!', 'error');
+                                        }
+                                    }
+                                });
+
+                                cancelBtn.addEventListener('click', function (e) {
+                                    e.preventDefault();
+                                    // Restore original values
+                                    inputs.forEach((input, idx) => {
+                                        input.value = originalValues[idx] || '';
+                                    });
+                                    setReadonlyState(true);
+                                    editBtn.textContent = 'Sửa';
+                                    cancelBtn.style.display = 'none';
+                                    isEditing = false;
+                                });
+
+                                userForm.addEventListener('submit', function (e) {
+                                    e.preventDefault();
+                                });
+                            </script>
                             <div class="col l-4">
                                 <div class="myImg">
                                     <img src="./assets/images/hinh-nen-gai-xinh.jpg" alt="" class="myImg__show">
                                     <a href="" class="myImg__link">Chọn ảnh</a>
                                     <p class="myImg__contetn">Dung lượng file tối đa 5 MB</p>
                                     <p class="myImg__contetn">Định dạng: .JPEG, .PNG</p>
-
                                 </div>
                             </div>
                         </div>
@@ -204,6 +337,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="./assets/js/main.js"></script>
+
 </body>
 
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả thanh toán</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thanh Toán Thành Công</title>
+  
+</head>
+<body>
+  
+
+  
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const orderId = urlParams.get('orderId');
+        const total = urlParams.get('totalPrice');
+
+        if (status === 'success') {
+            document.write(`<p>✅ Thanh toán thành công cho đơn hàng ${orderId}, tổng tiền: ${total/100} VND</p>`);
+        } else {
+            document.write(`<p>❌ Thanh toán thất bại</p>`);
+        }
+    </script>
+</body>
+</html>
