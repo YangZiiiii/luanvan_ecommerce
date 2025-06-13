@@ -169,6 +169,26 @@
             </div>
          </div>
 
+         <!-- Modal Quên mật khẩu -->
+         <div class="modal-forgot">
+            <div class="modal-content">
+               <span class="close-forgot">&times;</span>
+               <h2 class="form-title">Quên mật khẩu</h2>
+               <!-- Toast message for forgot password -->
+               <div id="forgot-toast" class="forgot-toast"></div>
+               <!-- Spinner loading -->
+               <div id="forgot-spinner" class="forgot-spinner"></div>
+               <form class="form" id="forgot-form">
+                  <input type="email" class="form-input" placeholder="Nhập email của bạn" required />
+                  <button type="submit" class="form-btn">Gửi yêu cầu</button>
+                  <p class="switch-form">
+                     Nhớ lại mật khẩu?
+                     <a href="#" class="back-to-login">Đăng nhập</a>
+                  </p>
+               </form>
+            </div>
+         </div>
+
          <!-- Modal -->
          <div class="wrap-menu-desktop">
             <nav class="limiter-menu-desktop container">
@@ -251,26 +271,6 @@
                      <a href="#" class="sub-menu-login-item" id="logout-btn">Đăng xuất</a>
                   </div>
                </div>
-               <script>
-                  // Show/hide user menu scroll based on userId
-                  function toggleUserMenuScroll() {
-                     var userId = localStorage.getItem('userId');
-                     var userMenu = document.getElementById('user-menu-scroll');
-                     if (userMenu) {
-                        userMenu.style.display = (userId && userId !== 'null') ? 'block' : 'none';
-                     }
-                  }
-                  document.addEventListener('DOMContentLoaded', function () {
-                     toggleUserMenuScroll();
-                     // Also update on login/logout
-                     window.addEventListener('storage', toggleUserMenuScroll);
-                     window.addEventListener('cart-updated', toggleUserMenuScroll);
-                  });
-                  // Listen for login success and update menu immediately
-                  window.addEventListener('login-success', function () {
-                     toggleUserMenuScroll();
-                  });
-               </script>
 
 
          </div>
@@ -298,6 +298,95 @@
    </header>
 
    <script>
+
+      // Quên mật khẩu
+      const forgotPasswordLink = document.querySelector('.forgot-password');
+      const forgotModal = document.querySelector('.modal-forgot');
+      const closeForgot = document.querySelector('.close-forgot');
+      const backToLogin = document.querySelector('.back-to-login');
+      const loginModal = document.querySelector('.modal-log');
+
+      // Mở modal quên mật khẩu
+      forgotPasswordLink.addEventListener('click', (e) => {
+         e.preventDefault();
+         forgotModal.classList.add('show-forgot');
+      });
+
+      // Đóng modal quên mật khẩu
+      closeForgot.addEventListener('click', () => {
+         forgotModal.classList.remove('show-forgot');
+      });
+
+      // Quay lại modal đăng nhập
+      backToLogin.addEventListener('click', (e) => {
+         e.preventDefault();
+         forgotModal.classList.remove('show-forgot');
+      });
+      // Forgot password form submit
+      document.addEventListener('DOMContentLoaded', function () {
+         const forgotForm = document.getElementById('forgot-form');
+         const forgotToast = document.getElementById('forgot-toast');
+         const forgotSpinner = document.getElementById('forgot-spinner');
+         if (forgotForm) {
+            forgotForm.addEventListener('submit', function (e) {
+               e.preventDefault();
+               const email = forgotForm.querySelector('input[type="email"]').value.trim();
+               if (!email) return;
+               forgotToast.className = 'forgot-toast';
+               forgotToast.textContent = '';
+               forgotSpinner.className = 'forgot-spinner show';
+               fetch(`http://localhost:8080/api/v1/auth/forgot-password/${encodeURIComponent(email)}`, {
+                  method: 'POST'
+               })
+                  .then(res => res.json())
+                  .then(data => {
+                     forgotSpinner.className = 'forgot-spinner';
+                     forgotToast.textContent = data.message || 'Có lỗi xảy ra';
+                     forgotToast.className = 'forgot-toast show' + (data.statusCode === 200 ? '' : ' error');
+                     setTimeout(() => {
+                        forgotToast.className = 'forgot-toast';
+                        forgotToast.textContent = '';
+                        forgotModal.classList.remove('show-forgot');
+                        if (loginModal) loginModal.style.display = 'flex';
+                     }, 5000);
+                  })
+                  .catch(() => {
+                     forgotSpinner.className = 'forgot-spinner';
+                     forgotToast.textContent = 'Có lỗi xảy ra';
+                     forgotToast.className = 'forgot-toast show error';
+                     setTimeout(() => {
+                        forgotToast.className = 'forgot-toast';
+                        forgotToast.textContent = '';
+                     }, 2000);
+                  });
+            });
+         }
+      });
+
+
+
+      // Show/hide user menu scroll based on userId
+      function toggleUserMenuScroll() {
+         var userId = localStorage.getItem('userId');
+         var userMenu = document.getElementById('user-menu-scroll');
+         if (userMenu) {
+            userMenu.style.display = (userId && userId !== 'null') ? 'block' : 'none';
+         }
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+         toggleUserMenuScroll();
+         // Also update on login/logout
+         window.addEventListener('storage', toggleUserMenuScroll);
+         window.addEventListener('cart-updated', toggleUserMenuScroll);
+      });
+      // Listen for login success and update menu immediately
+      window.addEventListener('login-success', function () {
+         toggleUserMenuScroll();
+      });
+
+
+
+
       // --- HIỆN/ẨN giỏ hàng khi click thay vì hover ---
       document.addEventListener('DOMContentLoaded', function () {
          // Lấy icon giỏ hàng và phần thông báo giỏ hàng
@@ -1076,6 +1165,8 @@
       })();
    </script>
 
+   <!-- <script src="./assets/js/handle/handle-header.js"></script> -->
+
    <!-- Cart -->
    <!-- <cart-main></cart-main> -->
 
@@ -1445,7 +1536,7 @@
          </div>
 
          <!-- Load more -->
-         <div class="flex-c-m flex-w w-full p-t-45">
+         <div class="flex-c-m flex-w w-full p-t-45 m-b-40">
             <a href="product.html" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                Load More
             </a>
@@ -1466,7 +1557,8 @@
                    <div class="block2-pic hov-img0">
                      <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
                      <a href="productDetail.html?productId=${product.id}"
-                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04">
+                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
+                       data-product-index="${idx}">
                        View Detail
                      </a>
                    </div>
@@ -1495,6 +1587,31 @@
                 </div>
               </div>
             `).join('');
+
+            // Add event listeners for View Detail buttons to save to ListViewAt
+            container.querySelectorAll('.btn-view-detail').forEach(btn => {
+               btn.addEventListener('click', function (e) {
+                  // Lưu vào localStorage trước khi chuyển trang
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  let listViewAt = [];
+                  try {
+                     listViewAt = JSON.parse(localStorage.getItem('ListViewAt')) || [];
+                  } catch (e) {
+                     listViewAt = [];
+                  }
+                  // Nếu đã có product.id thì không thêm lại (nếu muốn loại trùng)
+                  if (!listViewAt.some(p => p.id === product.id)) {
+                     listViewAt.unshift(product);
+                     // Giới hạn tối đa 8 phần tử, chỉ giữ 8 cái cuối
+                     if (listViewAt.length > 8) {
+                        listViewAt = listViewAt.slice(listViewAt.length - 8);
+                     }
+                     localStorage.setItem('ListViewAt', JSON.stringify(listViewAt));
+                  }
+                  // Không preventDefault để vẫn chuyển trang
+               });
+            });
 
             // Add event listeners for add-to-cart buttons
             container.querySelectorAll('.btn-addcart').forEach(btn => {
@@ -1560,282 +1677,76 @@
    </script>
 
 
-   <section class="sec-relate-product bg0 p-t-45 p-b-105">
+   <section class="sec-relate-product bg0 p-t-45 p-b-105" id="recently-viewed-section" style="display:none;">
       <div class="container">
          <div class="p-b-45">
-            <h3 class="ltext-106 cl5 txt-center">Related Products</h3>
+            <h3 class="ltext-106 cl5 txt-center">RECENTLY VIEWED PRODUCT</h3>
          </div>
-
          <!-- Slide2 -->
          <div class="wrap-slick2">
-            <div class="slick2">
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-01.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Esprit Ruffle Shirt
-                           </a>
-
-                           <span class="stext-105 cl3"> $16.64 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-02.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Herschel supply
-                           </a>
-
-                           <span class="stext-105 cl3"> $35.31 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-03.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Only Check Trouser
-                           </a>
-
-                           <span class="stext-105 cl3"> $25.50 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-04.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Classic Trench Coat
-                           </a>
-
-                           <span class="stext-105 cl3"> $75.00 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-05.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Front Pocket Jumper
-                           </a>
-
-                           <span class="stext-105 cl3"> $34.75 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-06.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Vintage Inspired Classic
-                           </a>
-
-                           <span class="stext-105 cl3"> $93.20 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-07.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Shirt in Stretch Cotton
-                           </a>
-
-                           <span class="stext-105 cl3"> $52.66 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                  <!-- Block2 -->
-                  <div class="block2 block2-pic">
-                     <div class="block2-pic hov-img0">
-                        <img src="./assets/images/product-08.jpg" alt="IMG-PRODUCT" />
-
-                        <a href="#!"
-                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                           Quick View
-                        </a>
-                     </div>
-
-                     <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
-                           <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                              Pieces Metallic Printed
-                           </a>
-
-                           <span class="stext-105 cl3"> $18.96 </span>
-                        </div>
-
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                              <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                 alt="ICON" />
-                              <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                 src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+            <div class="slick2" id="related-products-list">
+               <!-- Related products will be rendered here -->
             </div>
          </div>
       </div>
    </section>
+   <script>
+      // Helper to format price as "1.000.000đ"
+      function formatVND(price) {
+         if (isNaN(price)) return '0đ';
+         return price.toLocaleString('vi-VN') + 'đ';
+      }
+      // Render related products from localStorage ListViewAt
+      function renderRelatedProducts() {
+         let products = [];
+         try {
+            products = JSON.parse(localStorage.getItem('ListViewAt')) || [];
+         } catch (e) {
+            products = [];
+         }
+         const section = document.getElementById('recently-viewed-section');
+         const container = document.getElementById('related-products-list');
+         if (!section || !container) return;
+         if (!products.length) {
+            section.style.display = 'none';
+            container.innerHTML = '';
+            return;
+         }
+         section.style.display = '';
+         container.innerHTML = products.map(product => `
+            <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+               <div class="block2 block2-pic">
+                  <div class="block2-pic hov-img0">
+                     <img src="${product.primaryImageURL || './assets/images/emptycart.png'}" alt="IMG-PRODUCT" style="height:220px;object-fit:cover;" />
+                     <a href="productDetail.html?productId=${product.id}"
+                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                        Quick View
+                     </a>
+                  </div>
+                  <div class="block2-txt flex-w flex-t p-t-14">
+                     <div class="block2-txt-child1 flex-col-l">
+                        <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                           ${product.name}
+                        </a>
+                        <span class="stext-105 cl3">${product.sellingPrice !== undefined ? formatVND(product.sellingPrice) : ''}</span>
+                     </div>
+                     <div class="block2-txt-child2 flex-r p-t-3">
+                        <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                           <img class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png" alt="ICON" />
+                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         `).join('');
+      }
+      renderRelatedProducts();
+      // Listen for storage changes to update if ListViewAt changes
+      window.addEventListener('storage', function (e) {
+         if (e.key === 'ListViewAt') renderRelatedProducts();
+      });
+   </script>
 
    <!-- Footer -->
    <footer-main></footer-main>
@@ -1858,7 +1769,7 @@
    <script src="./assets/vendor/bootstrap/js/popper.js"></script>
    <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
    <!--===============================================================================================-->
-   <script src="./assets/vendor/select2/select2.min.js"></script>
+   <!-- <script src="./assets/vendor/select2/select2.min.js"></script> -->
    <script>
       $(".js-select2").each(function () {
          $(this).select2({
@@ -1873,6 +1784,7 @@
    <!--===============================================================================================-->
    <script src="./assets/vendor/slick/slick.min.js"></script>
    <script src="./assets/js/slick-custom.js"></script>
+
    <!--===============================================================================================-->
    <script src="./assets/vendor/parallax100/parallax100.js"></script>
    <script>

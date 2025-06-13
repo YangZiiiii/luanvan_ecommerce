@@ -16,18 +16,31 @@
 <body>
   
 
-  
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        const orderId = urlParams.get('orderId');
-        const total = urlParams.get('totalPrice');
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa;">
+    <div id="result-box" style="background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 40px 32px; text-align: center; max-width: 400px;">
+        <div id="icon" style="font-size: 48px; margin-bottom: 16px;"></div>
+        <div id="message" style="font-size: 20px; margin-bottom: 24px; color: #222;"></div>
+        <a href="index.html" style="display: inline-block; padding: 12px 32px; background: #007bff; color: #fff; border-radius: 6px; text-decoration: none; font-size: 16px; transition: background 0.2s;">Về trang chủ</a>
+    </div>
+</div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get('status');
+    const orderId = urlParams.get('orderId');
+    const total = urlParams.get('totalPrice');
+    const userId = urlParams.get('userId') || '909717';
 
-        if (status === 'success') {
-            document.write(`<p>✅ Thanh toán thành công cho đơn hàng ${orderId}, tổng tiền: ${total/100} VND</p>`);
-        } else {
-            document.write(`<p>❌ Thanh toán thất bại</p>`);
-        }
-    </script>
+    const icon = document.getElementById('icon');
+    const message = document.getElementById('message');
+
+    if (status === 'success') {
+        icon.textContent = '✅';
+        message.innerHTML = `Thanh toán thành công cho đơn hàng <b>${orderId}</b><br>Tổng tiền: <b>${(total/100).toLocaleString()} VND</b>`;
+        fetch(`http://localhost:8080/api/v1/cart/clear?userId=${encodeURIComponent(userId)}`, { method: 'DELETE' });
+    } else {
+        icon.textContent = '❌';
+        message.textContent = 'Thanh toán thất bại. Vui lòng thử lại!';
+    }
+</script>
 </body>
 </html>
