@@ -1,9 +1,9 @@
 class AppHomeProduct extends HTMLElement {
    connectedCallback() {
    this.innerHTML = `
-     <section class="bg0 p-t-90 p-b-140">
+     <section class="bg0">
       <div class="container">
-         <div class="p-b-10">
+         <div class="p-b-10 p-t-90">
             <h3 class="ltext-103 cl5">Product Overview</h3>
          </div>
 
@@ -227,16 +227,16 @@ class AppHomeProduct extends HTMLElement {
             </div>
          </div>
 
-         <div class="row isotope-grid" id="product-list">
+         <div class="row isotope-grid" id="product-list" style="min-height: calc(2 * 469px + 40px); visibility: hidden;">
             <!-- Products will be rendered here by JavaScript -->
 
-            
+
 
          </div>
 
          <!-- Load more -->
-         <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+         <div class="flex-c-m flex-w w-full p-t-45 m-b-40">
+            <a href="product.html" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                Load More
             </a>
          </div>
@@ -251,99 +251,176 @@ class AppHomeProduct extends HTMLElement {
          .then(data => {
             const products = data.content || [];
             const container = document.getElementById('product-list');
-            container.innerHTML = products.map((product, idx) => `
-              <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                <div class="block2 block2-pic">
-                   <div class="block2-pic hov-img0">
-                     <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
-                     <a href="productDetail.html?productId=${product.id}"
-                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04">
-                       View Detail
-                     </a>
-                   </div>
-                   <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l">
-                       <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
-                         ${product.name}
-                       </a>
-                      <div class="price-and-cart">
-                           <span class="stext-106 cl10"> $${product.sellingPrice}</span>
-                           <span class="original-price">$${product.originalPrice}</span>
+
+            // Lấy danh sách yêu thích từ localStorage (dạng mảng productId)
+            function getFavouriteIds() {
+               let favs = [];
+               try {
+                  favs = JSON.parse(localStorage.getItem('favouriteProductIds')) || [];
+               } catch (e) {
+                  favs = [];
+               }
+               return favs;
+            }
+            // Lưu danh sách yêu thích vào localStorage
+            function setFavouriteIds(ids) {
+               localStorage.setItem('favouriteProductIds', JSON.stringify(ids));
+            }
+
+            // Hàm cập nhật số lượng yêu thích trên icon
+            function updateFavouriteNotify() {
+               const favourites = localStorage.getItem('favouriteProductIds');
+               const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+               if (numberOfFavourites) {
+                  if (favourites) {
+                     const favouriteIds = JSON.parse(favourites);
+                     numberOfFavourites.setAttribute('data-notify', favouriteIds.length);
+                  } else {
+                     numberOfFavourites.setAttribute('data-notify', '0');
+                  }
+               }
+            }
+
+            // Hàm format giá tiền kiểu "1.000.000đ"
+            function formatVND(price) {
+               if (isNaN(price)) return '0đ';
+               return price.toLocaleString('vi-VN') + 'đ';
+            }
+
+            // Render sản phẩm
+            container.innerHTML = products.map((product, idx) => {
+               // Kiểm tra trạng thái yêu thích
+               const favIds = getFavouriteIds();
+               const isFav = favIds.includes(product.id);
+               return `
+                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                   <div class="block2 block2-pic">
+                      <div class="block2-pic hov-img0">
+                        <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
+                        <a href="productDetail.html?productId=${product.id}"
+                          class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
+                          data-product-index="${idx}">
+                          View Detail
+                        </a>
                       </div>
-                     </div>
-                     <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
-                       <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                         <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                            alt="ICON" />
-                         <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
-                            src="./assets/images/icons/icon-heart-02.png" alt="ICON" />
-                       </a>
-                       <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
-                         <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
-                       </a>
-                     </div>
+                      <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l">
+                          <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
+                            ${product.name}
+                          </a>
+                         <div class="price-and-cart">
+                              <span class="stext-106 cl10"> ${formatVND(product.sellingPrice)}</span>
+                              <span class="original-price">${formatVND(product.originalPrice)}</span>
+                         </div>
+                        </div>
+                        <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
+                          <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 icon-favourite" data-product-index="${idx}" >
+                            <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
+                               alt="ICON" style="display:${isFav ? 'none' : 'flex'}" />
+                            <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
+                               src="./assets/images/icons/icon-heart-02.png" alt="ICON" style="display:${isFav ? '' : 'none'}" />
+                          </a>
+                          <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
+                            <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
+                          </a>
+                        </div>
+                      </div>
                    </div>
-                </div>
-              </div>
-            `).join('');
+                 </div>
+               `;
+            }).join('');
+            container.style.visibility = 'visible'; // Hiển thị sau khi render xong
 
             // Add event listeners for add-to-cart buttons
             container.querySelectorAll('.btn-addcart').forEach(btn => {
+               btn.addEventListener('click', function (e) {
+                 e.preventDefault();
+                 const idx = this.getAttribute('data-product-index');
+                 const product = products[idx];
+                 const userId = localStorage.getItem('userId');
+                 // Prevent add to cart if not logged in
+                 if (!userId || userId === 'null') {
+                   swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
+                   return;
+                 }
+                 // Gọi API thêm vào cart cho user đã đăng nhập
+                 fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+                   method: 'POST'
+                 })
+                   .then(res => res.json())
+                   .then(data => {
+                     if (data && data.statusCode === 201) {
+                        window.dispatchEvent(new Event('cart-updated'));
+                        // Hiển thị swal khi thêm vào giỏ hàng thành công
+                        swal(product.name, "is added to cart !", "success");
+                     } else {
+                        swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                     }
+                   })
+                   .catch(() => { 
+                      swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                   });
+               });
+            });
+
+            // Add event listeners for add-to-favourite buttons
+            container.querySelectorAll('.js-addwish-b2').forEach(btn => {
+               const icon1 = btn.querySelector('.icon-heart1');
+               const icon2 = btn.querySelector('.icon-heart2');
                btn.addEventListener('click', function (e) {
                   e.preventDefault();
                   const idx = this.getAttribute('data-product-index');
                   const product = products[idx];
                   const userId = localStorage.getItem('userId');
-                  if (!userId || userId === 'null') {
-                     // Xử lý localStorage: nếu chưa có thì thêm với quantity = 1, nếu đã có thì chỉ tăng lên 1
-                     let cartLocal = [];
-                     try {
-                        cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
-                     } catch (e) {
-                        cartLocal = [];
-                     }
-                     let cartQty = {};
-                     try {
-                        cartQty = JSON.parse(localStorage.getItem('cartQuantities')) || {};
-                     } catch (e) {
-                        cartQty = {};
-                     }
-                     const existIdx = cartLocal.findIndex(p => p.id === product.id);
-                     if (existIdx !== -1) {
-                        cartQty[product.id] = (cartQty[product.id] ?? 1);
-                     } else {
-                        cartLocal.push(product);
-                        cartQty[product.id] = 0; // Đảm bảo lần đầu là 1
-                     }
-                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                     localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
-                     window.dispatchEvent(new Event('cart-updated'));
-                  } else {
-                     // Gọi API thêm vào cart cho user đã đăng nhập
-                     fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
-                        method: 'POST'
-                     })
-                        .then(res => res.json())
-                        .then(data => {
-                           if (data && data.statusCode === 201) {
-                              window.dispatchEvent(new Event('cart-updated'));
-                           }
-                        })
-                        .catch(() => { });
+                  if (!userId || userId === 'null' || !product || !product.id) {
+                     swal("Bạn cần đăng nhập để thêm vào yêu thích!", "", "warning");
+                     return;
                   }
+                  fetch('http://localhost:8080/api/v1/favourites/toggle', {
+                     method: 'POST',
+                     headers: {
+                        'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify({
+                        userId: Number(userId),
+                        productId: product.id
+                     })
+                  })
+                     .then(res => res.json())
+                     .then(data => {
+                        if (data && (data.statusCode === 200 || data.statusCode === 201)) {
+                           // Toggle heart icon
+                           let favIds = getFavouriteIds();
+                           if (icon1.style.display !== 'none') {
+                              icon1.style.display = 'none';
+                              icon2.style.display = '';
+                              // Thêm vào danh sách yêu thích
+                              if (!favIds.includes(product.id)) {
+                                 favIds.push(product.id);
+                                 setFavouriteIds(favIds);
+                              }
+                           } else {
+                              icon1.style.display = '';
+                              icon2.style.display = 'none';
+                              // Xóa khỏi danh sách yêu thích
+                              favIds = favIds.filter(id => id !== product.id);
+                              setFavouriteIds(favIds);
+                           }
+                           // Cập nhật số lượng yêu thích trên icon mỗi lần click
+                           updateFavouriteNotify();
+                           swal(product.name, "Đã cập nhật danh sách yêu thích!", "success");
+                        } else {
+                           swal(product.name, "Có lỗi khi cập nhật yêu thích!", "error");
+                        }
+                     })
+                     .catch(() => {
+                        swal(product.name, "Có lỗi khi cập nhậtyêu thích!", "error");
+                     });
                });
             });
 
-            // Hiển thị swal khi thêm vào giỏ hàng
-            $(".js-addcart-detail").each(function () {
-               var nameProduct = $(this)
-                  .closest('.block2')
-                  .find(".js-name-detail")
-                  .html();
-               $(this).on("click", function () {
-                  swal(nameProduct, "is added to cart !", "success");
-               });
-            });
+            // Gọi cập nhật số lượng yêu thích khi load xong
+            updateFavouriteNotify();
          })
          .catch(err => {
             document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';

@@ -505,43 +505,85 @@
                         <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                            <div class="p-b-30 m-lr-15-sm">
                               <!-- Review -->
-                              <div class="flex-w flex-t p-b-68">
-                                 <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                    <img src="./assets/images/avatar-01.jpg" alt="AVATAR" />
-                                 </div>
+                              <div id="product-reviews-list"></div>
+                              <script>
+                                 // Helper: format date/time
+                                 function formatDateTime(dateStr) {
+                                    if (!dateStr) return '';
+                                    const d = new Date(dateStr);
+                                    if (isNaN(d)) return '';
+                                    return d.toLocaleString('vi-VN', {
+                                       hour: '2-digit',
+                                       minute: '2-digit',
+                                       day: '2-digit',
+                                       month: '2-digit',
+                                       year: 'numeric'
+                                    });
+                                 }
 
-                                 <div class="size-207">
-                                    <div class="flex-w flex-sb-m p-b-17">
-                                       <span class="mtext-107 cl2 p-r-20">
-                                          Ariana Grande
-                                       </span>
-
-                                       <span class="fs-18 cl11">
-                                          <i class="zmdi zmdi-star"></i>
-                                          <i class="zmdi zmdi-star"></i>
-                                          <i class="zmdi zmdi-star"></i>
-                                          <i class="zmdi zmdi-star"></i>
-                                          <i class="zmdi zmdi-star-half"></i>
-                                       </span>
-                                    </div>
-
-                                    <p class="stext-102 cl6">
-                                       Quod autem in homine praestantissimum
-                                       atque optimum est, id deseruit. Apud
-                                       ceteros autem philosophos
-                                    </p>
-                                 </div>
-                              </div>
+                                 async function renderProductReviews() {
+                                    const productId = (new URLSearchParams(window.location.search)).get('productId');
+                                    if (!productId) return;
+                                    try {
+                                       const res = await fetch(`http://localhost:8080/api/v1/comment/product/${productId}`);
+                                       let comments = await res.json();
+                                       // Sort by createdAt descending (newest first)
+                                       if (Array.isArray(comments)) {
+                                          comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                                       }
+                                       const reviewsHtml = comments.length
+                                          ? comments.map(c => `
+                                             <div class="flex-w flex-t p-b-68" data-review-id="${c.id}">
+                                                <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                                   <img src="./assets/images/avatar-01.jpg" alt="AVATAR" />
+                                                </div>
+                                                <div class="size-207">
+                                                   <div class="flex-w flex-sb-m p-b-17">
+                                                      <span class="mtext-107 cl2 p-r-20">
+                                                         ${c.firstName || ''} ${c.lastName || ''}
+                                                      </span>
+                                                      <span class="fs-18 cl11">
+                                                         ${(() => {
+                                                            const full = Math.floor(c.rating);
+                                                            const half = c.rating % 1 >= 0.5 ? 1 : 0;
+                                                            let stars = '';
+                                                            for (let i = 0; i < full; i++) stars += '<i class="zmdi zmdi-star"></i>';
+                                                            if (half) stars += '<i class="zmdi zmdi-star-half"></i>';
+                                                            for (let i = full + half; i < 5; i++) stars += '<i class="zmdi zmdi-star-outline"></i>';
+                                                            return stars;
+                                                         })()}
+                                                      </span>
+                                                   </div>
+                                                   <div class="stext-102 cl9 p-b-5" style="font-size:13px;">
+                                                      ${formatDateTime(c.createdAt)}
+                                                   </div>
+                                                   <p class="stext-102 cl6">
+                                                      ${c.content}
+                                                   </p>
+                                                   <div class="m-t-10">
+                                                      <a href="#!" class="cl8 m-r-15 review-edit" data-review-id="${c.commentId}">Edit</a>
+                                                      <a href="#!" class="cl8 review-delete" data-review-id="${c.commentId}">Delete</a>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          `).join('')
+                                          : `<p class="stext-102 cl6">No reviews yet.</p>`;
+                                       document.getElementById('product-reviews-list').innerHTML = reviewsHtml;
+                                    } catch (e) {
+                                       document.getElementById('product-reviews-list').innerHTML = '<p class="text-danger">Failed to load reviews.</p>';
+                                    }
+                                 }
+                                 renderProductReviews();
+                              </script>
 
                               <!-- Add review -->
-                              <form class="w-full">
+                              <form class="w-full" id="review-form">
                                  <h5 class="mtext-108 cl2 p-b-7">
                                     Add a review
                                  </h5>
 
                                  <p class="stext-102 cl6">
-                                    Your email address will not be published.
-                                    Required fields are marked *
+                                    State your feelings about the product
                                  </p>
 
                                  <div class="flex-w flex-m p-t-50 p-b-23">
@@ -549,13 +591,13 @@
                                        Your Rating
                                     </span>
 
-                                    <span class="wrap-rating fs-18 cl11 pointer">
-                                       <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                       <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                       <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                       <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                       <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                       <input class="dis-none" type="number" name="rating" />
+                                    <span class="wrap-rating fs-18 cl11 pointer" id="rating-stars">
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="1"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="2"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="3"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="4"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="5"></i>
+                                       <input class="dis-none" type="number" name="rating" id="review-rating" value="0" />
                                     </span>
                                  </div>
 
@@ -565,25 +607,99 @@
                                        <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review"
                                           name="review"></textarea>
                                     </div>
-
-                                    <div class="col-sm-6 p-b-5">
-                                       <label class="stext-102 cl3" for="name">Name</label>
-                                       <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
-                                          name="name" />
-                                    </div>
-
-                                    <div class="col-sm-6 p-b-5">
-                                       <label class="stext-102 cl3" for="email">Email</label>
-                                       <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text"
-                                          name="email" />
-                                    </div>
                                  </div>
 
                                  <button
+                                    type="submit"
                                     class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
                                     Submit
                                  </button>
                               </form>
+                              <script>
+                                 // Star rating UI
+                                 (function () {
+                                    const stars = document.querySelectorAll('#rating-stars .item-rating');
+                                    const ratingInput = document.getElementById('review-rating');
+                                    stars.forEach(star => {
+                                       star.addEventListener('click', function () {
+                                          const val = parseInt(this.getAttribute('data-value'));
+                                          ratingInput.value = val;
+                                          stars.forEach((s, idx) => {
+                                             if (idx < val) {
+                                                s.classList.remove('zmdi-star-outline');
+                                                s.classList.add('zmdi-star');
+                                             } else {
+                                                s.classList.remove('zmdi-star');
+                                                s.classList.add('zmdi-star-outline');
+                                             }
+                                          });
+                                       });
+                                    });
+                                 })();
+
+                                 // Submit review
+                                 document.getElementById('review-form').addEventListener('submit', async function (e) {
+                                    e.preventDefault();
+                                    const rating = parseInt(document.getElementById('review-rating').value);
+                                    const content = document.getElementById('review').value.trim();
+                                    const productId = (new URLSearchParams(window.location.search)).get('productId');
+                                    const userId = (function () {
+                                       try {
+                                          return localStorage.getItem('userId');
+                                       } catch (e) {
+                                          return null;
+                                       }
+                                    })();
+
+                                    if (!userId) {
+                                       swal("Error", "You must be logged in to submit a review.", "error");
+                                       return;
+                                    }
+                                    if (!productId) {
+                                       swal("Error", "Product not found.", "error");
+                                       return;
+                                    }
+                                    if (!rating || rating < 1 || rating > 5) {
+                                       swal("Error", "Please select a rating.", "error");
+                                       return;
+                                    }
+                                    if (!content) {
+                                       swal("Error", "Please enter your review.", "error");
+                                       return;
+                                    }
+
+                                    try {
+                                       const url = `http://localhost:8080/api/v1/comment/create?uid=${encodeURIComponent(userId)}&productId=${encodeURIComponent(productId)}`;
+                                       const res = await fetch(url, {
+                                          method: 'POST',
+                                          headers: {
+                                             'Content-Type': 'application/json'
+                                          },
+                                          body: JSON.stringify({
+                                             rating: rating,
+                                             content: content
+                                          })
+                                       });
+                                       const result = await res.json();
+                                       if (result.statusCode === 200 || result.statusCode === 201) {
+                                          swal("Success", "Your review has been submitted!", "success");
+                                          document.getElementById('review-form').reset();
+                                          // Reset stars UI
+                                          const stars = document.querySelectorAll('#rating-stars .item-rating');
+                                          stars.forEach(s => {
+                                             s.classList.remove('zmdi-star');
+                                             s.classList.add('zmdi-star-outline');
+                                          });
+                                          document.getElementById('review-rating').value = 0;
+                                          renderProductReviews();
+                                       } else {
+                                          swal("Error", result.message || "Failed to submit review.", "error");
+                                       }
+                                    } catch (err) {
+                                       swal("Error", "Failed to submit review.", "error");
+                                    }
+                                 });
+                              </script>
                            </div>
                         </div>
                      </div>

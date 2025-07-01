@@ -28,7 +28,7 @@
     const status = urlParams.get('status');
     const orderId = urlParams.get('orderId');
     const total = urlParams.get('totalPrice');
-    const userId = urlParams.get('userId') || '909717';
+    const userId = localStorage.getItem('userId');
 
     const icon = document.getElementById('icon');
     const message = document.getElementById('message');

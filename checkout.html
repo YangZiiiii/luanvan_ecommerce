@@ -475,12 +475,12 @@
 															payType,
 															shippingFee
 														};
-
 														const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
 															method: "POST",
 															headers: {
 																"Content-Type": "application/json"
 															},
+															
 															body: JSON.stringify(body)
 														});
 
@@ -539,7 +539,7 @@
 															const orderJson = await orderRes.json();
 															const orderId = orderJson.data?.id;
 															if (orderId) {
-																// Sử dụng POST thay vì GET cho API thanh toán
+																// API thanh toán
 																const payRes = await fetch(`http://localhost:8080/api/v1/order/${orderId}/pay`, {
 																	method: "POST"
 																});
@@ -562,7 +562,7 @@
 													}
 												});
 
-												// Modal close handlers
+												// Đóng modal
 												document.querySelectorAll(".order-close-modal, .order-modal-oke").forEach(el => {
 													el.addEventListener("click", function () {
 														document.getElementById("modal-order-success").style.display = "none";

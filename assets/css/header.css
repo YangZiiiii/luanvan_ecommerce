@@ -481,7 +481,7 @@
    z-index: 1;
    cursor: default;
    position: absolute;
-   top: 50px;
+   top: 48px;
    right: 0;
    width: 500px;
    background-color: var(--white-color);
@@ -583,10 +583,7 @@
 
 /* Css for cart */
 .header__cart-img {
-   border: 1px solid #c8c4c4;
-   min-width: 20%;
-   height: 60px;
-   object-fit: cover;
+   width: 20%;
 
 }
 

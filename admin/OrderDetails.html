@@ -25,20 +25,7 @@
    <!-- Canonical SEO -->
    <link rel="canonical" href="https://themeselection.com/item/materio-bootstrap-html-admin-template/" />
 
-   <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-   <script>
-      (function (w, d, s, l, i) {
-         w[l] = w[l] || [];
-         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-         var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != "dataLayer" ? "&l=" + l : "";
-         j.async = true;
-         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-5DDHKGP");
-   </script>
-   <!-- End Google Tag Manager -->
+   
 
    <!-- Favicon -->
    <link rel="icon" type="image/x-icon"
@@ -187,6 +174,13 @@
                                        </tr>
                                     </thead>
                                     <tbody>
+                                       <script>
+                                          const urlParams = new URLSearchParams(window.location.search);
+                                          const orderId = urlParams.get('orderId');
+
+                                          // Gọi API hoặc hiển thị theo orderId
+                                          console.log("Order ID:", orderId);
+                                       </script>
                                        <tr class="odd">
                                           <td class="control" tabindex="0" style="display: none"></td>
                                           <td class="dt-checkboxes-cell">
@@ -214,84 +208,7 @@
                                           <td><span>2</span></td>
                                           <td><span>$1682</span></td>
                                        </tr>
-                                       <tr class="even">
-                                          <td class="control" tabindex="0" style="display: none"></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div class="d-flex justify-content-start align-items-center product-name"
-                                                bis_skin_checked="1">
-                                                <div class="avatar-wrapper me-3" bis_skin_checked="1">
-                                                   <div class="avatar avatar-sm rounded-2 bg-label-secondary"
-                                                      bis_skin_checked="1">
-                                                      <img src="./assets/img/OrderDetails/oneplus.png"
-                                                         alt="product-Oneplus 10" class="rounded-2" />
-                                                   </div>
-                                                </div>
-                                                <div class="d-flex flex-column" bis_skin_checked="1">
-                                                   <span class="text-nowrap text-heading fw-medium">Oneplus
-                                                      10</span><small
-                                                      class="text-truncate d-none d-sm-block">Storage:128gb</small>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td><span>$896</span></td>
-                                          <td><span>3</span></td>
-                                          <td><span>$2688</span></td>
-                                       </tr>
-                                       <tr class="odd">
-                                          <td class="control" tabindex="0" style="display: none"></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div class="d-flex justify-content-start align-items-center product-name"
-                                                bis_skin_checked="1">
-                                                <div class="avatar-wrapper me-3" bis_skin_checked="1">
-                                                   <div class="avatar avatar-sm rounded-2 bg-label-secondary"
-                                                      bis_skin_checked="1">
-                                                      <img src="./assets/img/OrderDetails/nikejordan.png"
-                                                         alt="product-Nike Jordan" class="rounded-2" />
-                                                   </div>
-                                                </div>
-                                                <div class="d-flex flex-column" bis_skin_checked="1">
-                                                   <span class="text-nowrap text-heading fw-medium">Nike
-                                                      Jordan</span><small
-                                                      class="text-truncate d-none d-sm-block">Size:8UK</small>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td><span>$392</span></td>
-                                          <td><span>1</span></td>
-                                          <td><span>$392</span></td>
-                                       </tr>
-                                       <tr class="even">
-                                          <td class="control" tabindex="0" style="display: none"></td>
-                                          <td class="dt-checkboxes-cell">
-                                             <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                          </td>
-                                          <td class="sorting_1">
-                                             <div class="d-flex justify-content-start align-items-center product-name"
-                                                bis_skin_checked="1">
-                                                <div class="avatar-wrapper me-3" bis_skin_checked="1">
-                                                   <div class="avatar avatar-sm rounded-2 bg-label-secondary"
-                                                      bis_skin_checked="1">
-                                                      <img src="./assets/img/OrderDetails/facecream.png"
-                                                         alt="product-Face cream" class="rounded-2" />
-                                                   </div>
-                                                </div>
-                                                <div class="d-flex flex-column" bis_skin_checked="1">
-                                                   <span class="text-nowrap text-heading fw-medium">Face
-                                                      cream</span><small
-                                                      class="text-truncate d-none d-sm-block">Gender:Women</small>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td><span>$813</span></td>
-                                          <td><span>2</span></td>
-                                          <td><span>$1626</span></td>
-                                       </tr>
+
                                     </tbody>
                                  </table>
                                  <div bis_skin_checked="1" style="width: 1%"></div>
@@ -1074,7 +991,7 @@
 
    <!-- Core JS -->
    <!-- build:js assets/vendor/js/core.js -->
-   <script src="./assets/js/jquery.js"></script>
+   <!-- <script src="./assets/js/jquery.js"></script>
    <script src="./assets/js/popper.js"></script>
    <script src="./assets/js/bootstrap.js"></script>
    <script src="./assets/js/node-waves.js"></script>
@@ -1085,7 +1002,7 @@
    <script type="text/javascript" id="" charset="">
       console.log("TS:GTM Worked");
    </script>
-   <script src="./assets/js/menu.js"></script>
+   <script src="./assets/js/menu.js"></script> -->
 
    <!-- endbuild -->
 
