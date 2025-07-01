@@ -325,7 +325,9 @@ const tabLinks = document.querySelectorAll(".tab-link");
 const html = document.documentElement;
 
 // Mở modal nếu tồn tại
-if (modal) {
+function setupModalLog() {
+   if (!modal) return;
+
    openModalLinks.forEach((link) => {
       link.addEventListener("click", function (event) {
          event.preventDefault();
@@ -351,6 +353,8 @@ if (modal) {
    //    }
    // });
 }
+
+setupModalLog();
 
 // Chuyển đổi tab nếu có phần tử
 if (switchTabs.length > 0) {
@@ -415,5 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    okeBtn?.addEventListener('click', hideModal);
 });
+
+
 
 

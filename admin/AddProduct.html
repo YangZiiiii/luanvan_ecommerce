@@ -618,33 +618,21 @@
                            </div>
                            <!-- /Product Information -->
                            <!-- Media -->
-                           <div class="card mb-6" bis_skin_checked="1">
-                              <div class="card-header d-flex justify-content-between align-items-center"
-                                 bis_skin_checked="1">
-                                 <h5 class="mb-0 card-title">
-                                    Product Image
-                                 </h5>
-
+                           <div class="card mb-6">
+                              <div class="card-header d-flex justify-content-between align-items-center">
+                                 <h5 class="mb-0 card-title">Product Image</h5>
                               </div>
-                              <div class="card-body" bis_skin_checked="1">
-                                 <form action="https://demos.themeselection.com/upload"
-                                    class="dropzone needsclick dz-clickable" id="dropzone-basic">
-                                    <div class="dz-message needsclick" bis_skin_checked="1">
-                                       <div class="d-flex justify-content-center" bis_skin_checked="1">
-                                          <div class="avatar avatar-md" bis_skin_checked="1">
-                                             <span class="avatar-initial rounded bg-label-secondary">
-                                                <i class="ri-upload-2-line ri-24px"></i>
-                                             </span>
-                                          </div>
-                                       </div>
-                                       <p class="h4 needsclick my-2">
-                                          Drag and drop your image here
-                                       </p>
-                                       <small class="text-muted d-block fs-6 my-2">or</small>
-                                       <span class="needsclick btn btn-sm btn-outline-primary waves-effect"
-                                          id="btnBrowse">Browse image</span>
-                                    </div>
-                                 </form>
+                              <div class="card-body">
+
+                                 <div id="upload-area" class="border rounded p-4 text-center" style="cursor:pointer;">
+                                    <i class="ri-upload-2-line ri-24px"></i>
+                                    <p class="h5 my-2">Drag & Drop images here or click to select</p>
+                                    <input type="file" id="imageInput" style="display: none;" multiple accept="image/*">
+                                 </div>
+
+                                 <div id="preview" class="d-flex flex-wrap mt-3 gap-3"></div>
+
+
                               </div>
                            </div>
                            <!-- /Media -->
@@ -1441,9 +1429,73 @@
    </div>
 
    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-         const dropzone = Dropzone.forElement("#dropzone-basic");
+      let filesArray = [];
+      let keepCurrentImage = true;
 
+      const uploadArea = document.getElementById('upload-area');
+      const imageInput = document.getElementById('imageInput');
+      const preview = document.getElementById('preview');
+
+      uploadArea.addEventListener('click', () => imageInput.click());
+
+      uploadArea.addEventListener('dragover', e => {
+         e.preventDefault();
+         uploadArea.style.backgroundColor = '#e0e0e0';
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+         uploadArea.style.backgroundColor = '#f9f9f9';
+      });
+
+      uploadArea.addEventListener('drop', e => {
+         e.preventDefault();
+         uploadArea.style.backgroundColor = '#f9f9f9';
+         handleFiles(e.dataTransfer.files);
+      });
+
+      imageInput.addEventListener('change', e => handleFiles(e.target.files));
+
+      function handleFiles(files) {
+         Array.from(files).forEach(file => {
+            if (file.type.startsWith('image/')) {
+               filesArray.push(file);
+
+               const container = document.createElement('div');
+               container.style.position = 'relative';
+
+               const img = document.createElement('img');
+               img.src = URL.createObjectURL(file);
+               img.style.width = '100px';
+               img.style.height = '100px';
+               img.style.objectFit = 'cover';
+               img.classList.add('rounded');
+
+               const removeBtn = document.createElement('button');
+               removeBtn.innerHTML = '&times;';
+               removeBtn.className = 'btn btn-sm btn-danger';
+               removeBtn.style.position = 'absolute';
+               removeBtn.style.top = '0';
+               removeBtn.style.right = '0';
+               removeBtn.style.borderRadius = '50%';
+               removeBtn.style.padding = '2px 6px';
+               removeBtn.style.fontSize = '12px';
+
+               removeBtn.addEventListener('click', () => {
+                  // Remove from filesArray by reference
+                  filesArray = filesArray.filter(f => f !== file);
+                  container.remove();
+               });
+
+               container.appendChild(img);
+               container.appendChild(removeBtn);
+               preview.appendChild(container);
+
+               keepCurrentImage = false;
+            }
+         });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
          // 🔹 1. Lấy dữ liệu sản phẩm từ form
          function getProductData() {
             const allCheckboxes = document.querySelectorAll("[data-repeater-item] input[type='checkbox']");
@@ -1462,14 +1514,10 @@
                originalPrice: parseFloat(document.querySelector("input[name='originalPrice']").value) || 0,
                discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
                sellingPrice: parseFloat(document.querySelector("input[name='originalPrice']").value - document.querySelector("input[name='productDiscountedPrice']").value) || 0,
-               sellingType: "SALE", // Default value
-
-
+               sellingType: "SALE",
                categories: [document.querySelector("#productCategory").value],
                collections: [document.querySelector("#productCollection").value],
                brands: [document.querySelector("#productBrand").value],
-
-
                hasVariants: hasVariants,
                variants: Array.from(document.querySelectorAll("[data-repeater-item]")).map(item => {
                   const type = item.querySelector("select.select2.form-select")?.value || "";
@@ -1478,8 +1526,6 @@
                })
             };
          }
-
-
 
          // 🔹 2. Gọi API để tạo sản phẩm
          async function createProduct(productData) {
@@ -1498,23 +1544,18 @@
                throw new Error("Không nhận được productId!");
             }
 
-            return result.data.id; // Trả về productId
+            return result.data.id;
          }
 
-         // 🔹 3. Upload ảnh lên product đã tạo
+         // 🔹 3. Upload nhiều ảnh lên product đã tạo
          async function uploadProductImages(productId) {
-            const acceptedFiles = dropzone.getAcceptedFiles();
-            console.log("✅ Dropzone has", acceptedFiles.length, "file(s).");
-
-            console.log("🖼️ Files chuẩn bị upload:", acceptedFiles);
-
-            if (!acceptedFiles.length) {
+            if (!filesArray.length) {
                console.warn("⚠️ Không có ảnh nào được chọn.");
                return;
             }
 
             const formData = new FormData();
-            acceptedFiles.forEach(file => {
+            filesArray.forEach(file => {
                formData.append("files", file);
             });
 
@@ -1538,7 +1579,6 @@
                alert("Lỗi khi upload ảnh.");
             }
          }
-
 
          // 🔹 4. Bắt sự kiện khi người dùng bấm nút Publish
          document.querySelector(".btn-submit-product").addEventListener("click", async function (e) {

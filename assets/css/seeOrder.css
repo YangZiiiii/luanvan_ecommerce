@@ -374,7 +374,7 @@ div .myAccount__icon {
 .product__img {
     width: 90px;
     height: 90px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .product__content {
