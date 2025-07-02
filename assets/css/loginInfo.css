@@ -43,7 +43,9 @@
 
 .category__img {
     border-radius: 50%;
-    width: 50px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
 }
 
 .category__information {

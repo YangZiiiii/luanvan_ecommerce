@@ -66,14 +66,14 @@
                 <div class="col l-2 ">
                     <div class="category">
                         <div class="category__user">
-                            <img src="./assets/images/gai.jpg" alt="" class="category__img">
+                            <img src="./assets/images/default-avatar.jpg" alt="" class="category__img"
+                                id="sidebarAvatar">
                             <div class="category__information">
-                                <span class="category__name">User name</span>
-                                <div class="category__edit">
-                                    <i class="category__icon fa-solid fa-pen"></i>Sửa hồ sơ
-                                </div>
+                                <span class="category__name" id="sidebarUserName">User name</span>
                             </div>
                         </div>
+
+
                         <div class="myAccount">
                             <div>
                                 <a href="loginInfo.html" class="myAccount__link-list">
@@ -154,6 +154,25 @@
                         <div id="orders-container"></div>
 
                         <script>
+                            // Load user information into sidebar
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const userId = localStorage.getItem('userId');
+                                if (userId) {
+                                    fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+                                        .then(res => res.json())
+                                        .then(json => {
+                                            if (json.statusCode === 200 && json.data) {
+                                                const user = json.data;
+                                                document.getElementById("sidebarUserName").textContent = user.firstName + " " + user.lastName;
+                                                if (user.avatarUrl) {
+                                                    document.getElementById("sidebarAvatar").src = user.avatarUrl;
+                                                }
+                                            }
+                                        });
+                                }
+                            });
+
+
                             function formatCurrency(amount) {
                                 if (!amount) return "₫0";
                                 return "₫" + amount.toLocaleString("vi-VN");
