@@ -637,7 +637,7 @@
                            </div>
                            <!-- /Media -->
                            <!-- Variants -->
-                           <div class="card mb-6">
+                           <!-- <div class="card mb-6">
 
                               <div class="card-header">
                                  <h5 class="card-title mb-0">Variants</h5>
@@ -739,303 +739,12 @@
                                     }, 50); // nhỏ delay để DOM kịp render
                                  });
                               });
-                           </script>
+                           </script> -->
 
 
                            <!-- /Variants -->
                            <!-- Inventory -->
-                           <div class="card mb-6" bis_skin_checked="1">
-                              <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Inventory</h5>
-                              </div>
-                              <div class="card-body" bis_skin_checked="1">
-                                 <div class="row" bis_skin_checked="1">
-                                    <!-- Navigation -->
-                                    <div class="col-12 col-md-4 col-xl-5 col-xxl-4 mx-auto card-separator"
-                                       bis_skin_checked="1">
-                                       <div class="d-flex justify-content-between flex-column mb-4 mb-md-0 pe-md-4"
-                                          bis_skin_checked="1">
-                                          <div class="nav-align-left" bis_skin_checked="1">
-                                             <ul class="nav nav-pills flex-column w-100" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link active waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#restock"
-                                                      aria-selected="true" role="tab">
-                                                      <i class="ri-add-line me-1_5"></i>
-                                                      <span class="align-middle">Restock</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#shipping"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-car-line me-1_5"></i>
-                                                      <span class="align-middle">Shipping</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#global-delivery"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-global-line me-1_5"></i>
-                                                      <span class="align-middle">Global
-                                                         Delivery</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#attributes"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-link-m me-1_5"></i>
-                                                      <span class="align-middle">Attributes</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#advanced"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-lock-unlock-line me-1_5"></i>
-                                                      <span class="align-middle">Advanced</span>
-                                                   </button>
-                                                </li>
-                                             </ul>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <!-- /Navigation -->
-                                    <!-- Options -->
-                                    <div class="col-12 col-md-8 col-xl-7 col-xxl-8 pt-6 pt-md-0" bis_skin_checked="1">
-                                       <div class="tab-content p-0 pe-xl-0 ps-md-4" bis_skin_checked="1">
-                                          <!-- Restock Tab -->
-                                          <div class="tab-pane fade show active" id="restock" role="tabpanel"
-                                             bis_skin_checked="1">
-                                             <h6 class="text-body">
-                                                Options
-                                             </h6>
-                                             <div class="row mb-4 g-4" bis_skin_checked="1">
-                                                <div class="col-12 col-sm-8 col-lg-12 col-xxl-8" bis_skin_checked="1">
-                                                   <div bis_skin_checked="1">
-                                                      <input type="number" class="form-control form-control-sm"
-                                                         id="ecommerce-product-stock" placeholder="Add to Stock"
-                                                         name="Add to Stock" aria-label="Add to Stock" />
-                                                   </div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 col-lg-6 col-xxl-4" bis_skin_checked="1">
-                                                   <button class="btn btn-primary waves-effect waves-light">
-                                                      <i class="ri-check-line ri-16px me-1_5"></i>Confirm
-                                                   </button>
-                                                </div>
-                                             </div>
-                                             <div bis_skin_checked="1">
-                                                <h6 class="mb-2 fw-normal">
-                                                   Product in stock now: 54
-                                                </h6>
-                                                <h6 class="mb-2 fw-normal">
-                                                   Product in transit: 390
-                                                </h6>
-                                                <h6 class="mb-2 fw-normal">
-                                                   Last time restocked: 24th
-                                                   June, 2023
-                                                </h6>
-                                                <h6 class="mb-0 fw-normal">
-                                                   Total stock over lifetime:
-                                                   2430
-                                                </h6>
-                                             </div>
-                                          </div>
-                                          <!-- Shipping Tab -->
-                                          <div class="tab-pane fade" id="shipping" role="tabpanel" bis_skin_checked="1">
-                                             <h6 class="mb-3 text-body">
-                                                Shipping Type
-                                             </h6>
-                                             <div bis_skin_checked="1">
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="radio" name="shippingType"
-                                                      id="seller" />
-                                                   <label class="form-check-label" for="seller">
-                                                      <span class="h6">Fulfilled by
-                                                         Seller</span><br />
-                                                      <small>You'll be
-                                                         responsible for
-                                                         product delivery.<br />
-                                                         Any damage or delay
-                                                         during shipping may
-                                                         cost you a Damage
-                                                         fee.</small>
-                                                   </label>
-                                                </div>
-                                                <div class="form-check mb-6" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="radio" name="shippingType"
-                                                      id="companyName" checked="" />
-                                                   <label class="form-check-label" for="companyName">
-                                                      <span class="h6">Fulfilled by
-                                                         Company name
-                                                         &nbsp;<span
-                                                            class="badge rounded-pill badge-warning bg-label-warning fs-tiny py-1">RECOMMENDED</span></span><br />
-                                                      <small>Your product, Our
-                                                         responsibility.<br />
-                                                         For a measly fee, we
-                                                         will handle the
-                                                         delivery process for
-                                                         you.</small>
-                                                   </label>
-                                                </div>
-                                                <p class="mb-0">
-                                                   See our
-                                                   <a href="javascript:void(0);">Delivery terms and
-                                                      conditions</a>
-                                                   for details
-                                                </p>
-                                             </div>
-                                          </div>
-                                          <!-- Global Delivery Tab -->
-                                          <div class="tab-pane fade" id="global-delivery" role="tabpanel"
-                                             bis_skin_checked="1">
-                                             <h6 class="mb-3 text-body">
-                                                Global Delivery
-                                             </h6>
-                                             <!-- Worldwide delivery -->
-                                             <div class="form-check mb-4" bis_skin_checked="1">
-                                                <input class="form-check-input" type="radio" name="globalDel"
-                                                   id="worldwide" />
-                                                <label class="form-check-label" for="worldwide">
-                                                   <span class="h6">Worldwide
-                                                      delivery</span><br />
-                                                   <small>Only available with
-                                                      Shipping method:
-                                                      <a href="javascript:void(0);">Fulfilled by
-                                                         Company name</a></small>
-                                                </label>
-                                             </div>
-                                             <!-- Global delivery -->
-                                             <div class="form-check mb-4" bis_skin_checked="1">
-                                                <input class="form-check-input" type="radio" name="globalDel"
-                                                   checked="" />
-                                                <label class="form-check-label w-75 pe-12 mb-2" for="country-selected">
-                                                   <span class="h6">Selected
-                                                      Countries</span>
-                                                </label>
-                                                <div bis_skin_checked="1">
-                                                   <input type="text" class="form-control form-control-sm"
-                                                      placeholder="Countries" id="country-selected" />
-                                                </div>
-                                             </div>
-                                             <!-- Local delivery -->
-                                             <div class="form-check" bis_skin_checked="1">
-                                                <input class="form-check-input" type="radio" name="globalDel"
-                                                   id="local" />
-                                                <label class="form-check-label" for="local">
-                                                   <span class="h6">Local delivery</span><br />
-                                                   <small>Deliver to your
-                                                      country of residence :
-                                                      <a href="javascript:void(0);">Change profile
-                                                         address</a></small>
-                                                </label>
-                                             </div>
-                                          </div>
-                                          <!-- Attributes Tab -->
-                                          <div class="tab-pane fade" id="attributes" role="tabpanel"
-                                             bis_skin_checked="1">
-                                             <h6 class="mb-2 text-body">
-                                                Attributes
-                                             </h6>
-                                             <div bis_skin_checked="1">
-                                                <!-- Fragile Product -->
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" value="fragile"
-                                                      id="fragile" />
-                                                   <label class="form-check-label" for="fragile">
-                                                      <span class="h6 fw-normal">Fragile
-                                                         Product</span>
-                                                   </label>
-                                                </div>
-                                                <!-- Biodegradable -->
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" value="biodegradable"
-                                                      id="biodegradable" />
-                                                   <label class="form-check-label" for="biodegradable">
-                                                      <span class="h6 fw-normal">Biodegradable</span>
-                                                   </label>
-                                                </div>
-                                                <!-- Frozen Product -->
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" id="frozen"
-                                                      value="frozen" checked="" />
-                                                   <label class="form-check-label w-75 pe-12 mb-2" for="frozen">
-                                                      <span class="h6 fw-normal mb-1">Frozen
-                                                         Product</span>
-                                                   </label>
-                                                   <div bis_skin_checked="1">
-                                                      <input type="number" class="form-control form-control-sm"
-                                                         placeholder="Max. allowed Temperature" id="temp" />
-                                                   </div>
-                                                </div>
-                                                <!-- Exp Date -->
-                                                <div class="form-check" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" value="expDate"
-                                                      id="expDate" checked="" />
-                                                   <label class="form-check-label w-75 pe-12 mb-2" for="expDate">
-                                                      <span class="h6 fw-normal mb-1">Expiry Date of
-                                                         Product</span>
-                                                   </label>
-                                                   <div bis_skin_checked="1">
-                                                      <input type="text"
-                                                         class="product-date form-control form-control-sm flatpickr-input"
-                                                         id="flatpickr-date" readonly="readonly" />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <!-- /Attributes Tab -->
-                                          <!-- Advanced Tab -->
-                                          <div class="tab-pane fade" id="advanced" role="tabpanel" bis_skin_checked="1">
-                                             <h6 class="mb-3 text-body">
-                                                Advanced
-                                             </h6>
-                                             <div class="row" bis_skin_checked="1">
-                                                <!-- Product Id Type -->
-                                                <div class="col" bis_skin_checked="1">
-                                                   <h6 class="mb-2">
-                                                      Product ID Type
-                                                   </h6>
-                                                   <div bis_skin_checked="1">
-                                                      <select id="product-id" class="form-select form-select-sm"
-                                                         data-placeholder="ISBN" data-allow-clear="true">
-                                                         <option value="ISBN">
-                                                            ISBN
-                                                         </option>
-                                                         <option value="UPC">
-                                                            UPC
-                                                         </option>
-                                                         <option value="EAN">
-                                                            EAN
-                                                         </option>
-                                                         <option value="JAN">
-                                                            JAN
-                                                         </option>
-                                                      </select>
-                                                   </div>
-                                                </div>
-                                                <!-- Product Id -->
-                                                <div class="col" bis_skin_checked="1">
-                                                   <h6 class="mb-2">
-                                                      Product ID
-                                                   </h6>
-                                                   <div bis_skin_checked="1">
-                                                      <input type="number" id="product-id-1"
-                                                         class="form-control form-control-sm"
-                                                         placeholder="ISBN Number" />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <!-- /Advanced Tab -->
-                                       </div>
-                                    </div>
-                                    <!-- /Options-->
-                                 </div>
-                              </div>
-                           </div>
+
                            <!-- /Inventory -->
                         </div>
                         <!-- /Second column -->
@@ -1207,7 +916,7 @@
                                  <!-- Status -->
 
                                  <!-- Tags -->
-                                 <div class="mb-4" bis_skin_checked="1">
+                                 <!-- <div class="mb-4" bis_skin_checked="1">
                                     <div class="form-floating form-floating-outline" bis_skin_checked="1">
                                        <tags class="tagify form-control h-auto" tabindex="-1">
                                           <tag title="Normal" contenteditable="false" spellcheck="false" tabindex="-1"
@@ -1241,7 +950,7 @@
                                           value="Normal,Standard,Premium" aria-label="Product Tags" tabindex="-1" />
                                        <label for="ecommerce-product-tags">Tags</label>
                                     </div>
-                                 </div>
+                                 </div> -->
                               </div>
                            </div>
                            <!-- /Organize Card -->

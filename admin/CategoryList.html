@@ -216,13 +216,13 @@
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting" tabindex="0"
                                           aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                          style="width: 191px"
+                                          style="width: 160px"
                                           aria-label="Total Products &amp;nbsp;: activate to sort column ascending">
                                           Total Products &nbsp;
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 160px" aria-label="Total Earning">
-                                          Total Earning
+                                          Status
                                        </th>
                                        <th class="text-lg-center sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 118px" aria-label="Actions">
@@ -382,10 +382,10 @@
                                                 N/A
                                              </div>
                                           </td>
-                                          <td>
-                                             <div class="text-sm-end">
-                                                N/A
-                                             </div>
+                                          <td style="text-align:right;">
+                                            <div   class="badge rounded-pill bg-label-${category.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
+                                            ${category.status}
+                                          </div>
                                           </td>
                                           <td>
                                              <div class="d-flex align-items-sm-center justify-content-sm-center">
@@ -401,7 +401,7 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end m-0">
                                                    <a href="javascript:0;" class="dropdown-item">View</a>
-                                                   <a onclick="openModal()" href="javascript:0;" class="dropdown-item">Delete</a>
+                                                    <a onclick="openModal('${category.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
                                                 </div>
                                              </div>
                                           </td>
@@ -661,7 +661,107 @@
 
 
    <!-- Modal Delete -->
-  <script src="./assets/js/modal-delete.js"></script>
+<script>
+   // Toast helper
+   function showToast(message, type = "success") {
+      // Remove old toast if exists
+      const oldToast = document.getElementById("custom-toast");
+      if (oldToast) oldToast.remove();
+
+      const toast = document.createElement("div");
+      toast.id = "custom-toast";
+      toast.style.position = "fixed";
+      toast.style.top = "30px";
+      toast.style.right = "800px";
+      toast.style.zIndex = "9999";
+      toast.style.minWidth = "220px";
+      toast.style.padding = "16px 24px";
+      toast.style.borderRadius = "8px";
+      toast.style.color = "#fff";
+      toast.style.fontWeight = "bold";
+      toast.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+      toast.style.background = type === "success" ? "#22c55e" : "#ef4444";
+      toast.innerText = message;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3500);
+   }
+
+   function openModal(categoryId) {
+      const overlay = document.getElementById("modalOverlay");
+      const modal = overlay.querySelector(".modal");
+
+      overlay.classList.add("show");
+      modal.style.display = "block";
+      modal.style.transform = "rotateY(90deg)";
+      modal.style.animation = "rotateIn 0.5s forwards";
+
+      document.getElementById("modalContent").style.display = "block";
+      document.getElementById("successMessage").classList.remove("show");
+
+      const yesButton = document.querySelector(".button-yes");
+      yesButton.setAttribute("data-category-id", categoryId);
+   }
+
+   function closeModal() {
+      const overlay = document.getElementById("modalOverlay");
+      const modal = overlay.querySelector(".modal");
+
+      modal.style.animation = "rotateOut 0.4s forwards";
+
+      setTimeout(() => {
+      overlay.classList.remove("show");
+      modal.style.display = "none";
+      }, 400);
+   }
+
+   async function confirmYes() {
+      const yesButton = document.querySelector(".button-yes");
+      const categoryId = yesButton.getAttribute("data-category-id");
+
+      if (!categoryId) {
+      closeModal();
+      setTimeout(() => showToast("Không tìm thấy ID category để xoá.", "error"), 400);
+      return;
+      }
+
+      try {
+      const response = await fetch(`http://localhost:8080/api/v1/category/${categoryId}`, {
+         method: 'DELETE'
+      });
+
+      if (response.ok) {
+         document.getElementById("modalContent").style.display = "none";
+         document.getElementById("successMessage").classList.add("show");
+        
+         setTimeout(() => {
+         window.location.reload();
+         }, 1500);
+      } else {
+         // Try to parse error body
+         let errorMsg = "Xoá category thất bại!";
+         try {
+         const data = await response.json();
+         if (data && data.message) {
+            errorMsg = data.message;
+         }
+         } catch {}
+         closeModal();
+         setTimeout(() => showToast(errorMsg, "error"), 400);
+      }
+      } catch (error) {
+      console.error('Lỗi khi gọi API xoá:', error);
+      closeModal();
+      setTimeout(() => showToast("Có lỗi xảy ra.", "error"), 400);
+      }
+   }
+
+   function handleOverlayClick(event) {
+      const modal = document.querySelector(".delete-modal .modal");
+      if (!modal.contains(event.target)) {
+      closeModal();
+      }
+   }
+   </script>
 
 
 

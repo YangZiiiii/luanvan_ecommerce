@@ -133,7 +133,7 @@
                                         Đã giao
                                     </a>
                                 </li>
-                                <li class="follow__item">
+                                <!-- <li class="follow__item">
                                     <a href="#" class="follow__link" data-status="CANCELLED">
                                         Đã hủy
                                     </a>
@@ -147,7 +147,7 @@
                                     <a href="#" class="follow__link" data-status="REFUNDED">
                                         Đã hoàn tiền
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 
@@ -183,8 +183,8 @@
                                 return date.toLocaleString("vi-VN");
                             }
                             function renderOrder(order) {
-                                // Trừ shippingFee khỏi tổng nếu shippingFee có cộng vào totalPrice
-                                // Giả sử order.totalPrice đã bao gồm shippingFee, ta sẽ hiển thị tổng tiền sản phẩm = totalPrice - shippingFee
+                                console.log("Rendering order:", order);
+                                
                                 const productTotal = order.totalPrice && order.shippingFee ? (order.totalPrice - order.shippingFee) : order.totalPrice;
                                 return `
                                 <div class="price">
@@ -193,6 +193,8 @@
                                             <div class="manipulation__menu">
                                                 <p class="manipulation__content"><span class="order-date__title">Mã đơn hàng:</span> ${order.id}</p>
                                                 <p class="manipulation__content"><span class="order-date__title">Ngày đặt:</span> ${formatDate(order.orderDate)}</p>
+                                                <p class="manipulation__content"><span class="order-date__title">Trạng thái:</span> ${order.orderStatus}</p>
+
                                             </div>
                                             <div class="assess">
                                                 <p class="assess__evaluated">${order.orderStatus === "PENDING" ? "CHỜ XÁC NHẬN" : "ĐÃ ĐÁNH GIÁ"}</p>
@@ -282,7 +284,7 @@
                                         if (json.statusCode === 200 && Array.isArray(json.data)) {
                                             // Sắp xếp order mới nhất lên đầu (giả sử orderDate là timestamp lớn hơn là mới hơn)
                                             allOrders = json.data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
-                                            renderOrdersByStatus(""); // Mặc định lấy tất cả
+                                            renderOrdersByStatus(""); 
                                         } else {
                                             document.getElementById("orders-container").innerHTML = `
                                                 <div class="no-order">

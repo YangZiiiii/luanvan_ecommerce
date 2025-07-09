@@ -23,7 +23,7 @@ class AppHeader extends HTMLElement {
                   <div class="login-menu-container" id="login-menu-user">
                      <a href="#" class="none-underline flex-c-m trans-04 p-lr-25 login-menu-toggle"
                         style="padding: 0 10px; height: 100%;">
-                        <i class="fa fa-user"></i> <span class="ml-2">Username</span>
+                        <i class="fa fa-user"></i> <span id="full-name" class="ml-2"></span>
                      </a>
                      <div class="sub-menu-login">
                         <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
@@ -90,7 +90,7 @@ class AppHeader extends HTMLElement {
                   <div id="register-toast" style="margin-top:10px;"></div>
                </div>
                <style>
-                 
+
                </style>
 
 
@@ -162,10 +162,15 @@ class AppHeader extends HTMLElement {
 
                <!-- Search product -->
                <div class="dis-none panel-search w-full p-t-10 p-b-15 search-new">
-                  <input class="mtext-107 cl2 size-114 plh2 p-r-15 search-height" type="text" name="search-product"
-                     placeholder="Search . . ." />
-
+                  <div class="combine-icon__input" style="display: flex; align-items: center;">
+                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search btn-search"
+                        style="cursor: pointer;"></i>
+                     <input class="mtext-107 cl2 size-114 plh2 p-r-15 search-height" type="text" name="search-product"
+                        placeholder="Search . . ." />
+                  </div>
                </div>
+
+
                <!-- Icon header -->
                <!-- Change for cart -->
                <div class="wrap-icon-header flex-w flex-r-m"></div>
@@ -237,6 +242,35 @@ class AppHeader extends HTMLElement {
    </header>
    `;
 
+      // Hiển thi tên user
+
+      document.addEventListener('DOMContentLoaded', function () {
+         const userId = localStorage.getItem('userId');
+         const fullNameElement = document.getElementById('full-name');
+         fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+               if (data && data.statusCode === 200) {
+                  const user = data.data;
+                  if (user) {
+                     fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+                  }
+               }
+            })
+            .catch(() => { /* ignore error */ });
+      })
+
+
+      // Sự kiện click search button
+      const searchButton = document.querySelector('.btn-search');
+      const searchInput = document.querySelector('.search-new input[name="search-product"]');
+
+      searchButton.addEventListener('click', function () {
+         const keyword = searchInput.value.trim();
+         if (keyword) {
+            window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+         }
+      });
       // Danh sách yêu thích
       document.addEventListener('DOMContentLoaded', function () {
          const userId = localStorage.getItem('userId');
@@ -300,14 +334,14 @@ class AppHeader extends HTMLElement {
                   return;
                }
 
-                  fetch('http://localhost:8080/api/v1/auth/register', {
-                    method: 'POST',
-                    body: formData
-                  })
-                    .then(res => res.json())
-                    .then(data => {
-                      if (registerSpinner) registerSpinner.style.display = 'none';
-                      if (data && data.statusCode === 200) {
+               fetch('http://localhost:8080/api/v1/auth/register', {
+                  method: 'POST',
+                  body: formData
+               })
+                  .then(res => res.json())
+                  .then(data => {
+                     if (registerSpinner) registerSpinner.style.display = 'none';
+                     if (data && data.statusCode === 200) {
                         showRegisterToast('Đăng ký thông tin hoàn tất! Vui lòng xác thực email để sử dụng tài khoản.', false);
 
                         // Đóng modal sau khi hiện toast và trả thanh cuộn body về mặc định
@@ -320,14 +354,14 @@ class AppHeader extends HTMLElement {
                            });
 
                         }, 10000);
-                      } else {
+                     } else {
                         showRegisterToast(data.message || 'Đăng ký thất bại!', true);
-                      }
-                    })
-                    .catch(() => {
-                      if (registerSpinner) registerSpinner.style.display = 'none';
-                      showRegisterToast('Đăng ký thất bại!', true);
-                    });
+                     }
+                  })
+                  .catch(() => {
+                     if (registerSpinner) registerSpinner.style.display = 'none';
+                     showRegisterToast('Đăng ký thất bại!', true);
+                  });
             });
          }
       });
@@ -605,37 +639,37 @@ class AppHeader extends HTMLElement {
 
          let cartLocal = [];
          try {
-         cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
          } catch (e) {
-         cartLocal = [];
+            cartLocal = [];
          }
          let cartQty = getCartQuantities();
 
          if (cartLocal.length === 0) {
-         cartList.innerHTML = `<li class="header__cart-item"><div class="header__cart-msg">No products yet</div></li>`;
+            cartList.innerHTML = `<li class="header__cart-item"><div class="header__cart-msg">No products yet</div></li>`;
          } else {
-         cartLocal.forEach((item, idx) => {
-            let quantity = cartQty[item.id] ?? 0;
-            let price = 0;
-            const userId = localStorage.getItem('userId');
-            if (!userId || userId === 'null') {
-            if (typeof item.unitPrice !== 'undefined') {
-               price = (item.unitPrice ?? 0) * quantity;
-            } else if (typeof item.sellingPrice !== 'undefined') {
-               price = (item.sellingPrice ?? 0) * quantity;
-            } else if (typeof item.total !== 'undefined' && quantity > 0) {
-               price = item.total;
-            } else {
-               price = 0;
-            }
-            } else {
-            price = (item.unitPrice ?? 0) * quantity;
-            }
+            cartLocal.forEach((item, idx) => {
+               let quantity = cartQty[item.id] ?? 0;
+               let price = 0;
+               const userId = localStorage.getItem('userId');
+               if (!userId || userId === 'null') {
+                  if (typeof item.unitPrice !== 'undefined') {
+                     price = (item.unitPrice ?? 0) * quantity;
+                  } else if (typeof item.sellingPrice !== 'undefined') {
+                     price = (item.sellingPrice ?? 0) * quantity;
+                  } else if (typeof item.total !== 'undefined' && quantity > 0) {
+                     price = item.total;
+                  } else {
+                     price = 0;
+                  }
+               } else {
+                  price = (item.unitPrice ?? 0) * quantity;
+               }
 
-            cartList.innerHTML += `
+               cartList.innerHTML += `
             <li class="header__cart-item" data-idx="${idx}">
             <div class="header__cart-img">
-               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" style="width:100%; height:50%"/>
+               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" style="width:100%; height:100px"/>
                </div>
             <div class="header__cart-item-content">
                <div class="header__cart-item-des">
@@ -656,92 +690,97 @@ class AppHeader extends HTMLElement {
             </div>
             </li>
             `;
-         });
+            });
          }
 
          // Sau khi render xong, gắn sự kiện cho các nút và input
          setTimeout(() => {
-         cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
-            const qtyInput = li.querySelector('.header__cart-item-quantity');
-            const priceDiv = li.querySelector('.header__cart-item-price');
-            const minusBtn = li.querySelector('.btn-minus');
-            const plusBtn = li.querySelector('.btn-plus');
-            let cartLocal = [];
-            try {
-            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
-            } catch (e) {
-            cartLocal = [];
-            }
-            let cartQty = getCartQuantities();
-            const item = cartLocal[idx];
-            const id = item.id;
-            const userId = localStorage.getItem('userId');
-            const unitPrice = (typeof item.unitPrice !== 'undefined') ? item.unitPrice : (item.sellingPrice ?? 0);
+            cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
+               const qtyInput = li.querySelector('.header__cart-item-quantity');
+               const priceDiv = li.querySelector('.header__cart-item-price');
+               const minusBtn = li.querySelector('.btn-minus');
+               const plusBtn = li.querySelector('.btn-plus');
+               let cartLocal = [];
+               try {
+                  cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               } catch (e) {
+                  cartLocal = [];
+               }
+               let cartQty = getCartQuantities();
+               const item = cartLocal[idx];
+               const id = item.id;
+               const userId = localStorage.getItem('userId');
+               const unitPrice = (typeof item.unitPrice !== 'undefined') ? item.unitPrice : (item.sellingPrice ?? 0);
 
-            // Cập nhật tổng tiền khi thay đổi số lượng
-            function updatePriceDisplay(val) {
-            const price = unitPrice * val;
-            priceDiv.textContent = formatPrice(price);
-            }
 
-            // Hàm cập nhật số lượng lên localStorage và gọi API nếu có userId
-            function updateQuantity(val) {
-            if (isNaN(val) || val < 0) val = 0;
-            if (val === (cartQty[id] ?? 0)) return;
-            if (!userId || userId === 'null') {
-               cartQty[id] = val;
-               setCartQuantities(cartQty);
-               renderCart();
-               updateCartNotify();
-            } else {
-               fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
-               method: 'PUT'
-               })
-               .then(res => res.json())
-               .then(data => {
-                  cartQty[id] = val;
-                  setCartQuantities(cartQty);
-                  renderCart();
-                  updateCartNotify();
-               })
-               .catch(() => {
-                  cartQty[id] = val;
-                  setCartQuantities(cartQty);
-                  renderCart();
-                  updateCartNotify();
+               // Cập nhật tổng tiền khi thay đổi số lượng
+               function updatePriceDisplay(val) {
+                  const price = unitPrice * val;
+                  priceDiv.textContent = formatPrice(price);
+               }
+
+               // Hàm cập nhật số lượng lên localStorage và gọi API nếu có userId
+               function updateQuantity(val) {
+                  if (isNaN(val) || val < 0) val = 0;
+                  if (val === (cartQty[id] ?? 0)) return;
+                  if (!userId || userId === 'null') {
+                     cartQty[id] = val;
+                     setCartQuantities(cartQty);
+                     renderCart();
+                     updateCartNotify();
+                  } else {
+                     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
+                        method: 'PUT'
+                     })
+                        .then(res => res.json())
+                        .then(data => {
+                           if (data && data.statusCode === 400 && data.message) {
+                              swal("Cảnh báo", "Không đủ số lượng sản phẩm", "warning");
+                           } else {
+                              cartQty[id] = val;
+                              setCartQuantities(cartQty);
+                              renderCart();
+                              updateCartNotify();
+                           }
+                        })
+                        .catch(() => {
+                           cartQty[id] = val;
+                           setCartQuantities(cartQty);
+                           renderCart();
+                           updateCartNotify();
+                        });
+                  }
+               }
+
+               // Khi nhập số lượng, cập nhật tổng tiền ngay và gọi updateQuantity
+               qtyInput && qtyInput.addEventListener('input', function () {
+                  this.value = this.value.replace(/[^0-9]/g, '');
+                  let val = parseInt(this.value);
+                  if (isNaN(val) || val < 0) val = 0;
+                  updatePriceDisplay(val);
+                  updateQuantity(val);
                });
-            }
-            }
 
-            // Khi nhập số lượng, cập nhật tổng tiền ngay và gọi updateQuantity
-            qtyInput && qtyInput.addEventListener('input', function () {
-            this.value = this.value.replace(/[^0-9]/g, '');
-            let val = parseInt(this.value);
-            if (isNaN(val) || val < 0) val = 0;
-            updatePriceDisplay(val);
-            updateQuantity(val);
-            });
+               // Nút minus
+               minusBtn && minusBtn.addEventListener('click', function () {
+                  let val = parseInt(qtyInput.value) || 0;
+                  if (val > 0) {
+                     val--;
+                     qtyInput.value = val;
+                     updatePriceDisplay(val);
+                     updateQuantity(val);
+                  }
+               });
 
-            // Nút minus
-            minusBtn && minusBtn.addEventListener('click', function () {
-            let val = parseInt(qtyInput.value) || 0;
-            if (val > 0) {
-               val--;
-               qtyInput.value = val;
-               updatePriceDisplay(val);
-               updateQuantity(val);
-            }
+               // Nút plus
+               plusBtn && plusBtn.addEventListener('click', function () {
+                  let val = parseInt(qtyInput.value) || 0;
+                  val++;
+                  qtyInput.value = val;
+                  updatePriceDisplay(val);
+                  updateQuantity(val);
+               });
             });
-
-            // Nút plus
-            plusBtn && plusBtn.addEventListener('click', function () {
-            let val = parseInt(qtyInput.value) || 0;
-            val++;
-            qtyInput.value = val;
-            updatePriceDisplay(val);
-            updateQuantity(val);
-            });
-         });
          }, 0);
 
          return cartList;
@@ -817,7 +856,7 @@ class AppHeader extends HTMLElement {
                const id = item.id;
                const userId = localStorage.getItem('userId');
 
-              
+
 
                // --- Xóa sản phẩm khỏi giỏ ---
                delBtn && delBtn.addEventListener('click', () => {
@@ -1083,6 +1122,8 @@ class AppHeader extends HTMLElement {
                const username = loginForm.querySelectorAll(".form-input")[0].value;
                const password = loginForm.querySelectorAll(".form-input")[1].value;
 
+
+
                fetch("http://localhost:8080/api/v1/auth/login", {
                   method: "POST",
                   headers: {
@@ -1115,6 +1156,7 @@ class AppHeader extends HTMLElement {
                         toggleLoginMenu();
                         // Hiện toast thành công ngoài modal login
                         showToast("Đăng nhập thành công!", false, 2500);
+
                         // Đóng modal đăng nhập nếu thành công
                         setTimeout(function () {
                            var modal = document.querySelector('.modal-log');

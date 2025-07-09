@@ -296,15 +296,15 @@
                                        aria-label="product: activate to sort column descending" aria-sort="ascending">
                                        product
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                    <!-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                        colspan="1" style="width: 139px"
                                        aria-label="category: activate to sort column ascending">
                                        category
-                                    </th>
-                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 55px"
+                                    </th> -->
+                                    <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 55px"
                                        aria-label="stock">
                                        stock
-                                    </th>
+                                    </th> -->
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                        colspan="1" style="width: 46px"
                                        aria-label="sku: activate to sort column ascending">
@@ -340,69 +340,56 @@
                                           tableBody.innerHTML = ''; // Clear existing rows
 
                                           data.content.forEach(product => {
+                                             // Format price as Vietnamese currency
+                                             const priceVND = product.sellingPrice
+                                                ? product.sellingPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+                                                : '0 ₫';
+
                                              const row = `
-                                             <tr>
-                                                <td class="control" tabindex="0" style="display: none"></td>
-                                                <td class="dt-checkboxes-cell">
-                                                  <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                                </td>
-                                                <td class="sorting_1">
-                                                  <div class="d-flex justify-content-start align-items-center product-name">
-                                                    <div class="avatar-wrapper me-4">
-                                                      <div class="avatar rounded-2 bg-label-secondary">
-                                                         <img src="${product.primaryImageURL || './assets/img/ProductList/default.jpg'}" alt="${product.name}" class="rounded-2" />
-                                                      </div>
-                                                    </div>
-                                                    <div class="d-flex flex-column">
-                                                      <span class="text-nowrap text-heading fw-medium">${product.name}</span>
-                                                      <small class="text-truncate d-none d-sm-block">${product.description}</small>
-                                                    </div>
-                                                  </div>
-                                                </td>
-                                                <td>
-                                                  <h6 class="text-truncate align-items-center mb-0 fw-normal">
-                                                    <span class="d-flex justify-content-center align-items-center bg-label-info me-4">
-                                           
-                                                    </span>${product.categories ? product.categories.map(category => `<span class="badge rounded-pill bg-label-info">${category.name}</span>`).join('') : ''}
-                                                  </h6>
-                                                </td>
-                                                <td>
-                                                  <span class="text-truncate">
-                                                    <label class="switch switch-primary switch-sm">
-                                                      <input type="checkbox" class="switch-input" ${product.quantityAvailable > 0 ? 'checked' : ''} />
-                                                      <span class="switch-toggle-slider">
-                                                         <span class="${product.quantityAvailable > 0 ? 'switch-on' : 'switch-off'}"></span>
-                                                      </span>
-                                                    </label>
-                                                    <span class="d-none">${product.quantityAvailable > 0 ? 'In_Stock' : 'Out_of_Stock'}</span>
-                                                  </span>
-                                                </td>
-                                                <td><span>${product.sku}</span></td>
-                                                <td><span>$${product.sellingPrice.toFixed(2)}</span></td>
-                                                <td><span>${product.quantity}</span></td>
-                                                <td>
-                                                  <span class="badge rounded-pill bg-label-${product.status === 'ACTIVE' ? 'success' : 'danger'}" text-capitalized="">
-                                                    ${product.status}
-                                                  </span>
-                                                </td>
-                                                <td>
-                                                  <div class="d-inline-block text-nowrap">
-                                                   <a href="UpdateProduct.html?id=${product.id}">
-                                                     <button class="btn btn-sm btn-icon btn-text-secondary waves-effect rounded-pill text-body me-1">
-                                                      <i class="ri-edit-box-line ri-22px"></i>
-                                                    </button>
-                                                    </a>
-                                                    <button class="btn btn-sm btn-icon btn-text-secondary waves-effect rounded-pill text-body dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                      <i class="ri-more-2-line ri-22px"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-end m-0">
-                                                      <a href="javascript:0;" class="dropdown-item">View</a>
-                                                      <a onclick="openModal('${product.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
-                                                    </div>
-                                                  </div>
-                                                </td>
-                                             </tr>
-                                           `;
+                                                <tr>
+                                                   <td class="control" tabindex="0" style="display: none"></td>
+                                                   <td class="dt-checkboxes-cell">
+                                                     <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                                   </td>
+                                                   <td class="sorting_1">
+                                                     <div class="d-flex justify-content-start align-items-center product-name">
+                                                       <div class="avatar-wrapper me-4">
+                                                         <div class="avatar rounded-2 bg-label-secondary">
+                                                            <img src="${product.primaryImageURL || './assets/img/ProductList/default.jpg'}" alt="${product.name}" class="rounded-2" />
+                                                         </div>
+                                                       </div>
+                                                       <div class="d-flex flex-column">
+                                                         <span class="text-nowrap text-heading fw-medium">${product.name}</span>
+                                                         <small class="text-truncate d-none d-sm-block">${product.description}</small>
+                                                       </div>
+                                                     </div>
+                                                   </td>
+                                                   <td><span>${product.sku}</span></td>
+                                                   <td><span>${priceVND}</span></td>
+                                                   <td><span>${product.quantity}</span></td>
+                                                   <td>
+                                                     <span class="badge rounded-pill bg-label-${product.status === 'ACTIVE' ? 'success' : 'danger'}" text-capitalized="">
+                                                       ${product.status}
+                                                     </span>
+                                                   </td>
+                                                   <td>
+                                                     <div class="d-inline-block text-nowrap">
+                                                      <a href="UpdateProduct.html?id=${product.id}">
+                                                        <button class="btn btn-sm btn-icon btn-text-secondary waves-effect rounded-pill text-body me-1">
+                                                         <i class="ri-edit-box-line ri-22px"></i>
+                                                       </button>
+                                                       </a>
+                                                       <button class="btn btn-sm btn-icon btn-text-secondary waves-effect rounded-pill text-body dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                         <i class="ri-more-2-line ri-22px"></i>
+                                                       </button>
+                                                       <div class="dropdown-menu dropdown-menu-end m-0">
+                                                         <a href="javascript:0;" class="dropdown-item">View</a>
+                                                         <a onclick="openModal('${product.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
+                                                       </div>
+                                                     </div>
+                                                   </td>
+                                                </tr>
+                                              `;
                                              tableBody.insertAdjacentHTML('beforeend', row);
                                           });
                                        })
@@ -434,6 +421,7 @@
                               </div>
                            </div>
                            <!-- End modal delete item-->
+
                            <div class="row mx-1" bis_skin_checked="1">
                               <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                  <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
