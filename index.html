@@ -101,7 +101,7 @@
                   <div class="login-menu-container" id="login-menu-user">
                      <a href="#" class="none-underline flex-c-m trans-04 p-lr-25 login-menu-toggle"
                         style="padding: 0 10px; height: 100%;">
-                        <i class="fa fa-user"></i> <span class="ml-2">Username</span>
+                        <i class="fa fa-user"></i> <span id="full-name" class="ml-2"></span>
                      </a>
                      <div class="sub-menu-login">
                         <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
@@ -249,17 +249,6 @@
                </div>
 
 
-               <script>
-                  const searchButton = document.querySelector('.btn-search');
-                  const searchInput = document.querySelector('.search-new input[name="search-product"]');
-
-                  searchButton.addEventListener('click', function () {
-                     const keyword = searchInput.value.trim();
-                     if (keyword) {
-                        window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
-                     }
-                  });
-               </script>
                <!-- Icon header -->
                <!-- Change for cart -->
                <div class="wrap-icon-header flex-w flex-r-m"></div>
@@ -331,6 +320,19 @@
    </header>
 
    <script>
+     
+  
+
+      // Sự kiện click search button
+      const searchButton = document.querySelector('.btn-search');
+      const searchInput = document.querySelector('.search-new input[name="search-product"]');
+
+      searchButton.addEventListener('click', function () {
+         const keyword = searchInput.value.trim();
+         if (keyword) {
+            window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+         }
+      });
       // Danh sách yêu thích
       document.addEventListener('DOMContentLoaded', function () {
          const userId = localStorage.getItem('userId');
@@ -729,7 +731,7 @@
                cartList.innerHTML += `
             <li class="header__cart-item" data-idx="${idx}">
             <div class="header__cart-img">
-               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" style="width:100%; height:50%"/>
+               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" style="width:100%; height:100px"/>
                </div>
             <div class="header__cart-item-content">
                <div class="header__cart-item-des">
@@ -772,6 +774,7 @@
                const userId = localStorage.getItem('userId');
                const unitPrice = (typeof item.unitPrice !== 'undefined') ? item.unitPrice : (item.sellingPrice ?? 0);
 
+
                // Cập nhật tổng tiền khi thay đổi số lượng
                function updatePriceDisplay(val) {
                   const price = unitPrice * val;
@@ -793,10 +796,14 @@
                      })
                         .then(res => res.json())
                         .then(data => {
-                           cartQty[id] = val;
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
+                           if (data && data.statusCode === 400 && data.message) {
+                              swal("Cảnh báo", "Không đủ số lượng sản phẩm", "warning");
+                           } else {
+                              cartQty[id] = val;
+                              setCartQuantities(cartQty);
+                              renderCart();
+                              updateCartNotify();
+                           }
                         })
                         .catch(() => {
                            cartQty[id] = val;
@@ -1098,20 +1105,20 @@
       });
 
       // Lưu danh sách sản phẩm vào window để add-to-cart dùng
-      (function () {
-         const origFetch = window.fetch;
-         window.fetch = function () {
-            return origFetch.apply(this, arguments).then(res => {
-               // Chỉ patch cho API sản phẩm
-               if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('/api/v1/product')) {
-                  res.clone().json().then(data => {
-                     window._lastFetchedProducts = data.content || [];
-                  }).catch(() => { });
-               }
-               return res;
-            });
-         };
-      })();
+      // (function () {
+      //    const origFetch = window.fetch;
+      //    window.fetch = function () {
+      //       return origFetch.apply(this, arguments).then(res => {
+      //          // Chỉ patch cho API sản phẩm
+      //          if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('/api/v1/product')) {
+      //             res.clone().json().then(data => {
+      //                window._lastFetchedProducts = data.content || [];
+      //             }).catch(() => { });
+      //          }
+      //          return res;
+      //       });
+      //    };
+      // })();
 
       // Ẩn/hiện menu login theo token
       function toggleLoginMenu() {
@@ -1177,6 +1184,8 @@
                const username = loginForm.querySelectorAll(".form-input")[0].value;
                const password = loginForm.querySelectorAll(".form-input")[1].value;
 
+
+
                fetch("http://localhost:8080/api/v1/auth/login", {
                   method: "POST",
                   headers: {
@@ -1209,6 +1218,7 @@
                         toggleLoginMenu();
                         // Hiện toast thành công ngoài modal login
                         showToast("Đăng nhập thành công!", false, 2500);
+                        window.location.reload();
                         // Đóng modal đăng nhập nếu thành công
                         setTimeout(function () {
                            var modal = document.querySelector('.modal-log');
@@ -1232,6 +1242,31 @@
          }
 
       });
+
+       // Hiển thi tên user
+
+      document.addEventListener('DOMContentLoaded', function () {
+         const userId = localStorage.getItem('userId');
+         console.log('userId:', userId);
+         const fullNameElement = document.getElementById('full-name');
+         fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+               if (data && data.statusCode === 200) {
+                  const user = data.data;
+                  
+                  if (user) {
+                     fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+                  }
+                  else{
+                     window.location.reload();
+                     fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+                  }
+                  
+               }
+            })
+            .catch(() => { /* ignore error */ });
+      })
 
       // Toast Message ngoài modal
       function showToast(message, isError = false, duration = 2500) {
@@ -1488,7 +1523,7 @@
                   Men
                </button>
 
-               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
+               <!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
                   Bag
                </button>
 
@@ -1498,7 +1533,7 @@
 
                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
                   Watches
-               </button>
+               </button> -->
             </div>
 
             <div class="flex-w flex-c-m m-tb-10">
@@ -1694,7 +1729,8 @@
             </div>
          </div>
 
-         <div class="row isotope-grid" id="product-list" style="min-height: calc(2 * 469px + 40px); visibility: hidden;">
+         <div class="row isotope-grid" id="product-list"
+            style="min-height: calc(2 * 469px + 40px); visibility: hidden;">
             <!-- Products will be rendered here by JavaScript -->
 
 
@@ -1778,7 +1814,11 @@
                          <div class="price-and-cart">
                               <span class="stext-106 cl10"> ${formatVND(product.sellingPrice)}</span>
                               <span class="original-price">${formatVND(product.originalPrice)}</span>
+                        
                          </div>
+                         <div>
+                              <span>SL:${product.quantity}</span>
+                           </div>
                         </div>
                         <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
                           <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 icon-favourite" data-product-index="${idx}" >

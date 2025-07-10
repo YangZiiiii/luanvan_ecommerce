@@ -270,13 +270,70 @@
                               </tbody>
                               <script>
                                  document.addEventListener('DOMContentLoaded', function () {
-                                    fetch('http://localhost:8080/api/v1/order')
+                                    // Lấy userUid từ query string
+                                    function getQueryParam(param) {
+                                       const urlParams = new URLSearchParams(window.location.search);
+                                       return urlParams.get(param);
+                                    }
+                                    const userUid = getQueryParam('userUid');
+                                    if (!userUid) return;
+
+                                    // Toast helper
+                                    function showToast(message, type = 'success') {
+                                       // Remove old toast if exists
+                                       const oldToast = document.getElementById('custom-toast');
+                                       if (oldToast) oldToast.remove();
+
+                                       const toast = document.createElement('div');
+                                       toast.id = 'custom-toast';
+                                       toast.className = `toast align-items-center text-bg-${type === 'success' ? 'success' : 'danger'} border-0 position-fixed bottom-0 end-0 m-4 show`;
+                                       toast.style.zIndex = 9999;
+                                       toast.role = 'alert';
+                                       toast.ariaLive = 'assertive';
+                                       toast.ariaAtomic = 'true';
+                                       toast.innerHTML = `
+                                          <div class="d-flex">
+                                             <div class="toast-body">${message}</div>
+                                             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                          </div>
+                                       `;
+                                       document.body.appendChild(toast);
+
+                                       setTimeout(() => {
+                                          toast.classList.remove('show');
+                                          setTimeout(() => toast.remove(), 500);
+                                       }, 2500);
+
+                                       toast.querySelector('.btn-close').onclick = () => toast.remove();
+                                    }
+
+                                    // Các option cho payment và status
+                                    const paymentOptions = [
+                                       { value: 'PENDING', text: 'Pending', class: 'text-warning' },
+                                       { value: 'COMPLETED', text: 'Completed', class: 'text-success' }
+                                    ];
+                                    const statusOptions = [
+                                       { value: 'PENDING', text: 'Pending', class: 'bg-label-warning' },
+                                       { value: 'PROCESSING', text: 'Processing', class: 'bg-label-info' },
+                                       { value: 'SHIPPING', text: 'Shipping', class: 'bg-label-primary' },
+                                       { value: 'DELIVERED', text: 'Delivered', class: 'bg-label-success' },
+                                    ];
+
+                                    fetch(`http://localhost:8080/api/v1/order/user/${userUid}`)
                                        .then(res => res.json())
                                        .then(json => {
                                           if (!json.data || !Array.isArray(json.data)) return;
                                           const tbody = document.getElementById('order-list-body');
                                           tbody.innerHTML = '';
-                                          json.data.forEach(order => {
+
+                                          // Sắp xếp: payment COMPLETED lên đầu, sau đó theo thời gian giảm dần
+                                          const sortedOrders = [...json.data].sort((a, b) => {
+                                             if (a.payStatus === 'COMPLETED' && b.payStatus !== 'COMPLETED') return -1;
+                                             if (a.payStatus !== 'COMPLETED' && b.payStatus === 'COMPLETED') return 1;
+                                             return b.orderDate - a.orderDate;
+                                          });
+
+                                          sortedOrders.forEach(order => {
                                              // Format date
                                              const date = new Date(order.orderDate);
                                              const dateStr = date.toLocaleString('en-US', {
@@ -284,100 +341,145 @@
                                                 hour: '2-digit', minute: '2-digit'
                                              });
 
-                                             // Format price
-                                             const priceStr = order.totalPrice
-                                                ? order.totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'VND', minimumFractionDigits: 0 })
-                                                : '';
+                                             // User avatar
+                                             let avatar = order.user && order.user.avatar
+                                                ? `<img src="${order.user.avatar}" alt="Avatar" class="rounded-circle" />`
+                                                : `<div class="avatar avatar-sm"><span class="avatar-initial rounded bg-label-secondary text-heading">${order.user && order.user.firstName ? order.user.firstName[0] : ''}</span></div>`;
 
-                                             // Payment status
-                                             let payStatusClass = 'text-warning', payStatusText = 'Pending';
-                                             if (order.payStatus === 'COMPLETED') {
-                                                payStatusClass = 'text-success'; payStatusText = 'Completed';
-                                             } else if (order.payStatus === 'FAILED') {
-                                                payStatusClass = 'text-danger'; payStatusText = 'Failed';
-                                             }
+                                             // Payment select
+                                             let paymentSelect = `<div class="dropdown">
+                                                <button class="btn btn-sm dropdown-toggle ${paymentOptions.find(opt => opt.value === order.payStatus)?.class || ''}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                   <i class="ri-circle-fill ri-10px me-1"></i>${paymentOptions.find(opt => opt.value === order.payStatus)?.text || order.payStatus}
+                                                </button>
+                                                <ul class="dropdown-menu">` +
+                                                paymentOptions.map(opt =>
+                                                   `<li>
+                                                      <a class="dropdown-item${opt.value === order.payStatus ? ' active' : ''}" href="#" data-order-id="${order.id}" data-value="${opt.value}" data-type="payment">
+                                                         <span class="${opt.class}"><i class="ri-circle-fill ri-10px me-1"></i>${opt.text}</span>
+                                                      </a>
+                                                   </li>`
+                                                ).join('') +
+                                                `</ul>
+                                             </div>`;
 
-                                             // Order status badge
-                                             let orderStatusClass = 'bg-label-warning', orderStatusText = 'Pending';
-                                             if (order.orderStatus === 'DELIVERED') {
-                                                orderStatusClass = 'bg-label-success'; orderStatusText = 'Delivered';
-                                             } else if (order.orderStatus === 'CANCELLED') {
-                                                orderStatusClass = 'bg-label-danger'; orderStatusText = 'Cancelled';
-                                             }
+                                             // Status select
+                                             let statusSelect = `<div class="dropdown">
+                                                <button class="btn btn-sm dropdown-toggle ${statusOptions.find(opt => opt.value === order.orderStatus)?.class || ''}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                   ${statusOptions.find(opt => opt.value === order.orderStatus)?.text || order.orderStatus}
+                                                </button>
+                                                <ul class="dropdown-menu">` +
+                                                statusOptions.map(opt =>
+                                                   `<li>
+                                                      <a class="dropdown-item${opt.value === order.orderStatus ? ' active' : ''}" href="#" data-order-id="${order.id}" data-value="${opt.value}" data-type="status">
+                                                         <span class="badge px-2 rounded-pill ${opt.class}" text-capitalized="">${opt.text}</span>
+                                                      </a>
+                                                   </li>`
+                                                ).join('') +
+                                                `</ul>
+                                             </div>`;
 
                                              // Payment method
-                                             let payTypeIcon = '', payTypeText = '';
+                                             let payTypeText = '';
                                              if (order.payType === 'COD') {
-                                                payTypeIcon = '<img src="./assets/img/OrderList/cod.png" alt="cod" class="me-2" width="29" />';
                                                 payTypeText = 'COD';
-                                             } else if (order.payType === 'VNPAY') {
-                                                payTypeIcon = '<img src="./assets/img/OrderList/vnpay.png" alt="vnpay" class="me-2" width="29" />';
-                                                payTypeText = 'VNPAY';
+                                             } else if (order.payType === 'VNPAY' || order.payType === 'ONLINE') {
+                                                payTypeText = order.payType;
                                              } else {
-                                                payTypeIcon = '';
                                                 payTypeText = order.payType || '';
                                              }
 
-                                             // User avatar
-                                             let avatar = order.user && order.user.avatarUrl
-                                                ? `<img src="${order.user.avatarUrl}" alt="Avatar" class="rounded-circle" />`
-                                                : `<div class="avatar avatar-sm"><span class="avatar-initial rounded bg-label-secondary text-heading">${order.user && order.user.firstName ? order.user.firstName[0] : ''}</span></div>`;
-
                                              tbody.innerHTML += `
-                              <tr>
-                                  <td class="control" tabindex="0" style="display: none"></td>
-                                  <td class="dt-checkboxes-cell">
-                                      <input type="checkbox" class="dt-checkboxes form-check-input" />
-                                  </td>
-                                  <td>
-                                      <a href="OrderDetails.html?orderId=${order.orderId}">#${order.orderId.slice(0, 6)}</a>
-                                  </td>
-                                  <td class="sorting_1">
-                                      <span class="text-nowrap">${dateStr}</span>
-                                  </td>
-                                  <td>
-                                      <div class="d-flex justify-content-start align-items-center user-name">
-                                          <div class="avatar-wrapper me-3">
-                                              <div class="avatar avatar-sm">
-                                                  ${avatar}
-                                              </div>
-                                          </div>
-                                          <div class="d-flex flex-column">
-                                              <span class="fw-medium">${order.user ? (order.user.firstName + ' ' + order.user.lastName) : ''}</span>
-                                              <small class="text-truncate">${order.user ? order.user.email : ''}</small>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <h6 class="mb-0 w-px-100 d-flex align-items-center ${payStatusClass}">
-                                          <i class="ri-circle-fill ri-10px me-1"></i>${payStatusText}
-                                      </h6>
-                                  </td>
-                                  <td>
-                                      <span class="badge px-2 rounded-pill ${orderStatusClass}" text-capitalized="">${orderStatusText}</span>
-                                  </td>
-                                  <td>
-                                      <div class="d-flex align-items-center text-nowrap">
-                                         <span>${payTypeText}</span>
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <div>
-                                          <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                              <i class="ri-more-2-line"></i>
-                                          </button>
-                                          <div class="dropdown-menu dropdown-menu-end m-0">
-                                              <a href="#" class="dropdown-item">View</a>
-                                              <a href="javascript:0;" class="dropdown-item delete-record">Delete</a>
-                                          </div>
-                                      </div>
-                                  </td>
-                              </tr>
-                                              `;
+                                                <tr>
+                                                   <td class="control" tabindex="0" style="display: none"></td>
+                                                   <td class="dt-checkboxes-cell">
+                                                      <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                                   </td>
+                                                   <td>
+                                                      <a href="OrderDetails.html?orderId=${order.id}">#${order.id.slice(0, 6)}</a>
+                                                   </td>
+                                                   <td class="sorting_1">
+                                                      <span class="text-nowrap">${dateStr}</span>
+                                                   </td>
+                                                   <td>
+                                                      <div class="d-flex justify-content-start align-items-center user-name">
+                                                         <div class="avatar-wrapper me-3">
+                                                            <div class="avatar avatar-sm">
+                                                               ${avatar}
+                                                            </div>
+                                                         </div>
+                                                         <div class="d-flex flex-column">
+                                                            <span class="fw-medium">${order.user ? (order.user.firstName + ' ' + order.user.lastName) : ''}</span>
+                                                            <small class="text-truncate">${order.user ? order.user.email : ''}</small>
+                                                         </div>
+                                                      </div>
+                                                   </td>
+                                                   <td>
+                                                      ${paymentSelect}
+                                                   </td>
+                                                   <td>
+                                                      ${statusSelect}
+                                                   </td>
+                                                   <td>
+                                                      <div class="d-flex align-items-center text-nowrap">
+                                                         <span>${payTypeText}</span>
+                                                      </div>
+                                                   </td>
+                                                   <td>
+                                                      <div>
+                                                         <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="ri-more-2-line"></i>
+                                                         </button>
+                                                         <div class="dropdown-menu dropdown-menu-end m-0">
+                                                            <a href="#" class="dropdown-item">View</a>
+                                                            <a href="javascript:0;" class="dropdown-item delete-record">Delete</a>
+                                                         </div>
+                                                      </div>
+                                                   </td>
+                                                </tr>
+                                             `;
+                                          });
+
+                                          // Xử lý sự kiện chọn trạng thái mới
+                                          tbody.addEventListener('click', function (e) {
+                                             const target = e.target.closest('a.dropdown-item');
+                                             if (!target) return;
+                                             e.preventDefault();
+                                             const orderId = target.getAttribute('data-order-id');
+                                             const value = target.getAttribute('data-value');
+                                             const type = target.getAttribute('data-type');
+
+                                             if (type === 'status') {
+                                                // Gọi API cập nhật trạng thái đơn hàng
+                                                fetch(`http://localhost:8080/api/v1/order/${orderId}/status?orderStatus=${value}&userId=${userUid}`, {
+                                                   method: 'PUT'
+                                                })
+                                                .then(res => {
+                                                   if (!res.ok) throw new Error('Update failed');
+                                                   showToast('Cập nhật trạng thái thành công!', 'success');
+                                                   setTimeout(() => window.location.reload(), 1000);
+                                                })
+                                                .catch(() => {
+                                                   showToast('Cập nhật trạng thái thất bại!', 'danger');
+                                                });
+                                             } else if (type === 'payment') {
+                                                // Gọi API cập nhật trạng thái thanh toán
+                                                fetch(`http://localhost:8080/api/v1/order/${orderId}/pay/status?payStatus=${value}`, {
+                                                   method: 'PUT'
+                                                })
+                                                .then(res => {
+                                                   if (!res.ok) throw new Error('Update failed');
+                                                   showToast('Cập nhật trạng thái thanh toán thành công!', 'success');
+                                                   setTimeout(() => window.location.reload(), 1000);
+                                                })
+                                                .catch(() => {
+                                                   showToast('Đơn hàng này đã thanh toán', 'danger');
+                                                });
+                                             }
                                           });
                                        });
                                  });
                               </script>
+
                            </table>
                            <div class="row mx-1" bis_skin_checked="1">
                               <div class="col-sm-12 col-md-6" bis_skin_checked="1">

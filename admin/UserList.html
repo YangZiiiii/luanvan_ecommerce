@@ -340,7 +340,24 @@
                                        .then(data => {
                                           const tableBody = document.querySelector('#DataTables_Table_0 tbody');
                                           tableBody.innerHTML = ''; // Clear existing rows
+
+                                          // Sắp xếp: admin lên đầu
+                                          data.sort((a, b) => {
+                                             const roleA = (a.role || '').toLowerCase();
+                                             const roleB = (b.role || '').toLowerCase();
+                                             if (roleA === 'admin' && roleB !== 'admin') return -1;
+                                             if (roleA !== 'admin' && roleB === 'admin') return 1;
+                                             return 0;
+                                          });
+
                                           data.forEach(user => {
+                                             // Chọn icon theo role
+                                             let roleIcon = '';
+                                             if ((user.role || '').toLowerCase() === 'admin') {
+                                                roleIcon = '<i class="ri-shield-user-line ri-22px text-danger me-2"></i>';
+                                             } else {
+                                                roleIcon = '<i class="ri-user-line ri-22px text-primary me-2"></i>';
+                                             }
                                              const row = `
                                                 <tr>
                                                    <td class="control" tabindex="0" style="display: none"></td>
@@ -367,7 +384,7 @@
                                                    </td>
                                                    <td>
                                                       <span class="text-truncate d-flex align-items-center text-heading">
-                                                         <i class="ri-user-line ri-22px text-primary me-2"></i>User
+                                                         ${roleIcon}${user.role || 'User'}</span>
                                                       </span>
                                                    </td>
                                                    <td>
@@ -402,7 +419,7 @@
                                           });
                                        })
                                        .catch(error => console.error('Error fetching user data:', error));
-                                 </script>
+                                    </script>
                               </tbody>
                            </table>
                            <div class="row mx-1" bis_skin_checked="1">

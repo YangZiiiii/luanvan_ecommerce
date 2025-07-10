@@ -729,6 +729,35 @@
 
    <!-- Modal Delete -->
 <script>
+   // Toast helper
+   function showToast(message, type = "success") {
+      // type: "success" | "error"
+      let toast = document.createElement("div");
+      toast.className = `custom-toast custom-toast-${type}`;
+      toast.innerText = message;
+      Object.assign(toast.style, {
+         position: "fixed",
+         top: "30px",
+         right: "800px",
+         zIndex: 9999,
+         background: type === "success" ? "#22c55e" : "#ef4444",
+         color: "#fff",
+         padding: "12px 24px",
+         borderRadius: "6px",
+         boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+         fontWeight: "bold",
+         fontSize: "16px",
+         opacity: "0",
+         transition: "opacity 0.3s"
+      });
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = "1"; }, 10);
+      setTimeout(() => {
+         toast.style.opacity = "0";
+         setTimeout(() => { toast.remove(); }, 300);
+      }, 3000);
+   }
+
    function openModal(collectionId) {
       const overlay = document.getElementById("modalOverlay");
       const modal = overlay.querySelector(".modal");
@@ -762,7 +791,8 @@
       const collectionId = yesButton.getAttribute("data-collection-id");
 
       if (!collectionId) {
-         alert("Không tìm thấy ID collection để xoá.");
+         closeModal();
+         setTimeout(() => showToast("Không tìm thấy ID collection để xoá.", "error"), 400);
          return;
       }
 
@@ -774,16 +804,25 @@
          if (response.ok) {
             document.getElementById("modalContent").style.display = "none";
             document.getElementById("successMessage").classList.add("show");
-
+            showToast("Xoá collection thành công!", "success");
             setTimeout(() => {
                window.location.reload();
             }, 1500);
          } else {
-            alert("Xoá collection thất bại!");
+            let msg = "Xoá collection thất bại!";
+            try {
+               const data = await response.json();
+               if (data && data.statusCode === 400 && data.message) {
+                  msg = data.message;
+               }
+            } catch {}
+            closeModal();
+            setTimeout(() => showToast(msg, "error"), 400);
          }
       } catch (error) {
          console.error('Lỗi khi gọi API xoá:', error);
-         alert("Có lỗi xảy ra.");
+         closeModal();
+         setTimeout(() => showToast("Có lỗi xảy ra.", "error"), 400);
       }
    }
 
@@ -794,6 +833,11 @@
       }
    }
 </script>
+<style>
+.custom-toast {
+   pointer-events: none;
+}
+</style>
 
 
 </body>
