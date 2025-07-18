@@ -94,13 +94,13 @@
                                 </a>
                             </div>
 
-                            <div>
+                            <!-- <div>
                                 <a href="#" class="myAccount__link-list">
                                     <i class="myAccount__icon-ticket fa-solid fa-ticket"></i>
                                     <span">Kho Voucher</span>
                                 </a>
-                            </div>
-
+                            </div> -->
+                                           
                         </div>
                     </div>
                 </div>
@@ -133,21 +133,7 @@
                                         Đã giao
                                     </a>
                                 </li>
-                                <!-- <li class="follow__item">
-                                    <a href="#" class="follow__link" data-status="CANCELLED">
-                                        Đã hủy
-                                    </a>
-                                </li>
-                                <li class="follow__item">
-                                    <a href="#" class="follow__link" data-status="RETURNED">
-                                        Đã trả lại
-                                    </a>
-                                </li>
-                                <li class="follow__item">
-                                    <a href="#" class="follow__link" data-status="REFUNDED">
-                                        Đã hoàn tiền
-                                    </a>
-                                </li> -->
+                             
                             </ul>
                         </div>
 
@@ -241,12 +227,12 @@
                                             <span class="total__price">${formatCurrency(order.totalPrice)}</span>
                                         </div>
                                         <div class="total__btn">
-                                            <span class="total__btn-content">${order.orderStatus === "PENDING" ? "Chờ xác nhận" : "Không nhận được đánh giá"}</span>
-                                            <div class="total__btn-all">
+                                             <!-- <div class="total__btn-all">
                                                 <button class="total__btn-buy">Mua lại</button>
                                                 <button class="total__btn-contact">Liên hệ người bán</button>
                                                 <button class="total__btn-see">Xem đánh giá shop</button>
-                                            </div>
+                                            </div> -->
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -282,7 +268,7 @@
                                     .then(res => res.json())
                                     .then(json => {
                                         if (json.statusCode === 200 && Array.isArray(json.data)) {
-                                            // Sắp xếp order mới nhất lên đầu (giả sử orderDate là timestamp lớn hơn là mới hơn)
+                                            // Sắp xếp order mới nhất lên đầu (orderDate là timestamp lớn hơn là mới hơn)
                                             allOrders = json.data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
                                             renderOrdersByStatus(""); 
                                         } else {

@@ -13,7 +13,7 @@ class NavBar extends HTMLElement {
 
                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse" bis_skin_checked="1">
                   <!-- Search -->
-                  <div class="navbar-nav align-items-center" bis_skin_checked="1">
+                 <!--  <div class="navbar-nav align-items-center" bis_skin_checked="1">
                      <div class="nav-item navbar-search-wrapper mb-0" bis_skin_checked="1">
                         <a class="nav-item nav-link search-toggler fw-normal px-0" href="javascript:void(0);">
                            <i class="ri-search-line"></i>
@@ -21,7 +21,7 @@ class NavBar extends HTMLElement {
                               (Ctrl+/)</span>
                         </a>
                      </div>
-                  </div>
+                  </div> -->
                   <!-- /Search -->
 
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -155,14 +155,16 @@ class NavBar extends HTMLElement {
       // Fetch user info and update navbar
       document.addEventListener('DOMContentLoaded', function () {
          const userAdminId = localStorage.getItem('userAdminId');
-         if (!userAdminId) return;
+         if (!userAdminId){
+            window.location.href = 'LoginAdmin.html';
+         }
 
          fetch(`http://localhost:8080/api/v1/user/uid/${userAdminId}`)
             .then(res => res.json())
             .then(json => {
                if (json.statusCode === 200 && json.data) {
                   const user = json.data;
-                  // Update welcome text
+                
                   const welcomeSpan = document.getElementById('welcome-user');
                   if (welcomeSpan) {
                      welcomeSpan.textContent = `Welcome, ${user.firstName || ''}!🎉`;
@@ -173,18 +175,18 @@ class NavBar extends HTMLElement {
                      img.src = user.avatarUrl || './assets/img/Dashboard/1.png';
                      img.alt = user.firstName || 'Avatar';
                   });
-                  // Update name and role
+                  
                   const userName = document.getElementById('user-fullname');
                   if (userName) userName.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
                   const userRole = document.getElementById('user-role');
                   if (userRole) userRole.textContent = user.role || '';
-                  // Update profile link
+                
                   const profileLink = document.getElementById('profile-link');
                   if (profileLink) profileLink.href = `./AccountInfo.html?userUid=${user.uid}&userAdminId=${userAdminId}`;
-                  // Update settings link
+                 
                   const settingsLink = document.getElementById('settings-link');
                   if (settingsLink) settingsLink.href = `./AccountSecurity.html?userAdminId=${userAdminId}`;
-                  // Update logout link
+                
                   const logoutLink = document.getElementById('logout-link');
                   if (logoutLink) logoutLink.href = `LoginAdmin.html?userAdminId=${userAdminId}`;
                }

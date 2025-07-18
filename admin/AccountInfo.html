@@ -138,30 +138,31 @@
                                           accept="image/png, image/jpeg" />
                                     </label>
                                     <script>
-                                      document.getElementById('upload').addEventListener('change', async function (e) {
-                                        const file = e.target.files[0];
-                                        if (!file) return;
-                                        const userAdminId = localStorage.getItem("userAdminId");
-                                        const formData = new FormData();
-                                        formData.append('avatar', file);
+                                       document.getElementById('upload').addEventListener('change', async function (e) {
+                                          const file = e.target.files[0];
+                                          if (!file) return;
+                                          const userAdminId = localStorage.getItem("userAdminId");
+                                          const formData = new FormData();
+                                          formData.append('avatar', file);
 
-                                        try {
-                                          const res = await fetch(`http://localhost:8080/api/v1/user/avatar/${userAdminId}`, {
-                                            method: 'PUT',
-                                            body: formData
-                                          });
-                                          const data = await res.json();
-                                          if (res.ok && data.statusCode === 200 && data.data && data.data.avatarUrl) {
-                                            document.getElementById("uploadedAvatar").src = data.data.avatarUrl;
-                                            showToast("Cập nhật ảnh thành công!", true);
-                                          } else {
-                                            showToast("Cập nhật ảnh thất bại!");
+                                          try {
+                                             const res = await fetch(`http://localhost:8080/api/v1/user/avatar/${userAdminId}`, {
+                                                method: 'PUT',
+                                                body: formData
+                                             });
+                                             const data = await res.json();
+                                             if (res.ok && data.statusCode === 200 && data.data && data.data.avatarUrl) {
+                                                document.getElementById("uploadedAvatar").src = data.data.avatarUrl;
+                                                showToast("Cập nhật ảnh thành công!", true);
+                                                setTimeout(() => location.reload(), 1000);
+                                             } else {
+                                                showToast("Cập nhật ảnh thất bại!");
+                                             }
+                                          } catch (err) {
+                                             showToast("Có lỗi xảy ra khi cập nhật ảnh!");
+                                             console.error(err);
                                           }
-                                        } catch (err) {
-                                          showToast("Có lỗi xảy ra khi cập nhật ảnh!");
-                                          console.error(err);
-                                        }
-                                      });
+                                       });
                                     </script>
                                     <button type="button"
                                        class="btn btn-sm btn-outline-danger account-image-reset mb-4 waves-effect">
@@ -190,7 +191,8 @@
                                   toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
                                   toast.innerText = message;
                                   document.getElementById('toast-container').appendChild(toast);
-                                  setTimeout(() => toast.remove(), 3000);
+                                 
+                                  setTimeout(() => toast.remove(), 5000);
                                 }
 
                                 document.addEventListener("DOMContentLoaded", async function () {
@@ -334,9 +336,9 @@
                            2025, made with
                            <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
                            by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -347,7 +349,7 @@
 
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </footer>

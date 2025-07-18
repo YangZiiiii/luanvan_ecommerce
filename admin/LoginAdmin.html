@@ -152,10 +152,10 @@
                 localStorage.setItem('role', data.data.role);
                 showToast('Login successful!', true);
                 setTimeout(() => {
-                window.location.href = '/admin/dashboard.html';
+                window.location.href = '/admin/ProductList.html';
                 }, 1000);
               } else {
-                showToast(data.message || 'Login failed');
+                showToast('Login fail' || false);
               }
               } catch (err) {
               showToast('Network error');

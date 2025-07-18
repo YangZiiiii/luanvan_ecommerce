@@ -110,7 +110,7 @@
 
                <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
                   <!-- Product List Widget -->
-                  <div class="card mb-6" bis_skin_checked="1">
+                  <!-- <div class="card mb-6" bis_skin_checked="1">
                      <div class="card-widget-separator-wrapper" bis_skin_checked="1">
                         <div class="card-body card-widget-separator" bis_skin_checked="1">
                            <div class="row gy-4 gy-sm-1" bis_skin_checked="1">
@@ -190,11 +190,11 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
 
                   <!-- Product List Table -->
                   <div class="card" bis_skin_checked="1">
-                     <div class="card-header" bis_skin_checked="1">
+                     <!-- <div class="card-header" bis_skin_checked="1">
                         <h5 class="mb-0">Filter</h5>
                         <div class="d-flex justify-content-between align-items-center row pt-4 gap-4 gap-md-0"
                            bis_skin_checked="1">
@@ -231,16 +231,16 @@
                               </select>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
                      <div class="card-datatable table-responsive" bis_skin_checked="1">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                            bis_skin_checked="1">
-                           <div class="card-header d-flex border-top rounded-0 flex-wrap py-0 pb-5 pb-md-0"
+                           <div class="card-header d-flex border-top rounded-0 flex-wrap py-0 pb-5 pb-md-0" style="margin: 15px 0;"
                               bis_skin_checked="1">
                               <div class="me-5 ms-n2" bis_skin_checked="1">
                                  <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
-                                    <label><input type="search" class="form-control form-control-sm"
-                                          placeholder="Search" aria-controls="DataTables_Table_0" /></label>
+                                    <!-- <label><input type="search" class="form-control form-control-sm"
+                                          placeholder="Search" aria-controls="DataTables_Table_0" /></label> -->
                                  </div>
                               </div>
                               <div class="d-flex justify-content-start justify-content-md-end align-items-baseline"
@@ -248,7 +248,7 @@
                                  <div
                                     class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center gap-4 pt-0"
                                     bis_skin_checked="1">
-                                    <div class="dataTables_length my-0" id="DataTables_Table_0_length"
+                                    <!-- <div class="dataTables_length my-0" id="DataTables_Table_0_length"
                                        bis_skin_checked="1">
                                        <label><select name="DataTables_Table_0_length"
                                              aria-controls="DataTables_Table_0" class="form-select form-select-sm">
@@ -259,9 +259,9 @@
                                              <option value="70">70</option>
                                              <option value="100">100</option>
                                           </select></label>
-                                    </div>
+                                    </div> -->
                                     <div class="dt-buttons btn-group flex-wrap d-flex" bis_skin_checked="1">
-                                       <div class="btn-group" bis_skin_checked="1">
+                                       <!-- <div class="btn-group" bis_skin_checked="1">
                                           <button
                                              class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-4 waves-effect waves-light"
                                              tabindex="0" aria-controls="DataTables_Table_0" type="button"
@@ -270,7 +270,7 @@
                                                    class="d-none d-sm-inline-block">Export
                                                 </span></span>
                                           </button>
-                                       </div>
+                                       </div> -->
                                        <a style="border-radius: 8px;" href="AddProduct.html"
                                           class="btn btn-secondary add-new btn-primary waves-effect waves-light"
                                           tabindex="0" aria-controls="DataTables_Table_0" type="button">
@@ -296,11 +296,11 @@
                                        aria-label="product: activate to sort column descending" aria-sort="ascending">
                                        product
                                     </th>
-                                    <!-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                        colspan="1" style="width: 139px"
                                        aria-label="category: activate to sort column ascending">
                                        category
-                                    </th> -->
+                                    </th>
                                     <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 55px"
                                        aria-label="stock">
                                        stock
@@ -333,7 +333,7 @@
                               </thead>
                               <tbody>
                                  <script>
-                                    fetch('http://localhost:8080/api/v1/product?page=0&size=10&sortBy=createdAt&direction')
+                                    fetch('http://localhost:8080/api/v1/product?page=0&size=15&sortBy=createdAt&direction')
                                        .then(response => response.json())
                                        .then(data => {
                                           const tableBody = document.querySelector('tbody');
@@ -364,6 +364,7 @@
                                                        </div>
                                                      </div>
                                                    </td>
+                                                   <td><span>${product.categoryName}</span></td>
                                                    <td><span>${product.sku}</span></td>
                                                    <td><span>${priceVND}</span></td>
                                                    <td><span>${product.quantity}</span></td>
@@ -422,7 +423,7 @@
                            </div>
                            <!-- End modal delete item-->
 
-                           <div class="row mx-1" bis_skin_checked="1">
+                           <!-- <div class="row mx-1" bis_skin_checked="1">
                               <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                  <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
                                     aria-live="polite" bis_skin_checked="1">
@@ -480,7 +481,7 @@
                                     </ul>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
                            <div bis_skin_checked="1" style="width: 1%"></div>
                         </div>
                      </div>
@@ -505,9 +506,9 @@
                            2025, made with
                            <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
                            by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -518,7 +519,7 @@
 
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </footer>

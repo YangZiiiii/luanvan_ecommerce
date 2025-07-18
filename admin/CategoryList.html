@@ -142,11 +142,11 @@
                      <div class="card" bis_skin_checked="1">
                         <div class="card-datatable table-responsive" bis_skin_checked="1">
                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer" bis_skin_checked="1">
-                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0" bis_skin_checked="1">
+                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0" style="margin: 15px 0;" bis_skin_checked="1">
                                  <div class="me-5 ms-n2" bis_skin_checked="1">
                                     <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
-                                       <label><input type="search" class="form-control form-control-sm"
-                                             placeholder="Search" aria-controls="DataTables_Table_0" /></label>
+                                       <!-- <label><input type="search" class="form-control form-control-sm"
+                                             placeholder="Search" aria-controls="DataTables_Table_0" /></label> -->
                                     </div>
                                  </div>
                                  <div class="d-flex justify-content-start justify-content-md-end align-items-baseline"
@@ -154,7 +154,7 @@
                                     <div
                                        class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0"
                                        bis_skin_checked="1">
-                                       <div class="dataTables_length my-0" id="DataTables_Table_0_length"
+                                       <!-- <div class="dataTables_length my-0" id="DataTables_Table_0_length"
                                           bis_skin_checked="1">
                                           <label><select name="DataTables_Table_0_length"
                                                 aria-controls="DataTables_Table_0" class="form-select form-select-sm">
@@ -175,9 +175,9 @@
                                                    100
                                                 </option>
                                              </select></label>
-                                       </div>
+                                       </div> -->
                                        <div class="dt-buttons btn-group flex-wrap" bis_skin_checked="1">
-                                          <div class="btn-group" bis_skin_checked="1">
+                                          <!-- <div class="btn-group" bis_skin_checked="1">
                                              <button
                                                 class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-5 waves-effect waves-light"
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="button"
@@ -185,7 +185,7 @@
                                                 <span><i class="ri-download-line me-1"></i>
                                                    <span class="d-none d-sm-inline-block">Export</span></span>
                                              </button>
-                                          </div>
+                                          </div> -->
                                           <button
                                              class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
                                              tabindex="0" aria-controls="DataTables_Table_0" type="button"
@@ -233,7 +233,7 @@
                                  <tbody id="category-table-body">
                                  </tbody>
                               </table>
-                              <div class="row mx-1" bis_skin_checked="1">
+                              <!-- <div class="row mx-1" bis_skin_checked="1">
                                  <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
                                        aria-live="polite" bis_skin_checked="1">
@@ -264,7 +264,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                              </div>
+                              </div> -->
                               <div bis_skin_checked="1" style="width: 1%"></div>
                            </div>
                         </div>
@@ -288,24 +288,6 @@
                                  <input type="text" class="form-control" id="ecommerce-category-title"
                                     placeholder="Enter category title" name="categoryTitle" aria-label="category title" required>
                                  <label for="ecommerce-category-title">Title</label>
-                              </div>
-
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-category-image">
-                              </div>
-
-                              <!-- Parent category -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select id="ecommerce-category-parent-category" class="form-select"
-                                          data-placeholder="Select parent category" data-allow-clear="true">
-                                          <option value="">Select parent Category</option>
-                                       </select>
-                                    </div>
-                                    <label for="ecommerce-category-parent-category">Parent category</label>
-                                 </div>
                               </div>
 
                               <!-- Status -->
@@ -335,29 +317,17 @@
 
                      <script>
                      // Fetch and render parent categories
-                     function loadParentCategories() {
-                        fetch('http://localhost:8080/api/v1/category')
-                           .then(res => res.json())
-                           .then(data => {
-                              const select = document.getElementById('ecommerce-category-parent-category');
-                              select.innerHTML = '<option value="">Select parent Category</option>';
-                              if (data.data && Array.isArray(data.data)) {
-                                 data.data.forEach(cat => {
-                                    select.insertAdjacentHTML('beforeend', `<option value="${cat.id}">${cat.name}</option>`);
-                                 });
-                              }
-                           });
-                     }
+                     
 
                      // Render category table
                      function renderCategoryTable() {
-                        fetch('http://localhost:8080/api/v1/category')
+                        fetch('http://localhost:8080/api/v1/category?page=0&size=10')
                            .then(response => response.json())
                            .then(data => {
                               const tableBody = document.getElementById('category-table-body');
                               tableBody.innerHTML = '';
-                              if (data.data && Array.isArray(data.data)) {
-                                 data.data.forEach(category => {
+                              if (data.data && Array.isArray(data.data.content)) {
+                                 data.data.content.forEach(category => {
                                     const row = `
                                        <tr>
                                           <td class="control" tabindex="0" style="display: none"></td>
@@ -367,19 +337,18 @@
                                           <td class="sorting_1">
                                              <div class="d-flex align-items-center">
                                                 <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                                   <div class="avatar">
-                                                      <img src="./assets/img/CategoryList/default.jpg" alt="${category.name}" class="rounded-2" />
+                                                   <div class="avatar" style="display: flex; align-items: center; justify-content: center; color:#fff">
+                                                      <i class="fa-solid fa-shirt"></i>
                                                    </div>
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                    <span class="text-heading fw-medium text-wrap">${category.name}</span>
-                                                   <small class="text-truncate mb-0 d-none d-sm-block">${category.slug || ''}</small>
                                                 </div>
                                              </div>
                                           </td>
                                           <td>
                                              <div class="text-sm-end pe-3">
-                                                N/A
+                                             ${category.totalProduct || 0}
                                              </div>
                                           </td>
                                           <td style="text-align:right;">
@@ -416,13 +385,11 @@
 
                      // Handle add category
                      document.addEventListener('DOMContentLoaded', function () {
-                        loadParentCategories();
+                       
                         renderCategoryTable();
-
                         document.getElementById('add-category-btn').onclick = function (e) {
                            e.preventDefault();
                            const name = document.getElementById('ecommerce-category-title').value.trim();
-                           const parentId = document.getElementById('ecommerce-category-parent-category').value;
                            const status = document.getElementById('ecommerce-category-status').value;
                            // For now, icon and banner are empty strings, childId is always []
                            if (!name || !status) {
@@ -436,10 +403,6 @@
                               },
                               body: JSON.stringify({
                                  name: name,
-                                 icon: "",
-                                 banner: "",
-                                 parentId: parentId || "",
-                                 childId: [],
                                  status: status
                               })
                            })
@@ -457,48 +420,7 @@
                            });
                         };
 
-                        // --- UPDATE CATEGORY LOGIC (fetch by id and fill modal) ---
-                        // Listen for click on edit buttons
-                        document.body.addEventListener('click', function (e) {
-                           if (e.target.closest('.btn-edit-category')) {
-                              const btn = e.target.closest('.btn-edit-category');
-                              const categoryId = btn.getAttribute('data-category-id');
-                              if (!categoryId) return;
 
-                              // Fetch category by id
-                              fetch(`http://localhost:8080/api/v1/category/${categoryId}`)
-                                 .then(res => res.json())
-                                 .then(result => {
-                                    if (result.data) {
-                                       // Fill name
-                                       document.querySelector('#offcanvasEcommerceCategoryListUpdate #ecommerce-category-title').value = result.data.name || '';
-                                       // Fetch parent categories for update modal
-                                       fetch('http://localhost:8080/api/v1/category')
-                                          .then(res => res.json())
-                                          .then(data => {
-                                             const select = document.querySelector('#offcanvasEcommerceCategoryListUpdate #ecommerce-category-parent-category');
-                                             select.innerHTML = '<option value="">Select parent Category</option>';
-                                             if (data.data && Array.isArray(data.data)) {
-                                                data.data.forEach(cat => {
-                                                   select.insertAdjacentHTML('beforeend', `<option value="${cat.id}">${cat.name}</option>`);
-                                                });
-                                             }
-                                             // Optionally, set selected parent if your API returns it
-                                             // select.value = result.data.parentId || '';
-                                          });
-                                       // Set status (only ACTIVE/INACTIVE)
-                                       const statusSelect = document.querySelector('#offcanvasEcommerceCategoryListUpdate #ecommerce-category-status');
-                                       statusSelect.innerHTML = `
-                                          <option value="">Select category status</option>
-                                          <option value="ACTIVE">Active</option>
-                                          <option value="INACTIVE">Inactive</option>
-                                       `;
-                                       // Optionally, set selected status if your API returns it
-                                       // statusSelect.value = result.data.status || '';
-                                    }
-                                 });
-                           }
-                        });
                      });
                      </script>
 
@@ -517,53 +439,108 @@
                            <form class="pt-0" id="eCommerceCategoryListFormUpdate" onsubmit="return false" novalidate>
                               <!-- Title -->
                               <div class="form-floating form-floating-outline mb-5">
-                                 <input type="text" class="form-control" id="ecommerce-category-title"
+                                 <input type="text" class="form-control" id="ecommerce-category-title-update"
                                     placeholder="Category name" name="categoryTitle" aria-label="category title">
-                                 <label for="ecommerce-category-title">Name</label>
+                                 <label for="ecommerce-category-title-update">Name</label>
                               </div>
-
-                              <!-- Image -->
-                              <div class="mb-5">
-                                 <input class="form-control" type="file" id="ecommerce-category-image">
-                              </div>
-
-                              <!-- Parent category -->
-                              <div class="mb-5 ecommerce-select2-dropdown">
-                                 <div class="form-floating form-floating-outline form-floating-select2">
-                                    <div class="position-relative">
-                                       <select id="ecommerce-category-parent-category" class="form-select"
-                                          data-placeholder="Select parent category" data-allow-clear="true">
-                                          <option value="">Select parent Category</option>
-                                       </select>
-                                    </div>
-                                    <label for="ecommerce-category-parent-category">Parent category</label>
-                                 </div>
-                              </div>
-
+                              
                               <!-- Status -->
                               <div class="mb-5 ecommerce-select2-dropdown">
                                  <div class="form-floating form-floating-outline form-floating-select2">
                                     <div class="position-relative">
-                                       <select id="ecommerce-category-status" class="form-select"
+                                       <select id="ecommerce-category-status-update" class="form-select"
                                           data-placeholder="Select category status" data-allow-clear="true">
-                                          <option value="">Select category status</option>
+                                         
                                           <option value="ACTIVE">Active</option>
                                           <option value="INACTIVE">Inactive</option>
+                                           <option value="DELETED">Deleted</option>
                                        </select>
                                     </div>
-                                    <label for="ecommerce-category-status">Status</label>
+                                    <label for="ecommerce-category-status-update">Status</label>
                                  </div>
                               </div>
 
                               <!-- Submit and reset -->
                               <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1" id="update-category-btn">Update</button>
                                  <button type="reset" class="btn btn-outline-danger"
                                     data-bs-dismiss="offcanvas">Discard</button>
                               </div>
                            </form>
                         </div>
                      </div>
+                     <script>
+                     let currentEditCategoryId = null;
+
+                     // Listen for click on edit buttons
+                     document.body.addEventListener('click', function (e) {
+                        if (e.target.closest('.btn-edit-category')) {
+                           const btn = e.target.closest('.btn-edit-category');
+                           const categoryId = btn.getAttribute('data-category-id');
+                           if (!categoryId) return;
+
+                           currentEditCategoryId = categoryId;
+
+                           // Fetch category by id
+                           fetch(`http://localhost:8080/api/v1/category/${categoryId}`)
+                              .then(res => res.json())
+                              .then(result => {
+                                 if (result.data) {
+                                    document.getElementById('ecommerce-category-title-update').value = result.data.name || '';
+                                    const statusSelect = document.getElementById('ecommerce-category-status-update');
+                                    statusSelect.value = result.data.status || '';
+                                 }
+                              });
+                        }
+                     });
+
+                     // Change status event
+                     document.getElementById('ecommerce-category-status-update').addEventListener('change', function () {
+                        const status = this.value;
+                        if (!currentEditCategoryId || !status) return;
+                        fetch(`http://localhost:8080/api/v1/category/changeStatus/${currentEditCategoryId}`, {
+                           method: 'PUT',
+                           headers: { 'Content-Type': 'application/json' },
+                           body: JSON.stringify({ status })
+                        })
+                        .then(res => res.json())
+                        .then(() => {
+                          return;
+                        })
+                        .catch(() => {
+                           return;
+                        });
+                     });
+
+                     // Submit update
+                     document.getElementById('update-category-btn').onclick = function (e) {
+                        e.preventDefault();
+                        const name = document.getElementById('ecommerce-category-title-update').value.trim();
+                        const status = document.getElementById('ecommerce-category-status-update').value;
+
+                       
+                        if (!currentEditCategoryId || !name || !status) {
+                           alert('Please fill all required fields');
+                           return;
+                        }
+                        fetch(`http://localhost:8080/api/v1/category/${currentEditCategoryId}`, {
+                           method: 'PUT',
+                           headers: { 'Content-Type': 'application/json' },
+                           body: JSON.stringify({ name, status })
+                        })
+                        .then(res => res.json())
+                        .then(() => {
+                           showToast('Category updated successfully');
+                           renderCategoryTable();
+                           document.getElementById('eCommerceCategoryListFormUpdate').reset();
+                           const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('offcanvasEcommerceCategoryListUpdate'));
+                           offcanvas.hide();
+                        })
+                        .catch(() => {
+                           showToast('Failed to update category', 'error');
+                        });
+                     };
+                     </script>
 
 
 
@@ -585,9 +562,9 @@
                            2025, made with
                            <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
                            by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -598,7 +575,7 @@
 
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </footer>

@@ -1,6 +1,6 @@
 class NavigationApp extends HTMLElement {
-    connectedCallback() {
-       this.innerHTML = `
+   connectedCallback() {
+      this.innerHTML = `
            <aside
                id="layout-menu"
                class="layout-menu menu-vertical menu bg-menu-theme"
@@ -13,7 +13,7 @@ class NavigationApp extends HTMLElement {
                "
             >
                <div class="app-brand demo" bis_skin_checked="1">
-                  <a href="Dashboard.html" class="app-brand-link">
+                  <a href="ProductList.html" class="app-brand-link">
                      <span class="app-brand-logo demo me-1">
                         <span style="color: var(--bs-primary)">
                            <svg
@@ -133,6 +133,26 @@ class NavigationApp extends HTMLElement {
                            </a>
                         </li>
 
+                       
+
+                        
+                     </ul>
+                     
+                  </li>
+
+                  <li class="menu-item" style="">
+                     <a
+                        href="javascript:void(0);"
+                        class="menu-link menu-toggle waves-effect"
+                     >
+                     <i class="menu-icon tf-icons ri-grid-line"></i>
+                        <div data-i18n="Category" bis_skin_checked="1">
+                           Category
+                        </div>
+                        
+
+                     </a>
+                     <ul class="menu-sub">
                         <li class="menu-item">
                            <a href="./CategoryList.html" class="menu-link">
                               <div
@@ -143,29 +163,9 @@ class NavigationApp extends HTMLElement {
                               </div>
                            </a>
                         </li>
-
-                        <li class="menu-item">
-                           <a href="./Brand.html" class="menu-link">
-                              <div
-                                 data-i18n="Brand List"
-                                 bis_skin_checked="1"
-                              >
-                                 Brand List
-                              </div>
-                           </a>
-                        </li>
-
-                         <li class="menu-item">
-                           <a href="./Collection.html" class="menu-link">
-                              <div
-                                 data-i18n="Collection List"
-                                 bis_skin_checked="1"
-                              >
-                                 Collection List
-                              </div>
-                           </a>
-                        </li>
+                        
                      </ul>
+                     
                   </li>
 
                   <li class="menu-item">
@@ -177,6 +177,17 @@ class NavigationApp extends HTMLElement {
                         <div data-i18n="Order" bis_skin_checked="1">Order</div>
                      </a>
                      <ul class="menu-sub">
+                     <li class="menu-item">
+                           <a href="./CustomerAll.html" class="menu-link">
+                              
+                              <div
+                                 data-i18n="All Customers"
+                                 bis_skin_checked="1"
+                              >
+                                 All Customers
+                              </div>
+                           </a>
+                        </li>
                         <li class="menu-item">
                            <a href="./OrderList.html" class="menu-link">
                               <div data-i18n="Order List" bis_skin_checked="1">
@@ -197,8 +208,7 @@ class NavigationApp extends HTMLElement {
                      </ul>
                   </li>
 
-                  <li class="menu-item">
-                     <a
+                  <!-- <a
                         href="javascript:void(0);"
                         class="menu-link menu-toggle waves-effect"
                      >
@@ -220,14 +230,14 @@ class NavigationApp extends HTMLElement {
                            </a>
                         </li>
                      </ul>
-                  </li>
+                  </li> -->
 
-                  <li class="menu-item">
+                 <!-- <li class="menu-item">
                      <a href="./Chat.html" class="menu-link">
                         <i class="menu-icon tf-icons ri-wechat-line"></i>
                         <div data-i18n="Chat" bis_skin_checked="1">Chat</div>
                      </a>
-                  </li>
+                  </li> -->
 
                   <!-- e-commerce-app menu end -->
                   <!-- Academy menu start -->
@@ -275,38 +285,37 @@ class NavigationApp extends HTMLElement {
                </ul>
             </aside>
          `;
-         
-         const currentPath = window.location.pathname.split("/").pop();
-         const links = this.querySelectorAll(".menu-link");
-   
-         links.forEach((link) => {
-            const href = link.getAttribute("href");
-   
-            if (
-               href &&
-               href !== "javascript:void(0);" &&
-               href.includes(currentPath)
-            ) {
-               // Active cho chính thẻ a
-               link.classList.add("active");
-   
-               // Active cho thẻ li.menu-item chứa nó
-               const menuItem = link.closest(".menu-item");
-               if (menuItem) {
-                  menuItem.classList.add("active");
-               }
-   
-               // Nếu có menu cha (menu-sub), mở cha ra
-               const subMenu = link.closest(".menu-sub");
-               if (subMenu) {
-                  const parentItem = subMenu.closest(".menu-item");
-                  if (parentItem) {
-                     parentItem.classList.add("open", "active");
-                  }
+
+      const currentPath = window.location.pathname.split("/").pop();
+      const links = this.querySelectorAll(".menu-link");
+
+      links.forEach((link) => {
+         const href = link.getAttribute("href");
+
+         if (
+            href &&
+            href !== "javascript:void(0);" &&
+            href.includes(currentPath)
+         ) {
+            // Active cho chính thẻ a
+            link.classList.add("active");
+
+            // Active cho thẻ li.menu-item chứa nó
+            const menuItem = link.closest(".menu-item");
+            if (menuItem) {
+               menuItem.classList.add("active");
+            }
+
+            // Nếu có menu cha (menu-sub), mở cha ra
+            const subMenu = link.closest(".menu-sub");
+            if (subMenu) {
+               const parentItem = subMenu.closest(".menu-item");
+               if (parentItem) {
+                  parentItem.classList.add("open", "active");
                }
             }
-         });
-    }
- }
- customElements.define("navigation-main", NavigationApp);
- 
+         }
+      });
+   }
+}
+customElements.define("navigation-main", NavigationApp);

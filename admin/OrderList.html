@@ -108,7 +108,7 @@
                <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
                   <!-- Order List Widget -->
 
-                  <div class="card mb-6" bis_skin_checked="1">
+                  <!-- <div class="card mb-6" bis_skin_checked="1">
                      <div class="card-widget-separator-wrapper" bis_skin_checked="1">
                         <div class="card-body card-widget-separator" bis_skin_checked="1">
                            <div class="row gy-4 gy-sm-1" bis_skin_checked="1">
@@ -175,14 +175,14 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
 
                   <!-- Order List Table -->
                   <div class="card" bis_skin_checked="1">
                      <div class="card-datatable table-responsive" bis_skin_checked="1">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                            bis_skin_checked="1">
-                           <div
+                           <!-- <div
                               class="card-header d-flex flex-column flex-md-row align-items-start align-items-md-center py-0 pb-5 pb-md-0"
                               bis_skin_checked="1">
                               <div bis_skin_checked="1">
@@ -218,7 +218,7 @@
                                     </div>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
                            <table class="table dataTable no-footer dtr-column" id="DataTables_Table_0"
                               aria-describedby="DataTables_Table_0_info" style="width: 1396px">
                               <thead>
@@ -453,27 +453,27 @@
                                                 fetch(`http://localhost:8080/api/v1/order/${orderId}/status?orderStatus=${value}&userId=${userUid}`, {
                                                    method: 'PUT'
                                                 })
-                                                .then(res => {
-                                                   if (!res.ok) throw new Error('Update failed');
-                                                   showToast('Cập nhật trạng thái thành công!', 'success');
-                                                   setTimeout(() => window.location.reload(), 1000);
-                                                })
-                                                .catch(() => {
-                                                   showToast('Cập nhật trạng thái thất bại!', 'danger');
-                                                });
+                                                   .then(res => {
+                                                      if (!res.ok) throw new Error('Update failed');
+                                                      showToast('Cập nhật trạng thái thành công!', 'success');
+                                                      setTimeout(() => window.location.reload(), 1000);
+                                                   })
+                                                   .catch(() => {
+                                                      showToast('Cập nhật trạng thái thất bại!', 'danger');
+                                                   });
                                              } else if (type === 'payment') {
                                                 // Gọi API cập nhật trạng thái thanh toán
                                                 fetch(`http://localhost:8080/api/v1/order/${orderId}/pay/status?payStatus=${value}`, {
                                                    method: 'PUT'
                                                 })
-                                                .then(res => {
-                                                   if (!res.ok) throw new Error('Update failed');
-                                                   showToast('Cập nhật trạng thái thanh toán thành công!', 'success');
-                                                   setTimeout(() => window.location.reload(), 1000);
-                                                })
-                                                .catch(() => {
-                                                   showToast('Đơn hàng này đã thanh toán', 'danger');
-                                                });
+                                                   .then(res => {
+                                                      if (!res.ok) throw new Error('Update failed');
+                                                      showToast('Cập nhật trạng thái thanh toán thành công!', 'success');
+                                                      setTimeout(() => window.location.reload(), 1000);
+                                                   })
+                                                   .catch(() => {
+                                                      showToast('Đơn hàng này đã thanh toán', 'danger');
+                                                   });
                                              }
                                           });
                                        });
@@ -481,7 +481,7 @@
                               </script>
 
                            </table>
-                           <div class="row mx-1" bis_skin_checked="1">
+                           <!-- <div class="row mx-1" bis_skin_checked="1">
                               <div class="col-sm-12 col-md-6" bis_skin_checked="1">
                                  <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
                                     aria-live="polite" bis_skin_checked="1">
@@ -539,7 +539,7 @@
                                     </ul>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
                            <div bis_skin_checked="1" style="width: 1%"></div>
                         </div>
                      </div>
@@ -561,9 +561,9 @@
                            2025, made with
                            <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
                            by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -574,7 +574,7 @@
 
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </footer>

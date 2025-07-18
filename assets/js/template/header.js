@@ -8,7 +8,7 @@ class AppHeader extends HTMLElement {
          <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                <div class="left-top-bar">
-                  Free shipping for standard order over $100
+                  Miễn phí vận chuyển cho đơn hàng từ 500.000đ
                </div>
 
                <div class="right-top-bar flex-w h-full">
@@ -139,11 +139,11 @@ class AppHeader extends HTMLElement {
                         <a href="index.html">Home</a>
                      </li>
 
-                     <li>
+                     <li class="label1" data-label1="hot">
                         <a href="product.html">Shop</a>
                      </li>
 
-                     <li class="label1" data-label1="hot">
+                     <li >
                         <a href="shoppingCart.html">Features</a>
                      </li>
 
@@ -242,33 +242,25 @@ class AppHeader extends HTMLElement {
    </header>
    `;
 
-      // Hiển thi tên user
-
-      document.addEventListener('DOMContentLoaded', function () {
-         const userId = localStorage.getItem('userId');
-         const fullNameElement = document.getElementById('full-name');
-         fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
-            .then(res => res.json())
-            .then(data => {
-               if (data && data.statusCode === 200) {
-                  const user = data.data;
-                  if (user) {
-                     fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
-                  }
-               }
-            })
-            .catch(() => { /* ignore error */ });
-      })
-
-
       // Sự kiện click search button
       const searchButton = document.querySelector('.btn-search');
       const searchInput = document.querySelector('.search-new input[name="search-product"]');
 
-      searchButton.addEventListener('click', function () {
+      // Click search button
+      searchButton.addEventListener('click', function (e) {
+         const keyword = searchInput.value.trim();
+         if (keyword) {
+         window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+         }
+      });
+      // Enter key search
+      searchInput.addEventListener('keydown', function (e) {
+         if (e.key === 'Enter') {
+         e.preventDefault();
          const keyword = searchInput.value.trim();
          if (keyword) {
             window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+         }
          }
       });
       // Danh sách yêu thích
@@ -434,8 +426,8 @@ class AppHeader extends HTMLElement {
 
       // Show/hide user menu scroll based on userId
       function toggleUserMenuScroll() {
-         var userId = localStorage.getItem('userId');
-         var userMenu = document.getElementById('user-menu-scroll');
+         let userId = localStorage.getItem('userId');
+         let userMenu = document.getElementById('user-menu-scroll');
          if (userMenu) {
             userMenu.style.display = (userId && userId !== 'null') ? 'block' : 'none';
          }
@@ -481,8 +473,10 @@ class AppHeader extends HTMLElement {
          }
          // Toggle giỏ hàng khi click icon
          if (cartIcon && cartNotify) {
+            
             cartIcon.addEventListener('click', function (e) {
                e.stopPropagation();
+
                const userId = localStorage.getItem('userId');
                if (userId && userId !== 'null') {
                   // Nếu có userId thì fetch lại cart từ API khi mở
@@ -514,7 +508,7 @@ class AppHeader extends HTMLElement {
 
                               localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
                               localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
-                              window.dispatchEvent(new Event('cart-updated'));
+                              updateCartNotify();
                               showCart();
                            } else {
                               showCart();
@@ -555,7 +549,7 @@ class AppHeader extends HTMLElement {
          // Ẩn giỏ hàng khi chuyển trang (hashchange)
          window.addEventListener('hashchange', hideCart);
       });
-      // --- KẾT THÚC: HIỆN/ẨN giỏ hàng khi click ---
+
 
       // --- FETCH cart API khi load trang nếu có userId ---
       document.addEventListener('DOMContentLoaded', function () {
@@ -582,7 +576,7 @@ class AppHeader extends HTMLElement {
                            name: item.productName,
                            primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
                            unitPrice: item.unitPrice,
-                           // Lưu total cho tiện
+                           
                            total: item.unitPrice * item.quantity
                         });
                         cartQuantities[item.productId] = item.quantity ?? 1;
@@ -590,10 +584,12 @@ class AppHeader extends HTMLElement {
 
                      localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
                      localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
-                     window.dispatchEvent(new Event('cart-updated'));
+                     renderCart();
+                     updateCartNotify();
                   }
                })
                .catch(() => { });
+
          }
       });
       // --- KẾT THÚC: FETCH cart API khi load trang ---
@@ -678,7 +674,7 @@ class AppHeader extends HTMLElement {
                   <div class="header__cart-item-price">${formatPrice(price)}</div>
                   <div class="header__cart-item-quantity-wrapper" style="display:flex;align-items:center;gap:4px;">
                   <button class="btn-minus" style="border:1px solid;padding:0 8px;">-</button>
-                  <input type="text" inputmode="numeric" pattern="[0-9]*" class="header__cart-item-quantity" value="${quantity}" style="width:60px;text-align:center;border: 1px solid; margin: 8px;" autocomplete="off" />
+                  <input type="text" inputmode="numeric" pattern="[1-9]*" class="header__cart-item-quantity" value="${quantity}" style="width:60px;text-align:center;border: 1px solid; margin: 8px;" autocomplete="off" />
                   <button class="btn-plus" style="border:1px solid;padding:0 8px;">+</button>
                   </div>
                </div>
@@ -736,6 +732,9 @@ class AppHeader extends HTMLElement {
                         .then(data => {
                            if (data && data.statusCode === 400 && data.message) {
                               swal("Cảnh báo", "Không đủ số lượng sản phẩm", "warning");
+
+                              renderCart();
+                              updateCartNotify();
                            } else {
                               cartQty[id] = val;
                               setCartQuantities(cartQty);
@@ -756,7 +755,7 @@ class AppHeader extends HTMLElement {
                qtyInput && qtyInput.addEventListener('input', function () {
                   this.value = this.value.replace(/[^0-9]/g, '');
                   let val = parseInt(this.value);
-                  if (isNaN(val) || val < 0) val = 0;
+                  if (isNaN(val) || val < 0) val = 1;
                   updatePriceDisplay(val);
                   updateQuantity(val);
                });
@@ -764,9 +763,10 @@ class AppHeader extends HTMLElement {
                // Nút minus
                minusBtn && minusBtn.addEventListener('click', function () {
                   let val = parseInt(qtyInput.value) || 0;
-                  if (val > 0) {
+                  if (val > 1) {
                      val--;
                      qtyInput.value = val;
+                     console.log(qtyInput.value);
                      updatePriceDisplay(val);
                      updateQuantity(val);
                   }
@@ -774,7 +774,7 @@ class AppHeader extends HTMLElement {
 
                // Nút plus
                plusBtn && plusBtn.addEventListener('click', function () {
-                  let val = parseInt(qtyInput.value) || 0;
+                  let val = parseInt(qtyInput.value) || 1;
                   val++;
                   qtyInput.value = val;
                   updatePriceDisplay(val);
@@ -786,6 +786,8 @@ class AppHeader extends HTMLElement {
          return cartList;
       }
 
+
+
       // Hàm chính render giỏ hàng
       function renderCart() {
          const cartNotify = document.querySelector('.header__cart-notify');
@@ -793,12 +795,14 @@ class AppHeader extends HTMLElement {
          let cartLocal = [];
          try {
             cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+
          } catch (e) {
             cartLocal = [];
          }
 
          // Nếu giỏ rỗng thì chỉ hiện empty cart
          if (cartLocal.length === 0) {
+         
             if (emptyCart) emptyCart.style.display = 'block';
             cartNotify.style.width = '300px';
             cartNotify.innerHTML = emptyCart ? emptyCart.outerHTML : `
@@ -807,16 +811,16 @@ class AppHeader extends HTMLElement {
             <p class="header__cart-msg">Chưa có sản phẩm</p>
             </div>
          `;
+
          } else {
             // Có sản phẩm thì render danh sách
             if (emptyCart) emptyCart.style.display = 'none';
             cartNotify.style.width = '500px';
             cartNotify.innerHTML = '';
             const container = document.createElement('div');
-            container.className = 'items-in__cart';
+            container.className = 'items-in__car';
             container.innerHTML = `
-            <h3 class="header__cart-content-product-add">Added products</h3>
-         `;
+            <h3 class="header__cart-content-product-add">Added products</h3>`;
             const cartList = renderCartItems();
             container.appendChild(cartList);
 
@@ -828,22 +832,22 @@ class AppHeader extends HTMLElement {
             <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Check out</a>
             </div>
             <div class="header__cart-item-btn">
-            <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
+                  <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
             </div>
             <div class="header__cart-item-btn">
-            <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>
-            </div>
-         `;
+            <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>`;
             container.appendChild(btnsDiv);
 
             cartNotify.appendChild(container);
 
-            // Thêm sự kiện cho input số lượng, nút OK, nút xóa
+            // Thêm sự kiện cho input số lượng,nút xóa
             cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
 
                const qtyInput = li.querySelector('.header__cart-item-quantity');
                const priceDiv = li.querySelector('.header__cart-item-price');
                const delBtn = li.querySelector('.header__cart-item-delete');
+
+
 
                let cartLocal = [];
                try {
@@ -860,56 +864,48 @@ class AppHeader extends HTMLElement {
 
                // --- Xóa sản phẩm khỏi giỏ ---
                delBtn && delBtn.addEventListener('click', () => {
-                  const userId = localStorage.getItem('userId');
-                  if (!userId || userId === 'null') {
-                     // Xóa local
-                     let cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
-                     let cartQty = getCartQuantities();
-                     cartLocal.splice(idx, 1);
-                     delete cartQty[id];
-                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                     setCartQuantities(cartQty);
-                     renderCart();
-                     updateCartNotify();
-                  } else {
-                     // Gọi API xóa
-                     let cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
-                     let cartQty = getCartQuantities();
-                     const items = cartLocal
-                        .filter((p, i) => i !== idx)
-                        .map(p => ({
-                           productId: p.id,
-                           quantity: cartQty[p.id] ?? 1
-                        }));
-                     fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                           'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                           userId: userId,
-                           items: items
-                        })
+
+                  let cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                  let cartQty = getCartQuantities();
+                  const items = cartLocal
+                     .filter((p, i) => i !== idx)
+                     .map(p => ({
+                        productId: p.id,
+                        quantity: cartQty[p.id] ?? 1
+                     }));
+                     console.log(items);
+                  fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
+                     method: 'DELETE',
+                     headers: {
+                        'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify({
+                        userId: userId,
+                        items: items
                      })
-                        .then(res => res.json())
-                        .then(data => {
-                           cartLocal.splice(idx, 1);
-                           delete cartQty[id];
-                           localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
-                        })
-                        .catch(() => {
-                           cartLocal.splice(idx, 1);
-                           delete cartQty[id];
-                           localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                           setCartQuantities(cartQty);
-                           renderCart();
-                           updateCartNotify();
-                        });
-                  }
-               });
+                  })
+                     .then(res => res.json())
+                     .then(data => {
+                        cartLocal.splice(idx, 1);
+                 
+                        delete cartQty[id];
+                        localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                 
+                        setCartQuantities(cartQty);
+                        renderCart();
+                        updateCartNotify();
+                     })
+                     .catch(() => {
+                        cartLocal.splice(idx, 1);
+                        delete cartQty[id];
+                        localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                       
+                        setCartQuantities(cartQty);
+                        renderCart();
+                        updateCartNotify();
+                     });
+               }
+               );
                // --- KẾT THÚC: Xóa sản phẩm ---
             });
 
@@ -975,94 +971,16 @@ class AppHeader extends HTMLElement {
       // Lắng nghe sự kiện cập nhật giỏ hàng để render lại
       window.addEventListener('cart-updated', function () {
          renderCart();
-         updateCartNotify();
+
       });
 
-      // Patch nút add-to-cart để cập nhật giỏ ngay lập tức
-      document.addEventListener('DOMContentLoaded', function () {
-         // Cho các sản phẩm load động
-         const productList = document.getElementById('product-list');
-         function patchAddToCartButtons() {
-            if (!productList) return;
-            productList.querySelectorAll('.btn-addcart').forEach(btn => {
-               if (!btn.dataset.cartListener) {
-                  btn.dataset.cartListener = '1';
-                  btn.addEventListener('click', function (e) {
-                     e.preventDefault();
-                     // Lấy index sản phẩm từ button
-                     const idx = this.getAttribute('data-product-index');
-                     // Lấy danh sách sản phẩm từ lần fetch gần nhất
-                     let products = [];
-                     try {
-                        products = window._lastFetchedProducts || [];
-                     } catch (e) { }
-                     if (!products.length && window.productsFromDOM) {
-                        products = window.productsFromDOM;
-                     }
-                     const product = products[idx];
-                     if (!product) return;
-                     // Kiểm tra userId, nếu chưa đăng nhập thì không cho add to cart
-                     const userId = localStorage.getItem('userId');
-                     if (!userId || userId === 'null') {
-                        swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
-                        return;
-                     }
-                     let cartLocal = [];
-                     try {
-                        cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
-                     } catch (e) {
-                        cartLocal = [];
-                     }
-                     let cartQty = getCartQuantities();
-                     // Nếu đã có thì tăng số lượng, chưa có thì thêm mới
-                     const existIdx = cartLocal.findIndex(p => p.id === product.id);
-                     if (existIdx !== -1) {
-                        cartQty[product.id] = (cartQty[product.id] ?? 1) + 1;
-                     } else {
-                        cartLocal.push(product);
-                        cartQty[product.id] = 1;
-                     }
-                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                     setCartQuantities(cartQty);
-                     setTimeout(() => {
-                        window.dispatchEvent(new Event('cart-updated'));
-                     }, 10);
-                  });
-               }
-            });
-         }
-         // Theo dõi thay đổi danh sách sản phẩm để patch lại nút
-         if (productList) {
-            const observer = new MutationObserver(() => {
-               patchAddToCartButtons();
-            });
-            observer.observe(productList, { childList: true, subtree: true });
-         }
-         // Patch các nút đã render sẵn
-         patchAddToCartButtons();
-      });
 
-      // Lưu danh sách sản phẩm vào window để add-to-cart dùng
-      (function () {
-         const origFetch = window.fetch;
-         window.fetch = function () {
-            return origFetch.apply(this, arguments).then(res => {
-               // Chỉ patch cho API sản phẩm
-               if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('/api/v1/product')) {
-                  res.clone().json().then(data => {
-                     window._lastFetchedProducts = data.content || [];
-                  }).catch(() => { });
-               }
-               return res;
-            });
-         };
-      })();
 
       // Ẩn/hiện menu login theo token
       function toggleLoginMenu() {
-         var token = localStorage.getItem('token');
-         var loginMenuSign = document.getElementById('login-menu-sign');
-         var loginMenuUser = document.getElementById('login-menu-user');
+         let token = localStorage.getItem('token');
+         let loginMenuSign = document.getElementById('login-menu-sign');
+         let loginMenuUser = document.getElementById('login-menu-user');
          if (token && token !== 'null') {
             // Đã đăng nhập
             loginMenuSign.classList.remove('show-menu--login');
@@ -1081,13 +999,13 @@ class AppHeader extends HTMLElement {
 
       // Đăng xuất
       document.addEventListener('DOMContentLoaded', function () {
-         var logoutBtns = document.getElementsByClassName('logout-btn');
-         var arrayLogout = Array.from(logoutBtns); // hoặc: [...logoutBtns]
+         let logoutBtns = document.getElementsByClassName('logout-btn');
+         let arrayLogout = Array.from(logoutBtns); // hoặc: [...logoutBtns]
 
          arrayLogout.forEach(function (logoutBtn) {
             logoutBtn.addEventListener('click', function (e) {
                e.preventDefault();
-               var token = localStorage.getItem('token');
+               let token = localStorage.getItem('token');
                if (token && token !== 'null') {
                   localStorage.removeItem("username");
                   localStorage.removeItem("firstName");
@@ -1098,6 +1016,7 @@ class AppHeader extends HTMLElement {
                   localStorage.removeItem("role");
                   localStorage.removeItem("loginSuccess");
                   localStorage.removeItem("ListViewAt");
+                  localStorage.removeItem("cartLocal");
 
 
                   showToast("Đăng xuất thành công!");
@@ -1109,9 +1028,46 @@ class AppHeader extends HTMLElement {
             });
          });
 
+         function refreshCartLogin() {
+            fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+               .then(res => res.json())
+               .then(cartData => {
+                  if (
+                     cartData &&
+                     cartData.statusCode === 200 &&
+                     cartData.data &&
+                     Array.isArray(cartData.data.items)
+                  ) {
+                     const items = cartData.data.items;
+                     const cartLocal = [];
+                     const cartQuantities = {};
+
+                     items.forEach(item => {
+                        cartLocal.push({
+                           id: item.productId,
+                           name: item.productName,
+                           primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                           unitPrice: item.unitPrice,
+                           total: item.unitPrice * item.quantity
+                        });
+                        cartQuantities[item.productId] = item.quantity ?? 1;
+                     });
+
+                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                     localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                     updateCartNotify();
+                     window.dispatchEvent(new Event('cart-updated'));
+                  }
+               })
+               .catch(() => {
+                  updateCartNotify();
+                  window.dispatchEvent(new Event('cart-updated'));
+               });
+         }
+
 
          // Đăng nhập
-         var loginForm = document.getElementById('login-form');
+         let loginForm = document.getElementById('login-form');
          if (loginForm) {
             loginForm.addEventListener("submit", function (e) {
                e.preventDefault();
@@ -1150,23 +1106,30 @@ class AppHeader extends HTMLElement {
                         localStorage.setItem("token", data.data.accessToken);
                         localStorage.setItem("refreshToken", data.data.refreshToken || "");
                         localStorage.setItem("userId", data.data.userId);
+                        localStorage.setItem("status", data.data.status || "");
 
                         localStorage.setItem("role", data.data.role);
                         localStorage.setItem("loginSuccess", "true");
                         toggleLoginMenu();
-                        // Hiện toast thành công ngoài modal login
+
+
                         showToast("Đăng nhập thành công!", false, 2500);
+                        window.location.reload();
+                        window.location.reload();
+                       
+
+
 
                         // Đóng modal đăng nhập nếu thành công
                         setTimeout(function () {
-                           var modal = document.querySelector('.modal-log');
+                           let modal = document.querySelector('.modal-log');
                            if (modal) {
                               modal.style.display = 'none';
                            }
                            // Enable scroll lại cho body và html
                            document.body.style.overflow = '';
                            document.documentElement.style.overflow = '';
-                           // Trigger event để update user menu scroll ngay lập tức
+
                            window.dispatchEvent(new Event('login-success'));
                         }, 50);
                      } else {
@@ -1180,6 +1143,30 @@ class AppHeader extends HTMLElement {
          }
 
       });
+
+
+      // Hiển thi tên user
+      const userId = localStorage.getItem('userId');
+      console.log('userId:', userId);
+      const fullNameElement = document.getElementById('full-name');
+      fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+         .then(res => res.json())
+         .then(data => {
+            if (data && data.statusCode === 200) {
+               const user = data.data;
+
+               if (user) {
+                  fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+               }
+               else {
+                  window.location.reload();
+                  fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+               }
+
+            }
+         })
+         .catch(() => { });
+
 
       // Toast Message ngoài modal
       function showToast(message, isError = false, duration = 2500) {
@@ -1210,10 +1197,9 @@ class AppHeader extends HTMLElement {
             let oldProgress = document.getElementById('toast-progress');
             if (oldProgress) oldProgress.remove();
          }
-         // Hiện toast trong duration ms
+         // Hiện toast trong duration 
          setTimeout(() => {
             toast.className = toast.className.replace("show", "");
-            // Remove progress bar
             let oldProgress = document.getElementById('toast-progress');
             if (oldProgress) oldProgress.remove();
          }, duration);
@@ -1257,7 +1243,7 @@ class AppHeader extends HTMLElement {
          }, duration);
       }
 
-      // Thêm CSS cho toast nếu chưa có
+
       (function () {
          if (!document.getElementById('toast-style')) {
             const style = document.createElement('style');

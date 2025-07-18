@@ -204,8 +204,9 @@
                           // Ví dụ: const userAdminId = '123';
                           document.getElementById('formAccountSettings').addEventListener('submit', async function(e) {
                             e.preventDefault();
-                            const userAdminId = window.userAdminId || ''; // Đảm bảo biến này có giá trị
-                            const currentPassword = document.getElementById('currentPassword').value;
+                            const userAdminId = localStorage.getItem("userAdminId"); // Đảm bảo biến này có giá trị
+                            console.log("User Admin ID:", userAdminId); // Kiểm tra giá trị của userAdminId
+                            const oldPassword = document.getElementById('currentPassword').value;
                             const newPassword = document.getElementById('newPassword').value;
                             const confirmPassword = document.getElementById('confirmPassword').value;
 
@@ -218,7 +219,7 @@
                                   'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({
-                                  currentPassword,
+                                  oldPassword,
                                   newPassword,
                                   confirmPassword
                                 })
@@ -255,9 +256,9 @@
                            2025, made with
                            <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
                            by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -268,7 +269,7 @@
 
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </footer>
