@@ -36,7 +36,7 @@
     if (status === 'success') {
         icon.textContent = '✅';
         message.innerHTML = `Thanh toán thành công cho đơn hàng <b>${orderId}</b><br>Tổng tiền: <b>${(total/100).toLocaleString()} VND</b>`;
-        fetch(`http://localhost:8080/api/v1/cart/clear?userId=${encodeURIComponent(userId)}`, { method: 'DELETE' });
+        fetch(`http://160.30.192.116:8080/api/v1/cart/clear?userId=${encodeURIComponent(userId)}`, { method: 'DELETE' });
     } else {
         icon.textContent = '❌';
         message.textContent = 'Thanh toán thất bại. Vui lòng thử lại!';

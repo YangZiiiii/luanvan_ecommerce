@@ -106,6 +106,7 @@
 									</table>
 								</div>
 								<script>
+									var changeServer = '160.30.192.116';
 									document.addEventListener("DOMContentLoaded", function () {
 										const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
 										const tbody = document.getElementById("cart-items-tbody");
@@ -113,7 +114,7 @@
 										const totalSpan = document.querySelector('.payment-due-price[data-checkout-payment-due-target]');
 										let total = 0;
 
-										fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+										fetch(`http://${changeServer}:8080/api/v1/cart?userId=${userId}`)
 											.then(res => res.json())
 											.then(json => {
 												const items = json.data?.items || [];
@@ -466,7 +467,7 @@
 											const shippingFee = 0;
 
 											try {
-												const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+												const cartRes = await fetch(`http://:8080/api/v1/cart?userId=${userId}`);
 												const cartJson = await cartRes.json();
 												const items = cartJson.data?.items || [];
 												const itemIdsToBuy = items.map(item => item.id);
@@ -478,7 +479,7 @@
 													payType,
 													shippingFee
 												};
-												const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
+												const orderRes = await fetch("http://:8080/api/v1/order/create", {
 													method: "POST",
 													headers: {
 														"Content-Type": "application/json"
@@ -517,7 +518,7 @@
 											const shippingFee = 0;
 
 											try {
-												const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+												const cartRes = await fetch(`http://:8080/api/v1/cart?userId=${userId}`);
 												const cartJson = await cartRes.json();
 												const items = cartJson.data?.items || [];
 												const itemIdsToBuy = items.map(item => item.id);
@@ -530,7 +531,7 @@
 													shippingFee
 												};
 
-												const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
+												const orderRes = await fetch("http://:8080/api/v1/order/create", {
 													method: "POST",
 													headers: {
 														"Content-Type": "application/json"
@@ -543,7 +544,7 @@
 													const orderId = orderJson.data?.id;
 													if (orderId) {
 														// API thanh toán
-														const payRes = await fetch(`http://localhost:8080/api/v1/order/${orderId}/pay`, {
+														const payRes = await fetch(`http://:8080/api/v1/order/${orderId}/pay`, {
 															method: "POST"
 														});
 														if (payRes.ok) {
@@ -605,13 +606,13 @@
 										const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
 										try {
 											// Lấy cart hiện tại để lấy danh sách items
-											const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+											const cartRes = await fetch(`http://:8080/api/v1/cart?userId=${userId}`);
 											const cartJson = await cartRes.json();
 											const items = (cartJson.data?.items || []).map(item => ({
 												productId: item.productId,
 												quantity: item.quantity
 											}));
-											await fetch(`http://localhost:8080/api/v1/cart/clear?userId=${userId}`, {
+											await fetch(`http://:8080/api/v1/cart/clear?userId=${userId}`, {
 												method: "DELETE",
 												headers: {
 													"Content-Type": "application/json"
