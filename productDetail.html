@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>Product Detail</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <!--===============================================================================================-->
+   <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+   <!--===============================================================================================-->
+   <!-- <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" /> -->
+   <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/daterangepicker/daterangepicker.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/slick/slick.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/MagnificPopup/magnific-popup.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
+
+
+
+   <!--===============================================================================================-->
+
+   <!--Header-Template  -->
+   <script src="./assets/js/template/header.js"></script>
+
+   <!--Cart-Template  -->
+   <script src="./assets/js/template/cart.js"></script>
+
+   <!--Product-Detail-Bread-Template  -->
+   <script src="./assets/js/template/product-detail/bread-crumb.js"></script>
+
+   <!--Product-Detail-Desc-Template  -->
+   <script src="./assets/js/template/product-detail/description.js"></script>
+
+
+   <!--Product-Detail-Related-Template  -->
+   <script src="./assets/js/template/product-detail/related.js"></script>
+
+   <!--Footer-Template  -->
+   <script src="./assets/js/template/footer.js"></script>
+</head>
+
+<body class="animsition">
+   <!-- Header -->
+   <header-main></header-main>
+
+   <!-- Cart -->
+   <!-- <cart-main></cart-main> -->
+
+   <!-- breadcrumb -->
+   <product-detail-bread></product-detail-bread>
+   
+   <!-- Product Detail -->
+   <!-- <product-detail-desc></product-detail-desc> -->
+   <section class="sec-product-detail bg0 p-t-65 p-b-60">
+      <div class="container">
+         <div class="row" id="product-detail-row">
+            <!-- Product detail will be rendered here by JS -->
+         </div>
+         <script>
+            const reviewName = document.getElementById("review-name__product");
+
+            function updateFavouriteCount() {
+               const favourites = localStorage.getItem('favouriteProductIds');
+               const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+               if (numberOfFavourites) {
+                  let count = 0;
+                  if (favourites) {
+                     try {
+                        const favouriteIds = JSON.parse(favourites);
+                        count = Array.isArray(favouriteIds) ? favouriteIds.length : 0;
+                     } catch {
+                        count = 0;
+                     }
+                  }
+                  numberOfFavourites.setAttribute('data-notify', count);
+               }
+            }
+            updateFavouriteCount();
+
+
+
+            function formatPrice(price) {
+               return price.toLocaleString('vi-VN') + 'đ';
+            }
+
+
+            function getProductIdFromUrl() {
+               const params = new URLSearchParams(window.location.search);
+               return params.get('productId');
+            }
+
+
+            function getUserId() {
+               try {
+                  return localStorage.getItem('userId');
+               } catch (e) {
+                  return null;
+               }
+            }
+
+            async function updateCart(userId) {
+               try {
+                  const res = await fetch(`http://localhost:8080/api/v1/cart?userId=${encodeURIComponent(userId)}`);
+                  const cartData = await res.json();
+                  if (
+                     cartData &&
+                     cartData.statusCode === 200 &&
+                     cartData.data &&
+                     Array.isArray(cartData.data.items)
+                  ) {
+                     const items = cartData.data.items;
+                     const cartLocal = [];
+                     const cartQuantities = {};
+
+                     items.forEach(item => {
+                        cartLocal.push({
+                           id: item.productId,
+                           name: item.productName,
+                           primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                           unitPrice: item.unitPrice,
+                           total: item.unitPrice * item.quantity
+                        });
+                        cartQuantities[item.productId] = item.quantity ?? 1;
+                     });
+
+                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                     localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                     if (typeof updateCartNotify === 'function') updateCartNotify();
+                     window.dispatchEvent(new Event('cart-updated'));
+                  }
+               } catch {
+                  if (typeof updateCartNotify === 'function') updateCartNotify();
+                  window.dispatchEvent(new Event('cart-updated'));
+               }
+            }
+
+            async function renderProductDetail() {
+               const productId = getProductIdFromUrl();
+               if (!productId) return;
+
+               try {
+
+                  const res = await fetch(`http://localhost:8080/api/v1/product/${productId}`);
+                  const json = await res.json();
+                  if (json.statusCode !== 200) throw new Error(json.message);
+
+                  const data = json.data;
+                  const images = data.images && data.images.length > 0 ? data.images : [data.primaryImageURL];
+                  const imageHtml = 
+                     `<div class="item-slick3" data-thumb="${data.primaryImageURL}">
+                        <div class="wrap-pic-w pos-relative">
+                           <img src="${data.primaryImageURL}" alt="IMG-PRODUCT" />     
+                        </div>
+                     </div>`
+                  
+                  
+
+
+                  const categories = data.categoryName || "";
+
+
+                  const sku = data.sku || '';
+
+                  const price = data.sellingPrice || 0;
+
+                  const brand = data.brandName || '';
+
+
+                  document.getElementById('product-detail-row').innerHTML = `
+                     <div class="col-md-6 col-lg-7 p-b-30">
+                        <div class="p-l-25 p-r-30 p-lr-0-lg">
+                           <div class="wrap-slick3 flex-sb flex-w" ">
+                              <div class=""></div>
+                              <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+                              <div class="" style="flex:1;>
+                                 ${imageHtml}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-lg-5 p-b-30">
+                        <div class="p-r-50 p-t-5 p-lr-0-lg">
+                           <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                              ${data.name}
+                           </h4>
+                           <span class="mtext-106 cl2" id="product-price">${formatPrice(price)}</span>
+                           <p class="stext-102 cl3 p-t-23">
+                              ${data.description}
+                           </p>
+                           <div class="p-t-33">
+                              <div class="flex-w  p-b-10">
+                                 <div class="size-204 flex-w flex-m respon6-next">
+                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                       <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" id="btn-num-down">
+                                          <i class="fs-16 zmdi zmdi-minus"></i>
+                                       </div>
+                                       <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product"
+                                          value="1" min="1" id="num-product" />
+                                       <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" id="btn-num-up">
+                                          <i class="fs-16 zmdi zmdi-plus"></i>
+                                       </div>
+                                    </div>
+                                    <button
+                                       class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                                       id="btn-add-to-cart">
+                                       Add to cart
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                                 <div class="flex-m bor9 p-r-10 m-r-11">
+                                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
+                                       data-tooltip="Add to Wishlist">
+                                       <i class="zmdi zmdi-favorite"></i>
+                                    </a>
+                                 </div>
+                                 <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                 </a>
+                                 <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                                    <i class="fa fa-twitter"></i>
+                                 </a>
+                                 <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                                    <i class="fa fa-google-plus"></i>
+                                 </a>
+                              </div> -->
+
+                           <div class="m-t-20">
+                              <span class="stext-107 cl6 "> Brand: ${brand} </span>
+                              <span class="stext-107 cl6 p-lr-25"> Category: ${categories} </span>
+
+                           </div>
+                        </div>
+                     </div>
+                  `;
+
+                  // Quantity and price update
+                  const numInput = document.getElementById('num-product');
+                  const btnUp = document.getElementById('btn-num-up');
+                  const btnDown = document.getElementById('btn-num-down');
+                  const priceSpan = document.getElementById('product-price');
+                  if (numInput && btnUp && btnDown && priceSpan) {
+                     function updatePrice() {
+                        const qty = parseInt(numInput.value) || 1;
+                        priceSpan.textContent = formatPrice(price * qty);
+                     }
+                     btnUp.onclick = () => {
+                        numInput.value = Math.max(1, parseInt(numInput.value) + 1);
+                        updatePrice();
+                     };
+                     btnDown.onclick = () => {
+                        numInput.value = Math.max(1, parseInt(numInput.value) - 1);
+                        updatePrice();
+                     };
+                     numInput.oninput = updatePrice;
+                  }
+
+                  // Add to cart logic
+                  const btnAddToCart = document.getElementById('btn-add-to-cart');
+                  if (btnAddToCart) {
+                     btnAddToCart.onclick = async function (e) {
+                        e.preventDefault();
+                        const qty = parseInt(document.getElementById('num-product').value) || 1;
+                        const userId = getUserId();
+                        if (!userId || userId === 'null' || !data || !data.id) {
+                           swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
+                           return;
+                        }
+                        try {
+                           const url = `http://localhost:8080/api/v1/cart/add?userId=${encodeURIComponent(userId)}&productId=${encodeURIComponent(data.id)}&quantity=${qty}`;
+                           const res = await fetch(url, {
+                              method: 'POST'
+                           });
+                           const result = await res.json();
+                           if (result && (result.statusCode === 200 || result.statusCode === 201)) {
+                              swal(data.name, "đã được thêm vào giỏ hàng!", "success");
+                              await updateCart(userId);
+                           } else {
+                              swal(data.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                           }
+                        } catch {
+                           swal(data.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                        }
+                     };
+                  }
+               } catch (e) {
+                  document.getElementById('product-detail-row').innerHTML = '<div class="col-12"><p class="text-danger">Failed to load product detail.</p></div>';
+               }
+            }
+
+            renderProductDetail();
+         </script>
+
+         <div class="bor10 m-t-50 p-t-43 p-b-40">
+            <!-- Tab01 -->
+            <div class="tab01">
+               <!-- Nav tabs -->
+               <ul class="nav nav-tabs" role="tablist">
+                  <!-- <li class="nav-item p-b-10">
+                     <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                  </li>
+
+                  <li class="nav-item p-b-10">
+                     <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+                  </li> -->
+
+                  <li class="nav-item p-b-10">
+                     <a id="notify-reviews" class="nav-link" data-toggle="tab" href="#reviews" role="tab" >Reviews</a>
+                  </li>
+               </ul>
+
+               <!-- Tab panes -->
+               <div class="tab-content p-t-30">
+                  
+
+                  <!-- - -->
+                  <div class="tab-pane fade show active" id="reviews" role="tabpanel">
+                     <div class="row">
+                        <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                           <div class="p-b-30 m-lr-15-sm">
+                              <!-- Review -->
+                              <div id="product-reviews-list"></div>
+                              <script>
+                                 // Helper: format date/time
+                                 function formatDateTime(dateStr) {
+                                    if (!dateStr) return '';
+                                    const d = new Date(dateStr);
+                                    if (isNaN(d)) return '';
+                                    return d.toLocaleString('vi-VN', {
+                                       hour: '2-digit',
+                                       minute: '2-digit',
+                                       day: '2-digit',
+                                       month: '2-digit',
+                                       year: 'numeric'
+                                    });
+                                 }
+
+                                 async function renderProductReviews() {
+                                    const productId = (new URLSearchParams(window.location.search)).get('productId');
+                                    const notifyReviews = document.getElementById("notify-reviews");
+                                    
+                                    console.log(notifyReviews);
+                                    if (!productId) return;
+                                    try {
+                                       const res = await fetch(`http://localhost:8080/api/v1/comment/product/${productId}`);
+                                       let comments = await res.json();
+                                       // Sort by createdAt descending (newest first)
+                                       if (Array.isArray(comments)) {
+                                          comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                                       }
+                                       const reviewsHtml = comments.length
+                                          ? comments.map(c => `
+                                             <div class="flex-w flex-t p-b-68" data-review-id="${c.id}">
+                                                <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                                   <img src="${c.avatar || './assets/images/avatar-01.jpg'}" alt="AVATAR" />
+                                                </div>
+                                                <div class="size-207">
+                                                   <div class="flex-w flex-sb-m p-b-17">
+                                                      <span class="mtext-107 cl2 p-r-20">
+                                                         ${c.firstName || ''} ${c.lastName || ''}
+                                                      </span>
+                                                      <span class="fs-18 cl11">
+                                                         ${(() => {
+                                                const full = Math.floor(c.rating);
+                                                const half = c.rating % 1 >= 0.5 ? 1 : 0;
+                                                let stars = '';
+                                                for (let i = 0; i < full; i++) stars += '<i class="zmdi zmdi-star"></i>';
+                                                if (half) stars += '<i class="zmdi zmdi-star-half"></i>';
+                                                for (let i = full + half; i < 5; i++) stars += '<i class="zmdi zmdi-star-outline"></i>';
+                                                return stars;
+                                             })()}
+                                                      </span>
+                                                   </div>
+                                                   <div class="stext-102 cl9 p-b-5" style="font-size:13px;">
+                                                      ${formatDateTime(c.createdAt)}
+                                                   </div>
+                                                   <p class="stext-102 cl6">
+                                                      ${c.content}
+                                                   </p>
+                                                    <!-- <div class="m-t-10">
+                                                      <a href="#!" class="cl8 m-r-15 review-edit" data-review-id="${c.commentId}">Edit</a>
+                                                      <a href="#!" class="cl8 review-delete" data-review-id="${c.commentId}">Delete</a>
+                                                   </div> -->
+                                                </div>
+                                             </div>
+                                          `).join('')
+                                          : `<p class="stext-102 cl6"></p>`;
+                                       document.getElementById('product-reviews-list').innerHTML = reviewsHtml;
+                                       if(comments.length ===0)
+                                       notifyReviews.textContent = `Đánh giá (${comments.length})`;
+                                    } catch (e) {
+                                       document.getElementById('product-reviews-list').innerHTML = '<p class="text-danger">Failed to load reviews.</p>';
+                                    }
+                                 }
+                                 renderProductReviews();
+                              </script>
+
+
+
+                              <!-- Add review -->
+                              <form class="w-full" id="review-form">
+                                 <h5 class="mtext-108 cl2 p-b-7" id="review-name__product">
+                                 
+                                 </h5>
+
+                                 <p class="stext-102 cl6" style="font-weight: 700;">
+                                   Hãy cho chúng tôi biết cảm nhận của bạn về sản phẩm
+                                 </p>
+
+                                 <div class="flex-w flex-m p-t-20 p-b-20">
+                                    <span class="stext-102 cl3 m-r-16">
+                                       Đánh giá của bạn
+                                    </span>
+
+                                    <span class="wrap-rating fs-18 cl11 pointer" id="rating-stars">
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="1"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="2"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="3"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="4"></i>
+                                       <i class="item-rating pointer zmdi zmdi-star-outline" data-value="5"></i>
+                                       <input class="dis-none" type="number" name="rating" id="review-rating"
+                                          value="0" />
+                                    </span>
+                                 </div>
+
+                                 <div class="row p-b-25">
+                                    <div class="col-12 p-b-5">
+                                       <label class="stext-102 cl3" for="review">Nhận xét của bạn</label>
+                                       <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review"
+                                          name="review"></textarea>
+                                    </div>
+                                 </div>
+
+                                 <button type="submit"
+                                    class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                    Gửi
+                                 </button>
+                              </form>
+                              <script>
+                                 // Star rating UI
+                                 (function () {
+                                    const stars = document.querySelectorAll('#rating-stars .item-rating');
+                                    const ratingInput = document.getElementById('review-rating');
+                                    stars.forEach(star => {
+                                       star.addEventListener('click', function () {
+                                          const val = parseInt(this.getAttribute('data-value'));
+                                          ratingInput.value = val;
+                                          stars.forEach((s, idx) => {
+                                             if (idx < val) {
+                                                s.classList.remove('zmdi-star-outline');
+                                                s.classList.add('zmdi-star');
+                                             } else {
+                                                s.classList.remove('zmdi-star');
+                                                s.classList.add('zmdi-star-outline');
+                                             }
+                                          });
+                                       });
+                                    });
+                                 })();
+
+                                 // Submit review
+                                 document.getElementById('review-form').addEventListener('submit', async function (e) {
+                                    e.preventDefault();
+                                    const rating = parseInt(document.getElementById('review-rating').value);
+                                    const content = document.getElementById('review').value.trim();
+                                    const productId = (new URLSearchParams(window.location.search)).get('productId');
+                                    const userId = (function () {
+                                       try {
+                                          return localStorage.getItem('userId');
+                                       } catch (e) {
+                                          return null;
+                                       }
+                                    })();
+
+                                    if (!userId) {
+                                       swal("Error", "Bạn phải đăng nhập để gửi đánh giá.", "error");
+                                       return;
+                                    }
+                                    if (!productId) {
+                                       swal("Error", "Product not found.", "error");
+                                       return;
+                                    }
+                                    if (!rating || rating < 1 || rating > 5) {
+                                       swal("Error", "Hãy chọn số sao đánh giá ", "error");
+                                       return;
+                                    }
+                                    if (!content) {
+                                       swal("Error", "Hãy nhập nhận xét của bạn.", "error");
+                                       return;
+                                    }
+
+                                    try {
+                                       const url = `http://localhost:8080/api/v1/comment/create?uid=${encodeURIComponent(userId)}&productId=${encodeURIComponent(productId)}`;
+                                       const res = await fetch(url, {
+                                          method: 'POST',
+                                          headers: {
+                                             'Content-Type': 'application/json'
+                                          },
+                                          body: JSON.stringify({
+                                             rating: rating,
+                                             content: content
+                                          })
+                                       });
+                                       const result = await res.json();
+                                       if (result.statusCode === 200 || result.statusCode === 201) {
+                                          swal("Success", "Your review has been submitted!", "success");
+                                          document.getElementById('review-form').reset();
+                                          // Reset stars UI
+                                          const stars = document.querySelectorAll('#rating-stars .item-rating');
+                                          stars.forEach(s => {
+                                             s.classList.remove('zmdi-star');
+                                             s.classList.add('zmdi-star-outline');
+                                          });
+                                          document.getElementById('review-rating').value = 0;
+                                          renderProductReviews();
+                                       } else {
+                                          swal("Error", result.message || "Failed to submit review.", "error");
+                                       }
+                                    } catch (err) {
+                                       swal("Error", "Failed to submit review.", "error");
+                                    }
+                                 });
+                              </script>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+         <span class="stext-107 cl6 p-lr-25"> SKU: JAK-01 </span>
+
+         <span class="stext-107 cl6 p-lr-25"> Categories: Jacket, Men </span>
+      </div> -->
+   </section>
+
+
+   <!-- Related Products -->
+   <!-- <product-detail-related></product-detail-related> -->
+
+
+   <!-- Footer -->
+   <footer-main></footer-main>
+
+   <!-- Back to top -->
+   <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+         <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+   </div>
+
+
+
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/animsition/js/animsition.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/bootstrap/js/popper.js"></script>
+   <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/select2/select2.min.js"></script>
+   <script>
+      $(".js-select2").each(function () {
+         $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next(".dropDownSelect2"),
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/daterangepicker/moment.min.js"></script>
+   <script src="./assets/vendor/daterangepicker/daterangepicker.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/slick/slick.min.js"></script>
+   <script src="./assets/js/slick-custom.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/parallax100/parallax100.js"></script>
+   <script>
+      $(".parallax100").parallax100();
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+   <script>
+      $(".gallery-lb").each(function () {
+         // the containers for all your galleries
+         $(this).magnificPopup({
+            delegate: "a", // the selector for gallery item
+            type: "image",
+            gallery: {
+               enabled: true,
+            },
+            mainClass: "mfp-fade",
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/sweetalert/sweetalert.min.js"></script>
+   <script>
+      $(".js-addwish-b2, .js-addwish-detail").on("click", function (e) {
+         e.preventDefault();
+      });
+
+      $(".js-addwish-b2").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .find(".js-name-b2")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-b2");
+            $(this).off("click");
+         });
+      });
+
+      $(".js-addwish-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-detail");
+            $(this).off("click");
+         });
+      });
+
+      /*---------------------------------------------*/
+
+      $(".js-addcart-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to cart !", "success");
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script>
+      $(".js-pscroll").each(function () {
+         $(this).css("position", "relative");
+         $(this).css("overflow", "hidden");
+         var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+         });
+
+         $(window).on("resize", function () {
+            ps.update();
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/js/main.js"></script>
+   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
+         let searchIcon = document.getElementById('icon-search_items');
+         console.log(searchIcon);
+         if (searchIcon) searchIcon.classList.add('search-none');
+      });
+   </script>
+</body>
+
+</html>

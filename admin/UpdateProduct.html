@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<!-- saved from url=(0129)https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-product-add.html -->
+<html lang="en" class="layout-navbar-fixed layout-compact dark-style layout-menu-fixed" dir="ltr"
+   data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template" data-style="dark">
+<script async="" src="./assets/js/gtm.js"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js"
+   id="eppiocemhmnlbhjplcgkofciiegomcon"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+   <title>
+      eCommerce Update Product - Apps | Materio - Bootstrap Material Design
+      Admin Template
+   </title>
+
+   <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+   <meta name="keywords"
+      content="dashboard, material, material design, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
+   <!-- Canonical SEO -->
+   <link rel="canonical" href="https://themeselection.com/item/materio-bootstrap-html-admin-template/" />
+
+
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon"
+      href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/assets/img/favicon/favicon.ico" />
+
+   <!-- Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com/" />
+   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+   <link href="./assets/css/css2.css" rel="stylesheet" />
+
+   <!-- Icons -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   <link rel="stylesheet" href="./assets/css/remixicon.css" />
+   <link rel="stylesheet" href="./assets/css/flag-icons.css" />
+
+   <!-- Menu waves for no-customizer fix -->
+   <link rel="stylesheet" href="./assets/css/node-waves.css" />
+
+   <!-- Core CSS -->
+
+   <link rel="stylesheet" href="./assets/css/demo.css" />
+
+   <!-- Vendors CSS -->
+   <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css" />
+   <link rel="stylesheet" href="./assets/css/typeahead.css" />
+   <link rel="stylesheet" href="./assets/css/typography.css" />
+   <link rel="stylesheet" href="./assets/css/katex.css" />
+   <link rel="stylesheet" href="./assets/css/editor.css" />
+   <link rel="stylesheet" href="./assets/css/select2.css" />
+   <link rel="stylesheet" href="./assets/css/dropzone.css" />
+   <link rel="stylesheet" href="./assets/css/flatpickr.css" />
+   <link rel="stylesheet" href="./assets/css/tagify.css" />
+
+   <!-- Page CSS -->
+
+   <!-- Helpers -->
+   <script src="./assets/js/helpers.js"></script>
+
+
+   <!-- Template Navigation -->
+   <script src="./assets/js/template/navigation.js"></script>
+
+   <!-- Template NabBar -->
+   <script src="./assets/js/template/navbar.js"></script>
+
+   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+   <script src="./assets/js/config.js"></script>
+   <link rel="stylesheet" type="text/css" href="./assets/css/core-dark.css" class="template-customizer-core-css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/theme-semi-dark-dark.css"
+      class="template-customizer-theme-css" />
+
+
+
+   <!-- Dropzone -->
+   <script src="https://cdn.jsdelivr.net/npm/dropzone@5/dist/min/dropzone.min.js"></script>
+
+</head>
+
+<body __processed_bb539775-74b8-4236-b43d-afe4400b922e__="true"
+   bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJMSU5LRURJTiI6ImRpc2FibGVkIiwiQ09ORklHIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjIuMC4yMCIsInNjb3JlIjoyMDAyMH1d">
+
+
+   <!-- Layout wrapper -->
+   <div class="layout-wrapper layout-content-navbar" bis_skin_checked="1">
+      <div class="layout-container" bis_skin_checked="1">
+         <!-- Menu -->
+
+         <navigation-main></navigation-main>
+         <!-- / Menu -->
+
+         <!-- Layout container -->
+         <div class="layout-page" bis_skin_checked="1">
+
+            <!-- Navbar -->
+            <navbar-main></navbar-main>
+            <!-- / Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" bis_skin_checked="1">
+               <!-- Content -->
+
+
+               <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
+                  <div class="app-ecommerce" bis_skin_checked="1">
+
+
+
+
+
+
+                     <!-- Add Product -->
+                     <div
+                        class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 gap-4 gap-md-0"
+                        bis_skin_checked="1">
+                        <div class="d-flex flex-column justify-content-center" bis_skin_checked="1">
+                           <h4 class="mb-1">Cập nhật sản phẩm</h4>
+                           <p class="mb-0">
+                              Đơn hàng được đặt trên cửa hàng của bạn
+                           </p>
+                        </div>
+                        <div class="d-flex align-content-center flex-wrap gap-4" bis_skin_checked="1">
+                           <button class="btn btn-outline-secondary waves-effect">
+                              Hủy bỏ
+                           </button>
+                           <button type="submit" class="btn btn-primary waves-effect waves-light btn-submit-product">
+                              Cập nhật sản phẩm
+                           </button>
+                        </div>
+                     </div>
+
+                     <div class="row" bis_skin_checked="1">
+                        <!-- First column-->
+                        <div class="col-12 col-lg-8" bis_skin_checked="1">
+                           <!-- Product Information -->
+                           <div class="card mb-6" bis_skin_checked="1">
+                              <div class="card-header" bis_skin_checked="1">
+                                 <h5 class="card-tile mb-0">
+                                    Thông tin sản phẩm
+                                 </h5>
+                              </div>
+                              <div class="card-body add-info__product" bis_skin_checked="1">
+                                 <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
+                                    <input type="text" class="form-control" id="ecommerce-product-name"
+                                       placeholder="Tên sản phẩm" name="productTitle" aria-label="Product title" />
+                                    <label for="ecommerce-product-name">Tên</label>
+                                 </div>
+
+                                 <div class="row gx-5 mb-5" bis_skin_checked="1">
+                                    <div class="col" bis_skin_checked="1">
+                                       <div class="form-floating form-floating-outline" bis_skin_checked="1">
+                                          <input type="text" class="form-control" id="ecommerce-product-sku"
+                                             placeholder="mã phân loại" name="productSku" aria-label="Product SKU" />
+                                          <label for="ecommerce-product-sku">Mã phân loại</label>
+                                       </div>
+                                    </div>
+                                    <div class="col" bis_skin_checked="1">
+                                       <div class="form-floating form-floating-outline" bis_skin_checked="1">
+                                          <input type="text" class="form-control" id="ecommerce-product-barcode"
+                                             placeholder="999" name="Quantity" aria-label="Product barcode" />
+                                          <label for="ecommerce-product-name">Số lượng</label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- Comment -->
+                                 <div bis_skin_checked="1">
+                                    <label class="mb-1">Mô tả (Tùy chọn)</label>
+                                    <div class="form-control p-0 pt-1" bis_skin_checked="1">
+                                       <div class="comment-toolbar border-0 border-bottom ql-toolbar ql-snow"
+                                          bis_skin_checked="1">
+                                          <div class="d-flex justify-content-start" bis_skin_checked="1">
+                                             <span class="ql-formats me-0">
+                                                <button class="ql-bold" type="button">
+                                                   <svg viewBox="0 0 18 18">
+                                                      <path class="ql-stroke"
+                                                         d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z">
+                                                      </path>
+                                                      <path class="ql-stroke"
+                                                         d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
+                                                      </path>
+                                                   </svg>
+                                                </button>
+                                                <button class="ql-italic" type="button">
+                                                   <svg viewBox="0 0 18 18">
+                                                      <line class="ql-stroke" x1="7" x2="13" y1="4" y2="4"></line>
+                                                      <line class="ql-stroke" x1="5" x2="11" y1="14" y2="14"></line>
+                                                      <line class="ql-stroke" x1="8" x2="10" y1="14" y2="4"></line>
+                                                   </svg>
+                                                </button>
+                                                <button class="ql-underline" type="button">
+                                                   <svg viewBox="0 0 18 18">
+                                                      <path class="ql-stroke"
+                                                         d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3">
+                                                      </path>
+                                                      <rect class="ql-fill" height="1" rx="0.5" ry="0.5" width="12"
+                                                         x="3" y="15"></rect>
+                                                   </svg>
+                                                </button>
+                                                <button class="ql-list" value="ordered" type="button">
+                                                   <svg viewBox="0 0 18 18">
+                                                      <line class="ql-stroke" x1="7" x2="15" y1="4" y2="4"></line>
+                                                      <line class="ql-stroke" x1="7" x2="15" y1="9" y2="9"></line>
+                                                      <line class="ql-stroke" x1="7" x2="15" y1="14" y2="14"></line>
+                                                      <line class="ql-stroke ql-thin" x1="2.5" x2="4.5" y1="5.5"
+                                                         y2="5.5"></line>
+                                                      <path class="ql-fill"
+                                                         d="M3.5,6A0.5,0.5,0,0,1,3,5.5V3.085l-0.276.138A0.5,0.5,0,0,1,2.053,3c-0.124-.247-0.023-0.324.224-0.447l1-.5A0.5,0.5,0,0,1,4,2.5v3A0.5,0.5,0,0,1,3.5,6Z">
+                                                      </path>
+                                                      <path class="ql-stroke ql-thin"
+                                                         d="M4.5,10.5h-2c0-.234,1.85-1.076,1.85-2.234A0.959,0.959,0,0,0,2.5,8.156">
+                                                      </path>
+                                                      <path class="ql-stroke ql-thin"
+                                                         d="M2.5,14.846a0.959,0.959,0,0,0,1.85-.109A0.7,0.7,0,0,0,3.75,14a0.688,0.688,0,0,0,.6-0.736,0.959,0.959,0,0,0-1.85-.109">
+                                                      </path>
+                                                   </svg>
+                                                </button>
+                                                <button class="ql-list" value="bullet" type="button">
+                                                   <svg viewBox="0 0 18 18">
+                                                      <line class="ql-stroke" x1="6" x2="15" y1="4" y2="4"></line>
+                                                      <line class="ql-stroke" x1="6" x2="15" y1="9" y2="9"></line>
+                                                      <line class="ql-stroke" x1="6" x2="15" y1="14" y2="14"></line>
+                                                      <line class="ql-stroke" x1="3" x2="3" y1="4" y2="4"></line>
+                                                      <line class="ql-stroke" x1="3" x2="3" y1="9" y2="9"></line>
+                                                      <line class="ql-stroke" x1="3" x2="3" y1="14" y2="14"></line>
+                                                   </svg>
+                                                </button>
+
+
+                                             </span>
+                                          </div>
+                                       </div>
+                                       <div class="comment-editor border-0 pb-1 ql-container ql-snow"
+                                          id="ecommerce-category-description" bis_skin_checked="1">
+                                          <div class="ql-editor ql-blank" data-gram="false" contenteditable="true"
+                                             data-placeholder="" bis_skin_checked="1">
+                                             <p><br /></p>
+                                          </div>
+                                          <div class="ql-clipboard" contenteditable="true" tabindex="-1"
+                                             bis_skin_checked="1"></div>
+                                          <div class="ql-tooltip ql-hidden" bis_skin_checked="1">
+                                             <a class="ql-preview" rel="noopener noreferrer" target="_blank"
+                                                href="about:blank"></a><input type="text" data-formula="e=mc^2"
+                                                data-link="" data-video="Embed URL" /><a class="ql-action"></a><a
+                                                class="ql-remove"></a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- /Product Information -->
+                           <!-- Media -->
+                           <div class="card mb-6">
+                              <div class="card-header d-flex justify-content-between align-items-center">
+                                 <h5 class="mb-0 card-title">Hình ảnh sản phẩm</h5>
+                              </div>
+                              <div class="card-body">
+
+                                 <div id="upload-area" class="border rounded p-4 text-center" style="cursor:pointer;">
+                                    <i class="ri-upload-2-line ri-24px"></i>
+                                    <p class="h5 my-2">Nhấn chọn hình Ảnh</p>
+                                    <input type="file" id="imageInput" style="display: none;" multiple accept="image/*">
+                                 </div>
+
+                                 <div id="preview" class="d-flex flex-wrap mt-3 gap-3"></div>
+
+
+                              </div>
+                           </div>
+
+
+
+
+
+
+                           <!-- /Inventory -->
+                        </div>
+                        <!-- /Second column -->
+
+                        <!-- Second column -->
+                        <div class="col-12 col-lg-4" bis_skin_checked="1">
+                           <!-- Pricing Card -->
+                           <div class="card mb-6" bis_skin_checked="1">
+                              <div class="card-header" bis_skin_checked="1">
+                                 <h5 class="card-title mb-0">Định giá</h5>
+                              </div>
+                              <div class="card-body" bis_skin_checked="1">
+                                 <!-- Base Price -->
+                                 <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
+                                    <input type="number" class="form-control" id="ecommerce-product-price"
+                                       placeholder="Giá gốc" name="originalPrice" aria-label="Product price" />
+                                    <label for="ecommerce-product-price">Giá gốc</label>
+                                 </div>
+
+                                 <!-- Discounted Price -->
+                                 <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
+                                    <input type="number" class="form-control" id="ecommerce-product-discount-price"
+                                       placeholder="Giá khuyến mãi" name="productDiscountedPrice"
+                                       aria-label="Product discounted price" />
+                                    <label for="ecommerce-product-discount-price">Giá khuyến mãi</label>
+                                 </div>
+                                 <!-- Charge tax check box -->
+
+                                  <!-- Selling Price -->
+                                 <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
+                                    <input type="number" class="form-control" id="ecommerce-product-selling-price"
+                                       placeholder="Giá bán" name="productSellingPrice"
+                                       aria-label="Product selling price" readonly />
+                                    <label for="ecommerce-product-selling-price">Giá bán</label>
+                                 </div>
+
+                                 <!-- Instock switch -->
+
+                              </div>
+                           </div>
+                           <!-- /Pricing Card -->
+                           <div class="card mb-6" bis_skin_checked="1">
+                              <div class="card-header" bis_skin_checked="1">
+                                 <h5 class="card-title mb-0">Organize</h5>
+                              </div>
+                              <div class="card-body" bis_skin_checked="1">
+                                 <!-- Category -->
+                                 <div
+                                    class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
+                                    <div class="w-100 me-4">
+                                       <select id="productCategory" name="category" class="form-select form-select-sm"
+                                          data-placeholder="Select Category">
+                                          <option value="">Select Category</option>
+                                       </select>
+                                    </div>
+
+                                 </div>
+
+
+
+                                 <!-- Brand -->
+                                 <div
+                                    class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
+                                    <div class="w-100 me-4">
+                                       <select id="productBrand" name="brand" class="form-select form-select-sm"
+                                          data-placeholder="Select Brand">
+                                          <option value="">Select Brand</option>
+                                       </select>
+                                    </div>
+
+                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              </div>
+
+                           </div>
+                           <!-- /Organize Card -->
+
+
+
+
+
+                           <!-- Status -->
+                           <div class="card mb-6" bis_skin_checked="1">
+                              <div class="card-header" bis_skin_checked="1">
+                                 <h5 class="card-title mb-0">Status</h5>
+                              </div>
+                              <div class="mb-5 col ecommerce-select2-dropdown card-header" style="padding-top: 0;"
+                                 bis_skin_checked="1">
+                                 <select id="status-org" class="form-select form-select-sm"
+                                    data-placeholder="Select Status">
+                                    
+                                    <option value="ACTIVE">
+                                       Active
+                                    </option>
+                                    <option value="INACTIVE">
+                                       Inactive
+                                    </option>
+                                    <option value="DELETED">
+                                       Deleted
+                                    </option>
+                                 </select>
+                              </div>
+                           </div>
+                           <script>
+
+                           </script>
+                        </div>
+                        <!-- /Second column -->
+                     </div>
+
+                  </div>
+               </div>
+               <!-- / Content -->
+
+               <!-- Footer -->
+               <footer class="content-footer footer bg-footer-theme">
+                  <div class="container-xxl" bis_skin_checked="1">
+                     <div
+                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
+                        bis_skin_checked="1">
+                        <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
+                           ©
+                           <script>
+                              document.write(new Date().getFullYear());
+                           </script>
+                           2025, made with
+                           <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
+                           by
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
+                        </div>
+
+                     </div>
+                  </div>
+               </footer>
+               <!-- / Footer -->
+
+               <div class="content-backdrop fade" bis_skin_checked="1"></div>
+            </div>
+            <!-- Content wrapper -->
+         </div>
+         <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle" bis_skin_checked="1"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target" style="
+               touch-action: pan-y;
+               user-select: none;
+               -webkit-user-drag: none;
+               -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            " bis_skin_checked="1"></div>
+   </div>
+   <!-- / Layout wrapper -->
+
+
+   <!-- Core JS -->
+   <!-- build:js assets/vendor/js/core.js -->
+   <script src="./assets/js/jquery.js"></script>
+   <script src="./assets/js/popper.js"></script>
+   <script src="./assets/js/bootstrap.js"></script>
+   <script src="./assets/js/node-waves.js"></script>
+   <script src="./assets/js/perfect-scrollbar.js"></script>
+   <script src="./assets/js/hammer.js"></script>
+   <script src="./assets/js/i18n.js"></script>
+   <script src="./assets/js/typeahead.js"></script>
+   <script src="./assets/js/menu.js"></script>
+
+   <!-- endbuild -->
+
+   <!-- Vendors JS -->
+   <script src="./assets/js/katex.js"></script>
+   <script src="./assets/js/quill.js"></script>
+   <script src="./assets/js/select2.js"></script>
+   <script src="./assets/js/dropzone.js"></script>
+   <script type="text/javascript" id="" charset="">
+      console.log("TS:GTM Worked");
+   </script>
+   <script src="./assets/js/jquery-repeater.js"></script>
+   <script src="./assets/js/flatpickr.js"></script>
+   <script src="./assets/js/tagify.js"></script>
+
+   <!-- Main JS -->
+   <script src="./assets/js/main.js"></script>
+
+   <!-- Page JS -->
+   <script src="./assets/js/AddProduct/app-ecommerce-product-add.js"></script>
+   <input type="file" class="dz-hidden-input" accept=".jpg,.jpeg,.png,.gif" tabindex="-1" style="
+            visibility: hidden;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 0px;
+            width: 0px;
+         " />
+   <div class="flatpickr-calendar animate" tabindex="-1" bis_skin_checked="1">
+      <div class="flatpickr-months" bis_skin_checked="1">
+         <span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+               <g></g>
+               <path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path>
+            </svg></span>
+         <div class="flatpickr-month" bis_skin_checked="1">
+            <div class="flatpickr-current-month" bis_skin_checked="1">
+               <span class="cur-month">March </span>
+               <div class="numInputWrapper" bis_skin_checked="1">
+                  <input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year" /><span
+                     class="arrowUp"></span><span class="arrowDown"></span>
+               </div>
+            </div>
+         </div>
+         <span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+               <g></g>
+               <path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path>
+            </svg></span>
+      </div>
+      <div class="flatpickr-innerContainer" bis_skin_checked="1">
+         <div class="flatpickr-rContainer" bis_skin_checked="1">
+            <div class="flatpickr-weekdays" bis_skin_checked="1">
+               <div class="flatpickr-weekdaycontainer" bis_skin_checked="1">
+                  <span class="flatpickr-weekday"> Sun</span><span class="flatpickr-weekday">Mon</span><span
+                     class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span
+                     class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span
+                     class="flatpickr-weekday">Sat </span>
+               </div>
+            </div>
+            <div class="flatpickr-days" tabindex="-1" bis_skin_checked="1">
+               <div class="dayContainer" bis_skin_checked="1">
+                  <span class="flatpickr-day prevMonthDay" aria-label="February 23, 2025" tabindex="-1">23</span><span
+                     class="flatpickr-day prevMonthDay" aria-label="February 24, 2025" tabindex="-1">24</span><span
+                     class="flatpickr-day prevMonthDay" aria-label="February 25, 2025" tabindex="-1">25</span><span
+                     class="flatpickr-day prevMonthDay" aria-label="February 26, 2025" tabindex="-1">26</span><span
+                     class="flatpickr-day prevMonthDay" aria-label="February 27, 2025" tabindex="-1">27</span><span
+                     class="flatpickr-day prevMonthDay" aria-label="February 28, 2025" tabindex="-1">28</span><span
+                     class="flatpickr-day" aria-label="March 1, 2025" tabindex="-1">1</span><span class="flatpickr-day"
+                     aria-label="March 2, 2025" tabindex="-1">2</span><span class="flatpickr-day"
+                     aria-label="March 3, 2025" tabindex="-1">3</span><span class="flatpickr-day"
+                     aria-label="March 4, 2025" tabindex="-1">4</span><span class="flatpickr-day"
+                     aria-label="March 5, 2025" tabindex="-1">5</span><span class="flatpickr-day"
+                     aria-label="March 6, 2025" tabindex="-1">6</span><span class="flatpickr-day"
+                     aria-label="March 7, 2025" tabindex="-1">7</span><span class="flatpickr-day"
+                     aria-label="March 8, 2025" tabindex="-1">8</span><span class="flatpickr-day"
+                     aria-label="March 9, 2025" tabindex="-1">9</span><span class="flatpickr-day"
+                     aria-label="March 10, 2025" tabindex="-1">10</span><span class="flatpickr-day"
+                     aria-label="March 11, 2025" tabindex="-1">11</span><span class="flatpickr-day"
+                     aria-label="March 12, 2025" tabindex="-1">12</span><span class="flatpickr-day"
+                     aria-label="March 13, 2025" tabindex="-1">13</span><span class="flatpickr-day"
+                     aria-label="March 14, 2025" tabindex="-1">14</span><span class="flatpickr-day"
+                     aria-label="March 15, 2025" tabindex="-1">15</span><span class="flatpickr-day"
+                     aria-label="March 16, 2025" tabindex="-1">16</span><span class="flatpickr-day"
+                     aria-label="March 17, 2025" tabindex="-1">17</span><span class="flatpickr-day"
+                     aria-label="March 18, 2025" tabindex="-1">18</span><span class="flatpickr-day"
+                     aria-label="March 19, 2025" tabindex="-1">19</span><span class="flatpickr-day"
+                     aria-label="March 20, 2025" tabindex="-1">20</span><span class="flatpickr-day"
+                     aria-label="March 21, 2025" tabindex="-1">21</span><span class="flatpickr-day"
+                     aria-label="March 22, 2025" tabindex="-1">22</span><span class="flatpickr-day"
+                     aria-label="March 23, 2025" tabindex="-1">23</span><span class="flatpickr-day"
+                     aria-label="March 24, 2025" tabindex="-1">24</span><span class="flatpickr-day today selected"
+                     aria-label="March 25, 2025" aria-current="date" tabindex="-1">25</span><span class="flatpickr-day"
+                     aria-label="March 26, 2025" tabindex="-1">26</span><span class="flatpickr-day"
+                     aria-label="March 27, 2025" tabindex="-1">27</span><span class="flatpickr-day"
+                     aria-label="March 28, 2025" tabindex="-1">28</span><span class="flatpickr-day"
+                     aria-label="March 29, 2025" tabindex="-1">29</span><span class="flatpickr-day"
+                     aria-label="March 30, 2025" tabindex="-1">30</span><span class="flatpickr-day"
+                     aria-label="March 31, 2025" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay"
+                     aria-label="April 1, 2025" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay"
+                     aria-label="April 2, 2025" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay"
+                     aria-label="April 3, 2025" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay"
+                     aria-label="April 4, 2025" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay"
+                     aria-label="April 5, 2025" tabindex="-1">5</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+   <script>
+      let product = null;
+      const uploadArea = document.getElementById('upload-area');
+      const imageInput = document.getElementById('imageInput');
+      const preview = document.getElementById('preview');
+
+      let filesArray = [];
+      let keepCurrentImage = true; // Thêm biến này để biết có giữ ảnh cũ không
+
+      uploadArea.addEventListener('click', () => imageInput.click());
+
+      uploadArea.addEventListener('dragover', e => {
+         e.preventDefault();
+         uploadArea.style.backgroundColor = '#e0e0e0';
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+         uploadArea.style.backgroundColor = '#f9f9f9';
+      });
+
+      uploadArea.addEventListener('drop', e => {
+         e.preventDefault();
+         uploadArea.style.backgroundColor = '#f9f9f9';
+         handleFiles(e.dataTransfer.files);
+      });
+
+      imageInput.addEventListener('change', e => handleFiles(e.target.files));
+
+      function handleFiles(files) {
+         Array.from(files).forEach(file => {
+            if (file.type.startsWith('image/')) {
+               const index = filesArray.length;
+               filesArray.push(file);
+
+               const container = document.createElement('div');
+               container.style.position = 'relative';
+
+               const img = document.createElement('img');
+               img.src = URL.createObjectURL(file);
+               img.style.width = '100px';
+               img.style.height = '100px';
+               img.style.objectFit = 'contain';
+               img.classList.add('rounded');
+
+               const removeBtn = document.createElement('button');
+               removeBtn.innerHTML = '&times;';
+               removeBtn.className = 'btn btn-sm btn-danger';
+               removeBtn.style.position = 'absolute';
+               removeBtn.style.top = '0';
+               removeBtn.style.right = '0';
+               removeBtn.style.borderRadius = '50%';
+               removeBtn.style.padding = '2px 6px';
+               removeBtn.style.fontSize = '12px';
+
+               removeBtn.addEventListener('click', () => {
+                  filesArray.splice(index, 1);
+                  container.remove();
+               });
+
+               container.appendChild(img);
+               container.appendChild(removeBtn);
+               preview.appendChild(container);
+
+               // Nếu user chọn file mới thì không giữ ảnh cũ nữa
+               keepCurrentImage = false;
+            }
+         });
+      }
+
+
+      document.addEventListener("DOMContentLoaded", async function () {
+         const productId = new URLSearchParams(window.location.search).get("id");
+         if (!productId) {
+            alert(" Không tìm thấy Product ID trên URL!");
+            return;
+         }
+
+         try {
+            // 1. Fetch product data
+            const response = await fetch(`http://localhost:8080/api/v1/product/${productId}`);
+            const result = await response.json();
+
+            if (!result.data) {
+               alert(" Không tìm thấy dữ liệu sản phẩm!");
+               return;
+            }
+
+            product = result.data;
+
+            // 2. Fill form
+            document.querySelector("input[name='productTitle']").value = product.name || "";
+            document.querySelector("input[name='productSku']").value = product.sku || "";
+            document.querySelector("input[name='Quantity']").value = product.quantity || 0;
+            document.querySelector("input[name='originalPrice']").value = product.originalPrice || 0;
+            document.querySelector("input[name='productDiscountedPrice']").value = product.discountedPrice || 0;
+            document.querySelector("input[name='productSellingPrice']").value = product.sellingPrice || 0;
+            document.getElementById("status-org").value = product.status || "";
+            const quillEditor = document.querySelector("#ecommerce-category-description .ql-editor");
+            if (quillEditor) {
+               quillEditor.innerHTML = product.description || "";
+            }
+
+            loadCategories(product);
+            loadBrands(product);
+
+            // 3. Hiển thị ảnh hiện tại (nếu có)
+            if (product.primaryImageURL) {
+               showCurrentImage(product.primaryImageURL);
+            }
+
+            console.log(" Đã load đầy đủ dữ liệu sản phẩm.");
+         } catch (err) {
+            console.error(" Lỗi khi load product:", err);
+            alert("Lỗi khi load dữ liệu sản phẩm.");
+         }
+
+
+
+
+         // 4. Cập nhật khi người dùng bấm nút Update product
+         document.querySelector(".btn-submit-product").addEventListener("click", async function (e) {
+            e.preventDefault();
+
+            try {
+               // Nếu status là DELETED thì không cho cập nhật
+               if (document.getElementById("status-org").value === "DELETED") {
+                 showToast("Không thể cập nhật sản phẩm đã bị xóa!", "error");
+                 return;
+               }
+
+               const updatedProductData = getUpdatedProductData();
+
+               // Nếu không thay đổi ảnh, giữ lại ảnh cũ
+               if (keepCurrentImage && product.primaryImageURL) {
+                 updatedProductData.primaryImageURL = product.primaryImageURL;
+               }
+
+               // Gửi PUT để cập nhật
+               const res = await fetch(`http://localhost:8080/api/v1/product/${productId}`, {
+                 method: "PUT",
+                 headers: { "Content-Type": "application/json" },
+                 body: JSON.stringify(updatedProductData)
+               });
+
+               const result = await res.json();
+               console.log(" API cập nhật trả về:", result);
+
+               if (!res.ok) throw new Error("Cập nhật thất bại!");
+
+               // Upload ảnh nếu có file mới
+               if (filesArray.length > 0) {
+                 await uploadUpdatedImages(productId);
+               }
+
+               showToast("Cập nhật sản phẩm thành công!");
+               // Chuyển hướng về danh sách sản phẩm (dùng relative path)
+               setTimeout(() => {
+                 window.location.href = "./ProductList.html";
+               }, 1000);
+            } catch (err) {
+               console.error(" Lỗi cập nhật:", err);
+               alert("Cập nhật sản phẩm thất bại!");
+            }
+         });
+
+         // Khi thay đổi status thì gọi API cập nhật status
+         document.getElementById("status-org").addEventListener("change", async function () {
+            const newStatus = this.value;
+            if (!newStatus) return;
+            try {
+               const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/status`, {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ status: newStatus })
+               });
+               const result = await res.json();
+               if (res.ok) {
+                  return;
+               } else {
+                  console.log(" Cập nhật trạng thái trả về:", result);
+                  alert(result.message || "Cập nhật trạng thái thất bại!");
+               }
+            } catch (err) {
+               alert("Lỗi khi cập nhật trạng thái!");
+            }
+         });
+         //  Load category
+         function loadCategories(product) {
+            fetch("http://localhost:8080/api/v1/category")
+               .then(res => res.json())
+               .then(data => {
+                  const select = document.getElementById("productCategory");
+                  let options = ``;
+                  // Lấy categoryName hiện tại từ product
+                  const currentCategoryName = product.categoryName || "";
+
+
+                  data.data.content.forEach(category => {
+                     const selected = category.name == currentCategoryName ? "selected" : "";
+                     options += `<option value="${category.id}" ${selected}>${category.name}</option>`;
+                  });
+
+                  select.innerHTML = options;
+                  if ($(select).hasClass("select2-hidden-accessible")) {
+                     $(select).trigger("change");
+                  }
+
+                  console.log(" Categories loaded.");
+               })
+               .catch(err => console.error(" Error loading categories:", err));
+         }
+
+         //  Load brands
+         function loadBrands(product) {
+            fetch("http://localhost:8080/api/v1/brand/list/all")
+               .then(res => res.json())
+               .then(data => {
+                  const select = document.getElementById("productBrand");
+                  let options = ``;
+                  const selectedIds = product.brands?.map(b => b.id.toString()) || [];
+
+                  data.data.forEach(brand => {
+                     const selected = selectedIds.includes(brand.id.toString()) ? "selected" : "";
+                     options += `<option value="${brand.id}" ${selected}>${brand.name}</option>`;
+                  });
+
+                  select.innerHTML = options;
+                  if ($(select).hasClass("select2-hidden-accessible")) {
+                     $(select).trigger("change");
+                  }
+
+                  console.log("✅ Brands loaded.");
+               })
+               .catch(err => console.error("❌ Error loading brands:", err));
+         }
+
+
+          // Cập nhật giá bán khi giá gốc hoặc giá khuyến mãi thay đổi
+            function updateSellingPrice() {
+               const original = parseFloat(document.getElementById('ecommerce-product-price').value) || 0;
+               const discount = parseFloat(document.getElementById('ecommerce-product-discount-price').value) || 0;
+               document.getElementById('ecommerce-product-selling-price').value = Math.max(original - discount, 0);
+            }
+
+            document.getElementById('ecommerce-product-price').addEventListener('input', updateSellingPrice);
+            document.getElementById('ecommerce-product-discount-price').addEventListener('input', updateSellingPrice);
+
+         //  Tạo object dữ liệu cập nhật từ form
+         function getUpdatedProductData() {
+            return {
+               name: document.querySelector("input[name='productTitle']").value.trim(),
+               sku: document.querySelector("input[name='productSku']").value.trim(),
+               quantity: parseInt(document.querySelector("input[name='Quantity']").value) || 0,
+               description: document.querySelector("#ecommerce-category-description .ql-editor").innerHTML.trim() || "",
+               originalPrice: parseFloat(document.querySelector("input[name='originalPrice']").value) || 0,
+               discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
+               sellingPrice: parseFloat(document.querySelector("input[name='productSellingPrice']").value) || 0,
+                 
+               sellingType: "SALE",
+               categoryId: document.querySelector("#productCategory").value,
+               brandId: document.querySelector("#productBrand").value,
+
+            };
+         }
+         //  Hiển thị ảnh hiện tại (nếu có)
+         function showCurrentImage(imageUrl) {
+            preview.innerHTML = '';
+            if (!imageUrl) return;
+            const container = document.createElement('div');
+            container.style.position = 'relative';
+
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.style.width = '100px';
+            img.style.height = '100px';
+            img.style.objectFit = 'contain';
+            img.classList.add('rounded');
+
+            // Nút xóa ảnh hiện tại
+            const removeBtn = document.createElement('button');
+            removeBtn.innerHTML = '&times;';
+            removeBtn.className = 'btn btn-sm btn-danger';
+            removeBtn.style.position = 'absolute';
+            removeBtn.style.top = '0';
+            removeBtn.style.right = '0';
+            removeBtn.style.borderRadius = '50%';
+            removeBtn.style.padding = '2px 6px';
+            removeBtn.style.fontSize = '12px';
+
+            removeBtn.addEventListener('click', () => {
+               container.remove();
+               product.primaryImageURL = null;
+               keepCurrentImage = false;
+            });
+
+            container.appendChild(img);
+            container.appendChild(removeBtn);
+            preview.appendChild(container);
+            keepCurrentImage = true;
+         }
+
+         //  Upload ảnh mới (nếu có)
+         async function uploadUpdatedImages(productId) {
+            if (filesArray.length === 0) return;
+            const formData = new FormData();
+            filesArray.forEach(file => formData.append("files", file));
+
+            const uploadRes = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
+               method: "POST",
+               body: formData
+            });
+
+            const uploadResult = await uploadRes.json();
+            console.log(" Upload result:", uploadResult);
+
+            if (!uploadRes.ok) throw new Error("Upload ảnh thất bại");
+         }
+      });
+
+      // Toast helper
+      function showToast(message, type = "success") {
+         // Remove old toast if exists
+         const oldToast = document.getElementById("custom-toast");
+         if (oldToast) oldToast.remove();
+
+         const toast = document.createElement("div");
+         toast.id = "custom-toast";
+         toast.style.position = "fixed";
+         toast.style.top = "30px";
+         toast.style.right = "800px";
+         toast.style.zIndex = "9999";
+         toast.style.minWidth = "220px";
+         toast.style.padding = "16px 24px";
+         toast.style.borderRadius = "8px";
+         toast.style.color = "#fff";
+         toast.style.fontWeight = "bold";
+         toast.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+         toast.style.background = type === "success" ? "#22c55e" : "#ef4444";
+         toast.innerText = message;
+         document.body.appendChild(toast);
+         setTimeout(() => toast.remove(), 3500);
+      }
+   </script>
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
+
+
+
+
+   <!-- <script src="./assets/js/fix-select2.js"></script> -->
+
+</body>
+
+
+
+</html>

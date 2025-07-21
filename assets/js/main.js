@@ -265,68 +265,161 @@
    $(".js-show-modal1").on("click", function (e) {
       e.preventDefault();
       $(".js-modal1").addClass("show-modal1");
+      $("body").css("overflow", "hidden");
    });
 
    $(".js-hide-modal1").on("click", function () {
       $(".js-modal1").removeClass("show-modal1");
+      $("body").css("overflow", "auto");
    });
+
 })(jQuery);
 
+// ChatButton
+const chatIcon = document.getElementById('chatIcon');
+const chatBox = document.getElementById('chatBox');
+const closeBtn = document.getElementById('closeBtn');
+let isChatOpen = false;
 
+function toggleChat() {
+   isChatOpen = !isChatOpen;
+   if (chatBox) {
+      chatBox.style.display = isChatOpen ? 'block' : 'none';
+   }
+}
+
+if (chatIcon) chatIcon.addEventListener('click', toggleChat);
+if (closeBtn) closeBtn.addEventListener('click', toggleChat);
+
+
+// Handle selector quantity (nhiều sản phẩm nên dùng forEach)
+const minusBtns = document.querySelectorAll('.btn-minus');
+const plusBtns = document.querySelectorAll('.btn-plus');
+
+minusBtns.forEach(btn => {
+   btn.addEventListener('click', () => {
+      const quantityDiv = btn.parentElement.querySelector('.header__cart-item-quantity');
+      let current = parseInt(quantityDiv.innerText);
+      if (current > 1) {
+         quantityDiv.innerText = current - 1;
+      }
+   });
+});
+
+plusBtns.forEach(btn => {
+   btn.addEventListener('click', () => {
+      const quantityDiv = btn.parentElement.querySelector('.header__cart-item-quantity');
+      let current = parseInt(quantityDiv.innerText);
+      quantityDiv.innerText = current + 1;
+   });
+});
+
+
+// Handle modal
 const modal = document.querySelector(".modal-log");
 const openModalLinks = document.querySelectorAll(".open-modal-log");
 const closeModal = document.querySelector(".close-log");
 const tabContents = document.querySelectorAll(".tab-content");
-const switchTabs = document.querySelectorAll(".switch-tab, .tab-link"); // Thêm cả `.tab-link`
+const switchTabs = document.querySelectorAll(".switch-tab, .tab-link");
 const tabLinks = document.querySelectorAll(".tab-link");
 const html = document.documentElement;
 
-console.log(html);
-// Mở modal và chuyển đến tab đúng
-openModalLinks.forEach((link) => {
-   link.addEventListener("click", function (event) {
-      event.preventDefault();
-      modal.classList.add("show-log");
-      html.style.overflow = "hidden";
-      // Lấy tab cần mở từ thuộc tính data-tab
-      const targetTab = this.getAttribute("data-tab");
-      switchTab(targetTab);
+// Mở modal nếu tồn tại
+function setupModalLog() {
+   if (!modal) return;
+
+   openModalLinks.forEach((link) => {
+      link.addEventListener("click", function (event) {
+         event.preventDefault();
+         modal.classList.add("show-log");
+         html.style.overflow = "hidden";
+         const targetTab = this.getAttribute("data-tab");
+         switchTab(targetTab);
+      });
    });
-});
 
-// Đóng modal
-closeModal.addEventListener("click", () => {
-   modal.classList.remove("show-log");
-   html.style.overflow = "visible";
-});
-// window.addEventListener("click", (event) => {
-//    if (event.target === modal) {
-//       modal.classList.remove("show-log");
-//       html.style.overflow="visible";
+   // Đóng modal
+   if (closeModal) {
+      closeModal.addEventListener("click", () => {
+         modal.classList.remove("show-log");
+         html.style.overflow = "visible";
+      });
+   }
 
-//    }
-// });
-
-// Chuyển đổi giữa đăng nhập & đăng ký (cả trong form và tab trên cùng)
-switchTabs.forEach((tab) => {
-   tab.addEventListener("click", function (event) {
-      event.preventDefault();
-      const targetTab = this.getAttribute("data-tab");
-      switchTab(targetTab);
-   });
-});
-
-// Hàm chuyển tab chung
-function switchTab(targetTab) {
-   // Cập nhật class `active` cho tab link
-   tabLinks.forEach((tab) => tab.classList.remove("active"));
-   document
-      .querySelector(`.tab-link[data-tab="${targetTab}"]`)
-      .classList.add("active");
-
-   // Cập nhật class `active` cho nội dung tab
-   tabContents.forEach((content) => content.classList.remove("active"));
-   document
-      .querySelector(`.tab-content[data-content="${targetTab}"]`)
-      .classList.add("active");
+   // modal.addEventListener("click", function (event) {
+   //    if (event.target === modal) {
+   //       modal.classList.remove("show-log");
+   //       html.style.overflow = "visible";
+   //    }
+   // });
 }
+
+setupModalLog();
+
+// Chuyển đổi tab nếu có phần tử
+if (switchTabs.length > 0) {
+   switchTabs.forEach((tab) => {
+      tab.addEventListener("click", function (event) {
+         event.preventDefault();
+         const targetTab = this.getAttribute("data-tab");
+         switchTab(targetTab);
+      });
+   });
+}
+
+// Hàm chuyển tab
+function switchTab(targetTab) {
+   tabLinks.forEach((tab) => tab.classList.remove("active"));
+   const activeLink = document.querySelector(`.tab-link[data-tab="${targetTab}"]`);
+   if (activeLink) activeLink.classList.add("active");
+
+   tabContents.forEach((content) => content.classList.remove("active"));
+   const activeContent = document.querySelector(`.tab-content[data-content="${targetTab}"]`);
+   if (activeContent) activeContent.classList.add("active");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+   const btn = document.querySelector('.order-button.step-footer-continue-btn');
+   const modal = document.getElementById('modal-order-success');
+
+   if (!modal) return; // ✅ Dừng luôn nếu không có modal
+
+   const closeEls = modal.querySelectorAll('.order-close-modal');
+   const okeBtn = modal.querySelector('.order-modal-oke');
+   const tick = modal.querySelector('.order-success-tick');
+   const modalContent = modal.querySelector('.modal-order-content');
+
+   function showModal() {
+      modal.classList.add('show');
+      tick.style.animation = 'none';
+      void tick.offsetWidth;
+      tick.style.animation = '';
+   }
+
+   function hideModal() {
+      modal.classList.remove('show');
+      setTimeout(() => {
+         modal.style.display = 'none';
+      }, 300);
+   }
+
+   btn?.addEventListener('click', function () {
+      modal.style.display = 'flex';
+      document.documentElement.style.overflow = "hidden";
+      setTimeout(showModal, 10);
+   });
+
+   closeEls.forEach(el => {
+      el.addEventListener('click', hideModal);
+   });
+
+   modalContent?.addEventListener('click', function (e) {
+      e.stopPropagation();
+   });
+
+   okeBtn?.addEventListener('click', hideModal);
+});
+
+
+
+

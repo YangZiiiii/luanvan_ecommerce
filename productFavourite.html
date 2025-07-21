@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>Product F</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <!--===============================================================================================-->
+   <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+   <!--===============================================================================================-->
+   <!-- <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" /> -->
+   <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/daterangepicker/daterangepicker.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/slick/slick.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/MagnificPopup/magnific-popup.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
+
+   <!--===============================================================================================-->
+
+   <!--Header-Template  -->
+   <script src="./assets/js/template/header.js"></script>
+
+   <!--Cart-Template  -->
+   <script src="./assets/js/template/cart.js"></script>
+
+   <!--Home-Product-Template  -->
+   <script src="./assets/js/template/home/product.js"></script>
+
+   <!--Home-Modal-Template  -->
+   <script src="./assets/js/template/home/modal.js"></script>
+
+   <!--Footer-Template  -->
+   <script src="./assets/js/template/footer.js"></script>
+</head>
+
+<body class="animsition">
+   <!-- Header -->
+
+   <!-- <header-main-v4></header-main-v4> -->
+   <header-main></header-main>
+
+
+   <!-- Cart -->
+   <!-- <cart-main></cart-main> -->
+
+   <!-- Product -->
+   <!-- <home-product></home-product> -->
+
+   <section class="bg0 p-t-90">
+      <div class="container">
+         <div class="p-b-10">
+            <h3 class="ltext-103 cl5">Sản phẩm yêu thích</h3>
+         </div>
+
+         <div class="flex-w flex-sb-m p-b-52">
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                  Tất cả
+               </button>
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nu" id="btn-filter-women">
+                  Women
+               </button>
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nam" id="btn-filter-men">
+                  Men
+               </button>
+            </div>
+            <div class="flex-w flex-c-m m-tb-10">
+               <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                  <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+                  <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                  Bộ lọc
+               </div>
+            </div>
+            <!-- Filter -->
+            <div class="dis-none panel-filter w-full p-t-10">
+               <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                  <div class="filter-col2 p-r-15 p-b-27">
+                     <div class="mtext-102 cl2 p-b-15">Price</div>
+                     <ul>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-price="ALL">
+                              All
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="0-100000">
+                              0 - 100.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="100000-200000">
+                              100.000 - 200.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="200000-300000">
+                              200.000 - 300.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="300000-400000">
+                              300.000 - 400.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="400000+">
+                              400.000+
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="row isotope-grid" id="product-list" style="min-height: 0; visibility: hidden;">
+            <!-- Products will be rendered here by JavaScript -->
+         </div>
+
+         <!-- Load more -->
+
+      </div>
+   </section>
+
+   <script>
+
+      const btnFilterWomen = document.getElementById('btn-filter-women');
+      const btnFilterMen = document.getElementById('btn-filter-men');
+
+      (function () {
+         const userId = localStorage.getItem('userId');
+         const productListContainer = document.getElementById('product-list');
+
+         function getFavouriteIds() {
+            let favs = [];
+            try {
+               favs = JSON.parse(localStorage.getItem('favouriteProductIds')) || [];
+            } catch (e) {
+               favs = [];
+            }
+            return favs;
+         }
+         function setFavouriteIds(ids) {
+            if (!ids || ids.length === 0) {
+               localStorage.removeItem('favouriteProductIds');
+            } else {
+               localStorage.setItem('favouriteProductIds', JSON.stringify(ids));
+            }
+         }
+
+         // Hàm cập nhật số lượng yêu thích trên icon
+         function updateFavouriteCount() {
+            const favourites = localStorage.getItem('favouriteProductIds');
+            const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+            if (numberOfFavourites) {
+               if (favourites) {
+                  const favouriteIds = JSON.parse(favourites);
+                  numberOfFavourites.setAttribute('data-notify', favouriteIds.length);
+               } else {
+                  numberOfFavourites.setAttribute('data-notify', '0');
+               }
+            }
+         }
+
+         // Filter logic for type and price
+         let currentTypeFilter = 'ALL';
+         let currentPriceFilter = 'ALL';
+
+         function getProductType(sku) {
+            if (!sku) return '';
+            sku = sku.toLowerCase();
+            if (sku.includes('nu')) return 'WOMEN';
+            if (sku.includes('nam')) return 'MEN';
+            return '';
+         }
+
+         function parsePriceFilter(priceStr) {
+            if (priceStr === 'ALL') return { min: null, max: null };
+            if (priceStr.endsWith('+')) {
+               const min = parseInt(priceStr.split('+')[0], 10);
+               return { min, max: null };
+            }
+            const [min, max] = priceStr.split('-').map(v => parseInt(v, 10));
+            return { min, max };
+         }
+
+         function filterProducts(products, filterType, priceFilter) {
+            return products.filter(product => {
+               if (product.status === 'DELETED' || product.status === 'INACTIVE') return false;
+               // Type filter
+               if (filterType !== 'ALL') {
+                  const type = getProductType(product.sku);
+                  if (type !== filterType) return false;
+               }
+               // Price filter
+               if (priceFilter && priceFilter.min !== null) {
+                  if (product.sellingPrice < priceFilter.min) return false;
+               }
+               if (priceFilter && priceFilter.max !== null) {
+                  if (product.sellingPrice > priceFilter.max) return false;
+               }
+               return true;
+            });
+         }
+
+         function setProductListMinHeight(productCount) {
+            // 4 sản phẩm 1 dòng
+            const itemsPerRow = 4;
+            const rowCount = Math.ceil(productCount / itemsPerRow) || 1;
+            const minHeight = (rowCount * 480) + 40;
+            const container = document.getElementById('product-list');
+            container.style.minHeight = minHeight + 'px';
+            productListContainer.style.visibility = 'visible';
+         }
+
+         function renderProducts(products) {
+            productListContainer.innerHTML = products.map((product, idx) => {
+               const favIds = getFavouriteIds();
+               const isFav = favIds.includes(product.id);
+               return `
+                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${getProductType(product.sku).toLowerCase()}">
+                   <div class="block2 block2-pic">
+                     <div class="block2-pic hov-img0">
+                       <a href="productDetail.html?productId=${product.id}">
+                        <img loading="lazy" src="${product.primaryImageURL}"  alt="IMG-PRODUCT" />
+                        <a href="productDetail.html?productId=${product.id}"
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
+                           data-product-index="${idx}">
+                           Xem chi tiết
+                        </a>
+                     </a>
+                     </div>
+                     <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l">
+                          <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
+                            ${product.name}
+                          </a>
+                          <div class="price-and-cart">
+                            <span class="stext-106 cl10"> $${product.sellingPrice}</span>
+                            <span class="original-price">$${product.originalPrice}</span>
+                          </div>
+                        </div>
+                        <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
+                          <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 icon-favourite" data-product-index="${idx}" >
+                            <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
+                              alt="ICON" style="display:${isFav ? 'none' : 'flex'}" />
+                            <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
+                              src="./assets/images/icons/icon-heart-02.png" alt="ICON" style="display:${isFav ? '' : 'none'}" />
+                          </a>
+                          <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
+                            <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
+                          </a>
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+               `;
+            }).join('');
+
+            setProductListMinHeight(products.length);
+
+            btnFilterWomen.textContent = `Nữ (${products.filter(p => getProductType(p.sku) === 'WOMEN').length})`;
+            btnFilterMen.textContent = `Nam (${products.filter(p => getProductType(p.sku) === 'MEN').length})`;
+
+            // View Detail event
+            productListContainer.querySelectorAll('.btn-view-detail').forEach(btn => {
+               btn.addEventListener('click', function () {
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  let listViewAt = [];
+                  try {
+                     listViewAt = JSON.parse(localStorage.getItem('ListViewAt')) || [];
+                  } catch (e) {
+                     listViewAt = [];
+                  }
+                  if (!listViewAt.some(p => p.id === product.id)) {
+                     listViewAt.unshift(product);
+                     if (listViewAt.length > 8) {
+                        listViewAt = listViewAt.slice(listViewAt.length - 8);
+                     }
+                     localStorage.setItem('ListViewAt', JSON.stringify(listViewAt));
+                  }
+               });
+            });
+
+            // Add to cart event
+            productListContainer.querySelectorAll('.btn-addcart').forEach(btn => {
+               btn.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  const userId = localStorage.getItem('userId');
+                  if (!userId || userId === 'null' || !product || !product.id) {
+                     swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
+                     return;
+                  }
+                  fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+                     method: 'POST'
+                  })
+                     .then(res => res.json())
+                     .then(data => {
+                        if (data && data.statusCode === 201) {
+                           swal(product.name, "is added to cart !", "success");
+                           fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                              .then(res => res.json())
+                              .then(cartData => {
+                                 if (
+                                    cartData &&
+                                    cartData.statusCode === 200 &&
+                                    cartData.data &&
+                                    Array.isArray(cartData.data.items)
+                                 ) {
+                                    const items = cartData.data.items;
+                                    const cartLocal = [];
+                                    const cartQuantities = {};
+                                    items.forEach(item => {
+                                       cartLocal.push({
+                                          id: item.productId,
+                                          name: item.productName,
+                                          primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                                          unitPrice: item.unitPrice,
+                                          total: item.unitPrice * item.quantity
+                                       });
+                                       cartQuantities[item.productId] = item.quantity ?? 1;
+                                    });
+                                    localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                                    localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                                    if (typeof updateCartNotify === 'function') updateCartNotify();
+                                    window.dispatchEvent(new Event('cart-updated'));
+                                 }
+                              })
+                              .catch(() => {
+                                 if (typeof updateCartNotify === 'function') updateCartNotify();
+                                 window.dispatchEvent(new Event('cart-updated'));
+                              });
+                        } else {
+                           swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                        }
+                     })
+                     .catch(() => {
+                        swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                     });
+               });
+            });
+
+            // Add to favourite event
+            productListContainer.querySelectorAll('.js-addwish-b2').forEach(btn => {
+               const icon1 = btn.querySelector('.icon-heart1');
+               const icon2 = btn.querySelector('.icon-heart2');
+               btn.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  const userId = localStorage.getItem('userId');
+                  if (!userId || userId === 'null' || !product || !product.id) {
+                     swal("Bạn cần đăng nhập để thêm vào yêu thích!", "", "warning");
+                     return;
+                  }
+                  fetch('http://localhost:8080/api/v1/favourites/toggle', {
+                     method: 'POST',
+                     headers: {
+                        'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify({
+                        userId: Number(userId),
+                        productId: product.id
+                     })
+                  })
+                     .then(res => res.json())
+                     .then(data => {
+                        if (data && (data.statusCode === 200 || data.statusCode === 201)) {
+                           fetchFavouritesAndRender();
+                           swal(product.name, "Đã cập nhật danh sách yêu thích!", "success");
+                           updateFavouriteCount();
+                        } else {
+                           swal(product.name, "Có lỗi khi cập nhật yêu thích!", "error");
+                        }
+                     })
+                     .catch(() => {
+                        swal(product.name, "Có lỗi khi cập nhậtyêu thích!", "error");
+                     });
+               });
+            });
+
+            // Hiển thị swal khi thêm vào giỏ hàng
+            $(".js-addcart-detail").each(function () {
+               var nameProduct = $(this)
+                  .closest('.block2')
+                  .find(".js-name-detail")
+                  .html();
+               $(this).on("click", function () {
+                  swal(nameProduct, "is added to cart !", "success");
+               });
+            });
+         }
+
+         function fetchFavouritesAndRender() {
+            if (!userId || userId === 'null') {
+               productListContainer.innerHTML = '<div class="col-12">Bạn cần đăng nhập để xem sản phẩm yêu thích.</div>';
+               setProductListMinHeight(0);
+               setFavouriteIds([]); // Xóa localStorage khi không đăng nhập
+               updateFavouriteCount();
+               return;
+            }
+            fetch(`http://localhost:8080/api/v1/favourites/user/${userId}`)
+               .then(res => res.json())
+               .then(data => {
+                  let products = data.products || [];
+                  // Filter theo loại và giá nếu có
+                  products = filterProducts(products, currentTypeFilter, parsePriceFilter(currentPriceFilter));
+                  // Cập nhật localStorage: nếu không còn sản phẩm yêu thích thì xóa luôn key
+                  const favIds = products.map(p => p.id);
+                  setFavouriteIds(favIds);
+                  renderProducts(products);
+                  updateFavouriteCount();
+               })
+               .catch(() => {
+                  productListContainer.innerHTML = '<div class="col-12">Failed to load favourite products.</div>';
+                  setProductListMinHeight(0);
+                  setFavouriteIds([]); // Xóa localStorage khi lỗi
+                  updateFavouriteCount();
+               });
+         }
+
+
+         // Filter buttons event (Women/Men/All)
+         document.querySelectorAll('.filter-tope-group button[data-filter]').forEach(btn => {
+            btn.addEventListener('click', function () {
+
+               document.querySelectorAll('.filter-tope-group button').forEach(b => b.classList.remove('how-active1'));
+               this.classList.add('how-active1');
+               const filter = this.getAttribute('data-filter');
+               if (filter === '*') currentTypeFilter = 'ALL';
+               else if (filter === '.nu') currentTypeFilter = 'WOMEN';
+               else if (filter === '.nam') currentTypeFilter = 'MEN';
+               else currentTypeFilter = 'ALL';
+               // fetchFavouritesAndRender();
+               fetch(`http://localhost:8080/api/v1/favourites/user/${userId}`)
+                  .then(res => res.json())
+                  .then(data => {
+                     let products = data.products || [];
+                     // Filter theo loại và giá nếu có
+                     products = filterProducts(products, currentTypeFilter, parsePriceFilter(currentPriceFilter));
+                     // Cập nhật localStorage: nếu không còn sản phẩm yêu thích thì xóa luôn key
+                     const favIds = products.map(p => p.id);
+                     setFavouriteIds(favIds);
+                     renderProducts(products);
+                    
+                  })
+                  .catch(() => {
+                     productListContainer.innerHTML = '<div class="col-12">Failed to load favourite products.</div>';
+                     setProductListMinHeight(0);
+                     setFavouriteIds([]); // Xóa localStorage khi lỗi
+                     //   updateFavouriteCount();
+                  });
+            });
+         });
+
+         // Price filter event
+         document.querySelectorAll('.filter-col2 .filter-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+               e.preventDefault();
+               document.querySelectorAll('.filter-col2 .filter-link').forEach(l => l.classList.remove('filter-link-active'));
+               this.classList.add('filter-link-active');
+               currentPriceFilter = this.getAttribute('data-price') || 'ALL';
+               fetchFavouritesAndRender();
+            });
+         });
+
+         fetchFavouritesAndRender();
+      })();
+   </script>
+
+   <style>
+      .icon-favourite {
+         min-width: 19px;
+         min-height: 16px;
+      }
+   </style>
+
+   <!-- Footer -->
+   <footer-main></footer-main>
+
+   <!-- Back to top -->
+   <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+         <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+   </div>
+
+   <!-- Modal1 -->
+   <home-modal></home-modal>
+
+
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/animsition/js/animsition.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/bootstrap/js/popper.js"></script>
+   <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/select2/select2.min.js"></script>
+   <script>
+      $(".js-select2").each(function () {
+         $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next(".dropDownSelect2"),
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/daterangepicker/moment.min.js"></script>
+   <script src="./assets/vendor/daterangepicker/daterangepicker.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/slick/slick.min.js"></script>
+   <script src="./assets/js/slick-custom.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/parallax100/parallax100.js"></script>
+   <script>
+      $(".parallax100").parallax100();
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+   <script>
+      $(".gallery-lb").each(function () {
+         // the containers for all your galleries
+         $(this).magnificPopup({
+            delegate: "a", // the selector for gallery item
+            type: "image",
+            gallery: {
+               enabled: true,
+            },
+            mainClass: "mfp-fade",
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/sweetalert/sweetalert.min.js"></script>
+   <script>
+      $(".js-addwish-b2, .js-addwish-detail").on("click", function (e) {
+         e.preventDefault();
+      });
+
+      $(".js-addwish-b2").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .find(".js-name-b2")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-b2");
+            $(this).off("click");
+         });
+      });
+
+      $(".js-addwish-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-detail");
+            $(this).off("click");
+         });
+      });
+
+      /*---------------------------------------------*/
+
+      $(".js-addcart-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to cart !", "success");
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script>
+      $(".js-pscroll").each(function () {
+         $(this).css("position", "relative");
+         $(this).css("overflow", "hidden");
+         var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+         });
+
+         $(window).on("resize", function () {
+            ps.update();
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

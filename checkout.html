@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Shoping Cart</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" /> -->
+	<link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+
+
+	<link rel="stylesheet" href="./assets/css/gridInfo.css">
+	<link rel="stylesheet" href="./assets/css/header.css">
+	<link rel="stylesheet" href="./assets/css/check_out.css">
+
+
+
+	<!--===============================================================================================-->
+
+	<!--Header-Template  -->
+	<script src="./assets/js/template/header.js"></script>
+
+	<!--Cart-Template  -->
+	<script src="./assets/js/template/cart.js"></script>
+
+	<!--Cart-Bread-Template  -->
+	<script src="./assets/js/template/cart/bread-crumb.js"></script>
+
+	<!--Cart-Item-Template  -->
+	<script src="./assets/js/template/cart/item-cart.js"></script>
+
+	<!--Footer-Template  -->
+	<script src="./assets/js/template/footer.js"></script>
+</head>
+
+<body class="animsition">
+	<!-- Header -->
+	<header-main></header-main>
+
+	<div class="content" bis_skin_checked="1">
+		<div class="wrap" bis_skin_checked="1">
+			<div class="sidebar" bis_skin_checked="1">
+				<div class="sidebar-content" bis_skin_checked="1">
+					<div class="order-summary order-summary-is-collapsed" bis_skin_checked="1">
+						<h2 class="">Thông tin đơn hàng</h2>
+						<div class="order-summary-sections" bis_skin_checked="1">
+							<div class="order-summary-section order-summary-section-product-list"
+								data-order-summary-section="line-items" bis_skin_checked="1">
+								<style>
+									.product-table-wrapper {
+										max-height: 255px;
+										overflow-y: auto;
+										display: block;
+									}
+
+									.product-table {
+										width: 100%;
+										border-collapse: collapse;
+									}
+
+									.product-table thead th {
+										position: sticky;
+										top: 0;
+										background: white;
+										z-index: 2;
+										min-width: 135px;
+									}
+								</style>
+
+								<div class="product-table-wrapper">
+									<table class="product-table">
+										<thead>
+											<tr>
+												<th scope="col"><span>Hình ảnh</span></th>
+												<th scope="col"><span>Mô tả</span></th>
+												<th scope="col"><span style="min-width: 200px;">SL</span></th>
+												<th scope="col"><span>Giá</span></th>
+											</tr>
+										</thead>
+										<tbody id="cart-items-tbody">
+											<!-- Cart items will be rendered here by JS -->
+										</tbody>
+									</table>
+								</div>
+								<script>
+									document.addEventListener("DOMContentLoaded", function () {
+										const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
+										const tbody = document.getElementById("cart-items-tbody");
+										const subtotalSpan = document.querySelector('[data-checkout-subtotal-price-target]');
+										const totalSpan = document.querySelector('.payment-due-price[data-checkout-payment-due-target]');
+										let total = 0;
+
+										fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+											.then(res => res.json())
+											.then(json => {
+												const items = json.data?.items || [];
+												total = items.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0);
+
+												tbody.innerHTML = items.map(item => `
+													<tr class="product" data-product-id="${item.productId}">
+														<td class="product-image">
+															<div class="product-thumbnail">
+																<div class="product-thumbnail-wrapper">
+																	<img class="product-thumbnail-image"
+																		alt="${item.productName}"
+																		src="${item.imageUrl}">
+																</div>
+																<span class="product-thumbnail-quantity"
+																	aria-hidden="true">${item.quantity}</span>
+															</div>
+														</td>
+														<td class="product-description">
+															<span class="product-description-name order-summary-emphasis">${item.productName}</span>
+														</td>
+														<td class="product-quantity ">${item.quantity}</td>
+														<td class="product-price">
+															<span class="order-summary-emphasis">${item.unitPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
+														</td>
+													</tr>
+												`).join('');
+
+												if (subtotalSpan) {
+													subtotalSpan.textContent = total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+													subtotalSpan.setAttribute('data-checkout-subtotal-price-target', total);
+												}
+												if (totalSpan) {
+													totalSpan.textContent = total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+													totalSpan.setAttribute('data-checkout-payment-due-target', total);
+												}
+											})
+											.catch(() => {
+												tbody.innerHTML = `<tr><td colspan="4">Không thể tải giỏ hàng.</td></tr>`;
+												if (subtotalSpan) {
+													subtotalSpan.textContent = '0₫';
+													subtotalSpan.setAttribute('data-checkout-subtotal-price-target', 0);
+												}
+												if (totalSpan) {
+													totalSpan.textContent = '0₫';
+													totalSpan.setAttribute('data-checkout-payment-due-target', 0);
+												}
+											});
+									});
+								</script>
+
+							</div>
+							<!-- <div class="order-summary-section order-summary-section-discount"
+								data-order-summary-section="discount" bis_skin_checked="1">
+								<form id="form_discount_add" accept-charset="UTF-8" method="post">
+									<input name="utf8" type="hidden" value="✓">
+									<div class="fieldset" bis_skin_checked="1">
+										<div class="field  " bis_skin_checked="1">
+											<div class="field-input-btn-wrapper" bis_skin_checked="1">
+												<div class="field-input-wrapper" bis_skin_checked="1">
+													<label class="field-label" for="discount.code">Mã giảm giá</label>
+													<input placeholder="Mã giảm giá" class="field-input"
+														data-discount-field="true" autocomplete="false"
+														autocapitalize="off" spellcheck="false" size="30" type="text"
+														id="discount.code" name="discount.code" value="">
+												</div>
+												<button type="submit"
+													class="field-input-btn btn btn-default btn-disabled">
+													<span class="btn-content">Sử dụng</span>
+													<i class="btn-spinner icon icon-button-spinner"></i>
+												</button>
+											</div>
+
+										</div>
+									</div>
+								</form>
+							</div> -->
+
+							<div class="order-summary-section order-summary-section-total-lines payment-lines"
+								data-order-summary-section="payment-lines" bis_skin_checked="1">
+								<table class="total-line-table">
+									<thead>
+										<tr>
+											<th scope="col"><span class="">Mô tả</span></th>
+											<th scope="col"><span class="">Giá</span></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="total-line total-line-subtotal">
+											<td class="total-line-name">Tạm tính</td>
+											<td class="total-line-price">
+												<span class="order-summary-emphasis"
+													data-checkout-subtotal-price-target="0">
+													0₫
+												</span>
+											</td>
+										</tr>
+										<tr class="total-line total-line-shipping">
+											<td class="total-line-name">Phí vận chuyển</td>
+											<td class="total-line-price">
+												<span class="order-summary-emphasis"
+													data-checkout-total-shipping-target="0">
+
+
+
+												</span>
+											</td>
+										</tr>
+									</tbody>
+									<tfoot class="total-line-table-footer">
+										<tr class="total-line">
+											<td class="total-line-name payment-due-label">
+												<span class="payment-due-label-total">Tổng cộng</span>
+											</td>
+											<td class="total-line-name payment-due">
+												<span class="payment-due-currency">VND</span>
+												<span class="payment-due-price" data-checkout-payment-due-target="0">
+													0₫
+												</span>
+												<span class="checkout_version" display:none=""
+													data_checkout_version="4">
+												</span>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main" bis_skin_checked="1">
+
+				<div class="main-content" bis_skin_checked="1">
+
+					<div class="step" bis_skin_checked="1">
+
+						<div class="step-sections steps-onepage" step="1" bis_skin_checked="1">
+
+
+
+							<div class="section" bis_skin_checked="1">
+								<div class="section-header" bis_skin_checked="1">
+									<h2 class="section-title">Thông tin giao hàng</h2>
+								</div>
+								<div class="section-content section-customer-information no-mb" bis_skin_checked="1">
+
+
+
+									<div class="fieldset" bis_skin_checked="1">
+										<div class="field field-required  " bis_skin_checked="1">
+											<div class="field-input-wrapper" bis_skin_checked="1">
+												<label class="field-label" for="billing_address_full_name">Họ và
+													tên</label>
+												<input placeholder="Họ và tên" autocapitalize="off" spellcheck="false"
+													class="field-input" size="30" type="text"
+													id="billing_address_full_name" name="billing_address[full_name]"
+													value="" autocomplete="false">
+											</div>
+
+										</div>
+										<div class="field  field-two-thirds  " bis_skin_checked="1">
+											<div class="field-input-wrapper" bis_skin_checked="1">
+												<label class="field-label" for="checkout_user_email">Email</label>
+												<input autocomplete="false" placeholder="Email" autocapitalize="off"
+													spellcheck="false" class="field-input" size="30" type="email"
+													id="checkout_user_email" name="checkout_user[email]" value="">
+											</div>
+
+										</div>
+										<div class="field field-required field-third  " bis_skin_checked="1">
+											<div class="field-input-wrapper" bis_skin_checked="1">
+												<label class="field-label" for="billing_address_phone">Số điện
+													thoại</label>
+												<input autocomplete="false" placeholder="Số điện thoại"
+													autocapitalize="off" spellcheck="false" class="field-input"
+													size="30" maxlength="15" type="tel" id="billing_address_phone"
+													name="billing_address[phone]" value="">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="section-content" bis_skin_checked="1">
+									<div class="fieldset" bis_skin_checked="1">
+										<form autocomplete="off" id="form_update_shipping_method" class="field default"
+											accept-charset="UTF-8" method="post">
+											<input name="utf8" type="hidden" value="✓">
+											<div class="content-box mt0" bis_skin_checked="1">
+
+												<div id="form_update_location_customer_shipping"
+													class="order-checkout__loading radio-wrapper content-box-row content-box-row-padding content-box-row-secondary "
+													for="customer_pick_at_location_false" bis_skin_checked="1">
+													<input name="utf8" type="hidden" value="✓">
+													<div class="order-checkout__loading--box" bis_skin_checked="1">
+														<div class="order-checkout__loading--circle"
+															bis_skin_checked="1"></div>
+													</div>
+
+													<div class="field field-required  " bis_skin_checked="1">
+														<div class="field-input-wrapper" bis_skin_checked="1">
+															<label class="field-label"
+																for="billing_address_address1">Địa chỉ</label>
+															<input placeholder="Địa chỉ" autocapitalize="off"
+																spellcheck="false" class="field-input" size="30"
+																type="text" id="billing_address_address1"
+																name="billing_address[address1]" value="">
+														</div>
+
+													</div>
+
+													<div id="div_location_country_not_vietnam"
+														class="section-customer-information " bis_skin_checked="1"
+														style="display: none;">
+														<div class="field field-two-thirds" bis_skin_checked="1">
+															<div class="field-input-wrapper" bis_skin_checked="1">
+																<label class="field-label"
+																	for="billing_address_city">Thành phố</label>
+																<input placeholder="Thành phố" autocapitalize="off"
+																	spellcheck="false" class="field-input" size="30"
+																	type="text" id="billing_address_city"
+																	name="billing_address[city]" value="">
+															</div>
+														</div>
+														<div class="field field-third" bis_skin_checked="1">
+															<div class="field-input-wrapper" bis_skin_checked="1">
+																<label class="field-label" for="billing_address_zip">Mã
+																	bưu chính</label>
+																<input placeholder="Mã bưu chính" autocapitalize="off"
+																	spellcheck="false" class="field-input" size="30"
+																	type="text" id="billing_address_zip"
+																	name="billing_address[zip]" value="">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div id="change_pick_location_or_shipping" bis_skin_checked="1">
+									<div id="section-payment-method" class="section" bis_skin_checked="1">
+										<div class="order-checkout__loading--box" bis_skin_checked="1">
+											<div class="order-checkout__loading--circle" bis_skin_checked="1"></div>
+										</div>
+										<div class="section-header" bis_skin_checked="1">
+											<h2 class="section-title">Phương thức thanh toán</h2>
+										</div>
+										<div class="section-content" bis_skin_checked="1">
+											<div class="content-box" bis_skin_checked="1">
+												<div class="radio-wrapper content-box-row" bis_skin_checked="1">
+													<label class="radio-label" for="payment_method_id_1002987540">
+														<div class="radio-input payment-method-checkbox"
+															bis_skin_checked="1">
+															<input type-id="1" id="payment_method_id_1002987540"
+																class="input-radio" name="payment_method_id"
+																type="radio" value="1002987540" checked="">
+														</div>
+														<div class="radio-content-input" bis_skin_checked="1">
+															<img class="main-img" src="./assets/images/cod.svg">
+															<div bis_skin_checked="1">
+																<span class="radio-label-primary">Thanh toán khi giao
+																	hàng (COD)</span>
+																<span class="quick-tagline hidden"></span>
+															</div>
+														</div>
+													</label>
+												</div>
+												<div class="radio-wrapper content-box-row content-box-row-secondary "
+													for="payment_method_id_1002987540" bis_skin_checked="1">
+													<div class="blank-slate" bis_skin_checked="1">
+														Lưu ý: Vui lòng liên hệ nhân viên hỗ trợ kiểm tra tồn kho sản
+														phẩm trước khi thanh toán!
+													</div>
+												</div>
+												<div class="radio-wrapper content-box-row" bis_skin_checked="1">
+													<label class="radio-label" for="payment_method_id_1002987542">
+														<div class="radio-input payment-method-checkbox"
+															bis_skin_checked="1">
+															<input type-id="2" id="payment_method_id_1002987542"
+																class="input-radio" name="payment_method_id"
+																type="radio" value="1002987542">
+														</div>
+														<div class="radio-content-input" bis_skin_checked="1">
+															<img class="main-img" src="./assets/images/other.svg">
+															<div bis_skin_checked="1">
+																<span class="radio-label-primary">Chuyển khoản qua ngân
+																	hàng</span>
+																<span class="quick-tagline hidden"></span>
+															</div>
+														</div>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="step-footer" id="step-footer-checkout" bis_skin_checked="1">
+							<form id="form_next_step" accept-charset="UTF-8" method="post">
+								<input name="utf8" type="hidden" value="✓">
+								<button type="button" class="step-footer-continue-btn btn order-button"
+									style="display: flex;" id="btn-complete-order">
+									<span class="btn-content">Đặt hàng</span>
+									<i class="btn-spinner icon icon-button-spinner"></i>
+								</button>
+								<button type="button" class="step-footer-continue-btn btn order-button"
+									style="display: none;" id="btn-complete-order-online">
+									<span class="btn-content">Thanh toán </span>
+									<i class="btn-spinner icon icon-button-spinner"></i>
+								</button>
+								<script>
+									document.addEventListener("DOMContentLoaded", function () {
+										const btnOrder = document.getElementById("btn-complete-order");
+										const btnOrderOnline = document.getElementById("btn-complete-order-online");
+										const radios = document.querySelectorAll('input[name="payment_method_id"]');
+
+										// Toggle buttons based on payment method
+										function toggleButtons() {
+											const payType = document.querySelector('input[name="payment_method_id"]:checked')?.getAttribute("type-id");
+											if (payType === "2") {
+												btnOrder.style.display = "none";
+												btnOrderOnline.style.display = "flex";
+											} else {
+												btnOrder.style.display = "flex";
+												btnOrderOnline.style.display = "none";
+											}
+										}
+										radios.forEach(radio => {
+											radio.addEventListener("change", toggleButtons);
+										});
+										toggleButtons();
+
+										// Đặt hàng (COD)
+										btnOrder.addEventListener("click", async function () {
+											btnOrder.disabled = true;
+											const userId = localStorage.getItem("userId");
+											let cartId = null;
+											const cartLocal = localStorage.getItem("cartLocal");
+											if (cartLocal) {
+												try {
+													const cartObj = JSON.parse(cartLocal);
+													cartId = cartObj.id || null;
+												} catch (e) {
+													cartId = null;
+												}
+											}
+											const payType = "COD";
+											const shippingFee = 0;
+
+											try {
+												const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+												const cartJson = await cartRes.json();
+												const items = cartJson.data?.items || [];
+												const itemIdsToBuy = items.map(item => item.id);
+
+												const body = {
+													userId,
+													cartId,
+													itemIdsToBuy,
+													payType,
+													shippingFee
+												};
+												const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
+													method: "POST",
+													headers: {
+														"Content-Type": "application/json"
+													},
+
+													body: JSON.stringify(body)
+												});
+
+												if (orderRes.ok) {
+													document.getElementById("modal-order-success").style.display = "block";
+												} else {
+													alert("Đặt hàng thất bại!");
+												}
+											} catch (e) {
+												alert("Có lỗi xảy ra khi đặt hàng!");
+											} finally {
+												btnOrder.disabled = false;
+											}
+										});
+
+										// Thanh toán online (VNPAY)
+										btnOrderOnline.addEventListener("click", async function () {
+											btnOrderOnline.disabled = true;
+											const userId = localStorage.getItem("userId");
+											let cartId = null;
+											const cartLocal = localStorage.getItem("cartLocal");
+											if (cartLocal) {
+												try {
+													const cartObj = JSON.parse(cartLocal);
+													cartId = cartObj.id || null;
+												} catch (e) {
+													cartId = null;
+												}
+											}
+											const payType = "ONLINE";
+											const shippingFee = 0;
+
+											try {
+												const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+												const cartJson = await cartRes.json();
+												const items = cartJson.data?.items || [];
+												const itemIdsToBuy = items.map(item => item.id);
+
+												const body = {
+													userId,
+													cartId,
+													itemIdsToBuy,
+													payType,
+													shippingFee
+												};
+
+												const orderRes = await fetch("http://localhost:8080/api/v1/order/create", {
+													method: "POST",
+													headers: {
+														"Content-Type": "application/json"
+													},
+													body: JSON.stringify(body)
+												});
+
+												if (orderRes.ok) {
+													const orderJson = await orderRes.json();
+													const orderId = orderJson.data?.id;
+													if (orderId) {
+														// API thanh toán
+														const payRes = await fetch(`http://localhost:8080/api/v1/order/${orderId}/pay`, {
+															method: "POST"
+														});
+														if (payRes.ok) {
+															const payUrl = await payRes.text();
+															window.location.href = payUrl;
+														} else {
+															alert("Không lấy được link thanh toán VNPAY!");
+														}
+													} else {
+														alert("Không lấy được orderId!");
+													}
+												} else {
+													alert("Tạo đơn hàng thất bại!");
+												}
+											} catch (e) {
+												alert("Có lỗi xảy ra khi thanh toán online!");
+											} finally {
+												btnOrderOnline.disabled = false;
+											}
+										});
+
+										// Đóng modal
+										document.querySelectorAll(".order-close-modal, .order-modal-oke").forEach(el => {
+											el.addEventListener("click", function () {
+												document.getElementById("modal-order-success").style.display = "none";
+											});
+										});
+									});
+								</script>
+							</form>
+							<a class="step-footer-previous-link" href="">
+								Giỏ hàng
+							</a>
+						</div>
+
+						<!-- Modal Order Success -->
+						<div class="modal-order" id="modal-order-success">
+							<div class="modal-order-overlay order-close-modal"></div>
+							<div class="modal-order-content">
+								<div class="modal-order-icon">
+									<svg class="order-success-tick" width="60" height="60" viewBox="0 0 60 60">
+										<circle cx="30" cy="30" r="30" fill="#4CAF50" />
+										<polyline points="18,32 27,41 43,23" fill="none" stroke="#fff" stroke-width="4"
+											stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</div>
+								<div class="modal-order-message">
+									<b>Bạn đã đặt hàng thành công!</b>
+								</div>
+								<button class="order-button order-modal-oke" id="order-modal-oke-btn">OK</button>
+								<span class="modal-order-close order-close-modal">&times;</span>
+							</div>
+						</div>
+						<script>
+							document.addEventListener("DOMContentLoaded", function () {
+								const okeBtn = document.getElementById("order-modal-oke-btn");
+								if (okeBtn) {
+									okeBtn.addEventListener("click", async function () {
+										const userId = localStorage.getItem("userId"); // Lấy userId từ localStorage hoặc mặc định
+										try {
+											// Lấy cart hiện tại để lấy danh sách items
+											const cartRes = await fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`);
+											const cartJson = await cartRes.json();
+											const items = (cartJson.data?.items || []).map(item => ({
+												productId: item.productId,
+												quantity: item.quantity
+											}));
+											await fetch(`http://localhost:8080/api/v1/cart/clear?userId=${userId}`, {
+												method: "DELETE",
+												headers: {
+													"Content-Type": "application/json"
+												},
+												body: JSON.stringify({
+													userId: userId,
+													items: items
+												})
+											});
+											// Đóng modal và chuyển về trang index
+											document.getElementById("modal-order-success").style.display = "none";
+											window.location.href = "index.html";
+										} catch (e) {
+											alert("Có lỗi khi xóa giỏ hàng!");
+										}
+									});
+								}
+							});
+						</script>
+
+
+					</div>
+
+				</div>
+
+				<div class="hrv-coupons-popup-site-overlay" bis_skin_checked="1"></div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Footer -->
+	<footer-main></footer-main>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+	<!--===============================================================================================-->
+	<script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./assets/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./assets/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function () {
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next(".dropDownSelect2"),
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$(".js-pscroll").each(function () {
+			$(this).css("position", "relative");
+			$(this).css("overflow", "hidden");
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on("resize", function () {
+				ps.update();
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="./assets/js/main.js"></script>
+	<script>
+
+		// Gọi khi DOM đã load
+      document.addEventListener('DOMContentLoaded', function () {
+         let cartIcon = document.getElementById('cart-icon-header');
+		 console.log(cartIcon);
+         if (cartIcon) cartIcon.classList.add('cart-none');
+      });
+
+	  document.addEventListener('DOMContentLoaded', function () {
+
+         let searchIcon = document.getElementById('icon-search__items');
+         console.log(searchIcon);
+         if (searchIcon) searchIcon.classList.add('search-none');
+      });
+
+
+	  
+	   function updateFavouriteCount() {
+         const favourites = localStorage.getItem('favouriteProductIds');
+         const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+         if (numberOfFavourites) {
+            let count = 0;
+            if (favourites) {
+               try {
+                  const favouriteIds = JSON.parse(favourites);
+                  count = Array.isArray(favouriteIds) ? favouriteIds.length : 0;
+               } catch {
+                  count = 0;
+               }
+            }
+            numberOfFavourites.setAttribute('data-notify', count);
+         }
+      }
+      updateFavouriteCount();
+
+
+	  document.addEventListener('DOMContentLoaded', function () {
+
+         let searchIcon = document.getElementById('icon-search_items');
+         console.log(searchIcon);
+         if (searchIcon) searchIcon.classList.add('search-none');
+      });
+	  
+	</script>
+</body>
+
+</html>

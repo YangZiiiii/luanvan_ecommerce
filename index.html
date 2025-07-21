@@ -1,256 +1,2128 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>Home</title>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <!--===============================================================================================-->
-      <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/bootstrap/css/bootstrap.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/fonts/iconic/css/material-design-iconic-font.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/animate/animate.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/css-hamburgers/hamburgers.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/animsition/css/animsition.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/select2/select2.min.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/daterangepicker/daterangepicker.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/slick/slick.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/MagnificPopup/magnific-popup.css"
-      />
-      <!--===============================================================================================-->
-      <link
-         rel="stylesheet"
-         type="text/css"
-         href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css"
-      />
-      <!--===============================================================================================-->
-      <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
-      <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
-      <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
-      <!--===============================================================================================-->
 
-      <!--Header-Template  -->
-      <script src="./assets/js/template/header.js"></script>
+<head>
+   <title>Home</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <!--===============================================================================================-->
+   <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+   <!--===============================================================================================-->
+   <!-- <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" /> -->
+   <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
 
-      <!--Cart-Template  -->
-      <script src="./assets/js/template/cart.js"></script>
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/daterangepicker/daterangepicker.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/slick/slick.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/MagnificPopup/magnific-popup.css" />
+   <!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+   <!--===============================================================================================-->
 
-      <!--Home-Slider-Template  -->
-      <script src="./assets/js/template/home/slider.js"></script>
+   <link rel="stylesheet" type="text/css" href="./assets/css/util.css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
 
-      <!--Home-Banner-Template  -->
-      <script src="./assets/js/template/home/banner.js"></script>
-      <!--Home-Banner-Item-Template  -->
-      <script src="./assets/js/template/home/banner-item.js"></script>
+   <link rel="stylesheet" type="text/css" href="./assets/css/header.css" />
 
-      <!--Home-Product-Template  -->
-      <script src="./assets/js/template/home/product.js"></script>
+   <link rel="stylesheet" href="./assets/css/chatbutton.css">
+   <!--===============================================================================================-->
 
-      <!--Home-Modal-Template  -->
-      <script src="./assets/js/template/home/modal.js"></script>
+   <!--Header-Template  -->
+   <script src="./assets/js/template/header.js"></script>
 
-      <!--Footer-Template  -->
-      <script src="./assets/js/template/footer.js"></script>
-   </head>
-   <body class="animsition">
-      <!-- Header -->
-    
-      <header-main></header-main>
-      <!-- Cart -->
-      <cart-main></cart-main>
+   <!--Cart-Template  -->
+   <script src="./assets/js/template/cart.js"></script>
 
-      <!-- Slider -->
-      <home-slider></home-slider>
+   <!--Home-Slider-Template  -->
+   <script src="./assets/js/template/home/slider.js"></script>
 
-      <!-- Banner -->
-      <home-banner></home-banner>
+   <!--Home-Banner-Template  -->
+   <script src="./assets/js/template/home/banner.js"></script>
+   <!--Home-Banner-Item-Template  -->
+   <script src="./assets/js/template/home/banner-item.js"></script>
 
-      <!-- Product -->
-      <home-product></home-product>
+   <!--Home-Product-Template  -->
+   <script src="./assets/js/template/home/product.js"></script>
 
-      <!-- Footer -->
-      <footer-main></footer-main>
+   <!--Home-Modal-Template  -->
+   <script src="./assets/js/template/home/modal.js"></script>
 
-      <!-- Back to top -->
-      <div class="btn-back-to-top" id="myBtn">
-         <span class="symbol-btn-back-to-top">
-            <i class="zmdi zmdi-chevron-up"></i>
-         </span>
+   <!--Footer-Template  -->
+   <script src="./assets/js/template/footer.js"></script>
+
+   <!-- Chat-Template -->
+   <!-- <script src="./assets/js/template/chat-button.js"></script> -->
+
+</head>
+
+<body class="animsition">
+
+
+   <!-- Chat Button -->
+   <chat-button></chat-button>
+
+   <!-- Header -->
+   <!-- <header-main></header-main> -->
+   <header>
+      <!-- Header desktop -->
+      <div class="container-menu-desktop">
+         <!-- Topbar -->
+         <div class="top-bar">
+            <div class="content-topbar flex-sb-m h-full container">
+               <div class="left-top-bar">
+                  Miễn phí vận chuyển cho đơn hàng từ 500.000đ
+               </div>
+
+               <div class="right-top-bar flex-w h-full">
+                  <div class="login-menu-container show-menu--login" id="login-menu-sign">
+                     <a href="#" class="flex-c-m trans-04 p-lr-25 open-modal-log" data-tab="login">
+                        Sign in
+                     </a>
+                     <a href="#" class="flex-c-m trans-04 p-lr-25 open-modal-log p-l-sign" data-tab="register">
+                        Sign up
+                     </a>
+                  </div>
+                  <div class="login-menu-container" id="login-menu-user">
+                     <a href="#" class="none-underline flex-c-m trans-04 p-lr-25 login-menu-toggle"
+                        style="padding: 0 10px; height: 100%;">
+                        <i class="fa fa-user"></i> <span id="full-name" class="ml-2"></span>
+                     </a>
+                     <div class="sub-menu-login">
+                        <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
+                        <a href="orderInfo.html" class="sub-menu-login-item">Lịch sử mua hàng</a>
+                        <a href="#!" class="sub-menu-login-item logout-btn">Đăng xuất</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Modal Login -->
+         <div class="modal-log">
+            <!-- Toast error trong modal login -->
+            <div id="login-toast" style="position:absolute; top:100px;z-index:10;"></div>
+            <div class="modal-content">
+               <span class="close-log">&times;</span>
+               <div class="switch-tabs">
+                  <span class="tab-link active" data-tab="login">Đăng nhập</span>
+                  <span class="tab-link" data-tab="register">Đăng ký</span>
+               </div>
+
+               <!-- Form Đăng nhập -->
+               <div class="tab-content tab-none active" data-content="login">
+
+                  <h2 class="form-title">Đăng nhập</h2>
+
+                  <form class="form" id="login-form">
+                     <input type="text" class="form-input" placeholder="Tên đăng nhập" required />
+                     <input type="password" class="form-input" placeholder="Mật khẩu" required />
+                     <div class="options">
+                        <label class="remember"><input type="checkbox" />
+                           <span>Nhớ mật khẩu</span></label>
+                        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                     </div>
+                     <button type="submit" class="form-btn">Đăng nhập</button>
+                     <p class="switch-form">
+                        Chưa có tài khoản?
+                        <a href="#" class="switch-tab" data-tab="register">Đăng ký</a>
+                     </p>
+                  </form>
+               </div>
+
+               <!-- Form Đăng ký -->
+               <div class="tab-content tab-none" data-content="register">
+                  <h2 class="form-title">Đăng ký</h2>
+                  <form class="form" id="register-form">
+                     <input type="text" class="form-input" name="firstName" placeholder="Họ" required />
+                     <input type="text" class="form-input" name="lastName" placeholder="Tên" required />
+                     <input type="text" class="form-input" name="phone" placeholder="Số điện thoại" required />
+                     <input type="text" class="form-input" name="email" placeholder="Email" required />
+                     <input type="password" class="form-input" name="password" placeholder="Mật khẩu" required />
+                     <button type="submit" class="form-btn">Đăng ký</button>
+                     <p class="switch-form">
+                        Đã có tài khoản?
+                        <a href="#" class="switch-tab" data-tab="login">Đăng nhập</a>
+                     </p>
+                  </form>
+                  <div id="register-spinner" style="display:none; margin:10px auto; text-align:center;">
+                     <div class="spinner"
+                        style="display:inline-block;width:32px;height:32px;border:4px solid #ccc;border-top:4px solid #27ae60;border-radius:50%;animation:spin 1s linear infinite;">
+                     </div>
+                  </div>
+                  <div id="register-toast" style="margin-top:10px;"></div>
+               </div>
+
+
+
+
+               <style>
+
+               </style>
+
+
+               <!-- Đăng nhập bằng mạng xã hội -->
+
+
+               <!-- Copyright -->
+               <p class="copyright">
+                  © 2025 COZA STORE. All rights reserved.
+               </p>
+            </div>
+         </div>
+
+         <!-- Modal Quên mật khẩu -->
+         <div class="modal-forgot">
+            <div class="modal-content">
+               <span class="close-forgot">&times;</span>
+               <h2 class="form-title">Quên mật khẩu</h2>
+               <!-- Toast message for forgot password -->
+               <div id="forgot-toast" class="forgot-toast"></div>
+               <!-- Spinner loading -->
+               <div id="forgot-spinner" class="forgot-spinner"></div>
+               <form class="form" id="forgot-form">
+                  <input type="email" class="form-input" placeholder="Nhập email của bạn" required />
+                  <button type="submit" class="form-btn">Gửi yêu cầu</button>
+                  <p class="switch-form">
+                     Nhớ lại mật khẩu?
+                     <a href="#" class="back-to-login">Đăng nhập</a>
+                  </p>
+               </form>
+            </div>
+         </div>
+
+         <!-- Modal -->
+         <div class="wrap-menu-desktop">
+            <nav class="limiter-menu-desktop container">
+               <!-- Logo desktop -->
+               <a href="/" class="logo">
+                  <img src="./assets/images/icons/logo-01.png" alt="IMG-LOGO" />
+               </a>
+
+               <!-- Menu desktop -->
+               <div class="menu-desktop">
+                  <ul class="main-menu">
+                     <li class="active-menu">
+                        <a href="index.html">Trang chủ</a>
+                     </li>
+                     <li class="label1" data-label1="hot">
+                        <a href="product.html">Cửa hàng</a>
+                     </li>
+                     <li>
+                        <a href="shoppingCart.html">Giỏ hàng</a>
+                     </li>
+                     <li>
+                        <a href="about.html">Về chúng tôi</a>
+                     </li>
+                     <!-- <li>
+                        <a href="contact.html">Contact</a>
+                      </li> -->
+                  </ul>
+               </div>
+               <script>
+                  // Active menu item based on current page
+                  document.addEventListener('DOMContentLoaded', function () {
+                     const menuLinks = document.querySelectorAll('.main-menu li a');
+                     const currentPath = window.location.pathname.split('/').pop();
+                     let found = false;
+                     menuLinks.forEach(link => {
+                        const li = link.parentElement;
+                        li.classList.remove('active-menu');
+                        if (link.getAttribute('href') === currentPath) {
+                           li.classList.add('active-menu');
+                           found = true;
+                        }
+                     });
+                     // If not found, default to Home
+                     if (!found) {
+                        const homeLi = document.querySelector('.main-menu li a[href="index.html"]')?.parentElement;
+                        if (homeLi) homeLi.classList.add('active-menu');
+                     }
+                     // Click event to set active
+                     menuLinks.forEach(link => {
+                        link.addEventListener('click', function () {
+                           menuLinks.forEach(l => l.parentElement.classList.remove('active-menu'));
+                           this.parentElement.classList.add('active-menu');
+                        });
+                     });
+                  });
+               </script>
+
+               <!-- Search -->
+
+
+               <!-- Search product -->
+               <div class="dis-none panel-search w-full p-t-10 p-b-15 search-new">
+                  <div class="combine-icon__input" style="display: flex; align-items: center;">
+                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search btn-search"
+                        style="cursor: pointer;"></i>
+                     <input class="mtext-107 cl2 size-114 plh2 p-r-15 search-height" type="text" name="search-product"
+                        placeholder="Tìm kiếm sản phẩm" />
+                  </div>
+               </div>
+
+
+               <!-- Icon header -->
+               <!-- Change for cart -->
+               <div class="wrap-icon-header flex-w flex-r-m"></div>
+               <div class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search">
+                  <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search" id="icon-search__items"></i>
+                  <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+               </div>
+
+               <div class="header__cart-container" style="position:relative;">
+                  <div
+                     class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart noti-none"
+                     data-notify="0" id="cart-icon-header" tabindex="0">
+                     <i class="zmdi zmdi-shopping-cart "></i>
+                  </div>
+
+                  <div class="header__cart-notify" style="width:300px; display:none;">
+                     <div class="header__cart-notify" style="width:300px;">
+                        <div class="empty__cart">
+                           <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+                           <p class="header__cart-msg">No products yet</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <a href="productFavourite.html"
+                  class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti icon-heart-number"
+                  data-notify="0">
+                  <i class="zmdi zmdi-favorite-outline"></i>
+               </a>
+               <script>
+
+               </script>
+               <div class="user-menu-scroll" id="user-menu-scroll" style="display: none;">
+                  <a href="#!" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                     data-notify="!">
+                     <i class="fa fa-user"></i>
+                  </a>
+                  <div class="sub-menu-login user-login">
+                     <a href="loginInfo.html" class="sub-menu-login-item">Thông tin cá nhân</a>
+                     <a href="orderInfo.html" class="sub-menu-login-item">Lịch sử mua hàng</a>
+                     <a href="#" class="sub-menu-login-item logout-btn">Đăng xuất</a>
+                  </div>
+               </div>
+
+
+         </div>
+         </nav>
+      </div>
       </div>
 
-      <!-- Modal1 -->
-      <home-modal></home-modal>
+      <!-- Modal Search -->
+      <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+         <div class="container-search-header">
+            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+               <img src="./assets/images/icons/icon-close2.png" alt="CLOSE" />
+            </button>
 
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/animsition/js/animsition.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/bootstrap/js/popper.js"></script>
-      <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/select2/select2.min.js"></script>
-      <script>
-         $(".js-select2").each(function () {
-            $(this).select2({
-               minimumResultsForSearch: 20,
-               dropdownParent: $(this).next(".dropDownSelect2"),
-            });
-         });
-      </script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/daterangepicker/moment.min.js"></script>
-      <script src="./assets/vendor/daterangepicker/daterangepicker.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/slick/slick.min.js"></script>
-      <script src="./assets/js/slick-custom.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/parallax100/parallax100.js"></script>
-      <script>
-         $(".parallax100").parallax100();
-      </script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-      <script>
-         $(".gallery-lb").each(function () {
-            // the containers for all your galleries
-            $(this).magnificPopup({
-               delegate: "a", // the selector for gallery item
-               type: "image",
-               gallery: {
-                  enabled: true,
-               },
-               mainClass: "mfp-fade",
-            });
-         });
-      </script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/sweetalert/sweetalert.min.js"></script>
-      <script>
-         $(".js-addwish-b2").on("click", function (e) {
+            <form class="wrap-search-header flex-w p-l-15">
+               <button class="flex-c-m trans-04">
+                  <i class="zmdi zmdi-search"></i>
+               </button>
+               <input class="plh3" type="text" name="search" placeholder="Search..." />
+            </form>
+         </div>
+      </div>
+      <!-- Toast Message Global -->
+      <div id="toast" style="position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 9999;"></div>
+   </header>
+
+   <script>
+      // Sự kiện click search button
+      const searchButton = document.querySelector('.btn-search');
+      const searchInput = document.querySelector('.search-new input[name="search-product"]');
+
+      // Click search button
+      searchButton.addEventListener('click', function (e) {
+         const keyword = searchInput.value.trim();
+         if (keyword) {
+            window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+         }
+      });
+      // Enter key search
+      searchInput.addEventListener('keydown', function (e) {
+         if (e.key === 'Enter') {
             e.preventDefault();
+            const keyword = searchInput.value.trim();
+            if (keyword) {
+               window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+            }
+         }
+      });
+
+      // Danh sách yêu thích
+      function fetchAndUpdateFavouriteIds() {
+         const userId = localStorage.getItem('userId');
+         if (userId && userId !== 'null') {
+            fetch(`http://localhost:8080/api/v1/favourites/user/${userId}`)
+               .then(res => res.json())
+               .then(data => {
+                  if (data && data.statusCode === 200 && Array.isArray(data.data)) {
+                     // Lưu danh sách productId yêu thích vào localStorage
+                     const favIds = data.data.map(item => item.productId);
+                     localStorage.setItem('favouriteProductIds', JSON.stringify(favIds));
+                     // Cập nhật số lượng yêu thích trên icon nếu cần
+                     const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+                     if (numberOfFavourites) {
+                        numberOfFavourites.setAttribute('data-notify', favIds.length);
+                     }
+                  }
+               })
+               .catch(() => { /* ignore error */ });
+         }
+      }
+      document.addEventListener('DOMContentLoaded', fetchAndUpdateFavouriteIds);
+
+      // Đăng ký tài khoản
+      document.addEventListener('DOMContentLoaded', function () {
+         const registerForm = document.getElementById('register-form');
+         const registerToast = document.getElementById('register-toast');
+         const registerSpinner = document.getElementById('register-spinner');
+         const modalLog = document.querySelector('.modal-log');
+         const formInputsRegister = document.querySelectorAll('.form-input');
+
+         function showRegisterToast(msg, isError = false) {
+            if (!registerToast) return;
+            registerToast.textContent = msg;
+            registerToast.style.color = isError ? '#e74c3c' : '#27ae60';
+            registerToast.style.fontWeight = 'bold';
+            registerToast.style.textAlign = 'center';
+            registerToast.style.opacity = '1';
+            setTimeout(() => {
+               registerToast.textContent = '';
+               registerToast.style.opacity = '';
+            }, 10000);
+         }
+
+         function isValidPassword(password) {
+            // At least 1 uppercase, 1 digit, and length >= 6
+            return password.length >= 6 && /[A-Z]/.test(password) && /\d/.test(password);
+         }
+
+         if (registerForm) {
+            registerForm.addEventListener('submit', function (e) {
+               e.preventDefault();
+               registerToast.textContent = '';
+               if (registerSpinner) registerSpinner.style.display = 'block';
+
+               const formData = new FormData(registerForm);
+               const password = formData.get('password') || '';
+               if (!isValidPassword(password)) {
+                  if (registerSpinner) registerSpinner.style.display = 'none';
+                  showRegisterToast('Mật khẩu phải chứa ít nhất 1 chữ hoa, 1 số và tối thiểu 6 ký tự.', true);
+                  return;
+               }
+
+               fetch('http://localhost:8080/api/v1/auth/register', {
+                  method: 'POST',
+                  body: formData
+               })
+                  .then(res => res.json())
+                  .then(data => {
+                     if (registerSpinner) registerSpinner.style.display = 'none';
+                     if (data && data.statusCode === 200) {
+                        showRegisterToast('Đăng ký thông tin hoàn tất! Vui lòng xác thực email để sử dụng tài khoản.', false);
+
+                        // Đóng modal sau khi hiện toast và trả thanh cuộn body về mặc định
+                        setTimeout(function () {
+                           if (modalLog) modalLog.classList.remove("show-log");
+                           document.body.style.overflow = '';
+                           document.documentElement.style.overflow = '';
+                           formInputsRegister.forEach(input => {
+                              input.value = ''; // Xóa giá trị các input
+                           });
+
+                        }, 10000);
+                     } else {
+                        showRegisterToast(data.message || 'Đăng ký thất bại!', true);
+                     }
+                  })
+                  .catch(() => {
+                     if (registerSpinner) registerSpinner.style.display = 'none';
+                     showRegisterToast('Đăng ký thất bại!', true);
+                  });
+            });
+         }
+      });
+
+      // Quên mật khẩu
+      const forgotPasswordLink = document.querySelector('.forgot-password');
+      const forgotModal = document.querySelector('.modal-forgot');
+      const closeForgot = document.querySelector('.close-forgot');
+      const backToLogin = document.querySelector('.back-to-login');
+      const loginModal = document.querySelector('.modal-log');
+
+      // Mở modal quên mật khẩu
+      forgotPasswordLink.addEventListener('click', (e) => {
+         e.preventDefault();
+         forgotModal.classList.add('show-forgot');
+      });
+
+      // Đóng modal quên mật khẩu
+      closeForgot.addEventListener('click', () => {
+         forgotModal.classList.remove('show-forgot');
+      });
+
+      // Quay lại modal đăng nhập
+      backToLogin.addEventListener('click', (e) => {
+         e.preventDefault();
+         forgotModal.classList.remove('show-forgot');
+      });
+      // Forgot password form submit
+      document.addEventListener('DOMContentLoaded', function () {
+         const forgotForm = document.getElementById('forgot-form');
+         const forgotToast = document.getElementById('forgot-toast');
+         const forgotSpinner = document.getElementById('forgot-spinner');
+         if (forgotForm) {
+            forgotForm.addEventListener('submit', function (e) {
+               e.preventDefault();
+               const email = forgotForm.querySelector('input[type="email"]').value.trim();
+               if (!email) return;
+               forgotToast.className = 'forgot-toast';
+               forgotToast.textContent = '';
+               forgotSpinner.className = 'forgot-spinner show';
+               fetch(`http://localhost:8080/api/v1/auth/forgot-password/${encodeURIComponent(email)}`, {
+                  method: 'POST'
+               })
+                  .then(res => res.json())
+                  .then(data => {
+                     forgotSpinner.className = 'forgot-spinner';
+                     forgotToast.textContent = data.message || 'Có lỗi xảy ra';
+                     forgotToast.className = 'forgot-toast show' + (data.statusCode === 200 ? '' : ' error');
+                     setTimeout(() => {
+                        forgotToast.className = 'forgot-toast';
+                        forgotToast.textContent = '';
+                        forgotModal.classList.remove('show-forgot');
+                        if (loginModal) loginModal.style.display = 'flex';
+                     }, 5000);
+                  })
+                  .catch(() => {
+                     forgotSpinner.className = 'forgot-spinner';
+                     forgotToast.textContent = 'Có lỗi xảy ra';
+                     forgotToast.className = 'forgot-toast show error';
+                     setTimeout(() => {
+                        forgotToast.className = 'forgot-toast';
+                        forgotToast.textContent = '';
+                     }, 2000);
+                  });
+            });
+         }
+      });
+
+
+
+      // Show/hide user menu scroll based on userId
+      function toggleUserMenuScroll() {
+         let userId = localStorage.getItem('userId');
+         let userMenu = document.getElementById('user-menu-scroll');
+         if (userMenu) {
+            userMenu.style.display = (userId && userId !== 'null') ? 'block' : 'none';
+         }
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+         toggleUserMenuScroll();
+         // Also update on login/logout
+         window.addEventListener('storage', toggleUserMenuScroll);
+         window.addEventListener('cart-updated', toggleUserMenuScroll);
+      });
+      // Listen for login success and update menu immediately
+      window.addEventListener('login-success', function () {
+         toggleUserMenuScroll();
+      });
+
+
+
+
+      // --- HIỆN/ẨN giỏ hàng khi click thay vì hover ---
+      document.addEventListener('DOMContentLoaded', function () {
+         // Lấy icon giỏ hàng và phần thông báo giỏ hàng
+         const cartIcon = document.getElementById('cart-icon-header');
+         const cartNotify = cartIcon && cartIcon.parentElement.querySelector('.header__cart-notify');
+         let cartVisible = false;
+
+         // Hàm hiện giỏ hàng
+         function showCart() {
+            if (cartNotify) {
+               cartNotify.style.display = 'block';
+               cartNotify.style.visibility = 'visible';
+               cartNotify.style.opacity = '1';
+               cartVisible = true;
+            }
+         }
+         // Hàm ẩn giỏ hàng
+         function hideCart() {
+            if (cartNotify) {
+               cartNotify.style.display = 'none';
+               cartNotify.style.visibility = 'hidden';
+               cartNotify.style.opacity = '0';
+               cartVisible = false;
+            }
+         }
+         // Toggle giỏ hàng khi click icon
+         if (cartIcon && cartNotify) {
+
+            cartIcon.addEventListener('click', function (e) {
+               e.stopPropagation();
+
+               const userId = localStorage.getItem('userId');
+               if (userId && userId !== 'null') {
+                  // Nếu có userId thì fetch lại cart từ API khi mở
+                  if (!cartVisible) {
+                     fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                        .then(res => res.json())
+                        .then(cartData => {
+                           if (
+                              cartData &&
+                              cartData.statusCode === 200 &&
+                              cartData.data &&
+                              Array.isArray(cartData.data.items)
+                           ) {
+                              const items = cartData.data.items;
+                              const cartLocal = [];
+                              const cartQuantities = {};
+
+                              items.forEach(item => {
+                                 cartLocal.push({
+                                    id: item.productId,
+                                    name: item.productName,
+                                    primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                                    unitPrice: item.unitPrice,
+                                    // Lưu total cho tiện
+                                    total: item.unitPrice * item.quantity
+                                 });
+                                 cartQuantities[item.productId] = item.quantity ?? 1;
+                              });
+
+                              localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                              localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                              updateCartNotify();
+                              showCart();
+                           } else {
+                              showCart();
+                           }
+                        })
+                        .catch(() => {
+                           showCart();
+                        });
+                  } else {
+                     hideCart();
+                  }
+               } else {
+                  // Không có userId thì chỉ toggle giỏ hàng
+                  if (!cartVisible) {
+                     showCart();
+                  } else {
+                     hideCart();
+                  }
+               }
+            });
+            // Ẩn giỏ hàng khi click ra ngoài
+            document.addEventListener('click', function (e) {
+               if (cartVisible && !cartNotify.contains(e.target) && e.target !== cartIcon) {
+                  hideCart();
+               }
+            });
+            // Ngăn click trong giỏ hàng làm ẩn giỏ
+            cartNotify.addEventListener('click', function (e) {
+               e.stopPropagation();
+            });
+         }
+         // Ẩn giỏ hàng khi bấm ESC
+         document.addEventListener('keydown', function (e) {
+            if (cartVisible && e.key === 'Escape') {
+               hideCart();
+            }
          });
+         // Ẩn giỏ hàng khi chuyển trang (hashchange)
+         window.addEventListener('hashchange', hideCart);
+      });
 
-         $(".js-addwish-b2").each(function () {
-            var nameProduct = $(this)
-               .parent()
-               .parent()
-               .find(".js-name-b2")
-               .html();
-            $(this).on("click", function () {
-               swal(nameProduct, "is added to wishlist !", "success");
 
-               $(this).addClass("js-addedwish-b2");
-               $(this).off("click");
+      // --- FETCH cart API khi load trang nếu có userId ---
+      document.addEventListener('DOMContentLoaded', function () {
+         // Chỉ fetch cart nếu đã đăng nhập (có token và userId)
+         const token = localStorage.getItem('token');
+         const userId = localStorage.getItem('userId');
+         if (token && token !== 'null' && userId && userId !== 'null') {
+            fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+               .then(res => res.json())
+               .then(cartData => {
+                  if (
+                     cartData &&
+                     cartData.statusCode === 200 &&
+                     cartData.data &&
+                     Array.isArray(cartData.data.items)
+                  ) {
+                     const items = cartData.data.items;
+                     const cartLocal = [];
+                     const cartQuantities = {};
+
+                     items.forEach(item => {
+                        cartLocal.push({
+                           id: item.productId,
+                           name: item.productName,
+                           primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                           unitPrice: item.unitPrice,
+
+                           total: item.unitPrice * item.quantity
+                        });
+                        cartQuantities[item.productId] = item.quantity ?? 1;
+                     });
+
+                     localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                     localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                     renderCart();
+                     updateCartNotify();
+                  }
+               })
+               .catch(() => { });
+
+         }
+      });
+      // --- KẾT THÚC: FETCH cart API khi load trang ---
+
+      // Hàm format giá tiền kiểu "1.000.000đ"
+      function formatPrice(price) {
+         if (isNaN(price)) return '0đ';
+         return price.toLocaleString('vi-VN') + 'đ';
+      }
+
+      // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+      function updateCartNotify() {
+         const cartIcon = document.getElementById('cart-icon-header');
+         let cartLocal = [];
+         try {
+            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+         } catch (e) {
+            cartLocal = [];
+         }
+         cartIcon && cartIcon.setAttribute('data-notify', cartLocal.length);
+      }
+
+      // Lấy số lượng từng sản phẩm trong giỏ từ localStorage
+      function getCartQuantities() {
+         let cartQty = {};
+         try {
+            cartQty = JSON.parse(localStorage.getItem('cartQuantities')) || {};
+         } catch (e) {
+            cartQty = {};
+         }
+         return cartQty;
+      }
+
+      // Lưu lại số lượng từng sản phẩm vào localStorage
+      function setCartQuantities(cartQty) {
+         localStorage.setItem('cartQuantities', JSON.stringify(cartQty));
+      }
+
+      // Render danh sách sản phẩm trong giỏ hàng
+      function renderCartItems() {
+         const cartList = document.createElement('ul');
+         cartList.className = 'header__cart-list';
+
+         let cartLocal = [];
+         try {
+            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+         } catch (e) {
+            cartLocal = [];
+         }
+         let cartQty = getCartQuantities();
+
+         if (cartLocal.length === 0) {
+            cartList.innerHTML = `<li class="header__cart-item"><div class="header__cart-msg">No products yet</div></li>`;
+         } else {
+            cartLocal.forEach((item, idx) => {
+               let quantity = cartQty[item.id] ?? 0;
+               let price = 0;
+               const userId = localStorage.getItem('userId');
+               if (!userId || userId === 'null') {
+                  if (typeof item.unitPrice !== 'undefined') {
+                     price = (item.unitPrice ?? 0) * quantity;
+                  } else if (typeof item.sellingPrice !== 'undefined') {
+                     price = (item.sellingPrice ?? 0) * quantity;
+                  } else if (typeof item.total !== 'undefined' && quantity > 0) {
+                     price = item.total;
+                  } else {
+                     price = 0;
+                  }
+               } else {
+                  price = (item.unitPrice ?? 0) * quantity;
+               }
+
+               cartList.innerHTML += `
+            <li class="header__cart-item" data-idx="${idx}">
+            <div class="header__cart-img">
+               <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="" style="width:100%; height:100px"/>
+               </div>
+            <div class="header__cart-item-content">
+               <div class="header__cart-item-des">
+               <span class="header__cart-des-product">${item.name}</span>
+               <div class="header__cart-item-price-quantity">
+                  <div class="header__cart-item-price">${formatPrice(price)}</div>
+                  <div class="header__cart-item-quantity-wrapper" style="display:flex;align-items:center;gap:4px;">
+                  <button class="btn-minus" style="border:1px solid;padding:0 8px;">-</button>
+                  <input type="text" inputmode="numeric" pattern="[1-9]*" class="header__cart-item-quantity" value="${quantity}" style="width:60px;text-align:center;border: 1px solid; margin: 8px;" autocomplete="off" />
+                  <button class="btn-plus" style="border:1px solid;padding:0 8px;">+</button>
+                  </div>
+               </div>
+               <div class="header__cart-item-delete" style="cursor:pointer;">Xóa</div>
+               </div>
+               <div class="header__cart-item-classify">
+               <span class="header__cart-item-type">${item.description || ''}</span>
+               </div>
+            </div>
+            </li>
+            `;
+            });
+         }
+
+         // Sau khi render xong, gắn sự kiện cho các nút và input
+         setTimeout(() => {
+            cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
+               const qtyInput = li.querySelector('.header__cart-item-quantity');
+               const priceDiv = li.querySelector('.header__cart-item-price');
+               const minusBtn = li.querySelector('.btn-minus');
+               const plusBtn = li.querySelector('.btn-plus');
+               let cartLocal = [];
+               try {
+                  cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               } catch (e) {
+                  cartLocal = [];
+               }
+               let cartQty = getCartQuantities();
+               const item = cartLocal[idx];
+               const id = item.id;
+               const userId = localStorage.getItem('userId');
+               const unitPrice = (typeof item.unitPrice !== 'undefined') ? item.unitPrice : (item.sellingPrice ?? 0);
+
+
+               // Cập nhật tổng tiền khi thay đổi số lượng
+               function updatePriceDisplay(val) {
+                  const price = unitPrice * val;
+                  priceDiv.textContent = formatPrice(price);
+               }
+
+               // Hàm cập nhật số lượng lên localStorage và gọi API nếu có userId
+               function updateQuantity(val) {
+                  if (isNaN(val) || val < 0) val = 0;
+                  if (val === (cartQty[id] ?? 0)) return;
+                  if (!userId || userId === 'null') {
+                     cartQty[id] = val;
+                     setCartQuantities(cartQty);
+                     renderCart();
+                     updateCartNotify();
+                  } else {
+                     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
+                        method: 'PUT'
+                     })
+                        .then(res => res.json())
+                        .then(data => {
+                           if (data && data.statusCode === 400 && data.message) {
+                              swal("Cảnh báo", "Không đủ số lượng sản phẩm", "warning");
+
+                              renderCart();
+                              updateCartNotify();
+                           } else {
+                              cartQty[id] = val;
+                              setCartQuantities(cartQty);
+                              renderCart();
+                              updateCartNotify();
+                           }
+                        })
+                        .catch(() => {
+                           cartQty[id] = val;
+                           setCartQuantities(cartQty);
+                           renderCart();
+                           updateCartNotify();
+                        });
+                  }
+               }
+
+               // Khi nhập số lượng, cập nhật tổng tiền ngay và gọi updateQuantity
+               qtyInput && qtyInput.addEventListener('input', function () {
+                  this.value = this.value.replace(/[^0-9]/g, '');
+                  let val = parseInt(this.value);
+                  if (isNaN(val) || val < 0) val = 1;
+                  updatePriceDisplay(val);
+                  updateQuantity(val);
+               });
+
+               // Nút minus
+               minusBtn && minusBtn.addEventListener('click', function () {
+                  let val = parseInt(qtyInput.value) || 0;
+                  if (val > 1) {
+                     val--;
+                     qtyInput.value = val;
+                     console.log(qtyInput.value);
+                     updatePriceDisplay(val);
+                     updateQuantity(val);
+                  }
+               });
+
+               // Nút plus
+               plusBtn && plusBtn.addEventListener('click', function () {
+                  let val = parseInt(qtyInput.value) || 1;
+                  val++;
+                  qtyInput.value = val;
+                  updatePriceDisplay(val);
+                  updateQuantity(val);
+               });
+            });
+         }, 0);
+
+         return cartList;
+      }
+
+
+
+      // Hàm chính render giỏ hàng
+      function renderCart() {
+         const cartNotify = document.querySelector('.header__cart-notify');
+         const emptyCart = cartNotify.querySelector('.empty__cart');
+         let cartLocal = [];
+         try {
+            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+
+         } catch (e) {
+            cartLocal = [];
+         }
+
+         // Nếu giỏ rỗng thì chỉ hiện empty cart
+         if (cartLocal.length === 0) {
+
+            if (emptyCart) emptyCart.style.display = 'block';
+            cartNotify.style.width = '300px';
+            cartNotify.innerHTML = emptyCart ? emptyCart.outerHTML : `
+            <div class="empty__cart" style="display:block;">
+            <img src="./assets/images/emptycart.png" alt="" class="header__cart-img-nocart" />
+            <p class="header__cart-msg">Chưa có sản phẩm</p>
+            </div>
+         `;
+
+         } else {
+            // Có sản phẩm thì render danh sách
+            if (emptyCart) emptyCart.style.display = 'none';
+            cartNotify.style.width = '500px';
+            cartNotify.innerHTML = '';
+            const container = document.createElement('div');
+            container.className = 'items-in__car';
+            container.innerHTML = `
+            <h3 class="header__cart-content-product-add">Added products</h3>`;
+            const cartList = renderCartItems();
+            container.appendChild(cartList);
+
+            // Các nút thao tác giỏ hàng
+            const btnsDiv = document.createElement('div');
+            btnsDiv.className = 'header__cart-list';
+            btnsDiv.innerHTML = `
+            <div class="header__cart-item-btn">
+            <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Thanh toán</a>
+            </div>
+            <div class="header__cart-item-btn">
+                  <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">Xem giỏ</a>
+            </div>
+            <div class="header__cart-item-btn">
+            <a href="#" class="btn btn--primary cart-btn-delete">Xóa tất cả</a>`;
+            container.appendChild(btnsDiv);
+
+            cartNotify.appendChild(container);
+
+            // Thêm sự kiện cho input số lượng,nút xóa
+            cartList.querySelectorAll('.header__cart-item').forEach((li, idx) => {
+
+               const qtyInput = li.querySelector('.header__cart-item-quantity');
+               const priceDiv = li.querySelector('.header__cart-item-price');
+               const delBtn = li.querySelector('.header__cart-item-delete');
+
+
+
+               let cartLocal = [];
+               try {
+                  cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+               } catch (e) {
+                  cartLocal = [];
+               }
+               let cartQty = getCartQuantities();
+               const item = cartLocal[idx];
+               const id = item.id;
+               const userId = localStorage.getItem('userId');
+
+
+
+               // --- Xóa sản phẩm khỏi giỏ ---
+               delBtn && delBtn.addEventListener('click', () => {
+
+                  let cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                  let cartQty = getCartQuantities();
+                  const items = cartLocal
+                     .filter((p, i) => i !== idx)
+                     .map(p => ({
+                        productId: p.id,
+                        quantity: cartQty[p.id] ?? 1
+                     }));
+                  console.log(items);
+                  fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
+                     method: 'DELETE',
+                     headers: {
+                        'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify({
+                        userId: userId,
+                        items: items
+                     })
+                  })
+                     .then(res => res.json())
+                     .then(data => {
+                        cartLocal.splice(idx, 1);
+
+                        delete cartQty[id];
+                        localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+
+                        setCartQuantities(cartQty);
+                        renderCart();
+                        updateCartNotify();
+                     })
+                     .catch(() => {
+                        cartLocal.splice(idx, 1);
+                        delete cartQty[id];
+                        localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+
+                        setCartQuantities(cartQty);
+                        renderCart();
+                        updateCartNotify();
+                     });
+               }
+               );
+               // --- KẾT THÚC: Xóa sản phẩm ---
+            });
+
+            // --- Xóa toàn bộ giỏ hàng ---
+            const deleteAllBtn = btnsDiv.querySelector('.cart-btn-delete');
+            if (deleteAllBtn) {
+               deleteAllBtn.addEventListener('click', function (e) {
+                  e.preventDefault();
+
+                  const userId = localStorage.getItem('userId');
+                  let cartLocal = [];
+                  try {
+                     cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+                  } catch (e) {
+                     cartLocal = [];
+                  }
+                  let cartQty = getCartQuantities();
+                  if (!userId || userId === 'null') {
+                     // Xóa toàn bộ local
+                     localStorage.removeItem('cartLocal');
+                     localStorage.removeItem('cartQuantities');
+                     renderCart();
+                     updateCartNotify();
+                  } else {
+                     // Gọi API xóa toàn bộ
+                     const items = cartLocal.map(p => ({
+                        productId: p.id,
+                        quantity: cartQty[p.id] ?? 1
+                     }));
+                     fetch(`http://localhost:8080/api/v1/cart/clear?userId=${userId}`, {
+                        method: 'DELETE',
+                        headers: {
+                           'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                           userId: userId,
+                           items: items
+                        })
+                     })
+                        .then(res => res.json())
+                        .then(data => {
+                           localStorage.removeItem('cartLocal');
+                           localStorage.removeItem('cartQuantities');
+                           renderCart();
+                           updateCartNotify();
+                        })
+                        .catch(() => {
+                           localStorage.removeItem('cartLocal');
+                           localStorage.removeItem('cartQuantities');
+                           renderCart();
+                           updateCartNotify();
+                        });
+                  }
+               });
+            }
+            // --- KẾT THÚC: Xóa toàn bộ giỏ hàng ---
+         }
+         updateCartNotify();
+      }
+
+      // Render lần đầu
+      renderCart();
+
+      // Lắng nghe sự kiện cập nhật giỏ hàng để render lại
+      window.addEventListener('cart-updated', function () {
+         renderCart();
+
+      });
+
+
+
+      // Ẩn/hiện menu login theo token
+      function toggleLoginMenu() {
+         let token = localStorage.getItem('token');
+         let loginMenuSign = document.getElementById('login-menu-sign');
+         let loginMenuUser = document.getElementById('login-menu-user');
+         if (token && token !== 'null') {
+            // Đã đăng nhập
+            loginMenuSign.classList.remove('show-menu--login');
+            loginMenuUser.classList.add('show-menu--login');
+         } else {
+            // Chưa đăng nhập
+            loginMenuSign.classList.add('show-menu--login');
+            loginMenuUser.classList.remove('show-menu--login');
+         }
+      }
+      // Gọi khi load trang
+      toggleLoginMenu();
+
+
+
+
+      // Đăng xuất
+      document.addEventListener('DOMContentLoaded', function () {
+         let logoutBtns = document.getElementsByClassName('logout-btn');
+         let arrayLogout = Array.from(logoutBtns); // hoặc: [...logoutBtns]
+
+         arrayLogout.forEach(function (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+               e.preventDefault();
+               let token = localStorage.getItem('token');
+               if (token && token !== 'null') {
+                  localStorage.removeItem("username");
+                  localStorage.removeItem("firstName");
+                  localStorage.removeItem("lastName");
+                  localStorage.removeItem("phoneNumber");
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("userId");
+                  localStorage.removeItem("role");
+                  localStorage.removeItem("loginSuccess");
+                  localStorage.removeItem("ListViewAt");
+                  localStorage.removeItem("cartLocal");
+                  // localStorage.removeItem("favouriteProductIds");
+
+
+                  showToast("Đăng xuất thành công!");
+
+                  setTimeout(function () {
+                     window.location.href = window.location.origin + window.location.pathname;
+                  }, 1000);
+               }
             });
          });
 
-         $(".js-addwish-detail").each(function () {
-            var nameProduct = $(this)
-               .parent()
-               .parent()
-               .parent()
-               .find(".js-name-detail")
-               .html();
 
-            $(this).on("click", function () {
-               swal(nameProduct, "is added to wishlist !", "success");
 
-               $(this).addClass("js-addedwish-detail");
-               $(this).off("click");
+
+         // Đăng nhập
+         let loginForm = document.getElementById('login-form');
+         if (loginForm) {
+            loginForm.addEventListener("submit", function (e) {
+               e.preventDefault();
+
+               // Ẩn toast lỗi cũ trong modal nếu có
+               showLoginToast("");
+
+               const username = loginForm.querySelectorAll(".form-input")[0].value;
+               const password = loginForm.querySelectorAll(".form-input")[1].value;
+
+
+
+               fetch("http://localhost:8080/api/v1/auth/login", {
+                  method: "POST",
+                  headers: {
+                     "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                     username: username,
+                     password: password
+                  })
+               })
+                  .then((response) => {
+                     if (!response.ok) {
+                        throw new Error("Đăng nhập thất bại");
+                     }
+                     return response.json();
+                  })
+                  .then((data) => {
+                     if (data && data.statusCode === 200 && data.data && data.data.accessToken) {
+                        // Lưu token và thông tin user vào localStorage
+                        localStorage.setItem("username", username);
+                        localStorage.setItem("firstName", data.data.firstName || "");
+                        localStorage.setItem("lastName", data.data.lastName || "");
+                        localStorage.setItem("phoneNumber", data.data.phone || "");
+                        localStorage.setItem("token", data.data.accessToken);
+                        localStorage.setItem("refreshToken", data.data.refreshToken || "");
+                        localStorage.setItem("userId", data.data.userId);
+                        localStorage.setItem("status", data.data.status || "");
+
+                        localStorage.setItem("role", data.data.role);
+                        localStorage.setItem("loginSuccess", "true");
+                        toggleLoginMenu();
+
+
+                        showToast("Đăng nhập thành công!", false, 2500);
+                        window.location.reload();
+                        window.location.reload();
+
+
+
+
+                        // Đóng modal đăng nhập nếu thành công
+                        setTimeout(function () {
+                           let modal = document.querySelector('.modal-log');
+                           if (modal) {
+                              modal.style.display = 'none';
+                           }
+                           // Enable scroll lại cho body và html
+                           document.body.style.overflow = '';
+                           document.documentElement.style.overflow = '';
+
+                           window.dispatchEvent(new Event('login-success'));
+                        }, 50);
+                     } else {
+                        showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
+                     }
+                  })
+                  .catch((error) => {
+                     showLoginToast("Đăng nhập thất bại. Vui lòng thử lại.");
+                  });
+            });
+         }
+
+      });
+
+
+      // Hiển thi tên user
+      const userId = localStorage.getItem('userId');
+      console.log('userId:', userId);
+      const fullNameElement = document.getElementById('full-name');
+      fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+         .then(res => res.json())
+         .then(data => {
+            if (data && data.statusCode === 200) {
+               const user = data.data;
+
+               if (user) {
+                  fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+               }
+               else {
+                  window.location.reload();
+                  fullNameElement.textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+               }
+
+            }
+         })
+         .catch(() => { });
+
+
+      // Toast Message ngoài modal
+      function showToast(message, isError = false, duration = 2500) {
+         const toast = document.getElementById("toast");
+         if (!toast) return;
+         toast.textContent = message;
+         toast.className = "show" + (isError ? " error" : "");
+         // Nếu là lỗi thì không có progress bar
+         if (!isError) {
+            // Remove old progress bar if exists
+            let oldProgress = document.getElementById('toast-progress');
+            if (oldProgress) oldProgress.remove();
+            // Add progress bar
+            const progress = document.createElement('div');
+            progress.id = 'toast-progress';
+            progress.style.animationDuration = (duration / 1000) + 's';
+            progress.style.height = '3px';
+            progress.style.background = '#4caf50';
+            progress.style.position = 'absolute';
+            progress.style.left = 0;
+            progress.style.bottom = 0;
+            progress.style.width = '100%';
+            progress.style.animationName = 'toast-progress-bar';
+            progress.style.animationTimingFunction = 'linear';
+            toast.appendChild(progress);
+         } else {
+            // Remove progress bar if exists
+            let oldProgress = document.getElementById('toast-progress');
+            if (oldProgress) oldProgress.remove();
+         }
+         // Hiện toast trong duration 
+         setTimeout(() => {
+            toast.className = toast.className.replace("show", "");
+            let oldProgress = document.getElementById('toast-progress');
+            if (oldProgress) oldProgress.remove();
+         }, duration);
+      }
+
+      // Toast error trong modal login
+      function showLoginToast(message, duration = 2000) {
+         const toast = document.getElementById("login-toast");
+         if (!toast) return;
+         toast.innerHTML = "";
+         if (!message) {
+            toast.className = "";
+            return;
+         }
+         toast.textContent = message;
+         toast.className = "show error";
+         toast.style.background = "#e74c3c";
+         toast.style.color = "#fff";
+         toast.style.borderRadius = "4px";
+         toast.style.padding = "10px 18px";
+         toast.style.marginBottom = "10px";
+         toast.style.textAlign = "center";
+         toast.style.fontSize = "15px";
+         toast.style.opacity = "1";
+         toast.style.transition = "opacity 0.3s";
+         setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => {
+               toast.className = "";
+               toast.innerHTML = "";
+               toast.style.opacity = "";
+               toast.style.background = "";
+               toast.style.color = "";
+               toast.style.borderRadius = "";
+               toast.style.padding = "";
+               toast.style.marginBottom = "";
+               toast.style.textAlign = "";
+               toast.style.fontSize = "";
+               toast.style.transition = "";
+            }, 350);
+         }, duration);
+      }
+
+
+      (function () {
+         if (!document.getElementById('toast-style')) {
+            const style = document.createElement('style');
+            style.id = 'toast-style';
+            document.head.appendChild(style);
+         }
+      })();
+   </script>
+
+   <!-- <script src="./assets/js/handle/handle-header.js"></script> -->
+
+   <!-- Cart -->
+   <!-- <cart-main></cart-main> -->
+
+
+   <!-- Slider -->
+   <home-slider></home-slider>
+
+   <!-- Banner -->
+   <!-- <home-banner></home-banner> -->
+   <!-- Top Product -->
+   <div class="sec-banner bg0 p-t-60 p-b-50">
+      <div class="container">
+         <div class="p-b-20">
+            <h3 class="ltext-103 cl5">Sản phẩm mới</h3>
+         </div>
+         <div class="row" id="newest-products-row"></div>
+         <!-- Newest products will be rendered here -->
+      </div>
+   </div>
+   </div>
+   <script>
+      // Helper to format price as "1.000.000đ"
+      function formatVND(price) {
+         if (isNaN(price)) return '0đ';
+         return price.toLocaleString('vi-VN') + 'đ';
+      }
+      // Helper to format timestamp to dd/MM/yyyy
+      function formatDate(timestamp) {
+         if (!timestamp) return '';
+         const date = new Date(timestamp);
+         const day = String(date.getDate()).padStart(2, '0');
+         const month = String(date.getMonth() + 1).padStart(2, '0');
+         const year = date.getFullYear();
+         return `${day}/${month}/${year}`;
+      }
+      fetch('http://localhost:8080/api/v1/product/newest?page=0&size=3')
+         .then(res => res.json())
+         .then(data => {
+            const products = (data && data.data && data.data.content) ? data.data.content : [];
+            const row = document.getElementById('newest-products-row');
+            if (!row) return;
+            row.innerHTML = products.map(product => `
+               <div class="col-md-6 col-xl-4 p-b-30">
+                  <div class="block1 wrap-pic-w" style="height: 100%;">
+                     <img src="${product.primaryImageURL || './assets/images/emptycart.png'}" alt="IMG-BANNER" style="display: flex;object-fit: cover;margin-left: auto; height:100% ;width: 50%;" />
+                     <a href="productDetail.html?productId=${product.id}"
+                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <div class="block1-txt-child1 flex-col-l" style="width: 50%;">
+                           <span class="block1-name ltext-102 trans-04 p-b-8">
+                              ${product.name}
+                           </span>
+                           <span class="block1-info stext-102 trans-04">
+                              ${formatVND(product.sellingPrice)}
+                           </span>
+                               <span class="block1-info stext-102 trans-04">
+                              Sản phẩm ra mắt ngày: ${formatDate(product.createdAt)}
+                           </span>
+                        </div>
+                        <div class="block1-txt-child2 p-b-4 trans-05">
+                           <div class="block1-link stext-101 cl0 trans-09">
+                              Shop Now
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            `).join('');
+         })
+         .catch(() => {
+            const row = document.getElementById('newest-products-row');
+            if (row) row.innerHTML = '<div class="col-12">Không thể tải sản phẩm mới.</div>';
+         });
+   </script>
+   <!-- End top product -->
+
+   <!-- Top view -->
+   <div class="sec-banner bg0 p-b-50">
+      <div class="container">
+         <div class="p-b-20">
+            <h3 class="ltext-103 cl5">Sản phẩm đánh giá cao</h3>
+         </div>
+         <div class="row" id="top-rating-row">
+            <!-- Top rating products will be rendered here -->
+         </div>
+      </div>
+   </div>
+   <script>
+      // Helper to format price as "1.000.000đ"
+      function formatVND(price) {
+         if (isNaN(price)) return '0đ';
+         return price.toLocaleString('vi-VN') + 'đ';
+      }
+      // Helper to render stars for rating (max 5)
+      function renderStars(rating) {
+         let html = '';
+         const full = Math.floor(rating);
+         const half = rating % 1 >= 0.5 ? 1 : 0;
+         const empty = 5 - full - half;
+         for (let i = 0; i < full; i++) html += '<i class="fa fa-star" style="color:#FFD700"></i>';
+         if (half) html += '<i class="fa fa-star-half-alt" style="color:#FFD700"></i>';
+         for (let i = 0; i < empty; i++) html += '<i class="fa fa-star-o" style="color:#FFD700"></i>';
+         return html;
+      }
+      fetch('http://localhost:8080/api/v1/product/highRating?page=0&size=3')
+         .then(res => res.json())
+         .then(data => {
+            const products = (data && data.data && data.data.content) ? data.data.content : [];
+            const row = document.getElementById('top-rating-row');
+            if (!row) return;
+            row.innerHTML = products.map(product => `
+               <div class="col-md-6 col-xl-4 p-b-30">
+                  <div class="block1 wrap-pic-w" style="height: 100%;">
+                     <img src="${product.primaryImageURL || './assets/images/emptycart.png'}" alt="IMG-BANNER" style="display: flex;object-fit: cover;height:100%; margin-left: auto;width: 50%;" />
+                     <a href="productDetail.html?productId=${product.id}"
+                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <div class="block1-txt-child1 flex-col-l" style="width: 50%;">
+                           <span class="block1-name ltext-102 trans-04 p-b-8">
+                              ${product.name}
+                           </span>
+                           <span class="block1-info stext-102 trans-04">
+                              ${formatVND(product.sellingPrice)}
+                           </span>
+                           <span class="block1-info stext-102 trans-04" style="display:flex;align-items:center;gap:6px;">
+                              ${product.avgRating ? product.avgRating.toFixed(1) : '0.0'}
+                              <span>${renderStars(product.avgRating || 0)}</span>
+                           </span>
+                        </div>
+                        <div class="block1-txt-child2 p-b-4 trans-05">
+                           <div class="block1-link stext-101 cl0 trans-09">
+                              Shop Now
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            `).join('');
+         })
+         .catch(() => {
+            const row = document.getElementById('top-rating-row');
+            if (row) row.innerHTML = '<div class="col-12">Không thể tải sản phẩm top rating.</div>';
+         });
+   </script>
+   <!-- End top view -->
+   <!-- Product -->
+   <!-- <home-product></home-product> -->
+
+
+   <section class="bg0">
+      <div class="container">
+         <div class="p-b-10">
+            <h3 class="ltext-103 cl5">Sản phẩm chung</h3>
+         </div>
+
+         <div class="flex-w flex-sb-m p-b-52">
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                  Tất cả
+               </button>
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nu" id="btn-filter-women">
+                  Nữ
+               </button>
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nam" id="btn-filter-men">
+                  Nam
+               </button>
+            </div>
+            <div class="flex-w flex-c-m m-tb-10">
+               <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                  <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+                  <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                  Bộ lọc
+               </div>
+            </div>
+            <!-- Filter -->
+            <div class="dis-none panel-filter w-full p-t-10">
+               <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                  <div class="filter-col2 p-r-15 p-b-27">
+                     <div class="mtext-102 cl2 p-b-15">Price</div>
+                     <ul>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-price="ALL">
+                              Tất cả
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="0-100000">
+                              0 - 100.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="100000-200000">
+                              100.000 - 200.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="200000-300000">
+                              200.000 - 300.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="300000-400000">
+                              300.000 - 400.000
+                           </a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="filter-link stext-106 trans-04" data-price="400000+">
+                              400.000+
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="row isotope-grid" id="product-list" style=" visibility: hidden;">
+            <!-- Products will be rendered here by JavaScript -->
+         </div>
+
+         <!-- Load more -->
+         <div class="flex-c-m flex-w w-full m-b-40">
+            <a href="product.html" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+               Xem thêm
+            </a>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      const btnFilterWomen = document.getElementById('btn-filter-women');
+      const btnFilterMen = document.getElementById('btn-filter-men');
+
+      function updateCartNotify() {
+         const cartIcon = document.getElementById('cart-icon-header');
+         let cartLocal = [];
+         try {
+            cartLocal = JSON.parse(localStorage.getItem('cartLocal')) || [];
+         } catch (e) {
+            cartLocal = [];
+         }
+         cartIcon && cartIcon.setAttribute('data-notify', cartLocal.length);
+      }
+
+      function updateFavouriteNotify() {
+         const favouriteIcon = document.querySelector('.icon-heart-number[data-notify]');
+         let favIds = [];
+         try {
+            favIds = JSON.parse(localStorage.getItem('favouriteProductIds')) || [];
+         } catch (e) {
+            favIds = [];
+         }
+         if (favouriteIcon) {
+            favouriteIcon.setAttribute('data-notify', favIds.length);
+         }
+      }
+
+      function getFilterValue(btn) {
+         const filter = btn.getAttribute('data-filter');
+         if (filter === '*') return 'ALL';
+         if (filter === '.nu') return 'WOMEN';
+         if (filter === '.nam') return 'MEN';
+         return 'ALL';
+      }
+
+      function getProductType(sku) {
+         if (!sku) return '';
+         sku = sku.toLowerCase();
+         if (sku.includes('nu')) return 'WOMEN';
+         if (sku.includes('nam')) return 'MEN';
+         return '';
+      }
+
+      // Store products globally for filtering
+      let allProducts = [];
+      let currentTypeFilter = 'ALL';
+      let currentPriceFilter = 'ALL';
+
+      // Parse price filter value
+      function parsePriceFilter(priceStr) {
+         if (priceStr === 'ALL') return { min: null, max: null };
+         if (priceStr.endsWith('+')) {
+            const min = parseInt(priceStr.split('+')[0], 10);
+            return { min, max: null };
+         }
+         const [min, max] = priceStr.split('-').map(v => parseInt(v, 10));
+         return { min, max };
+      }
+
+
+      function setProductListMinHeight(productCount) {
+
+         const itemsPerRow = 4;
+         const rowCount = Math.max(1, Math.ceil(productCount / itemsPerRow));
+         const minHeight = `calc(${rowCount} * 469px + 150px)`;
+         const container = document.getElementById('product-list');
+         if (container) {
+            container.style.minHeight = minHeight;
+         }
+      }
+
+      // Render products by filter
+      function renderProducts(products, filterType, priceFilter) {
+         const container = document.getElementById('product-list');
+         function formatVND(price) {
+            if (isNaN(price)) return '0đ';
+            return price.toLocaleString('vi-VN') + 'đ';
+         }
+         function getFavouriteIds() {
+            let favs = [];
+            try {
+               favs = JSON.parse(localStorage.getItem('favouriteProductIds')) || [];
+            } catch (e) {
+               favs = [];
+            }
+            return favs;
+         }
+         function setFavouriteIds(ids) {
+            localStorage.setItem('favouriteProductIds', JSON.stringify(ids));
+         }
+
+         // Filter products by type and price
+         let filtered = products.filter(product => {
+            if (product.status === 'DELETED' || product.status === 'INACTIVE') return false;
+            // Type filter
+            if (filterType !== 'ALL') {
+               const type = getProductType(product.sku);
+               if (type !== filterType) return false;
+            }
+            // Price filter
+            if (priceFilter && priceFilter.min !== null) {
+               if (product.sellingPrice < priceFilter.min) return false;
+            }
+            if (priceFilter && priceFilter.max !== null) {
+               if (product.sellingPrice > priceFilter.max) return false;
+            }
+            return true;
+         });
+
+         // Set min-height for product-list based on filtered count
+         setProductListMinHeight(filtered.length);
+
+         container.innerHTML = filtered.map((product, idx) => {
+            const favIds = getFavouriteIds();
+            const isFav = favIds.includes(product.id);
+            return `
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${getProductType(product.sku).toLowerCase()}">
+               <div class="block2 block2-pic">
+                  <div class="block2-pic hov-img0">
+                     <a href="productDetail.html?productId=${product.id}">
+                        <img loading="lazy" src="${product.primaryImageURL}"  alt="IMG-PRODUCT" />
+                        <a href="productDetail.html?productId=${product.id}"
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
+                           data-product-index="${idx}">
+                           Xem chi tiết
+                        </a>
+                     </a>
+                  </div>
+                  <div class="block2-txt flex-w flex-t p-t-14">
+                     <div class="block2-txt-child1 flex-col-l">
+                        <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
+                           ${product.name}
+                        </a>
+                        <div class="price-and-cart">
+                           <span class="stext-106 cl10"> ${formatVND(product.sellingPrice)}</span>
+                           <span class="original-price">${formatVND(product.originalPrice)}</span>
+                        </div>
+                        <div>
+                           <span>SL:${product.quantity}</span>
+                        </div>
+                     </div>
+                     <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
+                        <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 icon-favourite" data-product-index="${idx}" >
+                           <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
+                              alt="ICON" style="display:${isFav ? 'none' : 'flex'}" />
+                           <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
+                              src="./assets/images/icons/icon-heart-02.png" alt="ICON" style="display:${isFav ? '' : 'none'}" />
+                        </a>
+                        <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
+                           <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            `;
+         }).join('');
+         container.style.visibility = 'visible';
+
+         btnFilterWomen.textContent = `Nữ (${filtered.filter(p => getProductType(p.sku) === 'WOMEN').length})`;
+         btnFilterMen.textContent = `Nam (${filtered.filter(p => getProductType(p.sku) === 'MEN').length})`;
+
+         // Add event listeners for add-to-cart buttons
+         container.querySelectorAll('.btn-addcart').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+               e.preventDefault();
+               const idx = this.getAttribute('data-product-index');
+               const product = filtered[idx];
+               const userId = localStorage.getItem('userId');
+               if (!userId || userId === 'null' || !product || !product.id) {
+                  swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
+                  return;
+               }
+               fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+                  method: 'POST'
+               })
+                  .then(res => res.json())
+                  .then(data => {
+                     if (data && data.statusCode === 201) {
+                        swal(product.name, "is added to cart !", "success");
+
+                        fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                           .then(res => res.json())
+                           .then(cartData => {
+                              if (
+                                 cartData &&
+                                 cartData.statusCode === 200 &&
+                                 cartData.data &&
+                                 Array.isArray(cartData.data.items)
+                              ) {
+                                 const items = cartData.data.items;
+                                 const cartLocal = [];
+                                 const cartQuantities = {};
+
+                                 items.forEach(item => {
+                                    cartLocal.push({
+                                       id: item.productId,
+                                       name: item.productName,
+                                       primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                                       unitPrice: item.unitPrice,
+                                       total: item.unitPrice * item.quantity
+                                    });
+                                    cartQuantities[item.productId] = item.quantity ?? 1;
+                                 });
+
+                                 localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                                 localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                                 updateCartNotify();
+                                 window.dispatchEvent(new Event('cart-updated'));
+
+
+                              }
+                           })
+                           .catch(() => {
+                              updateCartNotify();
+                              window.dispatchEvent(new Event('cart-updated'));
+                           });
+
+                     } else {
+                        swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                     }
+                  })
+                  .catch(() => {
+                     swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                  });
             });
          });
 
-         /*---------------------------------------------*/
-
-         $(".js-addcart-detail").each(function () {
-            var nameProduct = $(this)
-               .parent()
-               .parent()
-               .parent()
-               .parent()
-               .find(".js-name-detail")
-               .html();
-            $(this).on("click", function () {
-               swal(nameProduct, "is added to cart !", "success");
+         // Add event listeners for add-to-favourite buttons
+         container.querySelectorAll('.js-addwish-b2').forEach(btn => {
+            const icon1 = btn.querySelector('.icon-heart1');
+            const icon2 = btn.querySelector('.icon-heart2');
+            btn.addEventListener('click', function (e) {
+               e.preventDefault();
+               const idx = this.getAttribute('data-product-index');
+               const product = filtered[idx];
+               const userId = localStorage.getItem('userId');
+               if (!userId || userId === 'null' || !product || !product.id) {
+                  swal("Bạn cần đăng nhập để thêm vào yêu thích!", "", "warning");
+                  return;
+               }
+               fetch('http://localhost:8080/api/v1/favourites/toggle', {
+                  method: 'POST',
+                  headers: {
+                     'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                     userId: Number(userId),
+                     productId: product.id
+                  })
+               })
+                  .then(res => res.json())
+                  .then(data => {
+                     if (data && (data.statusCode === 200 || data.statusCode === 201)) {
+                        let favIds = getFavouriteIds();
+                        if (icon1.style.display !== 'none') {
+                           icon1.style.display = 'none';
+                           icon2.style.display = '';
+                           if (!favIds.includes(product.id)) {
+                              favIds.push(product.id);
+                              setFavouriteIds(favIds);
+                           }
+                        } else {
+                           icon1.style.display = '';
+                           icon2.style.display = 'none';
+                           favIds = favIds.filter(id => id !== product.id);
+                           setFavouriteIds(favIds);
+                        }
+                        updateFavouriteNotify();
+                        swal(product.name, "Đã cập nhật danh sách yêu thích!", "success");
+                     } else {
+                        swal(product.name, "Có lỗi khi cập nhật yêu thích!", "error");
+                     }
+                  })
+                  .catch(() => {
+                     swal(product.name, "Có lỗi khi cập nhậtyêu thích!", "error");
+                  });
             });
          });
-      </script>
-      <!--===============================================================================================-->
-      <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-      <script>
-         $(".js-pscroll").each(function () {
-            $(this).css("position", "relative");
-            $(this).css("overflow", "hidden");
-            var ps = new PerfectScrollbar(this, {
-               wheelSpeed: 1,
-               scrollingThreshold: 1000,
-               wheelPropagation: false,
-            });
 
-            $(window).on("resize", function () {
-               ps.update();
-            });
+         updateFavouriteNotify();
+      }
+
+      // Fetch products and setup filter
+      fetch('http://localhost:8080/api/v1/product?page=0&size=8&sortBy=createdAt&direction')
+         .then(res => res.json())
+         .then(data => {
+            allProducts = data.content || [];
+            renderProducts(allProducts, currentTypeFilter, parsePriceFilter(currentPriceFilter));
+         })
+         .catch(err => {
+            document.getElementById('product-list').innerHTML = '<div class="col-12">Failed to load products.</div>';
          });
-      </script>
-      <!--===============================================================================================-->
-      <script src="./assets/js/main.js"></script>
-   </body>
+
+      // Filter buttons event (Women/Men/All)
+      document.querySelectorAll('.filter-tope-group button[data-filter]').forEach(btn => {
+         btn.addEventListener('click', function () {
+            document.querySelectorAll('.filter-tope-group button').forEach(b => b.classList.remove('how-active1'));
+            this.classList.add('how-active1');
+            currentTypeFilter = getFilterValue(this);
+            renderProducts(allProducts, currentTypeFilter, parsePriceFilter(currentPriceFilter));
+         });
+      });
+
+      // Price filter event
+      document.querySelectorAll('.filter-col2 .filter-link').forEach(link => {
+         link.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelectorAll('.filter-col2 .filter-link').forEach(l => l.classList.remove('filter-link-active'));
+            this.classList.add('filter-link-active');
+            currentPriceFilter = this.getAttribute('data-price') || 'ALL';
+            renderProducts(allProducts, currentTypeFilter, parsePriceFilter(currentPriceFilter));
+         });
+      });
+
+      // Update favourite notify on page load
+      document.addEventListener('DOMContentLoaded', updateFavouriteNotify);
+
+
+
+   </script>
+
+
+
+
+
+
+
+   <!-- Footer -->
+   <footer-main></footer-main>
+   <!-- <footer class="bg3 p-t-75 p-b-32">
+	   <div class="container">
+		  <div class="row">
+			 <div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+				   Categories
+				</h4>
+ 
+				<ul>
+				   <li class="p-b-10">
+					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						 Women
+					  </a>
+				   </li>
+ 
+				   <li class="p-b-10">
+					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						 Men
+					  </a>
+				   </li>
+ 
+				  
+				</ul>
+			 </div>
+ 
+			 <div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+				   Help
+				</h4>
+ 
+				<ul>
+				   <li class="p-b-10">
+					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						 Track Order
+					  </a>
+				   </li>
+ 
+				   <li class="p-b-10">
+					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						 Returns
+					  </a>
+				   </li>
+ 
+				   <li class="p-b-10">
+					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						 Shipping
+					  </a>
+				   </li>
+ 
+				   <li class="p-b-10">
+					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						 FAQs
+					  </a>
+				   </li>
+				</ul>
+			 </div>
+ 
+			 <div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+				   GET IN TOUCH
+				</h4>
+ 
+				<p class="stext-107 cl7 size-201">
+				   Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1)
+				   96 716 6879
+				</p>
+ 
+				<div class="p-t-27">
+				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+					 <i class="fa-brands fa-facebook-f"></i>
+				   </a>
+ 
+				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+					  <i class="fa-brands fa-instagram"></i>
+				   </a>
+ 
+				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+					  <i class="fa-brands fa-pinterest-p"></i>
+				   </a>
+				</div>
+			 </div>
+ 
+			 <div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+				   Newsletter
+				</h4>
+ 
+				<form>
+				   <div class="wrap-input1 w-full p-b-4">
+					  <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
+						 placeholder="email@example.com">
+					  <div class="focus-input1 trans-04"></div>
+				   </div>
+ 
+				   <div class="p-t-18">
+					  <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+						 Subscribe
+					  </button>
+				   </div>
+				</form>
+			 </div>
+		  </div>
+ 
+		  
+	   </div>
+	</footer> -->
+
+   <!-- Back to top -->
+   <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+         <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+   </div>
+
+   <!-- Modal1 -->
+   <!-- <home-modal></home-modal> -->
+
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/animsition/js/animsition.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/bootstrap/js/popper.js"></script>
+   <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+   <!--===============================================================================================-->
+   <!-- <script src="./assets/vendor/select2/select2.min.js"></script> -->
+   <script>
+      $(".js-select2").each(function () {
+         $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next(".dropDownSelect2"),
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/daterangepicker/moment.min.js"></script>
+   <script src="./assets/vendor/daterangepicker/daterangepicker.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/slick/slick.min.js"></script>
+   <script src="./assets/js/slick-custom.js"></script>
+
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/parallax100/parallax100.js"></script>
+   <script>
+      $(".parallax100").parallax100();
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+   <script>
+      $(".gallery-lb").each(function () {
+         // the containers for all your galleries
+         $(this).magnificPopup({
+            delegate: "a", // the selector for gallery item
+            type: "image",
+            gallery: {
+               enabled: true,
+            },
+            mainClass: "mfp-fade",
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/isotope/isotope.pkgd.min.js"></script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/sweetalert/sweetalert.min.js"></script>
+   <script>
+      $(".js-addwish-b2").on("click", function (e) {
+         e.preventDefault();
+      });
+
+      $(".js-addwish-b2").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .find(".js-name-b2")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-b2");
+            $(this).off("click");
+         });
+      });
+
+      $(".js-addwish-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass("js-addedwish-detail");
+            $(this).off("click");
+         });
+      });
+
+      /*---------------------------------------------*/
+
+      $(".js-addcart-detail").each(function () {
+         var nameProduct = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .find(".js-name-detail")
+            .html();
+         $(this).on("click", function () {
+            swal(nameProduct, "is added to cart !", "success");
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script>
+      $(".js-pscroll").each(function () {
+         $(this).css("position", "relative");
+         $(this).css("overflow", "hidden");
+         var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+         });
+
+         $(window).on("resize", function () {
+            ps.update();
+         });
+      });
+   </script>
+   <!--===============================================================================================-->
+   <script src="./assets/js/main.js"></script>
+
+
+</body>
+
 </html>

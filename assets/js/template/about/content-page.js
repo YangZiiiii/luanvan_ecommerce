@@ -1,110 +1,76 @@
 class AppAboutContent extends HTMLElement {
    connectedCallback() {
       this.innerHTML = `
-          <section class="bg0 p-t-75 p-b-120">
-         <div class="container">
-            <div class="row p-b-148">
-               <div class="col-md-7 col-lg-8">
-                  <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-                     <h3 class="mtext-111 cl2 p-b-16">Our Story</h3>
+   <section class="bg0 p-t-75 p-b-120">
+      <div class="container">
+         <div class="row p-b-148">
+            <div class="col-md-7 col-lg-8">
+               <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                  <h3 class=" cl2 p-b-16" style="font-weight: bold;">Về chúng tôi</h3>
 
-                     <p class="stext-113 cl6 p-b-26">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Mauris consequat consequat enim, non auctor massa
-                        ultrices non. Morbi sed odio massa. Quisque at vehicula
-                        tellus, sed tincidunt augue. Orci varius natoque
-                        penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Maecenas varius egestas diam, eu sodales
-                        metus scelerisque congue. Pellentesque habitant morbi
-                        tristique senectus et netus et malesuada fames ac turpis
-                        egestas. Maecenas gravida justo eu arcu egestas
-                        convallis. Nullam eu erat bibendum, tempus ipsum eget,
-                        dictum enim. Donec non neque ut enim dapibus tincidunt
-                        vitae nec augue. Suspendisse potenti. Proin ut est diam.
-                        Donec condimentum euismod tortor, eget facilisis diam
-                        faucibus et. Morbi a tempor elit.
-                     </p>
+                  <p class=" cl6 p-b-26">
+                     Mỗi hành trình tuyệt vời đều bắt đầu từ một ý tưởng đơn giản. Với chúng tôi, đó là khát khao tạo ra những điều khác biệt – không chỉ để bán một sản phẩm, mà để lan toả cảm hứng sống tích cực và tinh thần sáng tạo đến từng người.
 
-                     <p class="stext-113 cl6 p-b-26">
-                        Donec gravida lorem elit, quis condimentum ex semper sit
-                        amet. Fusce eget ligula magna. Aliquam aliquam imperdiet
-                        sodales. Ut fringilla turpis in vehicula vehicula.
-                        Pellentesque congue ac orci ut gravida. Aliquam erat
-                        volutpat. Donec iaculis lectus a arcu facilisis, eu
-                        sodales lectus sagittis. Etiam pellentesque, magna vel
-                        dictum rutrum, neque justo eleifend elit, vel tincidunt
-                        erat arcu ut sem. Sed rutrum, turpis ut commodo
-                        efficitur, quam velit convallis ipsum, et maximus enim
-                        ligula ac ligula.
-                     </p>
+Từ những ngày đầu tiên, chúng tôi đã tin rằng sản phẩm không chỉ để sử dụng, mà còn để cảm nhận. Mỗi thiết kế là một lát cắt của cuộc sống – chứa đựng tâm huyết, câu chuyện và giá trị mà chúng tôi trân trọng. Chúng tôi không chạy theo sự hoàn hảo, mà theo đuổi sự chân thật – trong từng chất liệu, từng đường nét và cả trong cách chúng tôi kết nối với cộng đồng.
+                  </p>
 
-                     <p class="stext-113 cl6 p-b-26">
-                        Any questions? Let us know in store at 8th floor, 379
-                        Hudson St, New York, NY 10018 or call us on (+1) 96 716
-                        6879
-                     </p>
-                  </div>
-               </div>
+                  <p class=" cl6 p-b-26">
+                     Chặng đường không hề bằng phẳng. Nhưng chính những thử thách, những va vấp đã giúp chúng tôi trưởng thành hơn từng ngày. Chúng tôi học được rằng: khi bạn làm điều gì đó bằng cả trái tim, bạn không chỉ tạo ra sản phẩm – bạn tạo ra một mối liên kết.
 
-               <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-                  <div class="how-bor1">
-                     <div class="hov-img0">
-                        <img src="./assets/images/about-01.jpg" alt="IMG" />
-                     </div>
-                  </div>
+Chúng tôi trân trọng từng khách hàng, từng người bạn đã đồng hành cùng chúng tôi từ những bước đầu tiên. Và chúng tôi vẫn đang tiếp tục viết tiếp câu chuyện này – với nhiều điều mới mẻ, nhiều ý tưởng táo bạo và hơn hết là một niềm tin không đổi: “Giá trị thực sẽ luôn được cảm nhận.”
+                  </p>
+
+                  <p class=" cl6 p-b-26">
+                  Nếu bạn còn bất kỳ câu hỏi nào, hãy cho chúng tôi biết:
+                  Gặp chúng tôi tại 364/6/30 ấp 4 xã Phước Vĩnh An, huyện Củ Chi, TP. Hồ Chí Minh
+                  hoặc gọi cho chúng tôi theo số (+84) 96 716 6879
+                  </p>
                </div>
             </div>
 
-            <div class="row">
-               <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-                  <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-                     <h3 class="mtext-111 cl2 p-b-16">Our Mission</h3>
-
-                     <p class="stext-113 cl6 p-b-26">
-                        Mauris non lacinia magna. Sed nec lobortis dolor.
-                        Vestibulum rhoncus dignissim risus, sed consectetur
-                        erat. Pellentesque habitant morbi tristique senectus et
-                        netus et malesuada fames ac turpis egestas. Nullam
-                        maximus mauris sit amet odio convallis, in pharetra
-                        magna gravida. Praesent sed nunc fermentum mi molestie
-                        tempor. Morbi vitae viverra odio. Pellentesque ac velit
-                        egestas, luctus arcu non, laoreet mauris. Sed in ipsum
-                        tempor, consequat odio in, porttitor ante. Ut mauris
-                        ligula, volutpat in sodales in, porta non odio.
-                        Pellentesque tempor urna vitae mi vestibulum, nec
-                        venenatis nulla lobortis. Proin at gravida ante. Mauris
-                        auctor purus at lacus maximus euismod. Pellentesque
-                        vulputate massa ut nisl hendrerit, eget elementum libero
-                        iaculis.
-                     </p>
-
-                     <div class="bor16 p-l-29 p-b-9 m-t-22">
-                        <p class="stext-114 cl6 p-r-40 p-b-11">
-                           Creativity is just connecting things. When you ask
-                           creative people how they did something, they feel a
-                           little guilty because they didn't really do it, they
-                           just saw something. It seemed obvious to them after a
-                           while.
-                        </p>
-
-                        <span class="stext-111 cl8"> - Steve Job’s </span>
-                     </div>
-                  </div>
-               </div>
-
-               <div
-                  class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30"
-               >
-                  <div class="how-bor2">
-                     <div class="hov-img0">
-                        <img src="./assets/images/about-02.jpg" alt="IMG" />
-                     </div>
+            <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+               <div class="how-bor1">
+                  <div class="hov-img0">
+                     <img src="./assets/images/about-01.jpg" alt="IMG" />
                   </div>
                </div>
             </div>
          </div>
-      </section>
-        `;
+
+         <div class="row">
+            <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
+               <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
+                  <h3 class=" cl2 p-b-16" style="font-weight: bold;">Nhiệm vụ</h3>
+
+                  <p class=" cl6 p-b-26">
+                    Chúng tôi tin rằng: thiết kế tốt không chỉ là cái đẹp bề ngoài, mà là sự tử tế trong từng chi tiết – dù là nhỏ nhất.
+
+Sứ mệnh của chúng tôi là tạo ra những sản phẩm mang ý nghĩa – không phô trương, không rập khuôn – mà thể hiện cá tính, sự sáng tạo và sự kết nối thật sự giữa con người với con người. Mỗi sản phẩm là một tuyên ngôn: về lối sống tối giản, tinh tế nhưng không nhàm chán; về một thế giới mà trong đó, từng điều nhỏ bé đều có giá trị riêng.
+
+Chúng tôi không ngừng học hỏi, cải tiến và đổi mới – không phải để chạy theo xu hướng, mà để lắng nghe và thấu hiểu nhu cầu thực sự của khách hàng. Chúng tôi xem sự khác biệt là điều đáng trân trọng, và sáng tạo là nền tảng để mọi điều tốt đẹp bắt đầu.
+                  </p>
+
+                  <div class="bor16 p-l-29 p-b-9 m-t-22">
+                     <p class=" cl6 p-r-40 p-b-11" style="font-style: italic;">
+                       "Sáng tạo là việc kết nối những điều đã tồn tại. Khi bạn hỏi một người sáng tạo rằng họ làm thế nào để nghĩ ra một ý tưởng, họ thường cảm thấy ngại — bởi họ không thực sự tạo ra nó, họ chỉ nhìn thấy nó. Và khi đã thấy rồi, mọi thứ trở nên thật hiển nhiên.”
+                     </p>
+
+                    
+                  </div>
+               </div>
+            </div>
+
+            <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+               <div class="how-bor2">
+                  <div class="hov-img0">
+                     <img src="./assets/images/about-02.jpg" alt="IMG" />
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   `;
    }
 }
 customElements.define("about-content", AppAboutContent);

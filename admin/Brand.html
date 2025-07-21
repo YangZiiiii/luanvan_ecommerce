@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!-- saved from url=(0131)https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-category-list.html -->
+<html lang="en" class="layout-navbar-fixed layout-compact dark-style layout-menu-fixed" dir="ltr"
+   data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template" data-style="dark">
+<script async="" src="./assets/js/gtm.js"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js"
+   id="eppiocemhmnlbhjplcgkofciiegomcon"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+   <title>
+      eCommerce Brand List - Apps | Materio - Bootstrap Material Design
+      Admin Template
+   </title>
+
+   <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+   <meta name="keywords"
+      content="dashboard, material, material design, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
+   <!-- Canonical SEO -->
+   <link rel="canonical" href="https://themeselection.com/item/materio-bootstrap-html-admin-template/" />
+
+   <!-- End Google Tag Manager -->
+
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon"
+      href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/assets/img/favicon/favicon.ico" />
+
+   <!-- Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com/" />
+   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+   <link href="./assets/css/css2.css" rel="stylesheet" />
+
+   <!-- Icons -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   <link rel="stylesheet" href="./assets/css/remixicon.css" />
+   <link rel="stylesheet" href="./assets/css/flag-icons.css" />
+
+   <!-- Menu waves for no-customizer fix -->
+   <link rel="stylesheet" href="./assets/css/node-waves.css" />
+
+   <!-- Core CSS -->
+
+   <link rel="stylesheet" href="./assets/css/demo.css" />
+   <link rel="stylesheet" href="./assets/css/styles.css">
+
+   <!-- Vendors CSS -->
+   <link rel="stylesheet" href="./assets/css/perfect-scrollbar.css" />
+   <link rel="stylesheet" href="./assets/css/typeahead.css" />
+   <link rel="stylesheet" href="./assets/css/datatables.bootstrap5.css" />
+   <link rel="stylesheet" href="./assets/css/responsive.bootstrap5.css" />
+   <link rel="stylesheet" href="./assets/css/buttons.bootstrap5.css" />
+   <link rel="stylesheet" href="./assets/css/datatables.checkboxes.css" />
+   <link rel="stylesheet" href="./assets/css/select2.css" />
+   <link rel="stylesheet" href="./assets/css/form-validation.css" />
+   <link rel="stylesheet" href="./assets/css/typography.css" />
+   <link rel="stylesheet" href="./assets/css/katex.css" />
+   <link rel="stylesheet" href="./assets/css/editor.css" />
+
+   <!-- Page CSS -->
+
+   <link rel="stylesheet" href="./assets/css/app-ecommerce.css" />
+
+   <!-- Helpers -->
+   <script src="./assets/js/helpers.js"></script>
+   <script bis_use="true" type="text/javascript" charset="utf-8"
+      data-bis-config='["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com","docs.google.com","contacts.google.com","github.com","mail.google.com","chat.google.com","audio.xpleer.com","keepa.com","static.xx.fbcdn.net","sas.selleramp.com","1plus1.video","console.googletagservices.com","//lnkd.demdex.net/","//radar.cedexis.com/","//li.protechts.net/","challenges.cloudflare.com/","ogs.google.com"]'
+      src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executers/vi-tr.js"></script>
+
+   <!-- Template Navigation -->
+   <script src="./assets/js/template/navigation.js"></script>
+
+   <!-- Template NabBar -->
+   <script src="./assets/js/template/navbar.js"></script>
+
+   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+   <script src="./assets/js/config.js"></script>
+   <link rel="stylesheet" type="text/css" href="./assets/css/core-dark.css" class="template-customizer-core-css" />
+   <link rel="stylesheet" type="text/css" href="./assets/css/theme-semi-dark-dark.css"
+      class="template-customizer-theme-css" />
+
+</head>
+
+<body
+   bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJMSU5LRURJTiI6ImRpc2FibGVkIiwiQ09ORklHIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjIuMC4yMCIsInNjb3JlIjoyMDAyMH1d"
+   __processed_65e5f368-16fe-4f96-8682-f6077e8f706c__="true">
+
+
+   <!-- Layout wrapper -->
+   <div class="layout-wrapper layout-content-navbar" bis_skin_checked="1">
+      <div class="layout-container" bis_skin_checked="1">
+         <!-- Menu -->
+
+         <navigation-main></navigation-main>
+         <!-- / Menu -->
+
+         <!-- Layout container -->
+         <div class="layout-page" bis_skin_checked="1">
+            <!-- Navbar -->
+
+            <navbar-main></navbar-main>
+
+            <!-- / Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" bis_skin_checked="1">
+               <!-- Content -->
+
+
+
+               <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
+                  <div class="app-ecommerce-category" bis_skin_checked="1">
+                     <!-- Category List Table -->
+                     <div class="card" bis_skin_checked="1">
+                        <div class="card-datatable table-responsive" bis_skin_checked="1">
+                           <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
+                              bis_skin_checked="1">
+                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0" style="margin: 15px 0; justify-content: flex-end;"
+                                 bis_skin_checked="1">
+                                 
+                                 <div class="d-flex justify-content-start justify-content-md-end align-items-baseline"
+                                    bis_skin_checked="1">
+                                    <div
+                                       class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0"
+                                       bis_skin_checked="1">
+                                       
+                                       <div class="dt-buttons btn-group flex-wrap" bis_skin_checked="1">
+                                          
+                                          <button
+                                             class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light btn-brand"
+                                             tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceBrandList">
+                                             <span><i class="ri-add-line me-0 me-sm-1"></i><span
+                                                   class="d-none d-sm-inline-block">Thêm thương hiệu</span></span>
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <table class="table dataTable no-footer dtr-column" id="DataTables_Table_0"
+                                 aria-describedby="DataTables_Table_0_info" style="width: 1394px">
+                                 <thead>
+                                    <tr>
+                                       <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1"
+                                          style="width: 0px; display: none" aria-label=""></th>
+                                       <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
+                                          rowspan="1" colspan="1" style="width: 18px" data-col="1" aria-label="">
+                                          <input type="checkbox" class="form-check-input" />
+                                       </th>
+                                       <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0"
+                                          rowspan="1" colspan="1" style="width: 699px"
+                                          aria-label="Categories: activate to sort column ascending"
+                                          aria-sort="descending">
+                                          Các thương hiệu
+                                       </th>
+                                       <th class="text-nowrap text-sm-end sorting" tabindex="0"
+                                          aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                          style="width: 191px"
+                                          aria-label="Description &amp;nbsp;: activate to sort column ascending">
+                                          tổng sản phẩm
+                                       </th>
+                                       <th class="text-nowrap text-sm-end sorting_disabled" rowspan="1" colspan="1"
+                                          style="width: 160px" aria-label="Status">
+                                          Trạng thái
+                                       </th>
+                                       <th class="text-lg-center sorting_disabled" rowspan="1" colspan="1"
+                                          style="width: 118px" aria-label="Actions">
+                                          Tác vụ
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <script>
+                                       // Lưu brands vào biến toàn cục để dùng lại khi update
+                                       let brandsData = [];
+
+                                       fetch('http://localhost:8080/api/v1/brand')
+                                          .then(response => response.json())
+                                          .then(data => {
+                                             brandsData = data.data.content || [];
+                                             const tableBody = document.querySelector('#DataTables_Table_0 tbody');
+                                             tableBody.innerHTML = ''; // Clear existing rows
+                                             brandsData.forEach(brand => {
+                                                const row = `
+                                        <tr>
+                                          <td class="control" tabindex="0" style="display: none"></td>
+                                          <td class="dt-checkboxes-cell">
+                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                          </td>
+                                          <td class="sorting_1">
+                                          <div class="d-flex align-items-center">
+                                            <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
+                                                   <div class="avatar" style="display: flex; align-items: center; justify-content: center; color:#ced457">
+                                                      <i class="fa-solid fa-tags"></i>
+                                                   </div>
+                                                </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                             <span class="text-heading fw-medium text-wrap">${brand.name}</span>
+                                            </div>
+                                          </div>
+                                          </td>
+                                          <td >
+                                          <div class="text-sm-end pe-3">
+                                            ${brand.totalProduct || 0}
+                                          </div>
+                                          </td>
+                                          <td style="text-align: right;">
+                                          <div  class="badge rounded-pill bg-label-${brand.status === 'ACTIVE' ? 'success' : 'danger'} text-capitalized">
+                                            ${brand.status}
+                                          </div>
+                                          </td>
+                                          <td>
+                                          <div class="d-flex align-items-sm-center justify-content-sm-center">
+                                            <button 
+                                             class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill me-1 btn-edit-brand"
+                                             data-bs-toggle="offcanvas"
+                                             data-bs-target="#offcanvasEcommerceBrandListUpdate"
+                                             data-brand-id="${brand.id}">
+                                             <i class="ri-edit-box-line ri-22px"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                             <i class="ri-more-2-line ri-22px"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end m-0">
+                                             <a href="javascript:0;" class="dropdown-item">View</a>
+                                             <a onclick="openModal('${brand.id}')" href="javascript:0;" class="dropdown-item">Delete</a>
+                                            </div>
+                                          </div>
+                                          </td>
+                                        </tr>
+                                       `;
+                                                tableBody.insertAdjacentHTML('beforeend', row);
+                                             });
+
+                                             // Gán sự kiện cho nút edit sau khi render xong
+                                             document.querySelectorAll('.btn-edit-brand').forEach(btn => {
+                                                btn.addEventListener('click', async function () {
+                                                   const brandId = this.getAttribute('data-brand-id');
+                                                   if (!brandId) return;
+                                                   try {
+                                                      const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
+                                                      const result = await res.json();
+                                                      if (result && result.data) {
+                                                         // Gán dữ liệu vào modal update
+                                                         document.getElementById('ecommerce-brand-title').value = result.data.name || '';
+                                                         // Gán description vào editor
+                                                         const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
+                                                         if (descElem) {
+                                                            descElem.innerText = result.data.description || '';
+                                                         }
+                                                         // Gán status (chỉ ACTIVE/INACTIVE)
+                                                         const statusSelect = document.getElementById('ecommerce-brand-status');
+                                                         if (statusSelect) {
+                                                            statusSelect.value = result.data.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE';
+                                                            statusSelect.setAttribute('data-brand-id', brandId);
+                                                         }
+                                                         // Lưu id vào form để dùng khi update
+                                                         document.getElementById('eCommerceBrandListForm').setAttribute('data-brand-id', brandId);
+                                                      }
+                                                   } catch (err) {
+                                                      alert('Không lấy được dữ liệu brand!');
+                                                   }
+                                                });
+                                             });
+
+                                             // Gán sự kiện đổi status cho select trong modal update
+                                             const statusSelect = document.getElementById('ecommerce-brand-status');
+                                             if (statusSelect) {
+                                                statusSelect.onchange = async function () {
+                                                   const brandId = statusSelect.getAttribute('data-brand-id');
+                                                   const newStatus = statusSelect.value;
+                                                   if (!brandId || !newStatus) return;
+                                                   try {
+                                                      const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}/status`, {
+                                                         method: 'PUT',
+                                                         headers: { 'Content-Type': 'application/json' },
+                                                         body: JSON.stringify({ status: newStatus })
+                                                      });
+                                                      if (res.ok) {
+                                                         // Optionally show a toast or reload
+                                                         // window.location.reload();
+                                                      } else {
+                                                         alert('Update status failed!');
+                                                      }
+                                                   } catch (err) {
+                                                      alert('Error updating status!');
+                                                   }
+                                                };
+                                             }
+                                          })
+                                          .catch(error => console.error('Error fetching brands:', error));
+                                    </script>
+                                 </tbody>
+                              </table>
+                              <!-- Modal delete item -->
+                              <div class="modal-overlay delete-modal" id="modalOverlay"
+                                 onclick="handleOverlayClick(event)">
+                                 <div class="modal">
+                                    <span class="close-btn" onclick="closeModal()">&times;</span>
+
+                                    <!-- Nội dung ban đầu -->
+                                    <div id="modalContent">
+                                       <h3 class="modalInfo">Are you sure you want to delete this product?</h3>
+                                       <div class="buttons">
+                                          <button class="button button-no" onclick="closeModal()">No</button>
+                                          <button class="button button-yes" onclick="confirmYes()">Yes</button>
+                                       </div>
+                                    </div>
+
+                                    <!-- Hiển thị sau khi xác nhận -->
+                                    <div class="success" id="successMessage">
+                                       <div class="checkmark">✔</div>
+                                       <p style="margin-top: 10px; color: #22c55e; font-weight: bold;">Confirmed!</p>
+                                       <button class="ok-btn" onclick="closeModal()">OK</button>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End delete modal item -->
+                              
+                              <div bis_skin_checked="1" style="width: 1%"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Offcanvas to add new brand -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandList"
+                        aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
+                        <!-- Offcanvas Header -->
+                        <div class="offcanvas-header py-6">
+                           <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Add Brand</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+
+                        <!-- Offcanvas Body -->
+                        <div class="offcanvas-body border-top">
+                           <form class="pt-0" id="eCommerceBrandListFormAdd" onsubmit="return false" novalidate>
+                              <!-- Title -->
+                              <div class="form-floating form-floating-outline mb-5">
+                                 <input type="text" class="form-control" id="ecommerce-brand-title-add"
+                                    placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
+                                 <label for="ecommerce-brand-title-add">Tên thương hiệu</label>
+                              </div>
+
+
+
+                              <!-- Description -->
+                              <!-- <div class="mb-6">
+                                 <div class="form-control p-0 pt-1">
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-collection-description-add">
+                                       <div class="ql-editor ql-blank" contenteditable="true"
+                                          data-placeholder="Write a description...">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                       <div class="ql-tooltip ql-hidden"></div>
+                                    </div>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                       <div class="d-flex justify-content-end">
+                                          <span class="ql-formats">
+                                             <button class="ql-bold" type="button"></button>
+                                             <button class="ql-italic" type="button"></button>
+                                             <button class="ql-underline" type="button"></button>
+                                             <button class="ql-list" value="ordered" type="button"></button>
+                                             <button class="ql-list" value="bullet" type="button"></button>
+                                             <button class="ql-link" type="button"></button>
+                                             <button class="ql-image" type="button"></button>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div> -->
+
+                              <!-- Status -->
+                              <!-- <div class="mb-5 ecommerce-select2-dropdown">
+                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                    <div class="position-relative">
+                                       <select id="ecommerce-brand-status-add" class="form-select"
+                                          data-placeholder="Select brand status" data-allow-clear="true">
+                                          
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-brand-status-add">Status</label>
+                                 </div>
+                              </div> -->
+
+                              <!-- Submit and reset -->
+                              <div class="mb-4">
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1"
+                                    id="btnAddBrand">Thêm</button>
+                                 <button type="reset" class="btn btn-outline-danger"
+                                    data-bs-dismiss="offcanvas">Hủy bỏ</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <script>
+                        document.getElementById('btnAddBrand').onclick = async function (e) {
+                           e.preventDefault();
+                           const name = document.getElementById('ecommerce-brand-title-add').value.trim();
+                           // Lấy description từ editor
+                           // const descElem = document.querySelector('#ecommerce-collection-description-add .ql-editor');
+                           // const description = descElem ? descElem.innerText.trim() : '';
+                           // // Lấy status (chỉ ACTIVE/INACTIVE, mặc định INACTIVE nếu không chọn)
+                           // const status = document.getElementById('ecommerce-brand-status-add').value || 'INACTIVE';
+
+                           if (!name) {
+                              alert('Please enter brand name!');
+                              return;
+                           }
+
+                           try {
+                              const response = await fetch('http://localhost:8080/api/v1/brand', {
+                                 method: 'POST',
+                                 headers: {
+                                    'Content-Type': 'application/json'
+                                 },
+                                 body: JSON.stringify({
+                                    name: name
+                                   
+                                 })
+                              });
+                              if (response.ok) {
+                                 window.location.reload();
+                              } else {
+                                 alert('Add brand failed!');
+                              }
+                           } catch (err) {
+                              alert('Error: ' + err);
+                           }
+                        };
+                     </script>
+
+
+
+                     <!-- Offcanvas to update new brand -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandListUpdate"
+                        aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
+                        <!-- Offcanvas Header -->
+                        <div class="offcanvas-header py-6">
+                           <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Update Brand</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+
+                        <!-- Offcanvas Body -->
+                        <div class="offcanvas-body border-top">
+                           <form class="pt-0" id="eCommerceBrandListForm" onsubmit="return false" novalidate>
+
+                              <!-- Title -->
+                              <div class="form-floating form-floating-outline mb-5">
+                                 <input type="text" class="form-control" id="ecommerce-brand-title"
+                                    placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
+                                 <label for="ecommerce-brand-title">Title</label>
+                              </div>
+
+
+                              <!-- Image -->
+
+
+
+                              <!-- Description -->
+                              <!-- <div class="mb-6">
+                                 <div class="form-control p-0 pt-1">
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-collection-description">
+                                       <div class="ql-editor ql-blank" contenteditable="true" data-placeholder="">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                       <div class="ql-tooltip ql-hidden"></div>
+                                    </div>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                       <div class="d-flex justify-content-end">
+                                          <span class="ql-formats">
+                                             <button class="ql-bold" type="button"></button>
+                                             <button class="ql-italic" type="button"></button>
+                                             <button class="ql-underline" type="button"></button>
+                                             <button class="ql-list" value="ordered" type="button"></button>
+                                             <button class="ql-list" value="bullet" type="button"></button>
+                                             <button class="ql-link" type="button"></button>
+                                             <button class="ql-image" type="button"></button>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div> -->
+
+                              <!-- Status -->
+                              <div class="mb-5 ecommerce-select2-dropdown">
+                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                    <div class="position-relative">
+                                       <select id="ecommerce-brand-status" class="form-select"
+                                          data-placeholder="Select brand status" data-allow-clear="true">
+
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
+                                          <option value="DELETED">Deleted</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-brand-status">Status</label>
+                                 </div>
+                              </div>
+
+                              <!-- Submit and reset -->
+                              <div class="mb-4">
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1"
+                                    id="btnUpdateBrand">Update</button>
+                                 <button type="reset" class="btn btn-outline-danger"
+                                    data-bs-dismiss="offcanvas">Discard</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <script>
+                        // Xử lý update brand khi submit form update
+                        document.getElementById('btnUpdateBrand').onclick = async function (e) {
+                           e.preventDefault();
+                           const form = document.getElementById('eCommerceBrandListForm');
+                           const brandId = form.getAttribute('data-brand-id');
+                           const name = document.getElementById('ecommerce-brand-title').value.trim();
+                           // const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
+                           // const description = descElem ? descElem.innerText.trim() : '';
+                           const status = document.getElementById('ecommerce-brand-status').value || 'INACTIVE';
+
+                           if (!brandId) {
+                              alert('Không tìm thấy brand để update!');
+                              return;
+                           }
+                           if (!name) {
+                              alert('Vui lòng nhập tên brand!');
+                              return;
+                           }
+
+                           try {
+                              const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
+                                 method: 'PUT',
+                                 headers: { 'Content-Type': 'application/json' },
+                                 body: JSON.stringify({
+                                    name: name,
+                                    status: status
+                                 })
+                              });
+                              if (response.ok) {
+                                 window.location.reload();
+                              } else {
+                                 alert('Update brand failed!');
+                              }
+                           } catch (err) {
+                              alert('Error: ' + err);
+                           }
+                        };
+                     </script>
+
+
+
+                  </div>
+               </div>
+               <!-- / Content -->
+
+               <!-- Footer -->
+               <footer class="content-footer footer bg-footer-theme">
+                  <div class="container-xxl" bis_skin_checked="1">
+                     <div
+                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
+                        bis_skin_checked="1">
+                        <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
+                           ©
+                           <script>
+                              document.write(new Date().getFullYear());
+                           </script>
+                           2025, made with
+                           <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
+                           by
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </footer>
+               <!-- / Footer -->
+
+               <div class="content-backdrop fade" bis_skin_checked="1"></div>
+            </div>
+            <!-- Content wrapper -->
+         </div>
+         <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle" bis_skin_checked="1"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target" style="
+               touch-action: pan-y;
+               user-select: none;
+               -webkit-user-drag: none;
+               -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            " bis_skin_checked="1"></div>
+   </div>
+   <!-- / Layout wrapper -->
+
+
+
+   <!-- Core JS -->
+   <!-- build:js assets/vendor/js/core.js -->
+   <script src="./assets/js/jquery.js"></script>
+   <script src="./assets/js/popper.js"></script>
+   <script src="./assets/js/bootstrap.js"></script>
+   <script src="./assets/js/node-waves.js"></script>
+   <script src="./assets/js/perfect-scrollbar.js"></script>
+   <script src="./assets/js/hammer.js"></script>
+   <script src="./assets/js/i18n.js"></script>
+   <script src="./assets/js/typeahead.js"></script>
+   <script src="./assets/js/menu.js"></script>
+
+   <!-- endbuild -->
+
+   <!-- Vendors JS -->
+   <script src="./assets/js/moment.js"></script>
+   <script type="text/javascript" id="" charset="">
+      console.log("TS:GTM Worked");
+   </script>
+   <script src="./assets/js/datatables-bootstrap5.js"></script>
+   <script src="./assets/js/select2.js"></script>
+   <script src="./assets/js/popular.js"></script>
+   <script src="./assets/js/bootstrap5.js"></script>
+   <script src="./assets/js/auto-focus.js"></script>
+   <script src="./assets/js/katex.js"></script>
+   <script src="./assets/js/quill.js"></script>
+
+   <!-- Main JS -->
+   <script src="./assets/js/main.js"></script>
+
+   <!-- Page JS -->
+   <script src="./assets/js/CategoryList/app-ecommerce-category-list.js"></script>
+
+
+   <!-- Modal Delete -->
+   <script>
+      // Toast helper
+      function showToast(message, type = "success") {
+         // Remove old toast if exists
+         const oldToast = document.getElementById("custom-toast");
+         if (oldToast) oldToast.remove();
+
+         const toast = document.createElement("div");
+         toast.id = "custom-toast";
+         toast.style.position = "fixed";
+         toast.style.top = "30px";
+         toast.style.right = "800px";
+         toast.style.zIndex = "9999";
+         toast.style.minWidth = "220px";
+         toast.style.padding = "16px 24px";
+         toast.style.borderRadius = "8px";
+         toast.style.color = "#fff";
+         toast.style.fontWeight = "bold";
+         toast.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+         toast.style.background = type === "success" ? "#22c55e" : "#ef4444";
+         toast.innerText = message;
+         document.body.appendChild(toast);
+         setTimeout(() => toast.remove(), 3500);
+      }
+
+      function openModal(brandId) {
+         const overlay = document.getElementById("modalOverlay");
+         const modal = overlay.querySelector(".modal");
+
+         overlay.classList.add("show");
+         modal.style.display = "block";
+         modal.style.transform = "rotateY(90deg)";
+         modal.style.animation = "rotateIn 0.5s forwards";
+
+         document.getElementById("modalContent").style.display = "block";
+         document.getElementById("successMessage").classList.remove("show");
+
+         const yesButton = document.querySelector(".button-yes");
+         yesButton.setAttribute("data-brand-id", brandId);
+      }
+
+      function closeModal() {
+         const overlay = document.getElementById("modalOverlay");
+         const modal = overlay.querySelector(".modal");
+
+         modal.style.animation = "rotateOut 0.4s forwards";
+
+         setTimeout(() => {
+            overlay.classList.remove("show");
+            modal.style.display = "none";
+         }, 400);
+      }
+
+      async function confirmYes() {
+         const yesButton = document.querySelector(".button-yes");
+         const brandId = yesButton.getAttribute("data-brand-id");
+
+         if (!brandId) {
+            closeModal();
+            setTimeout(() => showToast("Không tìm thấy ID brand để xoá.", "error"), 400);
+            return;
+         }
+
+         try {
+            const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
+               method: 'DELETE'
+            });
+
+            if (response.ok) {
+               document.getElementById("modalContent").style.display = "none";
+               document.getElementById("successMessage").classList.add("show");
+               showToast("Xoá brand thành công!", "success");
+               setTimeout(() => {
+                  window.location.reload();
+               }, 1500);
+            } else {
+               // Try to parse error body
+               let errorMsg = "Xoá brand thất bại!";
+               try {
+                  const data = await response.json();
+                  if (data && data.message) {
+                     errorMsg = data.message;
+                  }
+               } catch { }
+               closeModal();
+               setTimeout(() => showToast(errorMsg, "error"), 400);
+            }
+         } catch (error) {
+            console.error('Lỗi khi gọi API xoá:', error);
+            closeModal();
+            setTimeout(() => showToast("Có lỗi xảy ra.", "error"), 400);
+         }
+      }
+
+      function handleOverlayClick(event) {
+         const modal = document.querySelector(".delete-modal .modal");
+         if (!modal.contains(event.target)) {
+            closeModal();
+         }
+      }
+   </script>
+
+
+</body>
+
+</html>

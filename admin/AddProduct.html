@@ -66,7 +66,7 @@
 
 
    <!-- Template Navigation -->
-   <script src="./assets/js/ProducList/navigation.js"></script>
+   <script src="./assets/js/template/navigation.js"></script>
 
    <!-- Template NabBar -->
    <script src="./assets/js/template/navbar.js"></script>
@@ -77,9 +77,8 @@
    <link rel="stylesheet" type="text/css" href="./assets/css/theme-semi-dark-dark.css"
       class="template-customizer-theme-css" />
 
-   <script type="text/javascript" src="./assets/js/api.min.js" async="" data-user="252882"
-      data-account="269977"></script>
-   <link rel="stylesheet" href="./assets/css/api.min.css" id="omapi-css" media="all" />
+
+
 </head>
 
 <body __processed_bb539775-74b8-4236-b43d-afe4400b922e__="true"
@@ -105,27 +104,35 @@
             <div class="content-wrapper" bis_skin_checked="1">
                <!-- Content -->
 
+
                <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
                   <div class="app-ecommerce" bis_skin_checked="1">
+
+                     <!-- Offcanvas Add Category -->
+
+
+
+
+
+
+
+
                      <!-- Add Product -->
                      <div
                         class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 gap-4 gap-md-0"
                         bis_skin_checked="1">
                         <div class="d-flex flex-column justify-content-center" bis_skin_checked="1">
-                           <h4 class="mb-1">Add a new Product</h4>
+                           <h4 class="mb-1">Thêm sản phẩm mới</h4>
                            <p class="mb-0">
-                              Orders placed across your store
+                              Đơn hàng được đặt trên cửa hàng của bạn
                            </p>
                         </div>
                         <div class="d-flex align-content-center flex-wrap gap-4" bis_skin_checked="1">
                            <button class="btn btn-outline-secondary waves-effect">
-                              Discard
+                              Hủy bỏ
                            </button>
-                           <button class="btn btn-outline-primary waves-effect">
-                              Save draft
-                           </button>
-                           <button type="submit" class="btn btn-primary waves-effect waves-light">
-                              Publish product
+                           <button type="submit" class="btn btn-primary waves-effect waves-light btn-submit-product">
+                              Đăng sản phẩm
                            </button>
                         </div>
                      </div>
@@ -137,36 +144,35 @@
                            <div class="card mb-6" bis_skin_checked="1">
                               <div class="card-header" bis_skin_checked="1">
                                  <h5 class="card-tile mb-0">
-                                    Product information
+                                    Thông tin sản phẩm
                                  </h5>
                               </div>
-                              <div class="card-body" bis_skin_checked="1">
+                              <div class="card-body add-info__product" bis_skin_checked="1">
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="text" class="form-control" id="ecommerce-product-name"
-                                       placeholder="Product title" name="productTitle" aria-label="Product title" />
-                                    <label for="ecommerce-product-name">Name</label>
+                                       placeholder="Tên sản phẩm" name="productTitle" aria-label="Product title" />
+                                    <label for="ecommerce-product-name">Tên</label>
                                  </div>
 
                                  <div class="row gx-5 mb-5" bis_skin_checked="1">
                                     <div class="col" bis_skin_checked="1">
                                        <div class="form-floating form-floating-outline" bis_skin_checked="1">
-                                          <input type="number" class="form-control" id="ecommerce-product-sku"
-                                             placeholder="00000" name="productSku" aria-label="Product SKU" />
-                                          <label for="ecommerce-product-sku">SKU</label>
+                                          <input type="text" class="form-control" id="ecommerce-product-sku"
+                                             placeholder="Mã phân loại" name="productSku" aria-label="Product SKU" />
+                                          <label for="ecommerce-product-sku">Mã phân loại</label>
                                        </div>
                                     </div>
                                     <div class="col" bis_skin_checked="1">
                                        <div class="form-floating form-floating-outline" bis_skin_checked="1">
-                                          <input type="text" class="form-control" id="ecommerce-product-barcode"
-                                             placeholder="0123-4567" name="productBarcode"
-                                             aria-label="Product barcode" />
-                                          <label for="ecommerce-product-name">Barcode</label>
+                                          <input type="number" class="form-control" id="ecommerce-product-barcode"
+                                             placeholder="999" name="Quantity" aria-label="Product barcode" />
+                                          <label for="ecommerce-product-name">Số lượng</label>
                                        </div>
                                     </div>
                                  </div>
                                  <!-- Comment -->
                                  <div bis_skin_checked="1">
-                                    <label class="mb-1">Description (Optional)</label>
+                                    <label class="mb-1">Mô tả (Tùy chọn)</label>
                                     <div class="form-control p-0 pt-1" bis_skin_checked="1">
                                        <div class="comment-toolbar border-0 border-bottom ql-toolbar ql-snow"
                                           bis_skin_checked="1">
@@ -245,13 +251,14 @@
                                                          points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"></polyline>
                                                    </svg>
                                                 </button>
+
                                              </span>
                                           </div>
                                        </div>
                                        <div class="comment-editor border-0 pb-1 ql-container ql-snow"
                                           id="ecommerce-category-description" bis_skin_checked="1">
-                                          <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true"
-                                             data-placeholder="Product Description" bis_skin_checked="1">
+                                          <div class="ql-editor ql-blank" data-gram="false" contenteditable="true"
+                                             data-placeholder="Mô tả" bis_skin_checked="1">
                                              <p><br /></p>
                                           </div>
                                           <div class="ql-clipboard" contenteditable="true" tabindex="-1"
@@ -269,389 +276,25 @@
                            </div>
                            <!-- /Product Information -->
                            <!-- Media -->
-                           <div class="card mb-6" bis_skin_checked="1">
-                              <div class="card-header d-flex justify-content-between align-items-center"
-                                 bis_skin_checked="1">
-                                 <h5 class="mb-0 card-title">
-                                    Product Image
-                                 </h5>
-                                 <a href="javascript:void(0);" class="fw-medium">Add media from URL</a>
+                           <div class="card mb-6">
+                              <div class="card-header d-flex justify-content-between align-items-center">
+                                 <h5 class="mb-0 card-title">Hình ảnh sản phẩm</h5>
                               </div>
-                              <div class="card-body" bis_skin_checked="1">
-                                 <form action="https://demos.themeselection.com/upload"
-                                    class="dropzone needsclick dz-clickable" id="dropzone-basic">
-                                    <div class="dz-message needsclick" bis_skin_checked="1">
-                                       <div class="d-flex justify-content-center" bis_skin_checked="1">
-                                          <div class="avatar avatar-md" bis_skin_checked="1">
-                                             <span class="avatar-initial rounded bg-label-secondary">
-                                                <i class="ri-upload-2-line ri-24px"></i>
-                                             </span>
-                                          </div>
-                                       </div>
-                                       <p class="h4 needsclick my-2">
-                                          Drag and drop your image here
-                                       </p>
-                                       <small class="text-muted d-block fs-6 my-2">or</small>
-                                       <span class="needsclick btn btn-sm btn-outline-primary waves-effect"
-                                          id="btnBrowse">Browse image</span>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                           <!-- /Media -->
-                           <!-- Variants -->
-                           <div class="card mb-6" bis_skin_checked="1">
-                              <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Variants</h5>
-                              </div>
-                              <div class="card-body" bis_skin_checked="1">
-                                 <form class="form-repeater">
-                                    <div data-repeater-list="group-a" bis_skin_checked="1">
-                                       <div data-repeater-item="" bis_skin_checked="1">
-                                          <div class="row gx-5" bis_skin_checked="1">
-                                             <div class="mb-6 col-sm-4" bis_skin_checked="1">
-                                                <div class="form-floating form-floating-outline form-floating-select2"
-                                                   bis_skin_checked="1">
-                                                   <div class="position-relative" bis_skin_checked="1">
-                                                      <select id="select2Basic"
-                                                         class="select2"
-                                                         data-placeholder="Option" data-allow-clear="true"
-                                                         data-select2-id="select2Basic" tabindex="-1"
-                                                         aria-hidden="true">
-                                                         <option value="" data-select2-id="2">
-                                                            Option
-                                                         </option>
-                                                         <option value="size">
-                                                            Size
-                                                         </option>
-                                                         <option value="color">
-                                                            Color
-                                                         </option>
-                                                         <option value="weight">
-                                                            Weight
-                                                         </option>
-                                                         <option value="smell">
-                                                            Smell
-                                                         </option>
-                                                      </select>
-                                                   </div>
-                                                   <label for="select2Basic">Option</label>
-                                                </div>
-                                             </div>
-                                             <div class="mb-6 col-sm-8" bis_skin_checked="1">
-                                                <div class="form-floating form-floating-outline" bis_skin_checked="1">
-                                                   <input type="text" id="form-repeater-1-2" class="form-control"
-                                                      placeholder="Enter size" />
-                                                   <label for="form-repeater-1-2">Value</label>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div bis_skin_checked="1">
-                                       <button class="btn btn-primary waves-effect waves-light" data-repeater-create="">
-                                          <i class="ri-add-line ri-16px me-1_5"></i>
-                                          Add another option
-                                       </button>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                           <!-- /Variants -->
-                           <!-- Inventory -->
-                           <div class="card mb-6" bis_skin_checked="1">
-                              <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Inventory</h5>
-                              </div>
-                              <div class="card-body" bis_skin_checked="1">
-                                 <div class="row" bis_skin_checked="1">
-                                    <!-- Navigation -->
-                                    <div class="col-12 col-md-4 col-xl-5 col-xxl-4 mx-auto card-separator"
-                                       bis_skin_checked="1">
-                                       <div class="d-flex justify-content-between flex-column mb-4 mb-md-0 pe-md-4"
-                                          bis_skin_checked="1">
-                                          <div class="nav-align-left" bis_skin_checked="1">
-                                             <ul class="nav nav-pills flex-column w-100" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link active waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#restock"
-                                                      aria-selected="true" role="tab">
-                                                      <i class="ri-add-line me-1_5"></i>
-                                                      <span class="align-middle">Restock</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#shipping"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-car-line me-1_5"></i>
-                                                      <span class="align-middle">Shipping</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#global-delivery"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-global-line me-1_5"></i>
-                                                      <span class="align-middle">Global
-                                                         Delivery</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#attributes"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-link-m me-1_5"></i>
-                                                      <span class="align-middle">Attributes</span>
-                                                   </button>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                   <button class="nav-link waves-effect waves-light"
-                                                      data-bs-toggle="tab" data-bs-target="#advanced"
-                                                      aria-selected="false" tabindex="-1" role="tab">
-                                                      <i class="ri-lock-unlock-line me-1_5"></i>
-                                                      <span class="align-middle">Advanced</span>
-                                                   </button>
-                                                </li>
-                                             </ul>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <!-- /Navigation -->
-                                    <!-- Options -->
-                                    <div class="col-12 col-md-8 col-xl-7 col-xxl-8 pt-6 pt-md-0" bis_skin_checked="1">
-                                       <div class="tab-content p-0 pe-xl-0 ps-md-4" bis_skin_checked="1">
-                                          <!-- Restock Tab -->
-                                          <div class="tab-pane fade show active" id="restock" role="tabpanel"
-                                             bis_skin_checked="1">
-                                             <h6 class="text-body">
-                                                Options
-                                             </h6>
-                                             <div class="row mb-4 g-4" bis_skin_checked="1">
-                                                <div class="col-12 col-sm-8 col-lg-12 col-xxl-8" bis_skin_checked="1">
-                                                   <div bis_skin_checked="1">
-                                                      <input type="number" class="form-control form-control-sm"
-                                                         id="ecommerce-product-stock" placeholder="Add to Stock"
-                                                         name="Add to Stock" aria-label="Add to Stock" />
-                                                   </div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 col-lg-6 col-xxl-4" bis_skin_checked="1">
-                                                   <button class="btn btn-primary waves-effect waves-light">
-                                                      <i class="ri-check-line ri-16px me-1_5"></i>Confirm
-                                                   </button>
-                                                </div>
-                                             </div>
-                                             <div bis_skin_checked="1">
-                                                <h6 class="mb-2 fw-normal">
-                                                   Product in stock now: 54
-                                                </h6>
-                                                <h6 class="mb-2 fw-normal">
-                                                   Product in transit: 390
-                                                </h6>
-                                                <h6 class="mb-2 fw-normal">
-                                                   Last time restocked: 24th
-                                                   June, 2023
-                                                </h6>
-                                                <h6 class="mb-0 fw-normal">
-                                                   Total stock over lifetime:
-                                                   2430
-                                                </h6>
-                                             </div>
-                                          </div>
-                                          <!-- Shipping Tab -->
-                                          <div class="tab-pane fade" id="shipping" role="tabpanel" bis_skin_checked="1">
-                                             <h6 class="mb-3 text-body">
-                                                Shipping Type
-                                             </h6>
-                                             <div bis_skin_checked="1">
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="radio" name="shippingType"
-                                                      id="seller" />
-                                                   <label class="form-check-label" for="seller">
-                                                      <span class="h6">Fulfilled by
-                                                         Seller</span><br />
-                                                      <small>You'll be
-                                                         responsible for
-                                                         product delivery.<br />
-                                                         Any damage or delay
-                                                         during shipping may
-                                                         cost you a Damage
-                                                         fee.</small>
-                                                   </label>
-                                                </div>
-                                                <div class="form-check mb-6" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="radio" name="shippingType"
-                                                      id="companyName" checked="" />
-                                                   <label class="form-check-label" for="companyName">
-                                                      <span class="h6">Fulfilled by
-                                                         Company name
-                                                         &nbsp;<span
-                                                            class="badge rounded-pill badge-warning bg-label-warning fs-tiny py-1">RECOMMENDED</span></span><br />
-                                                      <small>Your product, Our
-                                                         responsibility.<br />
-                                                         For a measly fee, we
-                                                         will handle the
-                                                         delivery process for
-                                                         you.</small>
-                                                   </label>
-                                                </div>
-                                                <p class="mb-0">
-                                                   See our
-                                                   <a href="javascript:void(0);">Delivery terms and
-                                                      conditions</a>
-                                                   for details
-                                                </p>
-                                             </div>
-                                          </div>
-                                          <!-- Global Delivery Tab -->
-                                          <div class="tab-pane fade" id="global-delivery" role="tabpanel"
-                                             bis_skin_checked="1">
-                                             <h6 class="mb-3 text-body">
-                                                Global Delivery
-                                             </h6>
-                                             <!-- Worldwide delivery -->
-                                             <div class="form-check mb-4" bis_skin_checked="1">
-                                                <input class="form-check-input" type="radio" name="globalDel"
-                                                   id="worldwide" />
-                                                <label class="form-check-label" for="worldwide">
-                                                   <span class="h6">Worldwide
-                                                      delivery</span><br />
-                                                   <small>Only available with
-                                                      Shipping method:
-                                                      <a href="javascript:void(0);">Fulfilled by
-                                                         Company name</a></small>
-                                                </label>
-                                             </div>
-                                             <!-- Global delivery -->
-                                             <div class="form-check mb-4" bis_skin_checked="1">
-                                                <input class="form-check-input" type="radio" name="globalDel"
-                                                   checked="" />
-                                                <label class="form-check-label w-75 pe-12 mb-2" for="country-selected">
-                                                   <span class="h6">Selected
-                                                      Countries</span>
-                                                </label>
-                                                <div bis_skin_checked="1">
-                                                   <input type="text" class="form-control form-control-sm"
-                                                      placeholder="Countries" id="country-selected" />
-                                                </div>
-                                             </div>
-                                             <!-- Local delivery -->
-                                             <div class="form-check" bis_skin_checked="1">
-                                                <input class="form-check-input" type="radio" name="globalDel"
-                                                   id="local" />
-                                                <label class="form-check-label" for="local">
-                                                   <span class="h6">Local delivery</span><br />
-                                                   <small>Deliver to your
-                                                      country of residence :
-                                                      <a href="javascript:void(0);">Change profile
-                                                         address</a></small>
-                                                </label>
-                                             </div>
-                                          </div>
-                                          <!-- Attributes Tab -->
-                                          <div class="tab-pane fade" id="attributes" role="tabpanel"
-                                             bis_skin_checked="1">
-                                             <h6 class="mb-2 text-body">
-                                                Attributes
-                                             </h6>
-                                             <div bis_skin_checked="1">
-                                                <!-- Fragile Product -->
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" value="fragile"
-                                                      id="fragile" />
-                                                   <label class="form-check-label" for="fragile">
-                                                      <span class="h6 fw-normal">Fragile
-                                                         Product</span>
-                                                   </label>
-                                                </div>
-                                                <!-- Biodegradable -->
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" value="biodegradable"
-                                                      id="biodegradable" />
-                                                   <label class="form-check-label" for="biodegradable">
-                                                      <span class="h6 fw-normal">Biodegradable</span>
-                                                   </label>
-                                                </div>
-                                                <!-- Frozen Product -->
-                                                <div class="form-check mb-4" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" id="frozen"
-                                                      value="frozen" checked="" />
-                                                   <label class="form-check-label w-75 pe-12 mb-2" for="frozen">
-                                                      <span class="h6 fw-normal mb-1">Frozen
-                                                         Product</span>
-                                                   </label>
-                                                   <div bis_skin_checked="1">
-                                                      <input type="number" class="form-control form-control-sm"
-                                                         placeholder="Max. allowed Temperature" id="temp" />
-                                                   </div>
-                                                </div>
-                                                <!-- Exp Date -->
-                                                <div class="form-check" bis_skin_checked="1">
-                                                   <input class="form-check-input" type="checkbox" value="expDate"
-                                                      id="expDate" checked="" />
-                                                   <label class="form-check-label w-75 pe-12 mb-2" for="expDate">
-                                                      <span class="h6 fw-normal mb-1">Expiry Date of
-                                                         Product</span>
-                                                   </label>
-                                                   <div bis_skin_checked="1">
-                                                      <input type="text"
-                                                         class="product-date form-control form-control-sm flatpickr-input"
-                                                         id="flatpickr-date" readonly="readonly" />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <!-- /Attributes Tab -->
-                                          <!-- Advanced Tab -->
-                                          <div class="tab-pane fade" id="advanced" role="tabpanel" bis_skin_checked="1">
-                                             <h6 class="mb-3 text-body">
-                                                Advanced
-                                             </h6>
-                                             <div class="row" bis_skin_checked="1">
-                                                <!-- Product Id Type -->
-                                                <div class="col" bis_skin_checked="1">
-                                                   <h6 class="mb-2">
-                                                      Product ID Type
-                                                   </h6>
-                                                   <div bis_skin_checked="1">
-                                                      <select id="product-id" class="form-select form-select-sm"
-                                                         data-placeholder="ISBN" data-allow-clear="true">
-                                                         <option value="ISBN">
-                                                            ISBN
-                                                         </option>
-                                                         <option value="UPC">
-                                                            UPC
-                                                         </option>
-                                                         <option value="EAN">
-                                                            EAN
-                                                         </option>
-                                                         <option value="JAN">
-                                                            JAN
-                                                         </option>
-                                                      </select>
-                                                   </div>
-                                                </div>
-                                                <!-- Product Id -->
-                                                <div class="col" bis_skin_checked="1">
-                                                   <h6 class="mb-2">
-                                                      Product ID
-                                                   </h6>
-                                                   <div bis_skin_checked="1">
-                                                      <input type="number" id="product-id-1"
-                                                         class="form-control form-control-sm"
-                                                         placeholder="ISBN Number" />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <!-- /Advanced Tab -->
-                                       </div>
-                                    </div>
-                                    <!-- /Options-->
+                              <div class="card-body">
+
+                                 <div id="upload-area" class="border rounded p-4 text-center" style="cursor:pointer;">
+                                    <i class="ri-upload-2-line ri-24px"></i>
+                                    <p class="h5 my-2">Nhấn để chọn</p>
+                                    <input type="file" id="imageInput" style="display: none;" multiple accept="image/*">
                                  </div>
+
+                                 <div id="preview" class="d-flex flex-wrap mt-3 gap-3"></div>
+
+
                               </div>
                            </div>
-                           <!-- /Inventory -->
+
+
                         </div>
                         <!-- /Second column -->
 
@@ -660,198 +303,204 @@
                            <!-- Pricing Card -->
                            <div class="card mb-6" bis_skin_checked="1">
                               <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Pricing</h5>
+                                 <h5 class="card-title mb-0">Định giá</h5>
                               </div>
                               <div class="card-body" bis_skin_checked="1">
                                  <!-- Base Price -->
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="number" class="form-control" id="ecommerce-product-price"
-                                       placeholder="Price" name="productPrice" aria-label="Product price" />
-                                    <label for="ecommerce-product-price">Best Price</label>
+                                       placeholder="Giá" name="originalPrice" aria-label="Product price" />
+                                    <label for="ecommerce-product-price">Giá gốc</label>
                                  </div>
 
                                  <!-- Discounted Price -->
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="number" class="form-control" id="ecommerce-product-discount-price"
-                                       placeholder="Discounted Price" name="productDiscountedPrice"
+                                       placeholder="Giá khuyến mãi" name="productDiscountedPrice"
                                        aria-label="Product discounted price" />
-                                    <label for="ecommerce-product-discount-price">Discounted Price</label>
+                                    <label for="ecommerce-product-discount-price">Giá khuyến mãi</label>
+                                 </div>
+
+                                 <!-- Selling Price -->
+                                 <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
+                                    <input type="number" class="form-control" id="ecommerce-product-selling-price"
+                                       placeholder="Giá bán" name="productSellingPrice"
+                                       aria-label="Product selling price" readonly />
+                                    <label for="ecommerce-product-selling-price">Giá bán</label>
                                  </div>
                                  <!-- Charge tax check box -->
-                                 <div class="form-check my-2" bis_skin_checked="1">
-                                    <input class="form-check-input" type="checkbox" value="" id="price-charge-tax"
-                                       checked="" />
-                                    <label class="mb-2 text-heading" for="price-charge-tax">
-                                       Charge tax on this product
-                                    </label>
-                                 </div>
+
                                  <!-- Instock switch -->
-                                 <div class="d-flex justify-content-between align-items-center border-top pt-4 pb-2"
-                                    bis_skin_checked="1">
-                                    <p class="mb-0">In stock</p>
-                                    <div class="w-25 d-flex justify-content-end" bis_skin_checked="1">
-                                       <div class="form-check form-switch me-n3" bis_skin_checked="1">
-                                          <input type="checkbox" class="form-check-input" checked="" />
-                                       </div>
-                                    </div>
-                                 </div>
+
+                                 <script>
+
+                                 </script>
                               </div>
                            </div>
                            <!-- /Pricing Card -->
-                           <!-- Organize Card -->
                            <div class="card mb-6" bis_skin_checked="1">
                               <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Organize</h5>
+                                 <h5 class="card-title mb-0">Các danh mục</h5>
                               </div>
                               <div class="card-body" bis_skin_checked="1">
-                                 <!-- Vendor -->
-                                 <div class="mb-5 col ecommerce-select2-dropdown" bis_skin_checked="1">
-                                    <select id="vendor" class="form-select form-select-sm"
-                                       data-placeholder="Select Vendor">
-                                       <option value="">
-                                          Select Vendor
-                                       </option>
-                                       <option value="men-clothing">
-                                          Men's Clothing
-                                       </option>
-                                       <option value="women-clothing">
-                                          Women's-clothing
-                                       </option>
-                                       <option value="kid-clothing">
-                                          Kid's-clothing
-                                       </option>
-                                    </select>
-                                 </div>
                                  <!-- Category -->
                                  <div
-                                    class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center"
-                                    bis_skin_checked="1">
-                                    <div class="w-100 me-4" bis_skin_checked="1">
-                                       <select id="category-org" class="form-select form-select-sm"
-                                          data-placeholder="Select Category">
-                                          <option value="">
-                                             Select Category
-                                          </option>
-                                          <option value="Household">
-                                             Household
-                                          </option>
-                                          <option value="Management">
-                                             Management
-                                          </option>
-                                          <option value="Electronics">
-                                             Electronics
-                                          </option>
-                                          <option value="Office">
-                                             Office
-                                          </option>
-                                          <option value="Automotive">
-                                             Automotive
-                                          </option>
+                                    class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
+                                    <div class="w-100 me-4">
+                                       <select id="productCategory" name="category" class="form-select form-select-sm"
+                                          data-placeholder="Chọn loại sản phẩm">
+                                          <option value="">Chọn loại sản phẩm</option>
                                        </select>
                                     </div>
                                     <div bis_skin_checked="1">
-                                       <button class="btn btn-outline-primary btn-icon waves-effect">
+                                       <button class="btn btn-outline-primary btn-icon waves-effect btn-category"
+                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceCategoryList">
                                           <i class="ri-add-line"></i>
                                        </button>
                                     </div>
                                  </div>
+
+
+                                 <script>
+
+
+                                    let hasLoadedCategory = false;
+
+                                    document.getElementById("productCategory").addEventListener("mousedown", function (e) {
+                                       // Gọi API khi select đang ở trạng thái mặc định (value = "")
+                                       if (!hasLoadedCategory && this.value === "") {
+                                          fetch("http://localhost:8080/api/v1/category")
+                                             .then(response => response.json())
+                                             .then(data => {
+                                                let options = `<option value="">Chọn loại sản phẩm</option>`;
+                                                data.data.content.forEach(category => {
+                                                   options += `<option value="${category.id}">${category.name}</option>`;
+                                                });
+
+                                                this.innerHTML = options;
+                                                hasLoadedCategory = true;
+                                                console.log("Categories loaded on first click.");
+                                             })
+                                             .catch(error => console.error("Error fetching categories:", error));
+                                       }
+                                    });
+                                 </script>
+
+
+
                                  <!-- Collection -->
-                                 <div class="mb-5 col ecommerce-select2-dropdown" bis_skin_checked="1">
-                                    <select id="collection" class="form-select form-select-sm"
-                                       data-placeholder="Collection">
-                                       <option value="">Collection</option>
-                                       <option value="men-clothing">
-                                          Men's Clothing
-                                       </option>
-                                       <option value="women-clothing">
-                                          Women's-clothing
-                                       </option>
-                                       <option value="kid-clothing">
-                                          Kid's-clothing
-                                       </option>
-                                    </select>
-                                 </div>
-                                 <!-- Status -->
-                                 <div class="mb-5 col ecommerce-select2-dropdown" bis_skin_checked="1">
-                                    <select id="status-org" class="form-select form-select-sm"
-                                       data-placeholder="Select Status">
-                                       <option value="">
-                                          Select Status
-                                       </option>
-                                       <option value="Published">
-                                          Published
-                                       </option>
-                                       <option value="Scheduled">
-                                          Scheduled
-                                       </option>
-                                       <option value="Inactive">
-                                          Inactive
-                                       </option>
-                                    </select>
-                                 </div>
-                                 <!-- Tags -->
-                                 <div class="mb-4" bis_skin_checked="1">
-                                    <div class="form-floating form-floating-outline" bis_skin_checked="1">
-                                       <tags class="tagify form-control h-auto" tabindex="-1">
-                                          <tag title="Normal" contenteditable="false" spellcheck="false" tabindex="-1"
-                                             class="tagify__tag tagify--noAnim" value="Normal">
-                                             <x title="" class="tagify__tag__removeBtn" role="button"
-                                                aria-label="remove tag"></x>
-                                             <div bis_skin_checked="1">
-                                                <span class="tagify__tag-text">Normal</span>
-                                             </div>
-                                          </tag>
-                                          <tag title="Standard" contenteditable="false" spellcheck="false" tabindex="-1"
-                                             class="tagify__tag tagify--noAnim" value="Standard">
-                                             <x title="" class="tagify__tag__removeBtn" role="button"
-                                                aria-label="remove tag"></x>
-                                             <div bis_skin_checked="1">
-                                                <span class="tagify__tag-text">Standard</span>
-                                             </div>
-                                          </tag>
-                                          <tag title="Premium" contenteditable="false" spellcheck="false" tabindex="-1"
-                                             class="tagify__tag tagify--noAnim" value="Premium">
-                                             <x title="" class="tagify__tag__removeBtn" role="button"
-                                                aria-label="remove tag"></x>
-                                             <div bis_skin_checked="1">
-                                                <span class="tagify__tag-text">Premium</span>
-                                             </div>
-                                          </tag><span contenteditable="" tabindex="0" data-placeholder="​"
-                                             aria-placeholder="" class="tagify__input" role="textbox"
-                                             aria-autocomplete="both" aria-multiline="false"></span>
-                                          ​
-                                       </tags><input id="" class="form-control h-auto" name="ecommerce-product-tags"
-                                          value="Normal,Standard,Premium" aria-label="Product Tags" tabindex="-1" />
-                                       <label for="ecommerce-product-tags">Tags</label>
+                                 <!-- <div
+                                    class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
+                                    <div class="w-100 me-4">
+                                       <select id="productCollection" name="collection"
+                                          class="form-select form-select-sm" data-placeholder="Select Collection">
+                                          <option value="">Select Collection</option>
+                                       </select>
+                                    </div>
+                                    <div bis_skin_checked="1">
+                                       <button class="btn-collection btn btn-outline-primary btn-icon waves-effect"
+                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceCollectionList">
+                                          <i class="ri-add-line"></i>
+                                       </button>
                                     </div>
                                  </div>
-                              </div>
-                           </div>
-                           <!-- /Organize Card -->
-                        </div>
-                        <!-- /Second column -->
-                     </div>
-                  </div>
-               </div>
-               <!-- / Content -->
 
-               <!-- Footer -->
-               <footer class="content-footer footer bg-footer-theme">
-                  <div class="container-xxl" bis_skin_checked="1">
-                     <div
-                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
-                        bis_skin_checked="1">
-                        <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
-                           ©
-                           <script>
-                              document.write(new Date().getFullYear());
-                           </script>
-                           2025, made with
-                           <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
-                           by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                                 <script>
+                                    let hasLoadedCollection = false;
+
+                                    document.getElementById("productCollection").addEventListener("mousedown", function (e) {
+                                       // Gọi API khi select đang ở trạng thái mặc định (value = "")
+                                       if (!hasLoadedCollection && this.value === "") {
+                                          fetch("http://localhost:8080/api/v1/collection/list/all")
+                                             .then(response => response.json())
+                                             .then(data => {
+                                                let options = `<option value="">Select Collection</option>`;
+                                                data.data.forEach(collection => {
+                                                   options += `<option value="${collection.id}">${collection.collectionName}</option>`;
+                                                });
+
+                                                this.innerHTML = options;
+                                                hasLoadedCollection = true;
+                                                console.log("Collections loaded on first click.");
+                                             })
+                                             .catch(error => console.error("Error fetching collections:", error));
+                                       }
+                                    });
+                                 </script> -->
+
+                                 <!-- Brand -->
+                                 <div
+                                    class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
+                                    <div class="w-100 me-4">
+                                       <select id="productBrand" name="brand" class="form-select form-select-sm"
+                                          data-placeholder="Chọn thương hiệu">
+                                          <option value="">Chọn thương hiệu</option>
+                                       </select>
+                                    </div>
+                                    <div bis_skin_checked="1">
+                                       <button class=" btn-brand btn btn-outline-primary btn-icon waves-effect"
+                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceBrandList">
+                                          <i class="ri-add-line"></i>
+                                       </button>
+                                    </div>
+                                 </div>
+
+                                 <script>
+                                    let hasLoadedBrand = false;
+
+                                    document.getElementById("productBrand").addEventListener("mousedown", function () {
+                                       if (!hasLoadedBrand && this.value === "") {
+                                          const selectElement = this;
+
+                                          fetch("http://localhost:8080/api/v1/brand/list/all")
+                                             .then(response => response.json())
+                                             .then(data => {
+                                                console.log("Data from API:", data);
+
+                                                let options = `<option value="">Chọn thương hiệu</option>`;
+                                                data.data.forEach(brand => {
+                                                   options += `<option value="${brand.id}">${brand.name}</option>`;
+                                                });
+
+                                                selectElement.innerHTML = options;
+                                                hasLoadedBrand = true;
+
+                                                console.log("Brands loaded on first click (no Select2).");
+                                             })
+                                             .catch(error => console.error("Error fetching brands:", error));
+                                       }
+                                    });
+                                 </script>
+
+
+
+
+                                 <!-- /Organize Card -->
+                              </div>
+                              <!-- /Second column -->
+                           </div>
+
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                     </div>
+                     <!-- / Content -->
+
+                     <!-- Footer -->
+                     <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl" bis_skin_checked="1">
+                           <div
+                              class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
+                              bis_skin_checked="1">
+                              <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
+                                 ©
+                                 <script>
+                                    document.write(new Date().getFullYear());
+                                 </script>
+                                 2025, made with
+                                 <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
+                                 by
+                                 <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
+                              </div>
+                              <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -862,65 +511,65 @@
 
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
+                        </div> -->
+                           </div>
                         </div>
-                     </div>
+                     </footer>
+                     <!-- / Footer -->
+
+                     <div class="content-backdrop fade" bis_skin_checked="1"></div>
                   </div>
-               </footer>
-               <!-- / Footer -->
-
-               <div class="content-backdrop fade" bis_skin_checked="1"></div>
+                  <!-- Content wrapper -->
+               </div>
+               <!-- / Layout page -->
             </div>
-            <!-- Content wrapper -->
-         </div>
-         <!-- / Layout page -->
-      </div>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle" bis_skin_checked="1"></div>
+            <!-- Overlay -->
+            <div class="layout-overlay layout-menu-toggle" bis_skin_checked="1"></div>
 
-      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-      <div class="drag-target" style="
+            <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+            <div class="drag-target" style="
                touch-action: pan-y;
                user-select: none;
                -webkit-user-drag: none;
                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             " bis_skin_checked="1"></div>
-   </div>
-   <!-- / Layout wrapper -->
+         </div>
+         <!-- / Layout wrapper -->
 
 
-   <!-- Core JS -->
-   <!-- build:js assets/vendor/js/core.js -->
-   <script src="./assets/js/jquery.js"></script>
-   <script src="./assets/js/popper.js"></script>
-   <script src="./assets/js/bootstrap.js"></script>
-   <script src="./assets/js/node-waves.js"></script>
-   <script src="./assets/js/perfect-scrollbar.js"></script>
-   <script src="./assets/js/hammer.js"></script>
-   <script src="./assets/js/i18n.js"></script>
-   <script src="./assets/js/typeahead.js"></script>
-   <script src="./assets/js/menu.js"></script>
+         <!-- Core JS -->
+         <!-- build:js assets/vendor/js/core.js -->
+         <script src="./assets/js/jquery.js"></script>
+         <script src="./assets/js/popper.js"></script>
+         <script src="./assets/js/bootstrap.js"></script>
+         <script src="./assets/js/node-waves.js"></script>
+         <script src="./assets/js/perfect-scrollbar.js"></script>
+         <script src="./assets/js/hammer.js"></script>
+         <script src="./assets/js/i18n.js"></script>
+         <script src="./assets/js/typeahead.js"></script>
+         <script src="./assets/js/menu.js"></script>
 
-   <!-- endbuild -->
+         <!-- endbuild -->
 
-   <!-- Vendors JS -->
-   <script src="./assets/js/katex.js"></script>
-   <script src="./assets/js/quill.js"></script>
-   <script src="./assets/js/select2.js"></script>
-   <script src="./assets/js/dropzone.js"></script>
-   <script type="text/javascript" id="" charset="">
-      console.log("TS:GTM Worked");
-   </script>
-   <script src="./assets/js/jquery-repeater.js"></script>
-   <script src="./assets/js/flatpickr.js"></script>
-   <script src="./assets/js/tagify.js"></script>
+         <!-- Vendors JS -->
+         <script src="./assets/js/katex.js"></script>
+         <script src="./assets/js/quill.js"></script>
+         <script src="./assets/js/select2.js"></script>
+         <script src="./assets/js/dropzone.js"></script>
+         <script type="text/javascript" id="" charset="">
+            console.log("TS:GTM Worked");
+         </script>
+         <script src="./assets/js/jquery-repeater.js"></script>
+         <script src="./assets/js/flatpickr.js"></script>
+         <script src="./assets/js/tagify.js"></script>
 
-   <!-- Main JS -->
-   <script src="./assets/js/main.js"></script>
+         <!-- Main JS -->
+         <script src="./assets/js/main.js"></script>
 
-   <!-- Page JS -->
-   <script src="./assets/js/AddProduct/app-ecommerce-product-add.js"></script>
-   <input type="file" class="dz-hidden-input" accept=".jpg,.jpeg,.png,.gif" tabindex="-1" style="
+         <!-- Page JS -->
+         <script src="./assets/js/AddProduct/app-ecommerce-product-add.js"></script>
+         <input type="file" class="dz-hidden-input" accept=".jpg,.jpeg,.png,.gif" tabindex="-1" style="
             visibility: hidden;
             position: absolute;
             top: 0px;
@@ -928,90 +577,321 @@
             height: 0px;
             width: 0px;
          " />
-   <div class="flatpickr-calendar animate" tabindex="-1" bis_skin_checked="1">
-      <div class="flatpickr-months" bis_skin_checked="1">
-         <span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
-               <g></g>
-               <path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path>
-            </svg></span>
-         <div class="flatpickr-month" bis_skin_checked="1">
-            <div class="flatpickr-current-month" bis_skin_checked="1">
-               <span class="cur-month">March </span>
-               <div class="numInputWrapper" bis_skin_checked="1">
-                  <input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year" /><span
-                     class="arrowUp"></span><span class="arrowDown"></span>
+         <div class="flatpickr-calendar animate" tabindex="-1" bis_skin_checked="1">
+            <div class="flatpickr-months" bis_skin_checked="1">
+               <span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+                     <g></g>
+                     <path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z">
+                     </path>
+                  </svg></span>
+               <div class="flatpickr-month" bis_skin_checked="1">
+                  <div class="flatpickr-current-month" bis_skin_checked="1">
+                     <span class="cur-month">March </span>
+                     <div class="numInputWrapper" bis_skin_checked="1">
+                        <input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year" /><span
+                           class="arrowUp"></span><span class="arrowDown"></span>
+                     </div>
+                  </div>
+               </div>
+               <span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+                     <g></g>
+                     <path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z">
+                     </path>
+                  </svg></span>
+            </div>
+            <div class="flatpickr-innerContainer" bis_skin_checked="1">
+               <div class="flatpickr-rContainer" bis_skin_checked="1">
+                  <div class="flatpickr-weekdays" bis_skin_checked="1">
+                     <div class="flatpickr-weekdaycontainer" bis_skin_checked="1">
+                        <span class="flatpickr-weekday"> Sun</span><span class="flatpickr-weekday">Mon</span><span
+                           class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span
+                           class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span
+                           class="flatpickr-weekday">Sat </span>
+                     </div>
+                  </div>
+                  <div class="flatpickr-days" tabindex="-1" bis_skin_checked="1">
+                     <div class="dayContainer" bis_skin_checked="1">
+                        <span class="flatpickr-day prevMonthDay" aria-label="February 23, 2025"
+                           tabindex="-1">23</span><span class="flatpickr-day prevMonthDay"
+                           aria-label="February 24, 2025" tabindex="-1">24</span><span
+                           class="flatpickr-day prevMonthDay" aria-label="February 25, 2025"
+                           tabindex="-1">25</span><span class="flatpickr-day prevMonthDay"
+                           aria-label="February 26, 2025" tabindex="-1">26</span><span
+                           class="flatpickr-day prevMonthDay" aria-label="February 27, 2025"
+                           tabindex="-1">27</span><span class="flatpickr-day prevMonthDay"
+                           aria-label="February 28, 2025" tabindex="-1">28</span><span class="flatpickr-day"
+                           aria-label="March 1, 2025" tabindex="-1">1</span><span class="flatpickr-day"
+                           aria-label="March 2, 2025" tabindex="-1">2</span><span class="flatpickr-day"
+                           aria-label="March 3, 2025" tabindex="-1">3</span><span class="flatpickr-day"
+                           aria-label="March 4, 2025" tabindex="-1">4</span><span class="flatpickr-day"
+                           aria-label="March 5, 2025" tabindex="-1">5</span><span class="flatpickr-day"
+                           aria-label="March 6, 2025" tabindex="-1">6</span><span class="flatpickr-day"
+                           aria-label="March 7, 2025" tabindex="-1">7</span><span class="flatpickr-day"
+                           aria-label="March 8, 2025" tabindex="-1">8</span><span class="flatpickr-day"
+                           aria-label="March 9, 2025" tabindex="-1">9</span><span class="flatpickr-day"
+                           aria-label="March 10, 2025" tabindex="-1">10</span><span class="flatpickr-day"
+                           aria-label="March 11, 2025" tabindex="-1">11</span><span class="flatpickr-day"
+                           aria-label="March 12, 2025" tabindex="-1">12</span><span class="flatpickr-day"
+                           aria-label="March 13, 2025" tabindex="-1">13</span><span class="flatpickr-day"
+                           aria-label="March 14, 2025" tabindex="-1">14</span><span class="flatpickr-day"
+                           aria-label="March 15, 2025" tabindex="-1">15</span><span class="flatpickr-day"
+                           aria-label="March 16, 2025" tabindex="-1">16</span><span class="flatpickr-day"
+                           aria-label="March 17, 2025" tabindex="-1">17</span><span class="flatpickr-day"
+                           aria-label="March 18, 2025" tabindex="-1">18</span><span class="flatpickr-day"
+                           aria-label="March 19, 2025" tabindex="-1">19</span><span class="flatpickr-day"
+                           aria-label="March 20, 2025" tabindex="-1">20</span><span class="flatpickr-day"
+                           aria-label="March 21, 2025" tabindex="-1">21</span><span class="flatpickr-day"
+                           aria-label="March 22, 2025" tabindex="-1">22</span><span class="flatpickr-day"
+                           aria-label="March 23, 2025" tabindex="-1">23</span><span class="flatpickr-day"
+                           aria-label="March 24, 2025" tabindex="-1">24</span><span class="flatpickr-day today selected"
+                           aria-label="March 25, 2025" aria-current="date" tabindex="-1">25</span><span
+                           class="flatpickr-day" aria-label="March 26, 2025" tabindex="-1">26</span><span
+                           class="flatpickr-day" aria-label="March 27, 2025" tabindex="-1">27</span><span
+                           class="flatpickr-day" aria-label="March 28, 2025" tabindex="-1">28</span><span
+                           class="flatpickr-day" aria-label="March 29, 2025" tabindex="-1">29</span><span
+                           class="flatpickr-day" aria-label="March 30, 2025" tabindex="-1">30</span><span
+                           class="flatpickr-day" aria-label="March 31, 2025" tabindex="-1">31</span><span
+                           class="flatpickr-day nextMonthDay" aria-label="April 1, 2025" tabindex="-1">1</span><span
+                           class="flatpickr-day nextMonthDay" aria-label="April 2, 2025" tabindex="-1">2</span><span
+                           class="flatpickr-day nextMonthDay" aria-label="April 3, 2025" tabindex="-1">3</span><span
+                           class="flatpickr-day nextMonthDay" aria-label="April 4, 2025" tabindex="-1">4</span><span
+                           class="flatpickr-day nextMonthDay" aria-label="April 5, 2025" tabindex="-1">5</span>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
-         <span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
-               <g></g>
-               <path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path>
-            </svg></span>
-      </div>
-      <div class="flatpickr-innerContainer" bis_skin_checked="1">
-         <div class="flatpickr-rContainer" bis_skin_checked="1">
-            <div class="flatpickr-weekdays" bis_skin_checked="1">
-               <div class="flatpickr-weekdaycontainer" bis_skin_checked="1">
-                  <span class="flatpickr-weekday"> Sun</span><span class="flatpickr-weekday">Mon</span><span
-                     class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span
-                     class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span
-                     class="flatpickr-weekday">Sat </span>
-               </div>
-            </div>
-            <div class="flatpickr-days" tabindex="-1" bis_skin_checked="1">
-               <div class="dayContainer" bis_skin_checked="1">
-                  <span class="flatpickr-day prevMonthDay" aria-label="February 23, 2025" tabindex="-1">23</span><span
-                     class="flatpickr-day prevMonthDay" aria-label="February 24, 2025" tabindex="-1">24</span><span
-                     class="flatpickr-day prevMonthDay" aria-label="February 25, 2025" tabindex="-1">25</span><span
-                     class="flatpickr-day prevMonthDay" aria-label="February 26, 2025" tabindex="-1">26</span><span
-                     class="flatpickr-day prevMonthDay" aria-label="February 27, 2025" tabindex="-1">27</span><span
-                     class="flatpickr-day prevMonthDay" aria-label="February 28, 2025" tabindex="-1">28</span><span
-                     class="flatpickr-day" aria-label="March 1, 2025" tabindex="-1">1</span><span class="flatpickr-day"
-                     aria-label="March 2, 2025" tabindex="-1">2</span><span class="flatpickr-day"
-                     aria-label="March 3, 2025" tabindex="-1">3</span><span class="flatpickr-day"
-                     aria-label="March 4, 2025" tabindex="-1">4</span><span class="flatpickr-day"
-                     aria-label="March 5, 2025" tabindex="-1">5</span><span class="flatpickr-day"
-                     aria-label="March 6, 2025" tabindex="-1">6</span><span class="flatpickr-day"
-                     aria-label="March 7, 2025" tabindex="-1">7</span><span class="flatpickr-day"
-                     aria-label="March 8, 2025" tabindex="-1">8</span><span class="flatpickr-day"
-                     aria-label="March 9, 2025" tabindex="-1">9</span><span class="flatpickr-day"
-                     aria-label="March 10, 2025" tabindex="-1">10</span><span class="flatpickr-day"
-                     aria-label="March 11, 2025" tabindex="-1">11</span><span class="flatpickr-day"
-                     aria-label="March 12, 2025" tabindex="-1">12</span><span class="flatpickr-day"
-                     aria-label="March 13, 2025" tabindex="-1">13</span><span class="flatpickr-day"
-                     aria-label="March 14, 2025" tabindex="-1">14</span><span class="flatpickr-day"
-                     aria-label="March 15, 2025" tabindex="-1">15</span><span class="flatpickr-day"
-                     aria-label="March 16, 2025" tabindex="-1">16</span><span class="flatpickr-day"
-                     aria-label="March 17, 2025" tabindex="-1">17</span><span class="flatpickr-day"
-                     aria-label="March 18, 2025" tabindex="-1">18</span><span class="flatpickr-day"
-                     aria-label="March 19, 2025" tabindex="-1">19</span><span class="flatpickr-day"
-                     aria-label="March 20, 2025" tabindex="-1">20</span><span class="flatpickr-day"
-                     aria-label="March 21, 2025" tabindex="-1">21</span><span class="flatpickr-day"
-                     aria-label="March 22, 2025" tabindex="-1">22</span><span class="flatpickr-day"
-                     aria-label="March 23, 2025" tabindex="-1">23</span><span class="flatpickr-day"
-                     aria-label="March 24, 2025" tabindex="-1">24</span><span class="flatpickr-day today selected"
-                     aria-label="March 25, 2025" aria-current="date" tabindex="-1">25</span><span class="flatpickr-day"
-                     aria-label="March 26, 2025" tabindex="-1">26</span><span class="flatpickr-day"
-                     aria-label="March 27, 2025" tabindex="-1">27</span><span class="flatpickr-day"
-                     aria-label="March 28, 2025" tabindex="-1">28</span><span class="flatpickr-day"
-                     aria-label="March 29, 2025" tabindex="-1">29</span><span class="flatpickr-day"
-                     aria-label="March 30, 2025" tabindex="-1">30</span><span class="flatpickr-day"
-                     aria-label="March 31, 2025" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay"
-                     aria-label="April 1, 2025" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay"
-                     aria-label="April 2, 2025" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay"
-                     aria-label="April 3, 2025" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay"
-                     aria-label="April 4, 2025" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay"
-                     aria-label="April 5, 2025" tabindex="-1">5</span>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+
+          <script>
+            let filesArray = [];
+            let keepCurrentImage = true;
+
+            const uploadArea = document.getElementById('upload-area');
+            const imageInput = document.getElementById('imageInput');
+            const preview = document.getElementById('preview');
+
+            uploadArea.addEventListener('click', () => imageInput.click());
+
+            uploadArea.addEventListener('dragover', e => {
+               e.preventDefault();
+               uploadArea.style.backgroundColor = '#e0e0e0';
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+               uploadArea.style.backgroundColor = '#f9f9f9';
+            });
+
+            uploadArea.addEventListener('drop', e => {
+               e.preventDefault();
+               uploadArea.style.backgroundColor = '#f9f9f9';
+               handleFiles(e.dataTransfer.files);
+            });
+
+            imageInput.addEventListener('change', e => handleFiles(e.target.files));
+
+            function handleFiles(files) {
+               Array.from(files).forEach(file => {
+                 if (file.type.startsWith('image/')) {
+                   filesArray.push(file);
+
+                   const container = document.createElement('div');
+                   container.style.position = 'relative';
+
+                   const img = document.createElement('img');
+                   img.src = URL.createObjectURL(file);
+                   img.style.width = '100px';
+                   img.style.height = '100px';
+                   img.style.objectFit = 'contain';
+                   img.classList.add('rounded');
+
+                   const removeBtn = document.createElement('button');
+                   removeBtn.innerHTML = '&times;';
+                   removeBtn.className = 'btn btn-sm btn-danger';
+                   removeBtn.style.position = 'absolute';
+                   removeBtn.style.top = '0';
+                   removeBtn.style.right = '0';
+                   removeBtn.style.borderRadius = '50%';
+                   removeBtn.style.padding = '2px 6px';
+                   removeBtn.style.fontSize = '12px';
+
+                   removeBtn.addEventListener('click', () => {
+                     filesArray = filesArray.filter(f => f !== file);
+                     container.remove();
+                   });
+
+                   container.appendChild(img);
+                   container.appendChild(removeBtn);
+                   preview.appendChild(container);
+
+                   keepCurrentImage = false;
+                 }
+               });
+            }
+            // Cập nhật giá bán khi giá gốc hoặc giá khuyến mãi thay đổi
+            function updateSellingPrice() {
+               const original = parseFloat(document.getElementById('ecommerce-product-price').value) || 0;
+               const discount = parseFloat(document.getElementById('ecommerce-product-discount-price').value) || 0;
+               document.getElementById('ecommerce-product-selling-price').value = Math.max(original - discount, 0);
+            }
+
+            document.getElementById('ecommerce-product-price').addEventListener('input', updateSellingPrice);
+            document.getElementById('ecommerce-product-discount-price').addEventListener('input', updateSellingPrice);
+
+            // Spinner functions
+            function showSpinner() {
+               if (document.getElementById('custom-spinner')) return;
+               const spinner = document.createElement('div');
+               spinner.id = 'custom-spinner';
+               spinner.style.position = 'fixed';
+               spinner.style.top = '0';
+               spinner.style.left = '0';
+               spinner.style.width = '100vw';
+               spinner.style.height = '100vh';
+               spinner.style.background = 'rgba(0,0,0,0.15)';
+               spinner.style.zIndex = '99999';
+               spinner.style.display = 'flex';
+               spinner.style.alignItems = 'center';
+               spinner.style.justifyContent = 'center';
+               spinner.innerHTML = `
+                 <div style="background: #fff; padding: 32px 48px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center;">
+                   <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
+                   <div style="margin-top: 18px; font-weight: bold; color: #333;">Đang xử lý...</div>
+                 </div>
+               `;
+               document.body.appendChild(spinner);
+            }
+            function hideSpinner() {
+               const spinner = document.getElementById('custom-spinner');
+               if (spinner) spinner.remove();
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+               function getProductData() {
+                 return {
+                   name: document.querySelector("input[name='productTitle']").value.trim(),
+                   sku: document.querySelector("input[name='productSku']").value.trim(),
+                   quantity: parseInt(document.querySelector("input[name='Quantity']").value) || 0,
+                   description: document.querySelector("#ecommerce-category-description .ql-editor").innerText.trim() || "This is a sample product",
+                   originalPrice: parseFloat(document.querySelector("input[name='originalPrice']").value) || 0,
+                   discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
+                   sellingPrice:document.getElementById('ecommerce-product-selling-price').value || 0,
+                   sellingType: "SALE",
+                   categoryId: document.querySelector("#productCategory").value,
+                   brandId: document.querySelector("#productBrand").value,
+                 };
+               }
+
+               // API để tạo sản phẩm
+               async function createProduct(productData) {
+                 console.log("🧾 Final productData gửi lên:", JSON.stringify(productData, null, 2));
+                 const res = await fetch("http://localhost:8080/api/v1/product", {
+                   method: "POST",
+                   headers: { "Content-Type": "application/json" },
+                   body: JSON.stringify(productData)
+                 });
+                 const result = await res.json();
+                 console.log("Response từ API tạo product:", result);
+
+                 if (!result.data || !result.data.id) {
+                   throw new Error("Không nhận được productId!");
+                 }
+                 return result.data.id;
+               }
+
+               // Upload nhiều ảnh lên product đã tạo
+               async function uploadProductImages(productId) {
+                 if (!filesArray.length) {
+                   console.warn("⚠️ Không có ảnh nào được chọn.");
+                   return;
+                 }
+                 const formData = new FormData();
+                 filesArray.forEach(file => {
+                   formData.append("files", file);
+                 });
+
+                 try {
+                   const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
+                     method: "POST",
+                     body: formData
+                   });
+
+                   const result = await res.json();
+                   console.log("Upload result:", result);
+
+                   if (res.ok) {
+                     showToast("Ảnh đã upload thành công!");
+                   } else {
+                     console.error("Upload thất bại:", result);
+                     showToast("Upload ảnh thất bại. Vui lòng kiểm tra.", "error");
+                   }
+                 } catch (err) {
+                   console.error(" Lỗi upload:", err);
+                   showToast("Lỗi khi upload ảnh.", "error");
+                 }
+               }
+
+               document.querySelector(".btn-submit-product").addEventListener("click", async function (e) {
+                 e.preventDefault();
+                 showSpinner();
+                 try {
+                   const productData = getProductData();
+                   console.log("Data sắp gửi:", productData);
+
+                   const productId = await createProduct(productData);
+                   console.log("Product created with ID:", productId);
+
+                   await uploadProductImages(productId);
+                   showToast("Sản phẩm và ảnh đã được đăng thành công!");
+                   setTimeout(() => {
+                     window.location.href = '/admin/ProductList.html'
+                   }, 2500);
+                 } catch (err) {
+                   console.error("Lỗi khi xử lý publish:", err);
+                   showToast("Đăng sản phẩm thất bại. Vui lòng thử lại.", "error");
+                 }
+                 hideSpinner();
+               });
+            });
+
+            function showToast(message, type = "success") {
+               const oldToast = document.getElementById("custom-toast");
+               if (oldToast) oldToast.remove();
+
+               const toast = document.createElement("div");
+               toast.id = "custom-toast";
+               toast.style.position = "fixed";
+               toast.style.top = "30px";
+               toast.style.right = "800px";
+               toast.style.zIndex = "9999";
+               toast.style.minWidth = "220px";
+               toast.style.padding = "16px 24px";
+               toast.style.borderRadius = "8px";
+               toast.style.color = "#fff";
+               toast.style.fontWeight = "bold";
+               toast.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+               toast.style.background = type === "success" ? "#22c55e" : "#ef4444";
+               toast.innerText = message;
+               document.body.appendChild(toast);
+               setTimeout(() => toast.remove(), 2500);
+            }
+          </script>
 
 
-   <script src="./assets/js/fix-select2.js"></script>
+
+
+         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
+
+
+
+
+         <!-- <script src="./assets/js/fix-select2.js"></script> -->
+
 </body>
 
 
