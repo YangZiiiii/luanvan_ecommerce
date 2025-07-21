@@ -121,57 +121,23 @@
                         <div class="card-datatable table-responsive" bis_skin_checked="1">
                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                               bis_skin_checked="1">
-                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0"
+                              <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0" style="margin: 15px 0; justify-content: flex-end;"
                                  bis_skin_checked="1">
-                                 <div class="me-5 ms-n2" bis_skin_checked="1">
-                                    <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
-                                       <label><input type="search" class="form-control form-control-sm"
-                                             placeholder="Search" aria-controls="DataTables_Table_0" /></label>
-                                    </div>
-                                 </div>
+                                 
                                  <div class="d-flex justify-content-start justify-content-md-end align-items-baseline"
                                     bis_skin_checked="1">
                                     <div
                                        class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0"
                                        bis_skin_checked="1">
-                                       <div class="dataTables_length my-0" id="DataTables_Table_0_length"
-                                          bis_skin_checked="1">
-                                          <label><select name="DataTables_Table_0_length"
-                                                aria-controls="DataTables_Table_0" class="form-select form-select-sm">
-                                                <option value="7">7</option>
-                                                <option value="10">
-                                                   10
-                                                </option>
-                                                <option value="20">
-                                                   20
-                                                </option>
-                                                <option value="50">
-                                                   50
-                                                </option>
-                                                <option value="70">
-                                                   70
-                                                </option>
-                                                <option value="100">
-                                                   100
-                                                </option>
-                                             </select></label>
-                                       </div>
+                                       
                                        <div class="dt-buttons btn-group flex-wrap" bis_skin_checked="1">
-                                          <div class="btn-group" bis_skin_checked="1">
-                                             <button
-                                                class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-5 waves-effect waves-light"
-                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                                aria-haspopup="dialog" aria-expanded="false">
-                                                <span><i class="ri-download-line me-1"></i>
-                                                   <span class="d-none d-sm-inline-block">Export</span></span>
-                                             </button>
-                                          </div>
+                                          
                                           <button
                                              class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light btn-brand"
                                              tabindex="0" aria-controls="DataTables_Table_0" type="button"
                                              data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceBrandList">
                                              <span><i class="ri-add-line me-0 me-sm-1"></i><span
-                                                   class="d-none d-sm-inline-block">Add Brand</span></span>
+                                                   class="d-none d-sm-inline-block">Thêm thương hiệu</span></span>
                                           </button>
                                        </div>
                                     </div>
@@ -191,37 +157,37 @@
                                           rowspan="1" colspan="1" style="width: 699px"
                                           aria-label="Categories: activate to sort column ascending"
                                           aria-sort="descending">
-                                          Categories
+                                          Các thương hiệu
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting" tabindex="0"
                                           aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                           style="width: 191px"
                                           aria-label="Description &amp;nbsp;: activate to sort column ascending">
-                                          Description &nbsp;
+                                          tổng sản phẩm
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 160px" aria-label="Status">
-                                          Status
+                                          Trạng thái
                                        </th>
                                        <th class="text-lg-center sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 118px" aria-label="Actions">
-                                          Actions
+                                          Tác vụ
                                        </th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                 <script>
-                                    // Lưu brands vào biến toàn cục để dùng lại khi update
-                                    let brandsData = [];
+                                    <script>
+                                       // Lưu brands vào biến toàn cục để dùng lại khi update
+                                       let brandsData = [];
 
-                                    fetch('http://localhost:8080/api/v1/brand')
-                                     .then(response => response.json())
-                                     .then(data => {
-                                       brandsData = data.content || [];
-                                       const tableBody = document.querySelector('#DataTables_Table_0 tbody');
-                                       tableBody.innerHTML = ''; // Clear existing rows
-                                       brandsData.forEach(brand => {
-                                        const row = `
+                                       fetch('http://localhost:8080/api/v1/brand')
+                                          .then(response => response.json())
+                                          .then(data => {
+                                             brandsData = data.data.content || [];
+                                             const tableBody = document.querySelector('#DataTables_Table_0 tbody');
+                                             tableBody.innerHTML = ''; // Clear existing rows
+                                             brandsData.forEach(brand => {
+                                                const row = `
                                         <tr>
                                           <td class="control" tabindex="0" style="display: none"></td>
                                           <td class="dt-checkboxes-cell">
@@ -230,10 +196,10 @@
                                           <td class="sorting_1">
                                           <div class="d-flex align-items-center">
                                             <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                             <div class="avatar">
-                                               <img src="./assets/img/CategoryList/default.jpg" alt="${brand.name}" class="rounded-2" />
-                                             </div>
-                                            </div>
+                                                   <div class="avatar" style="display: flex; align-items: center; justify-content: center; color:#ced457">
+                                                      <i class="fa-solid fa-tags"></i>
+                                                   </div>
+                                                </div>
                                             <div class="d-flex flex-column justify-content-center">
                                              <span class="text-heading fw-medium text-wrap">${brand.name}</span>
                                             </div>
@@ -241,7 +207,7 @@
                                           </td>
                                           <td >
                                           <div class="text-sm-end pe-3">
-                                            ${brand.description || 'N/A'}
+                                            ${brand.totalProduct || 0}
                                           </div>
                                           </td>
                                           <td style="text-align: right;">
@@ -269,81 +235,81 @@
                                           </td>
                                         </tr>
                                        `;
-                                        tableBody.insertAdjacentHTML('beforeend', row);
-                                       });
+                                                tableBody.insertAdjacentHTML('beforeend', row);
+                                             });
 
-                                       // Gán sự kiện cho nút edit sau khi render xong
-                                       document.querySelectorAll('.btn-edit-brand').forEach(btn => {
-                                        btn.addEventListener('click', async function () {
-                                          const brandId = this.getAttribute('data-brand-id');
-                                          if (!brandId) return;
-                                          try {
-                                            const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
-                                            const result = await res.json();
-                                            if (result && result.data) {
-                                             // Gán dữ liệu vào modal update
-                                             document.getElementById('ecommerce-brand-title').value = result.data.name || '';
-                                             // Gán description vào editor
-                                             const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
-                                             if (descElem) {
-                                               descElem.innerText = result.data.description || '';
-                                             }
-                                             // Gán status (chỉ ACTIVE/INACTIVE)
+                                             // Gán sự kiện cho nút edit sau khi render xong
+                                             document.querySelectorAll('.btn-edit-brand').forEach(btn => {
+                                                btn.addEventListener('click', async function () {
+                                                   const brandId = this.getAttribute('data-brand-id');
+                                                   if (!brandId) return;
+                                                   try {
+                                                      const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
+                                                      const result = await res.json();
+                                                      if (result && result.data) {
+                                                         // Gán dữ liệu vào modal update
+                                                         document.getElementById('ecommerce-brand-title').value = result.data.name || '';
+                                                         // Gán description vào editor
+                                                         const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
+                                                         if (descElem) {
+                                                            descElem.innerText = result.data.description || '';
+                                                         }
+                                                         // Gán status (chỉ ACTIVE/INACTIVE)
+                                                         const statusSelect = document.getElementById('ecommerce-brand-status');
+                                                         if (statusSelect) {
+                                                            statusSelect.value = result.data.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE';
+                                                            statusSelect.setAttribute('data-brand-id', brandId);
+                                                         }
+                                                         // Lưu id vào form để dùng khi update
+                                                         document.getElementById('eCommerceBrandListForm').setAttribute('data-brand-id', brandId);
+                                                      }
+                                                   } catch (err) {
+                                                      alert('Không lấy được dữ liệu brand!');
+                                                   }
+                                                });
+                                             });
+
+                                             // Gán sự kiện đổi status cho select trong modal update
                                              const statusSelect = document.getElementById('ecommerce-brand-status');
                                              if (statusSelect) {
-                                               statusSelect.value = result.data.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE';
-                                               statusSelect.setAttribute('data-brand-id', brandId);
+                                                statusSelect.onchange = async function () {
+                                                   const brandId = statusSelect.getAttribute('data-brand-id');
+                                                   const newStatus = statusSelect.value;
+                                                   if (!brandId || !newStatus) return;
+                                                   try {
+                                                      const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}/status`, {
+                                                         method: 'PUT',
+                                                         headers: { 'Content-Type': 'application/json' },
+                                                         body: JSON.stringify({ status: newStatus })
+                                                      });
+                                                      if (res.ok) {
+                                                         // Optionally show a toast or reload
+                                                         // window.location.reload();
+                                                      } else {
+                                                         alert('Update status failed!');
+                                                      }
+                                                   } catch (err) {
+                                                      alert('Error updating status!');
+                                                   }
+                                                };
                                              }
-                                             // Lưu id vào form để dùng khi update
-                                             document.getElementById('eCommerceBrandListForm').setAttribute('data-brand-id', brandId);
-                                            }
-                                          } catch (err) {
-                                            alert('Không lấy được dữ liệu brand!');
-                                          }
-                                        });
-                                       });
-
-                                       // Gán sự kiện đổi status cho select trong modal update
-                                       const statusSelect = document.getElementById('ecommerce-brand-status');
-                                       if (statusSelect) {
-                                         statusSelect.onchange = async function () {
-                                           const brandId = statusSelect.getAttribute('data-brand-id');
-                                           const newStatus = statusSelect.value;
-                                           if (!brandId || !newStatus) return;
-                                           try {
-                                             const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}/status`, {
-                                               method: 'PUT',
-                                               headers: { 'Content-Type': 'application/json' },
-                                               body: JSON.stringify({ status: newStatus })
-                                             });
-                                             if (res.ok) {
-                                               // Optionally show a toast or reload
-                                               // window.location.reload();
-                                             } else {
-                                               alert('Update status failed!');
-                                             }
-                                           } catch (err) {
-                                             alert('Error updating status!');
-                                           }
-                                         };
-                                       }
-                                     })
-                                     .catch(error => console.error('Error fetching brands:', error));
-                                 </script>
+                                          })
+                                          .catch(error => console.error('Error fetching brands:', error));
+                                    </script>
                                  </tbody>
-                                 </table>
-                                 <!-- Modal delete item -->
-                                 <div class="modal-overlay delete-modal" id="modalOverlay"
-                                   onclick="handleOverlayClick(event)">
-                                   <div class="modal">
+                              </table>
+                              <!-- Modal delete item -->
+                              <div class="modal-overlay delete-modal" id="modalOverlay"
+                                 onclick="handleOverlayClick(event)">
+                                 <div class="modal">
                                     <span class="close-btn" onclick="closeModal()">&times;</span>
 
                                     <!-- Nội dung ban đầu -->
                                     <div id="modalContent">
                                        <h3 class="modalInfo">Are you sure you want to delete this product?</h3>
                                        <div class="buttons">
-                                        <button class="button button-no" onclick="closeModal()">No</button>
-                                        <button class="button button-yes" onclick="confirmYes()">Yes</button>
+                                          <button class="button button-no" onclick="closeModal()">No</button>
+                                          <button class="button button-yes" onclick="confirmYes()">Yes</button>
                                        </div>
                                     </div>
 
@@ -353,278 +319,246 @@
                                        <p style="margin-top: 10px; color: #22c55e; font-weight: bold;">Confirmed!</p>
                                        <button class="ok-btn" onclick="closeModal()">OK</button>
                                     </div>
-                                   </div>
                                  </div>
-                                 <!-- End delete modal item -->
-                                 <div class="row mx-1" bis_skin_checked="1">
-                                   <div class="col-sm-12 col-md-6" bis_skin_checked="1">
-                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                       aria-live="polite" bis_skin_checked="1">
-                                       Showing 1 to 7 of 14 entries
+                              </div>
+                              <!-- End delete modal item -->
+                              
+                              <div bis_skin_checked="1" style="width: 1%"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Offcanvas to add new brand -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandList"
+                        aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
+                        <!-- Offcanvas Header -->
+                        <div class="offcanvas-header py-6">
+                           <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Add Brand</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+
+                        <!-- Offcanvas Body -->
+                        <div class="offcanvas-body border-top">
+                           <form class="pt-0" id="eCommerceBrandListFormAdd" onsubmit="return false" novalidate>
+                              <!-- Title -->
+                              <div class="form-floating form-floating-outline mb-5">
+                                 <input type="text" class="form-control" id="ecommerce-brand-title-add"
+                                    placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
+                                 <label for="ecommerce-brand-title-add">Tên thương hiệu</label>
+                              </div>
+
+
+
+                              <!-- Description -->
+                              <!-- <div class="mb-6">
+                                 <div class="form-control p-0 pt-1">
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-collection-description-add">
+                                       <div class="ql-editor ql-blank" contenteditable="true"
+                                          data-placeholder="Write a description...">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                       <div class="ql-tooltip ql-hidden"></div>
                                     </div>
-                                   </div>
-                                   <div class="col-sm-12 col-md-6" bis_skin_checked="1">
-                                    <div class="dataTables_paginate paging_simple_numbers"
-                                       id="DataTables_Table_0_paginate" bis_skin_checked="1">
-                                       <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled"
-                                          id="DataTables_Table_0_previous">
-                                          <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                           data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
-                                        </li>
-                                        <li class="paginate_button page-item active">
-                                          <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page"
-                                           data-dt-idx="0" tabindex="0" class="page-link">1</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                          <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
-                                           tabindex="0" class="page-link">2</a>
-                                        </li>
-                                        <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                          <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
-                                           tabindex="0" class="page-link">Next</a>
-                                        </li>
-                                       </ul>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                       <div class="d-flex justify-content-end">
+                                          <span class="ql-formats">
+                                             <button class="ql-bold" type="button"></button>
+                                             <button class="ql-italic" type="button"></button>
+                                             <button class="ql-underline" type="button"></button>
+                                             <button class="ql-list" value="ordered" type="button"></button>
+                                             <button class="ql-list" value="bullet" type="button"></button>
+                                             <button class="ql-link" type="button"></button>
+                                             <button class="ql-image" type="button"></button>
+                                          </span>
+                                       </div>
                                     </div>
-                                   </div>
                                  </div>
-                                 <div bis_skin_checked="1" style="width: 1%"></div>
+                              </div> -->
+
+                              <!-- Status -->
+                              <!-- <div class="mb-5 ecommerce-select2-dropdown">
+                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                    <div class="position-relative">
+                                       <select id="ecommerce-brand-status-add" class="form-select"
+                                          data-placeholder="Select brand status" data-allow-clear="true">
+                                          
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-brand-status-add">Status</label>
                                  </div>
+                              </div> -->
+
+                              <!-- Submit and reset -->
+                              <div class="mb-4">
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1"
+                                    id="btnAddBrand">Thêm</button>
+                                 <button type="reset" class="btn btn-outline-danger"
+                                    data-bs-dismiss="offcanvas">Hủy bỏ</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <script>
+                        document.getElementById('btnAddBrand').onclick = async function (e) {
+                           e.preventDefault();
+                           const name = document.getElementById('ecommerce-brand-title-add').value.trim();
+                           // Lấy description từ editor
+                           // const descElem = document.querySelector('#ecommerce-collection-description-add .ql-editor');
+                           // const description = descElem ? descElem.innerText.trim() : '';
+                           // // Lấy status (chỉ ACTIVE/INACTIVE, mặc định INACTIVE nếu không chọn)
+                           // const status = document.getElementById('ecommerce-brand-status-add').value || 'INACTIVE';
+
+                           if (!name) {
+                              alert('Please enter brand name!');
+                              return;
+                           }
+
+                           try {
+                              const response = await fetch('http://localhost:8080/api/v1/brand', {
+                                 method: 'POST',
+                                 headers: {
+                                    'Content-Type': 'application/json'
+                                 },
+                                 body: JSON.stringify({
+                                    name: name
+                                   
+                                 })
+                              });
+                              if (response.ok) {
+                                 window.location.reload();
+                              } else {
+                                 alert('Add brand failed!');
+                              }
+                           } catch (err) {
+                              alert('Error: ' + err);
+                           }
+                        };
+                     </script>
+
+
+
+                     <!-- Offcanvas to update new brand -->
+                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandListUpdate"
+                        aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
+                        <!-- Offcanvas Header -->
+                        <div class="offcanvas-header py-6">
+                           <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Update Brand</h5>
+                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+
+                        <!-- Offcanvas Body -->
+                        <div class="offcanvas-body border-top">
+                           <form class="pt-0" id="eCommerceBrandListForm" onsubmit="return false" novalidate>
+
+                              <!-- Title -->
+                              <div class="form-floating form-floating-outline mb-5">
+                                 <input type="text" class="form-control" id="ecommerce-brand-title"
+                                    placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
+                                 <label for="ecommerce-brand-title">Title</label>
+                              </div>
+
+
+                              <!-- Image -->
+
+
+
+                              <!-- Description -->
+                              <!-- <div class="mb-6">
+                                 <div class="form-control p-0 pt-1">
+                                    <div class="comment-editor border-0 ql-container ql-snow"
+                                       id="ecommerce-collection-description">
+                                       <div class="ql-editor ql-blank" contenteditable="true" data-placeholder="">
+                                          <p><br></p>
+                                       </div>
+                                       <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+                                       <div class="ql-tooltip ql-hidden"></div>
+                                    </div>
+                                    <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
+                                       <div class="d-flex justify-content-end">
+                                          <span class="ql-formats">
+                                             <button class="ql-bold" type="button"></button>
+                                             <button class="ql-italic" type="button"></button>
+                                             <button class="ql-underline" type="button"></button>
+                                             <button class="ql-list" value="ordered" type="button"></button>
+                                             <button class="ql-list" value="bullet" type="button"></button>
+                                             <button class="ql-link" type="button"></button>
+                                             <button class="ql-image" type="button"></button>
+                                          </span>
+                                       </div>
+                                    </div>
                                  </div>
+                              </div> -->
+
+                              <!-- Status -->
+                              <div class="mb-5 ecommerce-select2-dropdown">
+                                 <div class="form-floating form-floating-outline form-floating-select2">
+                                    <div class="position-relative">
+                                       <select id="ecommerce-brand-status" class="form-select"
+                                          data-placeholder="Select brand status" data-allow-clear="true">
+
+                                          <option value="ACTIVE">Active</option>
+                                          <option value="INACTIVE">Inactive</option>
+                                          <option value="DELETED">Deleted</option>
+                                       </select>
+                                    </div>
+                                    <label for="ecommerce-brand-status">Status</label>
                                  </div>
-                                 <!-- Offcanvas to add new brand -->
-                                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandList"
-                                   aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
-                                   <!-- Offcanvas Header -->
-                                   <div class="offcanvas-header py-6">
-                                     <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Add Brand</h5>
-                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                      aria-label="Close"></button>
-                                   </div>
+                              </div>
 
-                                   <!-- Offcanvas Body -->
-                                   <div class="offcanvas-body border-top">
-                                     <form class="pt-0" id="eCommerceBrandListFormAdd" onsubmit="return false" novalidate>
-                                      <!-- Title -->
-                                      <div class="form-floating form-floating-outline mb-5">
-                                        <input type="text" class="form-control" id="ecommerce-brand-title-add"
-                                         placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
-                                        <label for="ecommerce-brand-title-add">Name</label>
-                                      </div>
+                              <!-- Submit and reset -->
+                              <div class="mb-4">
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1"
+                                    id="btnUpdateBrand">Update</button>
+                                 <button type="reset" class="btn btn-outline-danger"
+                                    data-bs-dismiss="offcanvas">Discard</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <script>
+                        // Xử lý update brand khi submit form update
+                        document.getElementById('btnUpdateBrand').onclick = async function (e) {
+                           e.preventDefault();
+                           const form = document.getElementById('eCommerceBrandListForm');
+                           const brandId = form.getAttribute('data-brand-id');
+                           const name = document.getElementById('ecommerce-brand-title').value.trim();
+                           // const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
+                           // const description = descElem ? descElem.innerText.trim() : '';
+                           const status = document.getElementById('ecommerce-brand-status').value || 'INACTIVE';
 
-                                      
+                           if (!brandId) {
+                              alert('Không tìm thấy brand để update!');
+                              return;
+                           }
+                           if (!name) {
+                              alert('Vui lòng nhập tên brand!');
+                              return;
+                           }
 
-                                      <!-- Description -->
-                                      <div class="mb-6">
-                                        <div class="form-control p-0 pt-1">
-                                         <div class="comment-editor border-0 ql-container ql-snow"
-                                            id="ecommerce-collection-description-add">
-                                            <div class="ql-editor ql-blank" contenteditable="true"
-                                             data-placeholder="Write a description...">
-                                             <p><br></p>
-                                            </div>
-                                            <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                            <div class="ql-tooltip ql-hidden"></div>
-                                         </div>
-                                         <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
-                                            <div class="d-flex justify-content-end">
-                                             <span class="ql-formats">
-                                               <button class="ql-bold" type="button"></button>
-                                               <button class="ql-italic" type="button"></button>
-                                               <button class="ql-underline" type="button"></button>
-                                               <button class="ql-list" value="ordered" type="button"></button>
-                                               <button class="ql-list" value="bullet" type="button"></button>
-                                               <button class="ql-link" type="button"></button>
-                                               <button class="ql-image" type="button"></button>
-                                             </span>
-                                            </div>
-                                         </div>
-                                        </div>
-                                      </div>
-
-                                      <!-- Status -->
-                                      <div class="mb-5 ecommerce-select2-dropdown">
-                                        <div class="form-floating form-floating-outline form-floating-select2">
-                                         <div class="position-relative">
-                                            <select id="ecommerce-brand-status-add" class="form-select"
-                                             data-placeholder="Select brand status" data-allow-clear="true">
-                                             <option value="">Select brand status</option>
-                                             <option value="ACTIVE">Active</option>
-                                             <option value="INACTIVE">Inactive</option>
-                                            </select>
-                                         </div>
-                                         <label for="ecommerce-brand-status-add">Status</label>
-                                        </div>
-                                      </div>
-
-                                      <!-- Submit and reset -->
-                                      <div class="mb-4">
-                                        <button type="submit" class="btn btn-primary me-sm-3 me-1"
-                                         id="btnAddBrand">Add</button>
-                                        <button type="reset" class="btn btn-outline-danger"
-                                         data-bs-dismiss="offcanvas">Discard</button>
-                                      </div>
-                                     </form>
-                                   </div>
-                                 </div>
-                                 <script>
-                                   document.getElementById('btnAddBrand').onclick = async function (e) {
-                                     e.preventDefault();
-                                     const name = document.getElementById('ecommerce-brand-title-add').value.trim();
-                                     // Lấy description từ editor
-                                     const descElem = document.querySelector('#ecommerce-collection-description-add .ql-editor');
-                                     const description = descElem ? descElem.innerText.trim() : '';
-                                     // Lấy status (chỉ ACTIVE/INACTIVE, mặc định INACTIVE nếu không chọn)
-                                     const status = document.getElementById('ecommerce-brand-status-add').value || 'INACTIVE';
-
-                                     if (!name) {
-                                      alert('Please enter brand name!');
-                                      return;
-                                     }
-
-                                     try {
-                                      const response = await fetch('http://localhost:8080/api/v1/brand', {
-                                        method: 'POST',
-                                        headers: {
-                                         'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({
-                                         name: name,
-                                         description: description,
-                                         status: status
-                                        })
-                                      });
-                                      if (response.ok) {
-                                        window.location.reload();
-                                      } else {
-                                        alert('Add brand failed!');
-                                      }
-                                     } catch (err) {
-                                      alert('Error: ' + err);
-                                     }
-                                   };
-                                 </script>
-
-
-
-                                 <!-- Offcanvas to update new brand -->
-                                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceBrandListUpdate"
-                                   aria-labelledby="offcanvasEcommerceBrandListLabel" role="dialog">
-                                   <!-- Offcanvas Header -->
-                                   <div class="offcanvas-header py-6">
-                                     <h5 id="offcanvasEcommerceBrandListLabel" class="offcanvas-title">Update Brand</h5>
-                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                      aria-label="Close"></button>
-                                   </div>
-
-                                   <!-- Offcanvas Body -->
-                                   <div class="offcanvas-body border-top">
-                                     <form class="pt-0" id="eCommerceBrandListForm" onsubmit="return false" novalidate>
-
-                                      <!-- Title -->
-                                      <div class="form-floating form-floating-outline mb-5">
-                                        <input type="text" class="form-control" id="ecommerce-brand-title"
-                                         placeholder="Enter brand title" name="brandTitle" aria-label="brand title">
-                                        <label for="ecommerce-brand-title">Title</label>
-                                      </div>
-
-
-                                      <!-- Image -->
-                                     
-
-
-                                      <!-- Description -->
-                                      <div class="mb-6">
-                                        <div class="form-control p-0 pt-1">
-                                         <div class="comment-editor border-0 ql-container ql-snow"
-                                            id="ecommerce-collection-description">
-                                            <div class="ql-editor ql-blank" contenteditable="true"
-                                             data-placeholder="">
-                                             <p><br></p>
-                                            </div>
-                                            <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                            <div class="ql-tooltip ql-hidden"></div>
-                                         </div>
-                                         <div class="comment-toolbar border-0 rounded ql-toolbar ql-snow">
-                                            <div class="d-flex justify-content-end">
-                                             <span class="ql-formats">
-                                               <button class="ql-bold" type="button"></button>
-                                               <button class="ql-italic" type="button"></button>
-                                               <button class="ql-underline" type="button"></button>
-                                               <button class="ql-list" value="ordered" type="button"></button>
-                                               <button class="ql-list" value="bullet" type="button"></button>
-                                               <button class="ql-link" type="button"></button>
-                                               <button class="ql-image" type="button"></button>
-                                             </span>
-                                            </div>
-                                         </div>
-                                        </div>
-                                      </div>
-
-                                      <!-- Status -->
-                                      <div class="mb-5 ecommerce-select2-dropdown">
-                                        <div class="form-floating form-floating-outline form-floating-select2">
-                                         <div class="position-relative">
-                                            <select id="ecommerce-brand-status" class="form-select"
-                                             data-placeholder="Select brand status" data-allow-clear="true">
-                                             <option value="">Select brand status</option>
-                                             <option value="ACTIVE">Active</option>
-                                             <option value="INACTIVE">Inactive</option>
-                                            </select>
-                                         </div>
-                                         <label for="ecommerce-brand-status">Status</label>
-                                        </div>
-                                      </div>
-
-                                      <!-- Submit and reset -->
-                                      <div class="mb-4">
-                                        <button type="submit" class="btn btn-primary me-sm-3 me-1" id="btnUpdateBrand">Update</button>
-                                        <button type="reset" class="btn btn-outline-danger"
-                                         data-bs-dismiss="offcanvas">Discard</button>
-                                      </div>
-                                     </form>
-                                   </div>
-                                 </div>
-                                 <script>
-                                   // Xử lý update brand khi submit form update
-                                   document.getElementById('btnUpdateBrand').onclick = async function (e) {
-                                     e.preventDefault();
-                                     const form = document.getElementById('eCommerceBrandListForm');
-                                     const brandId = form.getAttribute('data-brand-id');
-                                     const name = document.getElementById('ecommerce-brand-title').value.trim();
-                                     const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
-                                     const description = descElem ? descElem.innerText.trim() : '';
-                                     const status = document.getElementById('ecommerce-brand-status').value || 'INACTIVE';
-
-                                     if (!brandId) {
-                                       alert('Không tìm thấy brand để update!');
-                                       return;
-                                     }
-                                     if (!name) {
-                                       alert('Vui lòng nhập tên brand!');
-                                       return;
-                                     }
-
-                                     try {
-                                       const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
-                                         method: 'PUT',
-                                         headers: { 'Content-Type': 'application/json' },
-                                         body: JSON.stringify({
-                                           name: name,
-                                           description: description,
-                                           status: status
-                                         })
-                                       });
-                                       if (response.ok) {
-                                         window.location.reload();
-                                       } else {
-                                         alert('Update brand failed!');
-                                       }
-                                     } catch (err) {
-                                       alert('Error: ' + err);
-                                     }
-                                   };
-                                 </script>
+                           try {
+                              const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
+                                 method: 'PUT',
+                                 headers: { 'Content-Type': 'application/json' },
+                                 body: JSON.stringify({
+                                    name: name,
+                                    status: status
+                                 })
+                              });
+                              if (response.ok) {
+                                 window.location.reload();
+                              } else {
+                                 alert('Update brand failed!');
+                              }
+                           } catch (err) {
+                              alert('Error: ' + err);
+                           }
+                        };
+                     </script>
 
 
 
@@ -646,20 +580,9 @@
                            2025, made with
                            <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
                            by
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link">ThemeSelection</a>
+                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <div class="d-none d-lg-inline-block" bis_skin_checked="1">
-                           <a href="https://themeselection.com/license/" class="footer-link me-4"
-                              target="_blank">License</a>
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                              Themes</a>
-
-                           <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/"
-                              target="_blank" class="footer-link me-4">Documentation</a>
-
-                           <a href="https://themeselection.com/support/" target="_blank"
-                              class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div>
+                        
                      </div>
                   </div>
                </footer>
@@ -805,7 +728,7 @@
                   if (data && data.message) {
                      errorMsg = data.message;
                   }
-               } catch {}
+               } catch { }
                closeModal();
                setTimeout(() => showToast(errorMsg, "error"), 400);
             }

@@ -122,6 +122,25 @@
    <script src="./assets/js/map-custom.js"></script>
    <!--===============================================================================================-->
    <script src="./assets/js/main.js"></script>
+   <script>
+      function updateFavouriteCount() {
+         const favourites = localStorage.getItem('favouriteProductIds');
+         const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+         if (numberOfFavourites) {
+            let count = 0;
+            if (favourites) {
+               try {
+                  const favouriteIds = JSON.parse(favourites);
+                  count = Array.isArray(favouriteIds) ? favouriteIds.length : 0;
+               } catch {
+                  count = 0;
+               }
+            }
+            numberOfFavourites.setAttribute('data-notify', count);
+         }
+      }
+      updateFavouriteCount();
+   </script>
 </body>
 
 </html>

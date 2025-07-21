@@ -54,12 +54,12 @@
    <header-main></header-main>
 
    <!-- Cart -->
-   <cart-main></cart-main>
+   <!-- <cart-main></cart-main> -->
 
 
    <!-- Title page -->
    <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('./assets/images/bg-01.jpg')">
-      <h2 class="ltext-105 cl0 txt-center">About</h2>
+      <h2 class="ltext-105 cl0 txt-center"></h2>
    </section>
 
    <!-- Content page -->
@@ -113,6 +113,33 @@
    </script>
    <!--===============================================================================================-->
    <script src="./assets/js/main.js"></script>
+   <script>
+      function updateFavouriteCount() {
+         const favourites = localStorage.getItem('favouriteProductIds');
+         const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+         if (numberOfFavourites) {
+            let count = 0;
+            if (favourites) {
+               try {
+                  const favouriteIds = JSON.parse(favourites);
+                  count = Array.isArray(favouriteIds) ? favouriteIds.length : 0;
+               } catch {
+                  count = 0;
+               }
+            }
+            numberOfFavourites.setAttribute('data-notify', count);
+         }
+      }
+      updateFavouriteCount();
+
+
+      document.addEventListener('DOMContentLoaded', function () {
+
+         let searchIcon = document.getElementById('icon-search_items');
+         console.log(searchIcon);
+         if (searchIcon) searchIcon.classList.add('search-none');
+      });
+   </script>
 </body>
 
 </html>

@@ -80,6 +80,27 @@
             <!-- Product detail will be rendered here by JS -->
          </div>
          <script>
+            const reviewName = document.getElementById("review-name__product");
+
+            function updateFavouriteCount() {
+               const favourites = localStorage.getItem('favouriteProductIds');
+               const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+               if (numberOfFavourites) {
+                  let count = 0;
+                  if (favourites) {
+                     try {
+                        const favouriteIds = JSON.parse(favourites);
+                        count = Array.isArray(favouriteIds) ? favouriteIds.length : 0;
+                     } catch {
+                        count = 0;
+                     }
+                  }
+                  numberOfFavourites.setAttribute('data-notify', count);
+               }
+            }
+            updateFavouriteCount();
+
+
 
             function formatPrice(price) {
                return price.toLocaleString('vi-VN') + 'đ';
@@ -141,19 +162,21 @@
                if (!productId) return;
 
                try {
+
                   const res = await fetch(`http://localhost:8080/api/v1/product/${productId}`);
                   const json = await res.json();
                   if (json.statusCode !== 200) throw new Error(json.message);
 
                   const data = json.data;
                   const images = data.images && data.images.length > 0 ? data.images : [data.primaryImageURL];
-                  const imageHtml = images.map(img =>
-                     `<div class="item-slick3" data-thumb="${img}">
+                  const imageHtml = 
+                     `<div class="item-slick3" data-thumb="${data.primaryImageURL}">
                         <div class="wrap-pic-w pos-relative">
-                           <img src="${img}" alt="IMG-PRODUCT" />     
+                           <img src="${data.primaryImageURL}" alt="IMG-PRODUCT" />     
                         </div>
                      </div>`
-                  ).join('');
+                  
+                  
 
 
                   const categories = data.categoryName || "";
@@ -163,14 +186,16 @@
 
                   const price = data.sellingPrice || 0;
 
+                  const brand = data.brandName || '';
+
 
                   document.getElementById('product-detail-row').innerHTML = `
                      <div class="col-md-6 col-lg-7 p-b-30">
                         <div class="p-l-25 p-r-30 p-lr-0-lg">
-                           <div class="wrap-slick3 flex-sb flex-w">
+                           <div class="wrap-slick3 flex-sb flex-w" ">
                               <div class=""></div>
                               <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-                              <div class="">
+                              <div class="" style="flex:1;>
                                  ${imageHtml}
                               </div>
                            </div>
@@ -225,8 +250,9 @@
                               </div> -->
 
                            <div class="m-t-20">
-                              <span class="stext-107 cl6 p-lr-25"> SKU: ${sku} </span>
-                              <span class="stext-107 cl6 p-lr-25"> Categories: ${categories} </span>
+                              <span class="stext-107 cl6 "> Brand: ${brand} </span>
+                              <span class="stext-107 cl6 p-lr-25"> Category: ${categories} </span>
+
                            </div>
                         </div>
                      </div>
@@ -308,87 +334,8 @@
                </ul>
 
                <!-- Tab panes -->
-               <div class="tab-content p-t-43">
-                  <!-- - -->
-                  <!-- <div class="tab-pane fade show active" id="description" role="tabpanel">
-                     <div class="how-pos2 p-lr-15-md">
-                        <p class="stext-102 cl6">
-                           Aenean sit amet gravida nisi. Nam fermentum est
-                           felis, quis feugiat nunc fringilla sit amet. Ut in
-                           blandit ipsum. Quisque luctus dui at ante aliquet,
-                           in hendrerit lectus interdum. Morbi elementum
-                           sapien rhoncus pretium maximus. Nulla lectus enim,
-                           cursus et elementum sed, sodales vitae eros. Ut ex
-                           quam, porta consequat interdum in, faucibus eu
-                           velit. Quisque rhoncus ex ac libero varius
-                           molestie. Aenean tempor sit amet orci nec iaculis.
-                           Cras sit amet nulla libero. Curabitur dignissim,
-                           nunc nec laoreet consequat, purus nunc porta
-                           lacus, vel efficitur tellus augue in ipsum. Cras
-                           in arcu sed metus rutrum iaculis. Nulla non tempor
-                           erat. Duis in egestas nunc.
-                        </p>
-                     </div>
-                  </div> -->
-
-                  <!-- - -->
-                  <!-- <div class="tab-pane fade" id="information" role="tabpanel">
-                     <div class="row">
-                        <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                           <ul class="p-lr-28 p-lr-15-sm">
-                              <li class="flex-w flex-t p-b-7">
-                                 <span class="stext-102 cl3 size-205">
-                                    Weight
-                                 </span>
-
-                                 <span class="stext-102 cl6 size-206">
-                                    0.79 kg
-                                 </span>
-                              </li>
-
-                              <li class="flex-w flex-t p-b-7">
-                                 <span class="stext-102 cl3 size-205">
-                                    Dimensions
-                                 </span>
-
-                                 <span class="stext-102 cl6 size-206">
-                                    110 x 33 x 100 cm
-                                 </span>
-                              </li>
-
-                              <li class="flex-w flex-t p-b-7">
-                                 <span class="stext-102 cl3 size-205">
-                                    Materials
-                                 </span>
-
-                                 <span class="stext-102 cl6 size-206">
-                                    60% cotton
-                                 </span>
-                              </li>
-
-                              <li class="flex-w flex-t p-b-7">
-                                 <span class="stext-102 cl3 size-205">
-                                    Color
-                                 </span>
-
-                                 <span class="stext-102 cl6 size-206">
-                                    Black, Blue, Grey, Green, Red, White
-                                 </span>
-                              </li>
-
-                              <li class="flex-w flex-t p-b-7">
-                                 <span class="stext-102 cl3 size-205">
-                                    Size
-                                 </span>
-
-                                 <span class="stext-102 cl6 size-206">
-                                    XL, L, M, S
-                                 </span>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div> -->
+               <div class="tab-content p-t-30">
+                  
 
                   <!-- - -->
                   <div class="tab-pane fade show active" id="reviews" role="tabpanel">
@@ -415,6 +362,7 @@
                                  async function renderProductReviews() {
                                     const productId = (new URLSearchParams(window.location.search)).get('productId');
                                     const notifyReviews = document.getElementById("notify-reviews");
+                                    
                                     console.log(notifyReviews);
                                     if (!productId) return;
                                     try {
@@ -460,10 +408,10 @@
                                                 </div>
                                              </div>
                                           `).join('')
-                                          : `<p class="stext-102 cl6">No reviews yet.</p>`;
+                                          : `<p class="stext-102 cl6"></p>`;
                                        document.getElementById('product-reviews-list').innerHTML = reviewsHtml;
                                        if(comments.length ===0)
-                                       notifyReviews.textContent = `Reviews (${comments.length})`;
+                                       notifyReviews.textContent = `Đánh giá (${comments.length})`;
                                     } catch (e) {
                                        document.getElementById('product-reviews-list').innerHTML = '<p class="text-danger">Failed to load reviews.</p>';
                                     }
@@ -475,17 +423,17 @@
 
                               <!-- Add review -->
                               <form class="w-full" id="review-form">
-                                 <h5 class="mtext-108 cl2 p-b-7">
-                                    Add a review
+                                 <h5 class="mtext-108 cl2 p-b-7" id="review-name__product">
+                                 
                                  </h5>
 
-                                 <p class="stext-102 cl6">
-                                    State your feelings about the product
+                                 <p class="stext-102 cl6" style="font-weight: 700;">
+                                   Hãy cho chúng tôi biết cảm nhận của bạn về sản phẩm
                                  </p>
 
-                                 <div class="flex-w flex-m p-t-50 p-b-23">
+                                 <div class="flex-w flex-m p-t-20 p-b-20">
                                     <span class="stext-102 cl3 m-r-16">
-                                       Your Rating
+                                       Đánh giá của bạn
                                     </span>
 
                                     <span class="wrap-rating fs-18 cl11 pointer" id="rating-stars">
@@ -501,7 +449,7 @@
 
                                  <div class="row p-b-25">
                                     <div class="col-12 p-b-5">
-                                       <label class="stext-102 cl3" for="review">Your review</label>
+                                       <label class="stext-102 cl3" for="review">Nhận xét của bạn</label>
                                        <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review"
                                           name="review"></textarea>
                                     </div>
@@ -509,7 +457,7 @@
 
                                  <button type="submit"
                                     class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                    Submit
+                                    Gửi
                                  </button>
                               </form>
                               <script>
@@ -549,7 +497,7 @@
                                     })();
 
                                     if (!userId) {
-                                       swal("Error", "You must be logged in to submit a review.", "error");
+                                       swal("Error", "Bạn phải đăng nhập để gửi đánh giá.", "error");
                                        return;
                                     }
                                     if (!productId) {
@@ -557,11 +505,11 @@
                                        return;
                                     }
                                     if (!rating || rating < 1 || rating > 5) {
-                                       swal("Error", "Please select a rating.", "error");
+                                       swal("Error", "Hãy chọn số sao đánh giá ", "error");
                                        return;
                                     }
                                     if (!content) {
-                                       swal("Error", "Please enter your review.", "error");
+                                       swal("Error", "Hãy nhập nhận xét của bạn.", "error");
                                        return;
                                     }
 
@@ -746,6 +694,14 @@
    </script>
    <!--===============================================================================================-->
    <script src="./assets/js/main.js"></script>
+   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
+         let searchIcon = document.getElementById('icon-search_items');
+         console.log(searchIcon);
+         if (searchIcon) searchIcon.classList.add('search-none');
+      });
+   </script>
 </body>
 
 </html>

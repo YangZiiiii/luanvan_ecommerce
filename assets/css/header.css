@@ -519,6 +519,10 @@
    display: none;
 }
 
+.search-none {
+   display: none;
+}
+
 /* Header__nocart */
 .header__cart-icon-font:hover .header__nocart-img,
 .header__cart-icon-font:hover .header__nocart-msg {

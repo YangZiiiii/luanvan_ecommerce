@@ -97,12 +97,13 @@
                         Total: <span id="cart-total-price">0đ</span>
                      </div>
 
-                    
-                   <a href="checkout.html">
-                       <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                        Pay Order
-                     </div>
-                   </a>
+
+                     <a href="checkout.html">
+                        <div
+                           class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+                           Pay Order
+                        </div>
+                     </a>
                   </div>
                   <style>
                      .total__price {
@@ -129,7 +130,25 @@
       </div>
    </div>
    <script>
-   
+      function updateFavouriteCount() {
+         const favourites = localStorage.getItem('favouriteProductIds');
+         const numberOfFavourites = document.querySelector('.icon-heart-number[data-notify]');
+         if (numberOfFavourites) {
+            let count = 0;
+            if (favourites) {
+               try {
+                  const favouriteIds = JSON.parse(favourites);
+                  count = Array.isArray(favouriteIds) ? favouriteIds.length : 0;
+               } catch {
+                  count = 0;
+               }
+            }
+            numberOfFavourites.setAttribute('data-notify', count);
+         }
+      }
+      updateFavouriteCount();
+
+
       function formatPrice(price) {
          if (!price) return '0₫';
          return price.toLocaleString('vi-VN') + '₫';
@@ -211,7 +230,12 @@
 
                let cell = row.insertCell(0);
                cell.className = 'column-1';
-               cell.innerHTML = `<div class="how-itemcart1"><img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="IMG" /></div>`;
+               cell.innerHTML = `
+                  <a href="productDetail.html?productId=${item.id}" data-product-index="${idx}" style="display:inline-block;">
+                     <div class="how-itemcart1" style="cursor:pointer;">
+                        <img src="${item.primaryImageURL || './assets/images/emptycart.png'}" alt="IMG" data-product-id="${item.id}" />
+                     </div>
+                  </a>`;
 
                cell = row.insertCell(1);
                cell.className = 'column-2';
@@ -246,8 +270,6 @@
                cell.setAttribute('data-idx', idx);
             });
          }
-
-        
 
          document.getElementById('cart-total-price').textContent = formatPrice(total);
 
@@ -377,15 +399,27 @@
                updateQuantity(val);
             });
          });
+
+         // No need for image click event, since image is wrapped in <a>
       }
 
       // Gọi khi DOM đã load
       document.addEventListener('DOMContentLoaded', function () {
          fetchAndRenderCartTable();
          var cartIcon = document.getElementById('cart-icon-header');
+         console.log(cartIcon);
          if (cartIcon) cartIcon.classList.add('cart-none');
       });
 
+      document.addEventListener('DOMContentLoaded', function () {
+
+         let searchIcon = document.getElementById('icon-search_items');
+         console.log(searchIcon);
+         if (searchIcon) searchIcon.classList.add('search-none');
+      });
+
+     
+       
    </script>
 
    <!-- Footer -->

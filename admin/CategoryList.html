@@ -192,7 +192,7 @@
                                              data-bs-toggle="offcanvas"
                                              data-bs-target="#offcanvasEcommerceCategoryList">
                                              <span><i class="ri-add-line me-0 me-sm-1"></i><span
-                                                   class="d-none d-sm-inline-block">Add Category</span></span>
+                                                   class="d-none d-sm-inline-block">Thêm loại sản phẩm</span></span>
                                           </button>
                                        </div>
                                     </div>
@@ -206,65 +206,34 @@
                                           style="width: 0px; display: none" aria-label=""></th>
                                        <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
                                           rowspan="1" colspan="1" style="width: 18px" data-col="1" aria-label="">
-                                          <input type="checkbox" class="form-check-input" />
+                                          
                                        </th>
                                        <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0"
                                           rowspan="1" colspan="1" style="width: 699px"
                                           aria-label="Categories: activate to sort column ascending"
                                           aria-sort="descending">
-                                          Categories
+                                          Các loại sản phẩm
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting" tabindex="0"
                                           aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                           style="width: 160px"
                                           aria-label="Total Products &amp;nbsp;: activate to sort column ascending">
-                                          Total Products &nbsp;
+                                          Tổng sản phẩm &nbsp;
                                        </th>
                                        <th class="text-nowrap text-sm-end sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 160px" aria-label="Total Earning">
-                                          Status
+                                          Trạng thái
                                        </th>
                                        <th class="text-lg-center sorting_disabled" rowspan="1" colspan="1"
                                           style="width: 118px" aria-label="Actions">
-                                          Actions
+                                          Tác vụ
                                        </th>
                                     </tr>
                                  </thead>
                                  <tbody id="category-table-body">
                                  </tbody>
                               </table>
-                              <!-- <div class="row mx-1" bis_skin_checked="1">
-                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
-                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                       aria-live="polite" bis_skin_checked="1">
-                                       Showing 1 to 7 of 14 entries
-                                    </div>
-                                 </div>
-                                 <div class="col-sm-12 col-md-6" bis_skin_checked="1">
-                                    <div class="dataTables_paginate paging_simple_numbers"
-                                       id="DataTables_Table_0_paginate" bis_skin_checked="1">
-                                       <ul class="pagination">
-                                          <li class="paginate_button page-item previous disabled"
-                                             id="DataTables_Table_0_previous">
-                                             <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                                data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
-                                          </li>
-                                          <li class="paginate_button page-item active">
-                                             <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page"
-                                                data-dt-idx="0" tabindex="0" class="page-link">1</a>
-                                          </li>
-                                          <li class="paginate_button page-item">
-                                             <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
-                                                tabindex="0" class="page-link">2</a>
-                                          </li>
-                                          <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                             <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
-                                                tabindex="0" class="page-link">Next</a>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </div> -->
+                              
                               <div bis_skin_checked="1" style="width: 1%"></div>
                            </div>
                         </div>
@@ -275,7 +244,7 @@
                         aria-labelledby="offcanvasEcommerceCategoryListLabel" role="dialog">
                         <!-- Offcanvas Header -->
                         <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Thêm loại sản phẩm</h5>
                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                               aria-label="Close"></button>
                         </div>
@@ -287,7 +256,7 @@
                               <div class="form-floating form-floating-outline mb-5">
                                  <input type="text" class="form-control" id="ecommerce-category-title"
                                     placeholder="Enter category title" name="categoryTitle" aria-label="category title" required>
-                                 <label for="ecommerce-category-title">Title</label>
+                                 <label for="ecommerce-category-title">Tên loại sản phẩm</label>
                               </div>
 
                               <!-- Status -->
@@ -296,7 +265,7 @@
                                     <div class="position-relative">
                                        <select id="ecommerce-category-status" class="form-select"
                                           data-placeholder="Select category status" data-allow-clear="true" required>
-                                          <option value="">Select category status</option>
+                                          
                                           <option value="ACTIVE">Active</option>
                                           <option value="INACTIVE">Inactive</option>
                                        </select>
@@ -307,9 +276,9 @@
 
                               <!-- Submit and reset -->
                               <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1" id="add-category-btn">Add</button>
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1" id="add-category-btn">Thêm</button>
                                  <button type="reset" class="btn btn-outline-danger"
-                                    data-bs-dismiss="offcanvas">Discard</button>
+                                    data-bs-dismiss="offcanvas">Hủy</button>
                               </div>
                            </form>
                         </div>
@@ -321,7 +290,7 @@
 
                      // Render category table
                      function renderCategoryTable() {
-                        fetch('http://localhost:8080/api/v1/category?page=0&size=10')
+                        fetch('http://160.30.192.116:8080/api/v1/category?page=0&size=10')
                            .then(response => response.json())
                            .then(data => {
                               const tableBody = document.getElementById('category-table-body');
@@ -332,13 +301,13 @@
                                        <tr>
                                           <td class="control" tabindex="0" style="display: none"></td>
                                           <td class="dt-checkboxes-cell">
-                                             <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                             
                                           </td>
                                           <td class="sorting_1">
                                              <div class="d-flex align-items-center">
                                                 <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
-                                                   <div class="avatar" style="display: flex; align-items: center; justify-content: center; color:#fff">
-                                                      <i class="fa-solid fa-shirt"></i>
+                                                   <div class="avatar" style="display: flex; align-items: center; justify-content: center; color:#f15c5c">
+                                                     <i class="fa-solid fa-tags"></i>
                                                    </div>
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
@@ -347,7 +316,7 @@
                                              </div>
                                           </td>
                                           <td>
-                                             <div class="text-sm-end pe-3">
+                                             <div class="text-sm-end pe-3" style="margin-right:50px">
                                              ${category.totalProduct || 0}
                                              </div>
                                           </td>
@@ -429,7 +398,7 @@
                         aria-labelledby="offcanvasEcommerceCategoryListLabel" role="dialog">
                         <!-- Offcanvas Header -->
                         <div class="offcanvas-header py-6">
-                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Update Category</h5>
+                           <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Cập nhật loại sản phẩm</h5>
                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                               aria-label="Close"></button>
                         </div>
@@ -441,7 +410,7 @@
                               <div class="form-floating form-floating-outline mb-5">
                                  <input type="text" class="form-control" id="ecommerce-category-title-update"
                                     placeholder="Category name" name="categoryTitle" aria-label="category title">
-                                 <label for="ecommerce-category-title-update">Name</label>
+                                 <label for="ecommerce-category-title-update">Tên loại sản phẩm</label>
                               </div>
                               
                               <!-- Status -->
@@ -456,15 +425,15 @@
                                            <option value="DELETED">Deleted</option>
                                        </select>
                                     </div>
-                                    <label for="ecommerce-category-status-update">Status</label>
+                                    <label for="ecommerce-category-status-update">Trạng thái</label>
                                  </div>
                               </div>
 
                               <!-- Submit and reset -->
                               <div class="mb-4">
-                                 <button type="submit" class="btn btn-primary me-sm-3 me-1" id="update-category-btn">Update</button>
+                                 <button type="submit" class="btn btn-primary me-sm-3 me-1" id="update-category-btn">Cập nhật</button>
                                  <button type="reset" class="btn btn-outline-danger"
-                                    data-bs-dismiss="offcanvas">Discard</button>
+                                    data-bs-dismiss="offcanvas">Hủy</button>
                               </div>
                            </form>
                         </div>
@@ -495,21 +464,24 @@
                      });
 
                      // Change status event
-                     document.getElementById('ecommerce-category-status-update').addEventListener('change', function () {
+                     document.getElementById('ecommerce-category-status-update').addEventListener('change', async function () {
                         const status = this.value;
                         if (!currentEditCategoryId || !status) return;
-                        fetch(`http://localhost:8080/api/v1/category/changeStatus/${currentEditCategoryId}`, {
-                           method: 'PUT',
-                           headers: { 'Content-Type': 'application/json' },
-                           body: JSON.stringify({ status })
-                        })
-                        .then(res => res.json())
-                        .then(() => {
-                          return;
-                        })
-                        .catch(() => {
-                           return;
-                        });
+                        try {
+                           const res = await fetch(`http://localhost:8080/api/v1/category/changeStatus/${currentEditCategoryId}`, {
+                              method: 'PUT',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ status })
+                           });
+                           const result = await res.json();
+                           if (res.ok) {
+                              return;
+                           } else {
+                              alert(result.message || "Cập nhật trạng thái thất bại!");
+                           }
+                        } catch (err) {
+                           alert("Lỗi khi cập nhật trạng thái!");
+                        }
                      });
 
                      // Submit update

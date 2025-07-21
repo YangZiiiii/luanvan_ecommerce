@@ -218,26 +218,50 @@
                <div class="menu-desktop">
                   <ul class="main-menu">
                      <li class="active-menu">
-                        <a href="index.html">Home</a>
+                        <a href="index.html">Trang chủ</a>
                      </li>
-
                      <li class="label1" data-label1="hot">
-                        <a href="product.html">Shop</a>
+                        <a href="product.html">Cửa hàng</a>
                      </li>
-
                      <li>
-                        <a href="#!">Features</a>
+                        <a href="shoppingCart.html">Giỏ hàng</a>
                      </li>
-
                      <li>
-                        <a href="about.html">About</a>
+                        <a href="about.html">Về chúng tôi</a>
                      </li>
-
-                     <li>
+                     <!-- <li>
                         <a href="contact.html">Contact</a>
-                     </li>
+                      </li> -->
                   </ul>
                </div>
+               <script>
+                  // Active menu item based on current page
+                  document.addEventListener('DOMContentLoaded', function () {
+                     const menuLinks = document.querySelectorAll('.main-menu li a');
+                     const currentPath = window.location.pathname.split('/').pop();
+                     let found = false;
+                     menuLinks.forEach(link => {
+                        const li = link.parentElement;
+                        li.classList.remove('active-menu');
+                        if (link.getAttribute('href') === currentPath) {
+                           li.classList.add('active-menu');
+                           found = true;
+                        }
+                     });
+                     // If not found, default to Home
+                     if (!found) {
+                        const homeLi = document.querySelector('.main-menu li a[href="index.html"]')?.parentElement;
+                        if (homeLi) homeLi.classList.add('active-menu');
+                     }
+                     // Click event to set active
+                     menuLinks.forEach(link => {
+                        link.addEventListener('click', function () {
+                           menuLinks.forEach(l => l.parentElement.classList.remove('active-menu'));
+                           this.parentElement.classList.add('active-menu');
+                        });
+                     });
+                  });
+               </script>
 
                <!-- Search -->
 
@@ -248,7 +272,7 @@
                      <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search btn-search"
                         style="cursor: pointer;"></i>
                      <input class="mtext-107 cl2 size-114 plh2 p-r-15 search-height" type="text" name="search-product"
-                        placeholder="Search . . ." />
+                        placeholder="Tìm kiếm sản phẩm" />
                   </div>
                </div>
 
@@ -257,7 +281,7 @@
                <!-- Change for cart -->
                <div class="wrap-icon-header flex-w flex-r-m"></div>
                <div class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search">
-                  <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+                  <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search" id="icon-search__items"></i>
                   <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
                </div>
 
@@ -556,7 +580,7 @@
          }
          // Toggle giỏ hàng khi click icon
          if (cartIcon && cartNotify) {
-            
+
             cartIcon.addEventListener('click', function (e) {
                e.stopPropagation();
 
@@ -659,7 +683,7 @@
                            name: item.productName,
                            primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
                            unitPrice: item.unitPrice,
-                           
+
                            total: item.unitPrice * item.quantity
                         });
                         cartQuantities[item.productId] = item.quantity ?? 1;
@@ -885,7 +909,7 @@
 
          // Nếu giỏ rỗng thì chỉ hiện empty cart
          if (cartLocal.length === 0) {
-         
+
             if (emptyCart) emptyCart.style.display = 'block';
             cartNotify.style.width = '300px';
             cartNotify.innerHTML = emptyCart ? emptyCart.outerHTML : `
@@ -912,13 +936,13 @@
             btnsDiv.className = 'header__cart-list';
             btnsDiv.innerHTML = `
             <div class="header__cart-item-btn">
-            <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Check out</a>
+            <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Thanh toán</a>
             </div>
             <div class="header__cart-item-btn">
-                  <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
+                  <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">Xem giỏ</a>
             </div>
             <div class="header__cart-item-btn">
-            <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>`;
+            <a href="#" class="btn btn--primary cart-btn-delete">Xóa tất cả</a>`;
             container.appendChild(btnsDiv);
 
             cartNotify.appendChild(container);
@@ -956,7 +980,7 @@
                         productId: p.id,
                         quantity: cartQty[p.id] ?? 1
                      }));
-                     console.log(items);
+                  console.log(items);
                   fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
                      method: 'DELETE',
                      headers: {
@@ -970,10 +994,10 @@
                      .then(res => res.json())
                      .then(data => {
                         cartLocal.splice(idx, 1);
-                 
+
                         delete cartQty[id];
                         localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                 
+
                         setCartQuantities(cartQty);
                         renderCart();
                         updateCartNotify();
@@ -982,7 +1006,7 @@
                         cartLocal.splice(idx, 1);
                         delete cartQty[id];
                         localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                       
+
                         setCartQuantities(cartQty);
                         renderCart();
                         updateCartNotify();
@@ -997,7 +1021,7 @@
             if (deleteAllBtn) {
                deleteAllBtn.addEventListener('click', function (e) {
                   e.preventDefault();
-                 
+
                   const userId = localStorage.getItem('userId');
                   let cartLocal = [];
                   try {
@@ -1113,7 +1137,7 @@
             });
          });
 
-         
+
 
 
          // Đăng nhập
@@ -1166,7 +1190,7 @@
                         showToast("Đăng nhập thành công!", false, 2500);
                         window.location.reload();
                         window.location.reload();
-                       
+
 
 
 
@@ -1318,7 +1342,7 @@
    <div class="sec-banner bg0 p-t-60 p-b-50">
       <div class="container">
          <div class="p-b-20">
-            <h3 class="ltext-103 cl5">New products</h3>
+            <h3 class="ltext-103 cl5">Sản phẩm mới</h3>
          </div>
          <div class="row" id="newest-products-row"></div>
          <!-- Newest products will be rendered here -->
@@ -1384,7 +1408,7 @@
    <div class="sec-banner bg0 p-b-50">
       <div class="container">
          <div class="p-b-20">
-            <h3 class="ltext-103 cl5">Top Rating</h3>
+            <h3 class="ltext-103 cl5">Sản phẩm đánh giá cao</h3>
          </div>
          <div class="row" id="top-rating-row">
             <!-- Top rating products will be rendered here -->
@@ -1455,26 +1479,26 @@
    <section class="bg0">
       <div class="container">
          <div class="p-b-10">
-            <h3 class="ltext-103 cl5">Product Overview</h3>
+            <h3 class="ltext-103 cl5">Sản phẩm chung</h3>
          </div>
 
          <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                  All Products
+                  Tất cả
                </button>
-               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nu">
-                  Women
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nu" id="btn-filter-women">
+                  Nữ
                </button>
-               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nam">
-                  Men
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nam" id="btn-filter-men">
+                  Nam
                </button>
             </div>
             <div class="flex-w flex-c-m m-tb-10">
                <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                   <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                   <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                  Filter
+                  Bộ lọc
                </div>
             </div>
             <!-- Filter -->
@@ -1485,7 +1509,7 @@
                      <ul>
                         <li class="p-b-6">
                            <a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-price="ALL">
-                              All
+                              Tất cả
                            </a>
                         </li>
                         <li class="p-b-6">
@@ -1519,21 +1543,23 @@
             </div>
          </div>
 
-         <div class="row isotope-grid" id="product-list"
-            style=" visibility: hidden;">
+         <div class="row isotope-grid" id="product-list" style=" visibility: hidden;">
             <!-- Products will be rendered here by JavaScript -->
          </div>
 
          <!-- Load more -->
          <div class="flex-c-m flex-w w-full m-b-40">
             <a href="product.html" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-               Load More
+               Xem thêm
             </a>
          </div>
       </div>
    </section>
 
    <script>
+      const btnFilterWomen = document.getElementById('btn-filter-women');
+      const btnFilterMen = document.getElementById('btn-filter-men');
+
       function updateCartNotify() {
          const cartIcon = document.getElementById('cart-icon-header');
          let cartLocal = [];
@@ -1590,9 +1616,9 @@
          return { min, max };
       }
 
-      // Calculate min-height for product-list based on filtered products
+
       function setProductListMinHeight(productCount) {
-         // 4 sản phẩm 1 dòng, mỗi sản phẩm cao 480px, padding 150px
+
          const itemsPerRow = 4;
          const rowCount = Math.max(1, Math.ceil(productCount / itemsPerRow));
          const minHeight = `calc(${rowCount} * 469px + 150px)`;
@@ -1650,11 +1676,13 @@
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${getProductType(product.sku).toLowerCase()}">
                <div class="block2 block2-pic">
                   <div class="block2-pic hov-img0">
-                     <img loading="lazy" src="${product.primaryImageURL}"  alt="IMG-PRODUCT" />
-                     <a href="productDetail.html?productId=${product.id}"
-                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
-                        data-product-index="${idx}">
-                        View Detail
+                     <a href="productDetail.html?productId=${product.id}">
+                        <img loading="lazy" src="${product.primaryImageURL}"  alt="IMG-PRODUCT" />
+                        <a href="productDetail.html?productId=${product.id}"
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
+                           data-product-index="${idx}">
+                           Xem chi tiết
+                        </a>
                      </a>
                   </div>
                   <div class="block2-txt flex-w flex-t p-t-14">
@@ -1688,6 +1716,9 @@
          }).join('');
          container.style.visibility = 'visible';
 
+         btnFilterWomen.textContent = `Nữ (${filtered.filter(p => getProductType(p.sku) === 'WOMEN').length})`;
+         btnFilterMen.textContent = `Nam (${filtered.filter(p => getProductType(p.sku) === 'MEN').length})`;
+
          // Add event listeners for add-to-cart buttons
          container.querySelectorAll('.btn-addcart').forEach(btn => {
             btn.addEventListener('click', function (e) {
@@ -1702,55 +1733,55 @@
                fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
                   method: 'POST'
                })
-               .then(res => res.json())
-               .then(data => {
-                  if (data && data.statusCode === 201) {
-                     swal(product.name, "is added to cart !", "success");
-                    
-                     fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
-                        .then(res => res.json())
-                        .then(cartData => {
-                           if (
-                              cartData &&
-                              cartData.statusCode === 200 &&
-                              cartData.data &&
-                              Array.isArray(cartData.data.items)
-                           ) {
-                              const items = cartData.data.items;
-                              const cartLocal = [];
-                              const cartQuantities = {};
+                  .then(res => res.json())
+                  .then(data => {
+                     if (data && data.statusCode === 201) {
+                        swal(product.name, "is added to cart !", "success");
 
-                              items.forEach(item => {
-                                 cartLocal.push({
-                                    id: item.productId,
-                                    name: item.productName,
-                                    primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
-                                    unitPrice: item.unitPrice,
-                                    total: item.unitPrice * item.quantity
+                        fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                           .then(res => res.json())
+                           .then(cartData => {
+                              if (
+                                 cartData &&
+                                 cartData.statusCode === 200 &&
+                                 cartData.data &&
+                                 Array.isArray(cartData.data.items)
+                              ) {
+                                 const items = cartData.data.items;
+                                 const cartLocal = [];
+                                 const cartQuantities = {};
+
+                                 items.forEach(item => {
+                                    cartLocal.push({
+                                       id: item.productId,
+                                       name: item.productName,
+                                       primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                                       unitPrice: item.unitPrice,
+                                       total: item.unitPrice * item.quantity
+                                    });
+                                    cartQuantities[item.productId] = item.quantity ?? 1;
                                  });
-                                 cartQuantities[item.productId] = item.quantity ?? 1;
-                              });
 
-                              localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                              localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                                 localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                                 localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                                 updateCartNotify();
+                                 window.dispatchEvent(new Event('cart-updated'));
+
+
+                              }
+                           })
+                           .catch(() => {
                               updateCartNotify();
                               window.dispatchEvent(new Event('cart-updated'));
-                             
-                             
-                           }
-                        })
-                        .catch(() => {
-                           updateCartNotify();
-                           window.dispatchEvent(new Event('cart-updated'));
-                        });
+                           });
 
-                  } else {
+                     } else {
+                        swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                     }
+                  })
+                  .catch(() => {
                      swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
-                  }
-               })
-               .catch(() => {
-                  swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
-               });
+                  });
             });
          });
 
@@ -1777,32 +1808,32 @@
                      productId: product.id
                   })
                })
-               .then(res => res.json())
-               .then(data => {
-                  if (data && (data.statusCode === 200 || data.statusCode === 201)) {
-                     let favIds = getFavouriteIds();
-                     if (icon1.style.display !== 'none') {
-                        icon1.style.display = 'none';
-                        icon2.style.display = '';
-                        if (!favIds.includes(product.id)) {
-                           favIds.push(product.id);
+                  .then(res => res.json())
+                  .then(data => {
+                     if (data && (data.statusCode === 200 || data.statusCode === 201)) {
+                        let favIds = getFavouriteIds();
+                        if (icon1.style.display !== 'none') {
+                           icon1.style.display = 'none';
+                           icon2.style.display = '';
+                           if (!favIds.includes(product.id)) {
+                              favIds.push(product.id);
+                              setFavouriteIds(favIds);
+                           }
+                        } else {
+                           icon1.style.display = '';
+                           icon2.style.display = 'none';
+                           favIds = favIds.filter(id => id !== product.id);
                            setFavouriteIds(favIds);
                         }
+                        updateFavouriteNotify();
+                        swal(product.name, "Đã cập nhật danh sách yêu thích!", "success");
                      } else {
-                        icon1.style.display = '';
-                        icon2.style.display = 'none';
-                        favIds = favIds.filter(id => id !== product.id);
-                        setFavouriteIds(favIds);
+                        swal(product.name, "Có lỗi khi cập nhật yêu thích!", "error");
                      }
-                     updateFavouriteNotify();
-                     swal(product.name, "Đã cập nhật danh sách yêu thích!", "success");
-                  } else {
-                     swal(product.name, "Có lỗi khi cập nhật yêu thích!", "error");
-                  }
-               })
-               .catch(() => {
-                  swal(product.name, "Có lỗi khi cập nhậtyêu thích!", "error");
-               });
+                  })
+                  .catch(() => {
+                     swal(product.name, "Có lỗi khi cập nhậtyêu thích!", "error");
+                  });
             });
          });
 
@@ -1843,6 +1874,9 @@
 
       // Update favourite notify on page load
       document.addEventListener('DOMContentLoaded', updateFavouriteNotify);
+
+
+
    </script>
 
 
@@ -1852,8 +1886,8 @@
 
 
    <!-- Footer -->
-   <!-- <footer-main></footer-main> -->
-    <footer class="bg3 p-t-75 p-b-32">
+   <footer-main></footer-main>
+   <!-- <footer class="bg3 p-t-75 p-b-32">
 	   <div class="container">
 		  <div class="row">
 			 <div class="col-sm-6 col-lg-3 p-b-50">
@@ -1958,7 +1992,7 @@
  
 		  
 	   </div>
-	</footer>
+	</footer> -->
 
    <!-- Back to top -->
    <div class="btn-back-to-top" id="myBtn">

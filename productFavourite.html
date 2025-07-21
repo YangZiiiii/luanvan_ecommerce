@@ -69,21 +69,21 @@
    <!-- Product -->
    <!-- <home-product></home-product> -->
 
-   <section class="bg0 p-t-90 p-b-140">
+   <section class="bg0 p-t-90">
       <div class="container">
          <div class="p-b-10">
-            <h3 class="ltext-103 cl5">Product Favourites</h3>
+            <h3 class="ltext-103 cl5">Sản phẩm yêu thích</h3>
          </div>
 
-          <div class="flex-w flex-sb-m p-b-52">
+         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                  All Products
+                  Tất cả
                </button>
-               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nu">
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nu" id="btn-filter-women">
                   Women
                </button>
-               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nam">
+               <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".nam" id="btn-filter-men">
                   Men
                </button>
             </div>
@@ -91,7 +91,7 @@
                <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                   <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                   <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                  Filter
+                  Bộ lọc
                </div>
             </div>
             <!-- Filter -->
@@ -136,19 +136,20 @@
             </div>
          </div>
 
-         <div class="row isotope-grid" id="product-list">
+         <div class="row isotope-grid" id="product-list" style="min-height: 0; visibility: hidden;">
             <!-- Products will be rendered here by JavaScript -->
-
-
-
          </div>
 
          <!-- Load more -->
-         
+
       </div>
    </section>
 
    <script>
+
+      const btnFilterWomen = document.getElementById('btn-filter-women');
+      const btnFilterMen = document.getElementById('btn-filter-men');
+
       (function () {
          const userId = localStorage.getItem('userId');
          const productListContainer = document.getElementById('product-list');
@@ -225,47 +226,64 @@
             });
          }
 
+         function setProductListMinHeight(productCount) {
+            // 4 sản phẩm 1 dòng
+            const itemsPerRow = 4;
+            const rowCount = Math.ceil(productCount / itemsPerRow) || 1;
+            const minHeight = (rowCount * 480) + 40;
+            const container = document.getElementById('product-list');
+            container.style.minHeight = minHeight + 'px';
+            productListContainer.style.visibility = 'visible';
+         }
+
          function renderProducts(products) {
             productListContainer.innerHTML = products.map((product, idx) => {
                const favIds = getFavouriteIds();
                const isFav = favIds.includes(product.id);
                return `
-                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${getProductType(product.sku).toLowerCase()}">
-                     <div class="block2 block2-pic">
-                        <div class="block2-pic hov-img0">
-                           <img src="${product.primaryImageURL}" alt="IMG-PRODUCT" />
-                           <a href="productDetail.html?productId=${product.id}"
-                              class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
-                              data-product-index="${idx}">
-                              View Detail
-                           </a>
+                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${getProductType(product.sku).toLowerCase()}">
+                   <div class="block2 block2-pic">
+                     <div class="block2-pic hov-img0">
+                       <a href="productDetail.html?productId=${product.id}">
+                        <img loading="lazy" src="${product.primaryImageURL}"  alt="IMG-PRODUCT" />
+                        <a href="productDetail.html?productId=${product.id}"
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor7 hov-btn1 p-lr-15 trans-04 btn-view-detail"
+                           data-product-index="${idx}">
+                           Xem chi tiết
+                        </a>
+                     </a>
+                     </div>
+                     <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l">
+                          <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
+                            ${product.name}
+                          </a>
+                          <div class="price-and-cart">
+                            <span class="stext-106 cl10"> $${product.sellingPrice}</span>
+                            <span class="original-price">$${product.originalPrice}</span>
+                          </div>
                         </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                           <div class="block2-txt-child1 flex-col-l">
-                              <a href="productDetail.html?productId=${product.id}" class="stext-104 cl4 hov-cl1 trans-04 js-name-detail p-b-6">
-                                 ${product.name}
-                              </a>
-                              <div class="price-and-cart">
-                                 <span class="stext-106 cl10"> $${product.sellingPrice}</span>
-                                 <span class="original-price">$${product.originalPrice}</span>
-                              </div>
-                           </div>
-                           <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
-                              <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 icon-favourite" data-product-index="${idx}" >
-                                 <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
-                                    alt="ICON" style="display:${isFav ? 'none' : 'flex'}" />
-                                 <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
-                                    src="./assets/images/icons/icon-heart-02.png" alt="ICON" style="display:${isFav ? '' : 'none'}" />
-                              </a>
-                              <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
-                                 <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
-                              </a>
-                           </div>
+                        <div class="block2-txt-child2 flex-r p-t-3 heart-and-cart" >
+                          <a href="#!" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 icon-favourite" data-product-index="${idx}" >
+                            <img  class="icon-heart1 dis-block trans-04" src="./assets/images/icons/icon-heart-01.png"
+                              alt="ICON" style="display:${isFav ? 'none' : 'flex'}" />
+                            <img title="Yêu thích sản phẩm" class="icon-heart2 dis-block trans-04 ab-t-l"
+                              src="./assets/images/icons/icon-heart-02.png" alt="ICON" style="display:${isFav ? '' : 'none'}" />
+                          </a>
+                          <a href="#" class="btn-addcart js-addcart-detail" data-product-index="${idx}"> 
+                            <i title="Thêm sản phẩm vào giỏ" class="fa-solid fa-cart-shopping"></i> 
+                          </a>
                         </div>
                      </div>
-                  </div>
+                   </div>
+                 </div>
                `;
             }).join('');
+
+            setProductListMinHeight(products.length);
+
+            btnFilterWomen.textContent = `Nữ (${products.filter(p => getProductType(p.sku) === 'WOMEN').length})`;
+            btnFilterMen.textContent = `Nam (${products.filter(p => getProductType(p.sku) === 'MEN').length})`;
 
             // View Detail event
             productListContainer.querySelectorAll('.btn-view-detail').forEach(btn => {
@@ -291,60 +309,60 @@
             // Add to cart event
             productListContainer.querySelectorAll('.btn-addcart').forEach(btn => {
                btn.addEventListener('click', function (e) {
-                 e.preventDefault();
-                 const idx = this.getAttribute('data-product-index');
-                 const product = products[idx];
-                 const userId = localStorage.getItem('userId');
-                 if (!userId || userId === 'null' || !product || !product.id) {
-                   swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
-                   return;
-                 }
-                 fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
-                   method: 'POST'
-                 })
-                 .then(res => res.json())
-                 .then(data => {
-                   if (data && data.statusCode === 201) {
-                     swal(product.name, "is added to cart !", "success");
-                     fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
-                        .then(res => res.json())
-                        .then(cartData => {
-                          if (
-                            cartData &&
-                            cartData.statusCode === 200 &&
-                            cartData.data &&
-                            Array.isArray(cartData.data.items)
-                          ) {
-                            const items = cartData.data.items;
-                            const cartLocal = [];
-                            const cartQuantities = {};
-                            items.forEach(item => {
-                              cartLocal.push({
-                                 id: item.productId,
-                                 name: item.productName,
-                                 primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
-                                 unitPrice: item.unitPrice,
-                                 total: item.unitPrice * item.quantity
+                  e.preventDefault();
+                  const idx = this.getAttribute('data-product-index');
+                  const product = products[idx];
+                  const userId = localStorage.getItem('userId');
+                  if (!userId || userId === 'null' || !product || !product.id) {
+                     swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
+                     return;
+                  }
+                  fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+                     method: 'POST'
+                  })
+                     .then(res => res.json())
+                     .then(data => {
+                        if (data && data.statusCode === 201) {
+                           swal(product.name, "is added to cart !", "success");
+                           fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                              .then(res => res.json())
+                              .then(cartData => {
+                                 if (
+                                    cartData &&
+                                    cartData.statusCode === 200 &&
+                                    cartData.data &&
+                                    Array.isArray(cartData.data.items)
+                                 ) {
+                                    const items = cartData.data.items;
+                                    const cartLocal = [];
+                                    const cartQuantities = {};
+                                    items.forEach(item => {
+                                       cartLocal.push({
+                                          id: item.productId,
+                                          name: item.productName,
+                                          primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
+                                          unitPrice: item.unitPrice,
+                                          total: item.unitPrice * item.quantity
+                                       });
+                                       cartQuantities[item.productId] = item.quantity ?? 1;
+                                    });
+                                    localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
+                                    localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+                                    if (typeof updateCartNotify === 'function') updateCartNotify();
+                                    window.dispatchEvent(new Event('cart-updated'));
+                                 }
+                              })
+                              .catch(() => {
+                                 if (typeof updateCartNotify === 'function') updateCartNotify();
+                                 window.dispatchEvent(new Event('cart-updated'));
                               });
-                              cartQuantities[item.productId] = item.quantity ?? 1;
-                            });
-                            localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                            localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
-                            if (typeof updateCartNotify === 'function') updateCartNotify();
-                            window.dispatchEvent(new Event('cart-updated'));
-                          }
-                        })
-                        .catch(() => {
-                          if (typeof updateCartNotify === 'function') updateCartNotify();
-                          window.dispatchEvent(new Event('cart-updated'));
-                        });
-                   } else {
-                     swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
-                   }
-                 })
-                 .catch(() => {
-                   swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
-                 });
+                        } else {
+                           swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                        }
+                     })
+                     .catch(() => {
+                        swal(product.name, "Có lỗi khi thêm vào giỏ hàng!", "error");
+                     });
                });
             });
 
@@ -402,6 +420,7 @@
          function fetchFavouritesAndRender() {
             if (!userId || userId === 'null') {
                productListContainer.innerHTML = '<div class="col-12">Bạn cần đăng nhập để xem sản phẩm yêu thích.</div>';
+               setProductListMinHeight(0);
                setFavouriteIds([]); // Xóa localStorage khi không đăng nhập
                updateFavouriteCount();
                return;
@@ -420,14 +439,17 @@
                })
                .catch(() => {
                   productListContainer.innerHTML = '<div class="col-12">Failed to load favourite products.</div>';
+                  setProductListMinHeight(0);
                   setFavouriteIds([]); // Xóa localStorage khi lỗi
                   updateFavouriteCount();
                });
          }
 
+
          // Filter buttons event (Women/Men/All)
          document.querySelectorAll('.filter-tope-group button[data-filter]').forEach(btn => {
             btn.addEventListener('click', function () {
+
                document.querySelectorAll('.filter-tope-group button').forEach(b => b.classList.remove('how-active1'));
                this.classList.add('how-active1');
                const filter = this.getAttribute('data-filter');
@@ -435,7 +457,25 @@
                else if (filter === '.nu') currentTypeFilter = 'WOMEN';
                else if (filter === '.nam') currentTypeFilter = 'MEN';
                else currentTypeFilter = 'ALL';
-               fetchFavouritesAndRender();
+               // fetchFavouritesAndRender();
+               fetch(`http://localhost:8080/api/v1/favourites/user/${userId}`)
+                  .then(res => res.json())
+                  .then(data => {
+                     let products = data.products || [];
+                     // Filter theo loại và giá nếu có
+                     products = filterProducts(products, currentTypeFilter, parsePriceFilter(currentPriceFilter));
+                     // Cập nhật localStorage: nếu không còn sản phẩm yêu thích thì xóa luôn key
+                     const favIds = products.map(p => p.id);
+                     setFavouriteIds(favIds);
+                     renderProducts(products);
+                    
+                  })
+                  .catch(() => {
+                     productListContainer.innerHTML = '<div class="col-12">Failed to load favourite products.</div>';
+                     setProductListMinHeight(0);
+                     setFavouriteIds([]); // Xóa localStorage khi lỗi
+                     //   updateFavouriteCount();
+                  });
             });
          });
 

@@ -111,9 +111,9 @@
                      <!-- Offcanvas Add Category -->
 
 
-                     
 
-                  
+
+
 
 
 
@@ -122,17 +122,17 @@
                         class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 gap-4 gap-md-0"
                         bis_skin_checked="1">
                         <div class="d-flex flex-column justify-content-center" bis_skin_checked="1">
-                           <h4 class="mb-1">Add a new Product</h4>
+                           <h4 class="mb-1">Thêm sản phẩm mới</h4>
                            <p class="mb-0">
-                              Orders placed across your store
+                              Đơn hàng được đặt trên cửa hàng của bạn
                            </p>
                         </div>
                         <div class="d-flex align-content-center flex-wrap gap-4" bis_skin_checked="1">
                            <button class="btn btn-outline-secondary waves-effect">
-                              Discard
+                              Hủy bỏ
                            </button>
                            <button type="submit" class="btn btn-primary waves-effect waves-light btn-submit-product">
-                              Publish product
+                              Đăng sản phẩm
                            </button>
                         </div>
                      </div>
@@ -144,35 +144,35 @@
                            <div class="card mb-6" bis_skin_checked="1">
                               <div class="card-header" bis_skin_checked="1">
                                  <h5 class="card-tile mb-0">
-                                    Product information
+                                    Thông tin sản phẩm
                                  </h5>
                               </div>
                               <div class="card-body add-info__product" bis_skin_checked="1">
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="text" class="form-control" id="ecommerce-product-name"
-                                       placeholder="Product title" name="productTitle" aria-label="Product title" />
-                                    <label for="ecommerce-product-name">Name</label>
+                                       placeholder="Tên sản phẩm" name="productTitle" aria-label="Product title" />
+                                    <label for="ecommerce-product-name">Tên</label>
                                  </div>
 
                                  <div class="row gx-5 mb-5" bis_skin_checked="1">
                                     <div class="col" bis_skin_checked="1">
                                        <div class="form-floating form-floating-outline" bis_skin_checked="1">
                                           <input type="text" class="form-control" id="ecommerce-product-sku"
-                                             placeholder="sku" name="productSku" aria-label="Product SKU" />
-                                          <label for="ecommerce-product-sku">SKU</label>
+                                             placeholder="Mã phân loại" name="productSku" aria-label="Product SKU" />
+                                          <label for="ecommerce-product-sku">Mã phân loại</label>
                                        </div>
                                     </div>
                                     <div class="col" bis_skin_checked="1">
                                        <div class="form-floating form-floating-outline" bis_skin_checked="1">
                                           <input type="number" class="form-control" id="ecommerce-product-barcode"
                                              placeholder="999" name="Quantity" aria-label="Product barcode" />
-                                          <label for="ecommerce-product-name">Quantity</label>
+                                          <label for="ecommerce-product-name">Số lượng</label>
                                        </div>
                                     </div>
                                  </div>
                                  <!-- Comment -->
                                  <div bis_skin_checked="1">
-                                    <label class="mb-1">Description (Optional)</label>
+                                    <label class="mb-1">Mô tả (Tùy chọn)</label>
                                     <div class="form-control p-0 pt-1" bis_skin_checked="1">
                                        <div class="comment-toolbar border-0 border-bottom ql-toolbar ql-snow"
                                           bis_skin_checked="1">
@@ -251,14 +251,14 @@
                                                          points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"></polyline>
                                                    </svg>
                                                 </button>
-                                                      
+
                                              </span>
                                           </div>
                                        </div>
                                        <div class="comment-editor border-0 pb-1 ql-container ql-snow"
                                           id="ecommerce-category-description" bis_skin_checked="1">
                                           <div class="ql-editor ql-blank" data-gram="false" contenteditable="true"
-                                             data-placeholder="" bis_skin_checked="1">
+                                             data-placeholder="Mô tả" bis_skin_checked="1">
                                              <p><br /></p>
                                           </div>
                                           <div class="ql-clipboard" contenteditable="true" tabindex="-1"
@@ -278,13 +278,13 @@
                            <!-- Media -->
                            <div class="card mb-6">
                               <div class="card-header d-flex justify-content-between align-items-center">
-                                 <h5 class="mb-0 card-title">Product Image</h5>
+                                 <h5 class="mb-0 card-title">Hình ảnh sản phẩm</h5>
                               </div>
                               <div class="card-body">
 
                                  <div id="upload-area" class="border rounded p-4 text-center" style="cursor:pointer;">
                                     <i class="ri-upload-2-line ri-24px"></i>
-                                    <p class="h5 my-2">Drag & Drop images here or click to select</p>
+                                    <p class="h5 my-2">Nhấn để chọn</p>
                                     <input type="file" id="imageInput" style="display: none;" multiple accept="image/*">
                                  </div>
 
@@ -303,33 +303,44 @@
                            <!-- Pricing Card -->
                            <div class="card mb-6" bis_skin_checked="1">
                               <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Pricing</h5>
+                                 <h5 class="card-title mb-0">Định giá</h5>
                               </div>
                               <div class="card-body" bis_skin_checked="1">
                                  <!-- Base Price -->
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="number" class="form-control" id="ecommerce-product-price"
-                                       placeholder="Price" name="originalPrice" aria-label="Product price" />
-                                    <label for="ecommerce-product-price">original Price</label>
+                                       placeholder="Giá" name="originalPrice" aria-label="Product price" />
+                                    <label for="ecommerce-product-price">Giá gốc</label>
                                  </div>
 
                                  <!-- Discounted Price -->
                                  <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
                                     <input type="number" class="form-control" id="ecommerce-product-discount-price"
-                                       placeholder="Discounted Price" name="productDiscountedPrice"
+                                       placeholder="Giá khuyến mãi" name="productDiscountedPrice"
                                        aria-label="Product discounted price" />
-                                    <label for="ecommerce-product-discount-price">Discounted Price</label>
+                                    <label for="ecommerce-product-discount-price">Giá khuyến mãi</label>
+                                 </div>
+
+                                 <!-- Selling Price -->
+                                 <div class="form-floating form-floating-outline mb-5" bis_skin_checked="1">
+                                    <input type="number" class="form-control" id="ecommerce-product-selling-price"
+                                       placeholder="Giá bán" name="productSellingPrice"
+                                       aria-label="Product selling price" readonly />
+                                    <label for="ecommerce-product-selling-price">Giá bán</label>
                                  </div>
                                  <!-- Charge tax check box -->
 
                                  <!-- Instock switch -->
 
+                                 <script>
+
+                                 </script>
                               </div>
                            </div>
                            <!-- /Pricing Card -->
                            <div class="card mb-6" bis_skin_checked="1">
                               <div class="card-header" bis_skin_checked="1">
-                                 <h5 class="card-title mb-0">Organize</h5>
+                                 <h5 class="card-title mb-0">Các danh mục</h5>
                               </div>
                               <div class="card-body" bis_skin_checked="1">
                                  <!-- Category -->
@@ -337,8 +348,8 @@
                                     class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
                                     <div class="w-100 me-4">
                                        <select id="productCategory" name="category" class="form-select form-select-sm"
-                                          data-placeholder="Select Category">
-                                          <option value="">Select Category</option>
+                                          data-placeholder="Chọn loại sản phẩm">
+                                          <option value="">Chọn loại sản phẩm</option>
                                        </select>
                                     </div>
                                     <div bis_skin_checked="1">
@@ -361,7 +372,7 @@
                                           fetch("http://localhost:8080/api/v1/category")
                                              .then(response => response.json())
                                              .then(data => {
-                                                let options = `<option value="">Select Category</option>`;
+                                                let options = `<option value="">Chọn loại sản phẩm</option>`;
                                                 data.data.content.forEach(category => {
                                                    options += `<option value="${category.id}">${category.name}</option>`;
                                                 });
@@ -418,12 +429,12 @@
                                  </script> -->
 
                                  <!-- Brand -->
-                                 <!-- <div
+                                 <div
                                     class="mb-5 col ecommerce-select2-dropdown d-flex justify-content-between align-items-center">
                                     <div class="w-100 me-4">
                                        <select id="productBrand" name="brand" class="form-select form-select-sm"
-                                          data-placeholder="Select Brand">
-                                          <option value="">Select Brand</option>
+                                          data-placeholder="Chọn thương hiệu">
+                                          <option value="">Chọn thương hiệu</option>
                                        </select>
                                     </div>
                                     <div bis_skin_checked="1">
@@ -446,7 +457,7 @@
                                              .then(data => {
                                                 console.log("Data from API:", data);
 
-                                                let options = `<option value="">Select Brand</option>`;
+                                                let options = `<option value="">Chọn thương hiệu</option>`;
                                                 data.data.forEach(brand => {
                                                    options += `<option value="${brand.id}">${brand.name}</option>`;
                                                 });
@@ -459,10 +470,10 @@
                                              .catch(error => console.error("Error fetching brands:", error));
                                        }
                                     });
-                                 </script> -->
+                                 </script>
 
 
-                                 
+
 
                                  <!-- /Organize Card -->
                               </div>
@@ -475,21 +486,21 @@
 
                      <!-- Footer -->
                      <footer class="content-footer footer bg-footer-theme">
-                  <div class="container-xxl" bis_skin_checked="1">
-                     <div
-                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
-                        bis_skin_checked="1">
-                        <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
-                           ©
-                           <script>
-                              document.write(new Date().getFullYear());
-                           </script>
-                           2025, made with
-                           <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
-                           by
-                           <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
-                        </div>
-                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
+                        <div class="container-xxl" bis_skin_checked="1">
+                           <div
+                              class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"
+                              bis_skin_checked="1">
+                              <div class="text-body mb-2 mb-md-0" bis_skin_checked="1">
+                                 ©
+                                 <script>
+                                    document.write(new Date().getFullYear());
+                                 </script>
+                                 2025, made with
+                                 <span class="text-danger"><i class="tf-icons ri-heart-fill"></i></span>
+                                 by
+                                 <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
+                              </div>
+                              <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
                            <a href="https://themeselection.com/license/" class="footer-link me-4"
                               target="_blank">License</a>
                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
@@ -501,9 +512,9 @@
                            <a href="https://themeselection.com/support/" target="_blank"
                               class="footer-link d-none d-sm-inline-block">Support</a>
                         </div> -->
-                     </div>
-                  </div>
-               </footer>
+                           </div>
+                        </div>
+                     </footer>
                      <!-- / Footer -->
 
                      <div class="content-backdrop fade" bis_skin_checked="1"></div>
@@ -653,7 +664,7 @@
             </div>
          </div>
 
-         <script>
+          <script>
             let filesArray = [];
             let keepCurrentImage = true;
 
@@ -682,161 +693,191 @@
 
             function handleFiles(files) {
                Array.from(files).forEach(file => {
-                  if (file.type.startsWith('image/')) {
-                     filesArray.push(file);
+                 if (file.type.startsWith('image/')) {
+                   filesArray.push(file);
 
-                     const container = document.createElement('div');
-                     container.style.position = 'relative';
+                   const container = document.createElement('div');
+                   container.style.position = 'relative';
 
-                     const img = document.createElement('img');
-                     img.src = URL.createObjectURL(file);
-                     img.style.width = '100px';
-                     img.style.height = '100px';
-                     img.style.objectFit = 'contain';
-                     img.classList.add('rounded');
+                   const img = document.createElement('img');
+                   img.src = URL.createObjectURL(file);
+                   img.style.width = '100px';
+                   img.style.height = '100px';
+                   img.style.objectFit = 'contain';
+                   img.classList.add('rounded');
 
-                     const removeBtn = document.createElement('button');
-                     removeBtn.innerHTML = '&times;';
-                     removeBtn.className = 'btn btn-sm btn-danger';
-                     removeBtn.style.position = 'absolute';
-                     removeBtn.style.top = '0';
-                     removeBtn.style.right = '0';
-                     removeBtn.style.borderRadius = '50%';
-                     removeBtn.style.padding = '2px 6px';
-                     removeBtn.style.fontSize = '12px';
+                   const removeBtn = document.createElement('button');
+                   removeBtn.innerHTML = '&times;';
+                   removeBtn.className = 'btn btn-sm btn-danger';
+                   removeBtn.style.position = 'absolute';
+                   removeBtn.style.top = '0';
+                   removeBtn.style.right = '0';
+                   removeBtn.style.borderRadius = '50%';
+                   removeBtn.style.padding = '2px 6px';
+                   removeBtn.style.fontSize = '12px';
 
-                     removeBtn.addEventListener('click', () => {
-                        // Remove from filesArray by reference
-                        filesArray = filesArray.filter(f => f !== file);
-                        container.remove();
-                     });
+                   removeBtn.addEventListener('click', () => {
+                     filesArray = filesArray.filter(f => f !== file);
+                     container.remove();
+                   });
 
-                     container.appendChild(img);
-                     container.appendChild(removeBtn);
-                     preview.appendChild(container);
+                   container.appendChild(img);
+                   container.appendChild(removeBtn);
+                   preview.appendChild(container);
 
-                     keepCurrentImage = false;
-                  }
+                   keepCurrentImage = false;
+                 }
                });
+            }
+            // Cập nhật giá bán khi giá gốc hoặc giá khuyến mãi thay đổi
+            function updateSellingPrice() {
+               const original = parseFloat(document.getElementById('ecommerce-product-price').value) || 0;
+               const discount = parseFloat(document.getElementById('ecommerce-product-discount-price').value) || 0;
+               document.getElementById('ecommerce-product-selling-price').value = Math.max(original - discount, 0);
+            }
+
+            document.getElementById('ecommerce-product-price').addEventListener('input', updateSellingPrice);
+            document.getElementById('ecommerce-product-discount-price').addEventListener('input', updateSellingPrice);
+
+            // Spinner functions
+            function showSpinner() {
+               if (document.getElementById('custom-spinner')) return;
+               const spinner = document.createElement('div');
+               spinner.id = 'custom-spinner';
+               spinner.style.position = 'fixed';
+               spinner.style.top = '0';
+               spinner.style.left = '0';
+               spinner.style.width = '100vw';
+               spinner.style.height = '100vh';
+               spinner.style.background = 'rgba(0,0,0,0.15)';
+               spinner.style.zIndex = '99999';
+               spinner.style.display = 'flex';
+               spinner.style.alignItems = 'center';
+               spinner.style.justifyContent = 'center';
+               spinner.innerHTML = `
+                 <div style="background: #fff; padding: 32px 48px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center;">
+                   <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
+                   <div style="margin-top: 18px; font-weight: bold; color: #333;">Đang xử lý...</div>
+                 </div>
+               `;
+               document.body.appendChild(spinner);
+            }
+            function hideSpinner() {
+               const spinner = document.getElementById('custom-spinner');
+               if (spinner) spinner.remove();
             }
 
             document.addEventListener("DOMContentLoaded", function () {
-              
+
                function getProductData() {
-
-                  return {
-                     name: document.querySelector("input[name='productTitle']").value.trim(),
-                     sku: document.querySelector("input[name='productSku']").value.trim(),
-                     quantity: parseInt(document.querySelector("input[name='Quantity']").value) || 0,
-                     description: document.querySelector("#ecommerce-category-description .ql-editor").innerText.trim() || "This is a sample product",
-                     originalPrice: parseFloat(document.querySelector("input[name='originalPrice']").value) || 0,
-                     discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
-                     sellingPrice: parseFloat(document.querySelector("input[name='originalPrice']").value - document.querySelector("input[name='productDiscountedPrice']").value) || 0,
-                     sellingType: "SALE",
-                     categoryId: document.querySelector("#productCategory").value,
-                  };
+                 return {
+                   name: document.querySelector("input[name='productTitle']").value.trim(),
+                   sku: document.querySelector("input[name='productSku']").value.trim(),
+                   quantity: parseInt(document.querySelector("input[name='Quantity']").value) || 0,
+                   description: document.querySelector("#ecommerce-category-description .ql-editor").innerText.trim() || "This is a sample product",
+                   originalPrice: parseFloat(document.querySelector("input[name='originalPrice']").value) || 0,
+                   discountedPrice: parseFloat(document.querySelector("input[name='productDiscountedPrice']").value) || 0,
+                   sellingPrice:document.getElementById('ecommerce-product-selling-price').value || 0,
+                   sellingType: "SALE",
+                   categoryId: document.querySelector("#productCategory").value,
+                   brandId: document.querySelector("#productBrand").value,
+                 };
                }
-
-
 
                // API để tạo sản phẩm
                async function createProduct(productData) {
-                  console.log("🧾 Final productData gửi lên:", JSON.stringify(productData, null, 2));
+                 console.log("🧾 Final productData gửi lên:", JSON.stringify(productData, null, 2));
+                 const res = await fetch("http://localhost:8080/api/v1/product", {
+                   method: "POST",
+                   headers: { "Content-Type": "application/json" },
+                   body: JSON.stringify(productData)
+                 });
+                 const result = await res.json();
+                 console.log("Response từ API tạo product:", result);
 
-                  const res = await fetch("http://localhost:8080/api/v1/product", {
-                     method: "POST",
-                     headers: { "Content-Type": "application/json" },
-                     body: JSON.stringify(productData)
-                  });
-
-                  const result = await res.json();
-                  console.log("Response từ API tạo product:", result);
-
-                  if (!result.data || !result.data.id) {
-                     throw new Error("Không nhận được productId!");
-                  }
-
-                  return result.data.id;
+                 if (!result.data || !result.data.id) {
+                   throw new Error("Không nhận được productId!");
+                 }
+                 return result.data.id;
                }
 
                // Upload nhiều ảnh lên product đã tạo
                async function uploadProductImages(productId) {
-                  if (!filesArray.length) {
-                     console.warn("⚠️ Không có ảnh nào được chọn.");
-                     return;
-                  }
+                 if (!filesArray.length) {
+                   console.warn("⚠️ Không có ảnh nào được chọn.");
+                   return;
+                 }
+                 const formData = new FormData();
+                 filesArray.forEach(file => {
+                   formData.append("files", file);
+                 });
 
-                  const formData = new FormData();
-                  filesArray.forEach(file => {
-                     formData.append("files", file);
-                  });
+                 try {
+                   const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
+                     method: "POST",
+                     body: formData
+                   });
 
-                  try {
-                     const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
-                        method: "POST",
-                        body: formData
-                     });
+                   const result = await res.json();
+                   console.log("Upload result:", result);
 
-                     const result = await res.json();
-                     console.log("Upload result:", result);
-
-                     if (res.ok) {
-                        showToast("Ảnh đã upload thành công!");
-                     } else {
-                        console.error("Upload thất bại:", result);
-                        showToast("Upload ảnh thất bại. Vui lòng kiểm tra.", "error");
-                     }
-                  } catch (err) {
-                     console.error(" Lỗi upload:", err);
-                     showToast("Lỗi khi upload ảnh.", "error");
-                  }
+                   if (res.ok) {
+                     showToast("Ảnh đã upload thành công!");
+                   } else {
+                     console.error("Upload thất bại:", result);
+                     showToast("Upload ảnh thất bại. Vui lòng kiểm tra.", "error");
+                   }
+                 } catch (err) {
+                   console.error(" Lỗi upload:", err);
+                   showToast("Lỗi khi upload ảnh.", "error");
+                 }
                }
 
-            
                document.querySelector(".btn-submit-product").addEventListener("click", async function (e) {
-                  e.preventDefault();
-                  try {
-                     const productData = getProductData();
-                     console.log("Data sắp gửi:", productData);
+                 e.preventDefault();
+                 showSpinner();
+                 try {
+                   const productData = getProductData();
+                   console.log("Data sắp gửi:", productData);
 
-                     const productId = await createProduct(productData);
-                     console.log("Product created with ID:", productId);
+                   const productId = await createProduct(productData);
+                   console.log("Product created with ID:", productId);
 
-                     await uploadProductImages(productId);
-                     showToast("Sản phẩm và ảnh đã được đăng thành công!");
-                     window.location.href= '/admin/ProductList.html'
-                  } catch (err) {
-                     console.error("Lỗi khi xử lý publish:", err);
-                     showToast("Đăng sản phẩm thất bại. Vui lòng thử lại.", "error");
-                  }
+                   await uploadProductImages(productId);
+                   showToast("Sản phẩm và ảnh đã được đăng thành công!");
+                   setTimeout(() => {
+                     window.location.href = '/admin/ProductList.html'
+                   }, 2500);
+                 } catch (err) {
+                   console.error("Lỗi khi xử lý publish:", err);
+                   showToast("Đăng sản phẩm thất bại. Vui lòng thử lại.", "error");
+                 }
+                 hideSpinner();
                });
             });
 
-
-
             function showToast(message, type = "success") {
-      // Remove old toast if exists
-      const oldToast = document.getElementById("custom-toast");
-      if (oldToast) oldToast.remove();
+               const oldToast = document.getElementById("custom-toast");
+               if (oldToast) oldToast.remove();
 
-      const toast = document.createElement("div");
-      toast.id = "custom-toast";
-      toast.style.position = "fixed";
-      toast.style.top = "30px";
-      toast.style.right = "800px";
-      toast.style.zIndex = "9999";
-      toast.style.minWidth = "220px";
-      toast.style.padding = "16px 24px";
-      toast.style.borderRadius = "8px";
-      toast.style.color = "#fff";
-      toast.style.fontWeight = "bold";
-      toast.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
-      toast.style.background = type === "success" ? "#22c55e" : "#ef4444";
-      toast.innerText = message;
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3500);
-   }
-         </script>
+               const toast = document.createElement("div");
+               toast.id = "custom-toast";
+               toast.style.position = "fixed";
+               toast.style.top = "30px";
+               toast.style.right = "800px";
+               toast.style.zIndex = "9999";
+               toast.style.minWidth = "220px";
+               toast.style.padding = "16px 24px";
+               toast.style.borderRadius = "8px";
+               toast.style.color = "#fff";
+               toast.style.fontWeight = "bold";
+               toast.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+               toast.style.background = type === "success" ? "#22c55e" : "#ef4444";
+               toast.innerText = message;
+               document.body.appendChild(toast);
+               setTimeout(() => toast.remove(), 2500);
+            }
+          </script>
 
 
 

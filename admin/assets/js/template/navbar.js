@@ -62,7 +62,7 @@ class NavBar extends HTMLElement {
                            <li>
                              <a id="settings-link" class="dropdown-item waves-effect" href="./AccountSecurity.html?userAdminId=">
                                <i class="ri-settings-4-line ri-22px me-2"></i>
-                               <span class="align-middle">Settings</span>
+                               <span class="align-middle">Security</span>
                              </a>
                            </li>
                            <li>

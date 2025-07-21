@@ -1,24 +1,24 @@
 class AppFooter extends HTMLElement {
 	connectedCallback() {
-	this.innerHTML = `
+		this.innerHTML = `
 	<footer class="bg3 p-t-75 p-b-32">
 	   <div class="container">
 		  <div class="row">
 			 <div class="col-sm-6 col-lg-3 p-b-50">
 				<h4 class="stext-301 cl0 p-b-30">
-				   Categories
+				   Danh mục
 				</h4>
  
 				<ul>
 				   <li class="p-b-10">
-					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-						 Women
+					  <a href="#!" class="stext-107 cl7 hov-cl1 trans-04">
+						 Nữ
 					  </a>
 				   </li>
  
 				   <li class="p-b-10">
-					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-						 Men
+					  <a href="#!" class="stext-107 cl7 hov-cl1 trans-04">
+						 Nam
 					  </a>
 				   </li>
  
@@ -28,31 +28,31 @@ class AppFooter extends HTMLElement {
  
 			 <div class="col-sm-6 col-lg-3 p-b-50">
 				<h4 class="stext-301 cl0 p-b-30">
-				   Help
+				   Hỗ trợ
 				</h4>
  
 				<ul>
 				   <li class="p-b-10">
-					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-						 Track Order
+					  <a href="#!" class="stext-107 cl7 hov-cl1 trans-04">
+						 Theo dõi đơn hàng
 					  </a>
 				   </li>
  
 				   <li class="p-b-10">
-					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-						 Returns
+					  <a href="#!" class="stext-107 cl7 hov-cl1 trans-04">
+						 Đổi trả
 					  </a>
 				   </li>
  
 				   <li class="p-b-10">
-					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-						 Shipping
+					  <a href="#!" class="stext-107 cl7 hov-cl1 trans-04">
+						 Vận chuyển
 					  </a>
 				   </li>
  
 				   <li class="p-b-10">
-					  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-						 FAQs
+					  <a href="#!" class="stext-107 cl7 hov-cl1 trans-04">
+						 Các câu hỏi thường gặp
 					  </a>
 				   </li>
 				</ul>
@@ -60,24 +60,23 @@ class AppFooter extends HTMLElement {
  
 			 <div class="col-sm-6 col-lg-3 p-b-50">
 				<h4 class="stext-301 cl0 p-b-30">
-				   GET IN TOUCH
+				   Liên hệ
 				</h4>
  
 				<p class="stext-107 cl7 size-201">
-				   Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1)
-				   96 716 6879
+				  Nếu bạn còn bất kỳ câu hỏi nào, hãy cho chúng tôi biết: Gặp chúng tôi tại 364/6/30 ấp 4 xã Phước Vĩnh An, huyện Củ Chi, TP. Hồ Chí Minh hoặc gọi cho chúng tôi theo số (+84) 96 716 6879
 				</p>
  
 				<div class="p-t-27">
-				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+				   <a href="#!" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 					 <i class="fa-brands fa-facebook-f"></i>
 				   </a>
  
-				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+				   <a href="#!" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 					  <i class="fa-brands fa-instagram"></i>
 				   </a>
  
-				   <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+				   <a href="#!" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 					  <i class="fa-brands fa-pinterest-p"></i>
 				   </a>
 				</div>
@@ -85,7 +84,7 @@ class AppFooter extends HTMLElement {
  
 			 <div class="col-sm-6 col-lg-3 p-b-50">
 				<h4 class="stext-301 cl0 p-b-30">
-				   Newsletter
+				   Đăng ký nhận tin
 				</h4>
  
 				<form>
@@ -96,8 +95,8 @@ class AppFooter extends HTMLElement {
 				   </div>
  
 				   <div class="p-t-18">
-					  <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-						 Subscribe
+					  <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" onclick="event.preventDefault();">
+						 Đăng ký
 					  </button>
 				   </div>
 				</form>
@@ -109,5 +108,5 @@ class AppFooter extends HTMLElement {
 	</footer>
 	`;
 	}
-	}
-	customElements.define("footer-main", AppFooter);
+}
+customElements.define("footer-main", AppFooter);

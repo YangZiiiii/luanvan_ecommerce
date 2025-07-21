@@ -136,24 +136,24 @@ class AppHeader extends HTMLElement {
                <div class="menu-desktop">
                   <ul class="main-menu">
                      <li class="active-menu">
-                        <a href="index.html">Home</a>
+                        <a href="index.html">Trang chủ</a>
                      </li>
 
                      <li class="label1" data-label1="hot">
-                        <a href="product.html">Shop</a>
+                        <a href="product.html">Cửa hàng</a>
                      </li>
 
                      <li >
-                        <a href="shoppingCart.html">Features</a>
+                        <a href="shoppingCart.html">Giỏ hàng</a>
                      </li>
 
                      <li>
-                        <a href="about.html">About</a>
+                        <a href="about.html">Về chúng tôi</a>
                      </li>
 
-                     <li>
+                     <!-- <li>
                         <a href="contact.html">Contact</a>
-                     </li>
+                     </li> -->
                   </ul>
                </div>
 
@@ -166,7 +166,7 @@ class AppHeader extends HTMLElement {
                      <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search btn-search"
                         style="cursor: pointer;"></i>
                      <input class="mtext-107 cl2 size-114 plh2 p-r-15 search-height" type="text" name="search-product"
-                        placeholder="Search . . ." />
+                        placeholder="Tìm kiếm sản phẩm" />
                   </div>
                </div>
 
@@ -175,7 +175,7 @@ class AppHeader extends HTMLElement {
                <!-- Change for cart -->
                <div class="wrap-icon-header flex-w flex-r-m"></div>
                <div class="flex-c-m stext-106 cl6 size-105 pointer trans-04 m-tb-4 js-show-search box-search">
-                  <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+                  <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search" id="icon-search_items"></i>
                   <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
                </div>
 
@@ -242,6 +242,34 @@ class AppHeader extends HTMLElement {
    </header>
    `;
 
+      // Active menu item based on current page
+      document.addEventListener('DOMContentLoaded', function () {
+         const menuLinks = document.querySelectorAll('.main-menu li a');
+         const currentPath = window.location.pathname.split('/').pop();
+         let found = false;
+         menuLinks.forEach(link => {
+            const li = link.parentElement;
+            li.classList.remove('active-menu');
+            if (link.getAttribute('href') === currentPath) {
+               li.classList.add('active-menu');
+               found = true;
+            }
+         });
+         // If not found, default to Home
+         if (!found) {
+            const homeLi = document.querySelector('.main-menu li a[href="index.html"]')?.parentElement;
+            if (homeLi) homeLi.classList.add('active-menu');
+         }
+         // Click event to set active
+         menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+               menuLinks.forEach(l => l.parentElement.classList.remove('active-menu'));
+               this.parentElement.classList.add('active-menu');
+            });
+         });
+      });
+
+
       // Sự kiện click search button
       const searchButton = document.querySelector('.btn-search');
       const searchInput = document.querySelector('.search-new input[name="search-product"]');
@@ -250,17 +278,17 @@ class AppHeader extends HTMLElement {
       searchButton.addEventListener('click', function (e) {
          const keyword = searchInput.value.trim();
          if (keyword) {
-         window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+            window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
          }
       });
       // Enter key search
       searchInput.addEventListener('keydown', function (e) {
          if (e.key === 'Enter') {
-         e.preventDefault();
-         const keyword = searchInput.value.trim();
-         if (keyword) {
-            window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
-         }
+            e.preventDefault();
+            const keyword = searchInput.value.trim();
+            if (keyword) {
+               window.location.href = `productSearch.html?keyword=${encodeURIComponent(keyword)}`;
+            }
          }
       });
       // Danh sách yêu thích
@@ -473,7 +501,7 @@ class AppHeader extends HTMLElement {
          }
          // Toggle giỏ hàng khi click icon
          if (cartIcon && cartNotify) {
-            
+
             cartIcon.addEventListener('click', function (e) {
                e.stopPropagation();
 
@@ -576,7 +604,7 @@ class AppHeader extends HTMLElement {
                            name: item.productName,
                            primaryImageURL: item.imageUrl || './assets/images/emptycart.png',
                            unitPrice: item.unitPrice,
-                           
+
                            total: item.unitPrice * item.quantity
                         });
                         cartQuantities[item.productId] = item.quantity ?? 1;
@@ -802,7 +830,7 @@ class AppHeader extends HTMLElement {
 
          // Nếu giỏ rỗng thì chỉ hiện empty cart
          if (cartLocal.length === 0) {
-         
+
             if (emptyCart) emptyCart.style.display = 'block';
             cartNotify.style.width = '300px';
             cartNotify.innerHTML = emptyCart ? emptyCart.outerHTML : `
@@ -829,13 +857,13 @@ class AppHeader extends HTMLElement {
             btnsDiv.className = 'header__cart-list';
             btnsDiv.innerHTML = `
             <div class="header__cart-item-btn">
-            <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Check out</a>
+            <a href="checkout.html" class="btn btn--primary cart-btn-checkout">Thanh toán</a>
             </div>
             <div class="header__cart-item-btn">
-                  <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">View Cart</a>
+                  <a href="shoppingCart.html" class="btn btn--primary cart-btn-view">Xem giỏ</a>
             </div>
             <div class="header__cart-item-btn">
-            <a href="#" class="btn btn--primary cart-btn-delete">Delete All</a>`;
+            <a href="#" class="btn btn--primary cart-btn-delete">Xóa tất cả</a>`;
             container.appendChild(btnsDiv);
 
             cartNotify.appendChild(container);
@@ -873,7 +901,7 @@ class AppHeader extends HTMLElement {
                         productId: p.id,
                         quantity: cartQty[p.id] ?? 1
                      }));
-                     console.log(items);
+                  console.log(items);
                   fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
                      method: 'DELETE',
                      headers: {
@@ -887,10 +915,10 @@ class AppHeader extends HTMLElement {
                      .then(res => res.json())
                      .then(data => {
                         cartLocal.splice(idx, 1);
-                 
+
                         delete cartQty[id];
                         localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                 
+
                         setCartQuantities(cartQty);
                         renderCart();
                         updateCartNotify();
@@ -899,7 +927,7 @@ class AppHeader extends HTMLElement {
                         cartLocal.splice(idx, 1);
                         delete cartQty[id];
                         localStorage.setItem('cartLocal', JSON.stringify(cartLocal));
-                       
+
                         setCartQuantities(cartQty);
                         renderCart();
                         updateCartNotify();
@@ -1116,7 +1144,7 @@ class AppHeader extends HTMLElement {
                         showToast("Đăng nhập thành công!", false, 2500);
                         window.location.reload();
                         window.location.reload();
-                       
+
 
 
 
@@ -1251,6 +1279,9 @@ class AppHeader extends HTMLElement {
             document.head.appendChild(style);
          }
       })();
+
+
+
    }
 }
 customElements.define("header-main", AppHeader);
