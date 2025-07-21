@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"         # Map cổng 80 máy chủ ↔ container
+    container_name: my-static-site
+    restart: unless-stopped
