@@ -94,6 +94,7 @@ class AppHomeProduct extends HTMLElement {
       </section>
    `;
 
+      var changeServer = '160.30.192.116';
       const btnFilterWomen = document.getElementById('btn-filter-women');
       const btnFilterMen = document.getElementById('btn-filter-men');
 
@@ -267,14 +268,14 @@ class AppHomeProduct extends HTMLElement {
                   swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
                   return;
                }
-               fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+               fetch(`http://${changeServer}:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
                   method: 'POST'
                })
                   .then(res => res.json())
                   .then(data => {
                      if (data && data.statusCode === 201) {
                         swal(product.name, "is added to cart !", "success");
-                        fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                        fetch(`http://${changeServer}:8080/api/v1/cart?userId=${userId}`)
                            .then(res => res.json())
                            .then(cartData => {
                               if (
@@ -332,7 +333,7 @@ class AppHomeProduct extends HTMLElement {
                   swal("Bạn cần đăng nhập để thêm vào yêu thích!", "", "warning");
                   return;
                }
-               fetch('http://localhost:8080/api/v1/favourites/toggle', {
+               fetch(`http://${changeServer}:8080/api/v1/favourites/toggle`, {
                   method: 'POST',
                   headers: {
                      'Content-Type': 'application/json'
@@ -375,7 +376,7 @@ class AppHomeProduct extends HTMLElement {
       }
 
       // Fetch products and setup filter
-      fetch('http://localhost:8080/api/v1/product?page=0&size=30&sortBy=createdAt&direction')
+      fetch(`http://${changeServer}:8080/api/v1/product?page=0&size=30&sortBy=createdAt&direction`)
          .then(res => res.json())
          .then(data => {
             allProducts = data.content || [];

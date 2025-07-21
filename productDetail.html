@@ -123,7 +123,7 @@
 
             async function updateCart(userId) {
                try {
-                  const res = await fetch(`http://localhost:8080/api/v1/cart?userId=${encodeURIComponent(userId)}`);
+                  const res = await fetch(`http://${changeServer}:8080/api/v1/cart?userId=${encodeURIComponent(userId)}`);
                   const cartData = await res.json();
                   if (
                      cartData &&
@@ -163,7 +163,7 @@
 
                try {
 
-                  const res = await fetch(`http://localhost:8080/api/v1/product/${productId}`);
+                  const res = await fetch(`http://${changeServer}:8080/api/v1/product/${productId}`);
                   const json = await res.json();
                   if (json.statusCode !== 200) throw new Error(json.message);
 
@@ -291,7 +291,7 @@
                            return;
                         }
                         try {
-                           const url = `http://localhost:8080/api/v1/cart/add?userId=${encodeURIComponent(userId)}&productId=${encodeURIComponent(data.id)}&quantity=${qty}`;
+                           const url = `http://${changeServer}:8080/api/v1/cart/add?userId=${encodeURIComponent(userId)}&productId=${encodeURIComponent(data.id)}&quantity=${qty}`;
                            const res = await fetch(url, {
                               method: 'POST'
                            });
@@ -366,7 +366,7 @@
                                     console.log(notifyReviews);
                                     if (!productId) return;
                                     try {
-                                       const res = await fetch(`http://localhost:8080/api/v1/comment/product/${productId}`);
+                                       const res = await fetch(`http://${changeServer}:8080/api/v1/comment/product/${productId}`);
                                        let comments = await res.json();
                                        // Sort by createdAt descending (newest first)
                                        if (Array.isArray(comments)) {
@@ -461,6 +461,8 @@
                                  </button>
                               </form>
                               <script>
+
+                                 var changeServer = '160.30.192.116';
                                  // Star rating UI
                                  (function () {
                                     const stars = document.querySelectorAll('#rating-stars .item-rating');
@@ -514,7 +516,7 @@
                                     }
 
                                     try {
-                                       const url = `http://localhost:8080/api/v1/comment/create?uid=${encodeURIComponent(userId)}&productId=${encodeURIComponent(productId)}`;
+                                       const url = `http://${changeServer}:8080/api/v1/comment/create?uid=${encodeURIComponent(userId)}&productId=${encodeURIComponent(productId)}`;
                                        const res = await fetch(url, {
                                           method: 'POST',
                                           headers: {

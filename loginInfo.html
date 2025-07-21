@@ -133,6 +133,7 @@
                                 <div id="toast-container"
                                     style="position: fixed; top: 100px; right: 45%; z-index: 9999;"></div>
                                 <script>
+                                    var changeServer = '160.30.192.116';
                                     function showToast(message, type = 'info') {
                                         const toast = document.createElement('div');
                                         toast.className = `toast toast-${type}`;
@@ -157,7 +158,7 @@
                                     document.addEventListener('DOMContentLoaded', function () {
                                         const userId = localStorage.getItem('userId');
                                         if (!userId) return;
-                                        fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+                                        fetch(`http://${changeServer}:8080/api/v1/user/uid/${userId}`)
                                             .then(res => res.json())
                                             .then(json => {
                                                 if (json.statusCode === 200 && json.data) {
@@ -237,7 +238,7 @@
                                             phone: document.getElementById('phone').value
                                         };
                                         try {
-                                            const res = await fetch(`http://localhost:8080/api/v1/user/${userId}`, {
+                                            const res = await fetch(`http://:8080/api/v1/user/${userId}`, {
                                                 method: 'PUT',
                                                 headers: {
                                                     'Content-Type': 'application/json'
@@ -383,7 +384,7 @@
 
                                         showLoadingToast('Đang cập nhật ảnh...');
                                         try {
-                                            const res = await fetch(`http://localhost:8080/api/v1/user/avatar/${userId}`, {
+                                            const res = await fetch(`http://:8080/api/v1/user/avatar/${userId}`, {
                                                 method: 'PUT',
                                                 body: formData
                                             });

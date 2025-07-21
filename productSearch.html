@@ -158,6 +158,7 @@
   </section>
 
   <script>
+    var changeServer = '160.30.192.116';
     const btnFilterWomen = document.getElementById('btn-filter-women');
     const btnFilterMen = document.getElementById('btn-filter-men');
 
@@ -324,7 +325,7 @@
             if (typeof swal === 'function') swal("Bạn cần đăng nhập để thêm vào giỏ hàng!", "", "warning");
             return;
           }
-          fetch(`http://localhost:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
+          fetch(`http://${changeServer}:8080/api/v1/cart/add?userId=${userId}&productId=${product.id}&quantity=1`, {
             method: 'POST'
           })
             .then(res => res.json())
@@ -332,7 +333,7 @@
               if (data && data.statusCode === 201) {
 
                 if (typeof swal === 'function') swal(product.name, "is added to cart !", "success");
-                fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                fetch(`http://${changeServer}:8080/api/v1/cart?userId=${userId}`)
                   .then(res => res.json())
                   .then(cartData => {
                     if (
@@ -387,7 +388,7 @@
             if (typeof swal === 'function') swal("Bạn cần đăng nhập để thêm vào yêu thích!", "", "warning");
             return;
           }
-          fetch('http://localhost:8080/api/v1/favourites/toggle', {
+          fetch(`http://${changeServer}:8080/api/v1/favourites/toggle`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -454,7 +455,7 @@
         setProductListMinHeight(0);
         return;
       }
-      fetch(`http://localhost:8080/api/v1/product/search?keyword=${encodeURIComponent(keyword)}`)
+      fetch(`http://${changeServer}:8080/api/v1/product/search?keyword=${encodeURIComponent(keyword)}`)
         .then(res => res.json())
         .then(data => {
           allProducts = data.data || [];
