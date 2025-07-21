@@ -238,7 +238,7 @@
                                             phone: document.getElementById('phone').value
                                         };
                                         try {
-                                            const res = await fetch(`http://:8080/api/v1/user/${userId}`, {
+                                            const res = await fetch(`http://${changeServer}:8080/api/v1/user/${userId}`, {
                                                 method: 'PUT',
                                                 headers: {
                                                     'Content-Type': 'application/json'
