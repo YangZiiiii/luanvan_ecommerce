@@ -242,6 +242,8 @@ class AppHeader extends HTMLElement {
    </header>
    `;
 
+      var changeServer ='160.30.192.116'
+
       // Active menu item based on current page
       document.addEventListener('DOMContentLoaded', function () {
          const menuLinks = document.querySelectorAll('.main-menu li a');
@@ -295,7 +297,7 @@ class AppHeader extends HTMLElement {
       document.addEventListener('DOMContentLoaded', function () {
          const userId = localStorage.getItem('userId');
          if (userId && userId !== 'null') {
-            fetch(`http://localhost:8080/api/v1/favourites/user/${userId}`)
+            fetch(`http://${changeServer}:8080/api/v1/favourites/user/${userId}`)
                .then(res => res.json())
                .then(data => {
                   if (data && data.statusCode === 200 && Array.isArray(data.data)) {
@@ -354,7 +356,7 @@ class AppHeader extends HTMLElement {
                   return;
                }
 
-               fetch('http://localhost:8080/api/v1/auth/register', {
+               fetch(`http://${changeServer}:8080/api/v1/auth/register`, {
                   method: 'POST',
                   body: formData
                })
@@ -422,7 +424,7 @@ class AppHeader extends HTMLElement {
                forgotToast.className = 'forgot-toast';
                forgotToast.textContent = '';
                forgotSpinner.className = 'forgot-spinner show';
-               fetch(`http://localhost:8080/api/v1/auth/forgot-password/${encodeURIComponent(email)}`, {
+               fetch(`http://${changeServer}:8080/api/v1/auth/forgot-password/${encodeURIComponent(email)}`, {
                   method: 'POST'
                })
                   .then(res => res.json())
@@ -509,7 +511,7 @@ class AppHeader extends HTMLElement {
                if (userId && userId !== 'null') {
                   // Nếu có userId thì fetch lại cart từ API khi mở
                   if (!cartVisible) {
-                     fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+                     fetch(`http://${changeServer}:8080/api/v1/cart?userId=${userId}`)
                         .then(res => res.json())
                         .then(cartData => {
                            if (
@@ -585,7 +587,7 @@ class AppHeader extends HTMLElement {
          const token = localStorage.getItem('token');
          const userId = localStorage.getItem('userId');
          if (token && token !== 'null' && userId && userId !== 'null') {
-            fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+            fetch(`http://${changeServer}:8080/api/v1/cart?userId=${userId}`)
                .then(res => res.json())
                .then(cartData => {
                   if (
@@ -753,7 +755,7 @@ class AppHeader extends HTMLElement {
                      renderCart();
                      updateCartNotify();
                   } else {
-                     fetch(`http://localhost:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
+                     fetch(`http://${changeServer}:8080/api/v1/cart/update?userId=${userId}&productId=${id}&newQuantity=${val}`, {
                         method: 'PUT'
                      })
                         .then(res => res.json())
@@ -902,7 +904,7 @@ class AppHeader extends HTMLElement {
                         quantity: cartQty[p.id] ?? 1
                      }));
                   console.log(items);
-                  fetch(`http://localhost:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
+                  fetch(`http://${changeServer}:8080/api/v1/cart/remove?userId=${userId}&productId=${id}`, {
                      method: 'DELETE',
                      headers: {
                         'Content-Type': 'application/json'
@@ -962,7 +964,7 @@ class AppHeader extends HTMLElement {
                         productId: p.id,
                         quantity: cartQty[p.id] ?? 1
                      }));
-                     fetch(`http://localhost:8080/api/v1/cart/clear?userId=${userId}`, {
+                     fetch(`http://${changeServer}:8080/api/v1/cart/clear?userId=${userId}`, {
                         method: 'DELETE',
                         headers: {
                            'Content-Type': 'application/json'
@@ -1057,7 +1059,7 @@ class AppHeader extends HTMLElement {
          });
 
          function refreshCartLogin() {
-            fetch(`http://localhost:8080/api/v1/cart?userId=${userId}`)
+            fetch(`http://${changeServer}:8080/api/v1/cart?userId=${userId}`)
                .then(res => res.json())
                .then(cartData => {
                   if (
@@ -1108,7 +1110,7 @@ class AppHeader extends HTMLElement {
 
 
 
-               fetch("http://localhost:8080/api/v1/auth/login", {
+               fetch(`http://${changeServer}:8080/api/v1/auth/login`, {
                   method: "POST",
                   headers: {
                      "Content-Type": "application/json"
@@ -1177,7 +1179,7 @@ class AppHeader extends HTMLElement {
       const userId = localStorage.getItem('userId');
       console.log('userId:', userId);
       const fullNameElement = document.getElementById('full-name');
-      fetch(`http://localhost:8080/api/v1/user/uid/${userId}`)
+      fetch(`http://${changeServer}:8080/api/v1/user/uid/${userId}`)
          .then(res => res.json())
          .then(data => {
             if (data && data.statusCode === 200) {
