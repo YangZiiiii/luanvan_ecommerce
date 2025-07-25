@@ -1,1 +1,1 @@
-var changeServer = "160.30.192.116";
+var changeServer = "localhost";

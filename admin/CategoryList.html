@@ -290,7 +290,7 @@
 
                      // Render category table
                      function renderCategoryTable() {
-                        fetch('http://160.30.192.116:8080/api/v1/category?page=0&size=10')
+                        fetch('http://localhost:8080/api/v1/category?page=0&size=10')
                            .then(response => response.json())
                            .then(data => {
                               const tableBody = document.getElementById('category-table-body');

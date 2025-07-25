@@ -118,6 +118,34 @@ class NavigationApp extends HTMLElement {
                         </li>
                         
                      </ul>
+                  </li>
+
+                  
+                  <li class="menu-item" style="">
+                     <a
+                        href="javascript:void(0);"
+                        class="menu-link menu-toggle waves-effect"
+                     >
+                    		<i class="menu-icon tf-icons ri-store-line"></i>
+                        <div data-i18n="Bình luận, đánh giá" bis_skin_checked="1">
+                           Bình luận, đánh giá
+                        </div>
+                        
+
+                     </a>
+                     <ul class="menu-sub">
+                        <li class="menu-item">
+                           <a href="./Comment.html" class="menu-link">
+                              <div
+                                 data-i18n="Danh sách bình luận, đánh giá"
+                                 bis_skin_checked="1"
+                              >
+                                 Danh sách bình luận, đánh giá
+                              </div>
+                           </a>
+                        </li>
+                        
+                     </ul>
                      
                      
                   </li>
@@ -146,7 +174,7 @@ class NavigationApp extends HTMLElement {
                               </div>
                            </a>
                         </li>
-                        <li class="menu-item">
+                        <!-- <li class="menu-item">
                            <a href="./OrderList.html" class="menu-link">
                               <div data-i18n="Danh sách đơn hàng" bis_skin_checked="1">
                                  Danh sách đơn hàng
@@ -162,7 +190,7 @@ class NavigationApp extends HTMLElement {
                                  Chi tiết đơn hàng
                               </div>
                            </a>
-                        </li>
+                        </li> -->
                      </ul>
                   </li>
 

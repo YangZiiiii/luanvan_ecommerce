@@ -151,7 +151,7 @@
                                           style="width: 0px; display: none" aria-label=""></th>
                                        <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
                                           rowspan="1" colspan="1" style="width: 18px" data-col="1" aria-label="">
-                                          <input type="checkbox" class="form-check-input" />
+                                         
                                        </th>
                                        <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0"
                                           rowspan="1" colspan="1" style="width: 699px"
@@ -191,7 +191,7 @@
                                         <tr>
                                           <td class="control" tabindex="0" style="display: none"></td>
                                           <td class="dt-checkboxes-cell">
-                                          <input type="checkbox" class="dt-checkboxes form-check-input" />
+                                          
                                           </td>
                                           <td class="sorting_1">
                                           <div class="d-flex align-items-center">
@@ -239,38 +239,36 @@
                                              });
 
                                              // Gán sự kiện cho nút edit sau khi render xong
-                                             document.querySelectorAll('.btn-edit-brand').forEach(btn => {
+                                              document.querySelectorAll('.btn-edit-brand').forEach(btn => {
                                                 btn.addEventListener('click', async function () {
                                                    const brandId = this.getAttribute('data-brand-id');
                                                    if (!brandId) return;
                                                    try {
-                                                      const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
-                                                      const result = await res.json();
-                                                      if (result && result.data) {
-                                                         // Gán dữ liệu vào modal update
-                                                         document.getElementById('ecommerce-brand-title').value = result.data.name || '';
-                                                         // Gán description vào editor
-                                                         const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
-                                                         if (descElem) {
-                                                            descElem.innerText = result.data.description || '';
-                                                         }
-                                                         // Gán status (chỉ ACTIVE/INACTIVE)
-                                                         const statusSelect = document.getElementById('ecommerce-brand-status');
-                                                         if (statusSelect) {
-                                                            statusSelect.value = result.data.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE';
-                                                            statusSelect.setAttribute('data-brand-id', brandId);
-                                                         }
-                                                         // Lưu id vào form để dùng khi update
-                                                         document.getElementById('eCommerceBrandListForm').setAttribute('data-brand-id', brandId);
-                                                      }
+                                                     const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
+                                                     const result = await res.json();
+                                                     if (result && result.data) {
+                                                       // Gán dữ liệu vào modal update
+                                                       document.getElementById('ecommerce-brand-title').value = result.data.name || '';
+                                                      
+                                                      
+                                                       // Gán status (ACTIVE/INACTIVE/DELETED)
+                                                       const statusSelect = document.getElementById('ecommerce-brand-status');
+                                                       if (statusSelect) {
+                                                         statusSelect.value = result.data.status || 'INACTIVE';
+                                                         statusSelect.setAttribute('data-brand-id', brandId);
+                                                       }
+                                                       // Lưu id vào form để dùng khi update
+                                                       document.getElementById('eCommerceBrandListForm').setAttribute('data-brand-id', brandId);
+                                                     }
                                                    } catch (err) {
-                                                      alert('Không lấy được dữ liệu brand!');
+                                                     alert('Không lấy được dữ liệu brand!');
                                                    }
                                                 });
-                                             });
+                                              });
 
                                              // Gán sự kiện đổi status cho select trong modal update
                                              const statusSelect = document.getElementById('ecommerce-brand-status');
+                                      
                                              if (statusSelect) {
                                                 statusSelect.onchange = async function () {
                                                    const brandId = statusSelect.getAttribute('data-brand-id');
@@ -378,7 +376,7 @@
                               </div> -->
 
                               <!-- Status -->
-                              <!-- <div class="mb-5 ecommerce-select2-dropdown">
+                              <div class="mb-5 ecommerce-select2-dropdown">
                                  <div class="form-floating form-floating-outline form-floating-select2">
                                     <div class="position-relative">
                                        <select id="ecommerce-brand-status-add" class="form-select"
@@ -390,7 +388,7 @@
                                     </div>
                                     <label for="ecommerce-brand-status-add">Status</label>
                                  </div>
-                              </div> -->
+                              </div>
 
                               <!-- Submit and reset -->
                               <div class="mb-4">
@@ -529,8 +527,12 @@
                            const name = document.getElementById('ecommerce-brand-title').value.trim();
                            // const descElem = document.querySelector('#ecommerce-collection-description .ql-editor');
                            // const description = descElem ? descElem.innerText.trim() : '';
+
                            const status = document.getElementById('ecommerce-brand-status').value || 'INACTIVE';
 
+                           console.log(status);
+
+                           
                            if (!brandId) {
                               alert('Không tìm thấy brand để update!');
                               return;
@@ -716,7 +718,7 @@
             if (response.ok) {
                document.getElementById("modalContent").style.display = "none";
                document.getElementById("successMessage").classList.add("show");
-               showToast("Xoá brand thành công!", "success");
+              
                setTimeout(() => {
                   window.location.reload();
                }, 1500);

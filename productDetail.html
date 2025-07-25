@@ -348,9 +348,9 @@
                               <div id="product-reviews-list"></div>
                               <script>
                                  // Helper: format date/time
-                                 function formatDateTime(dateStr) {
-                                    if (!dateStr) return '';
-                                    const d = new Date(dateStr);
+                                 function formatDateTime(dateVal) {
+                                    if (!dateVal) return '';
+                                    const d = new Date(Number(dateVal));
                                     if (isNaN(d)) return '';
                                     return d.toLocaleString('vi-VN', {
                                        hour: '2-digit',
@@ -364,19 +364,28 @@
                                  async function renderProductReviews() {
                                     const productId = (new URLSearchParams(window.location.search)).get('productId');
                                     const notifyReviews = document.getElementById("notify-reviews");
-                                    
-                                    console.log(notifyReviews);
+                                    const currentUserId = localStorage.getItem('userId');
                                     if (!productId) return;
                                     try {
                                        const res = await fetch(`http://${changeServer}:8080/api/v1/comment/product/${productId}`);
                                        let comments = await res.json();
                                        // Sort by createdAt descending (newest first)
                                        if (Array.isArray(comments)) {
-                                          comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                                          comments.sort((a, b) => Number(b.createdAt) - Number(a.createdAt));
                                        }
-                                       const reviewsHtml = comments.length
-                                          ? comments.map(c => `
-                                             <div class="flex-w flex-t p-b-68" data-review-id="${c.id}">
+                                       // Filter: hide INACTIVE + PENDING unless it's current user's comment
+                                       const visibleComments = Array.isArray(comments)
+                                          ? comments.filter(c =>
+                                                !(
+                                                   c.status === "INACTIVE" &&
+                                                   c.commentStatus === "PENDING" &&
+                                                   String(c.userUid) !== String(currentUserId)
+                                                )
+                                            )
+                                          : [];
+                                       const reviewsHtml = visibleComments.length
+                                          ? visibleComments.map(c => `
+                                             <div class="flex-w flex-t p-b-68" data-review-id="${c.commentId}">
                                                 <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
                                                    <img src="${c.avatar || './assets/images/avatar-01.jpg'}" alt="AVATAR" />
                                                 </div>
@@ -387,33 +396,35 @@
                                                       </span>
                                                       <span class="fs-18 cl11">
                                                          ${(() => {
-                                                const full = Math.floor(c.rating);
-                                                const half = c.rating % 1 >= 0.5 ? 1 : 0;
-                                                let stars = '';
-                                                for (let i = 0; i < full; i++) stars += '<i class="zmdi zmdi-star"></i>';
-                                                if (half) stars += '<i class="zmdi zmdi-star-half"></i>';
-                                                for (let i = full + half; i < 5; i++) stars += '<i class="zmdi zmdi-star-outline"></i>';
-                                                return stars;
-                                             })()}
+                                                            const full = Math.floor(c.rating);
+                                                            const half = c.rating % 1 >= 0.5 ? 1 : 0;
+                                                            let stars = '';
+                                                            for (let i = 0; i < full; i++) stars += '<i class="zmdi zmdi-star"></i>';
+                                                            if (half) stars += '<i class="zmdi zmdi-star-half"></i>';
+                                                            for (let i = full + half; i < 5; i++) stars += '<i class="zmdi zmdi-star-outline"></i>';
+                                                            return stars;
+                                                         })()}
                                                       </span>
                                                    </div>
+                                                   <p class="stext-102 cl6">
+                                                      ${
+                                                         c.commentStatus === "PENDING"
+                                                            ? '<span class="text-warning">Đang chờ duyệt</span>'
+                                                            : '<span class="text-success">Đã duyệt</span>'
+                                                      }
+                                                   </p>
                                                    <div class="stext-102 cl9 p-b-5" style="font-size:13px;">
                                                       ${formatDateTime(c.createdAt)}
                                                    </div>
                                                    <p class="stext-102 cl6">
                                                       ${c.content}
                                                    </p>
-                                                    <!-- <div class="m-t-10">
-                                                      <a href="#!" class="cl8 m-r-15 review-edit" data-review-id="${c.commentId}">Edit</a>
-                                                      <a href="#!" class="cl8 review-delete" data-review-id="${c.commentId}">Delete</a>
-                                                   </div> -->
                                                 </div>
                                              </div>
                                           `).join('')
                                           : `<p class="stext-102 cl6"></p>`;
                                        document.getElementById('product-reviews-list').innerHTML = reviewsHtml;
-                                       if(comments.length ===0)
-                                       notifyReviews.textContent = `Đánh giá (${comments.length})`;
+                                       if (notifyReviews) notifyReviews.textContent = `Đánh giá (${visibleComments.length})`;
                                     } catch (e) {
                                        document.getElementById('product-reviews-list').innerHTML = '<p class="text-danger">Failed to load reviews.</p>';
                                     }

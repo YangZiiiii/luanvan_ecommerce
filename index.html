@@ -1147,7 +1147,7 @@
 
          // Đăng nhập
          let loginForm = document.getElementById('login-form');
-         if (loginForm) {
+          if (loginForm) {
             loginForm.addEventListener("submit", function (e) {
                e.preventDefault();
 
@@ -1157,69 +1157,71 @@
                const username = loginForm.querySelectorAll(".form-input")[0].value;
                const password = loginForm.querySelectorAll(".form-input")[1].value;
 
-
-
                fetch(`http://${changeServer}:8080/api/v1/auth/login`, {
-                  method: "POST",
-                  headers: {
-                     "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({
-                     username: username,
-                     password: password
-                  })
+                 method: "POST",
+                 headers: {
+                   "Content-Type": "application/json"
+                 },
+                 body: JSON.stringify({
+                   username: username,
+                   password: password
+                 })
                })
-                  .then((response) => {
-                     if (!response.ok) {
-                        throw new Error("Đăng nhập thất bại");
-                     }
-                     return response.json();
-                  })
-                  .then((data) => {
-                     if (data && data.statusCode === 200 && data.data && data.data.accessToken) {
-                        // Lưu token và thông tin user vào localStorage
-                        localStorage.setItem("username", username);
-                        localStorage.setItem("firstName", data.data.firstName || "");
-                        localStorage.setItem("lastName", data.data.lastName || "");
-                        localStorage.setItem("phoneNumber", data.data.phone || "");
-                        localStorage.setItem("token", data.data.accessToken);
-                        localStorage.setItem("refreshToken", data.data.refreshToken || "");
-                        localStorage.setItem("userId", data.data.userId);
-                        localStorage.setItem("status", data.data.status || "");
+                 .then((response) => {
+                   if (!response.ok) {
+                     // Nếu là lỗi 400, vẫn lấy response body để kiểm tra message
+                     return response.json().then(data => {
+                        throw data;
+                     });
+                   }
+                   return response.json();
+                 })
+                 .then((data) => {
+                   if (data && data.statusCode === 200 && data.data && data.data.accessToken) {
+                     // Lưu token và thông tin user vào localStorage
+                     localStorage.setItem("username", username);
+                     localStorage.setItem("firstName", data.data.firstName || "");
+                     localStorage.setItem("lastName", data.data.lastName || "");
+                     localStorage.setItem("phoneNumber", data.data.phone || "");
+                     localStorage.setItem("token", data.data.accessToken);
+                     localStorage.setItem("refreshToken", data.data.refreshToken || "");
+                     localStorage.setItem("userId", data.data.userId);
+                     localStorage.setItem("status", data.data.status || "");
 
-                        localStorage.setItem("role", data.data.role);
-                        localStorage.setItem("loginSuccess", "true");
-                        toggleLoginMenu();
+                     localStorage.setItem("role", data.data.role);
+                     localStorage.setItem("loginSuccess", "true");
+                     toggleLoginMenu();
 
+                     showToast("Đăng nhập thành công!", false, 2500);
+                     window.location.reload();
+                     window.location.reload();
 
-                        showToast("Đăng nhập thành công!", false, 2500);
-                        window.location.reload();
-                        window.location.reload();
+                     // Đóng modal đăng nhập nếu thành công
+                     setTimeout(function () {
+                        let modal = document.querySelector('.modal-log');
+                        if (modal) {
+                          modal.style.display = 'none';
+                        }
+                        // Enable scroll lại cho body và html
+                        document.body.style.overflow = '';
+                        document.documentElement.style.overflow = '';
 
-
-
-
-                        // Đóng modal đăng nhập nếu thành công
-                        setTimeout(function () {
-                           let modal = document.querySelector('.modal-log');
-                           if (modal) {
-                              modal.style.display = 'none';
-                           }
-                           // Enable scroll lại cho body và html
-                           document.body.style.overflow = '';
-                           document.documentElement.style.overflow = '';
-
-                           window.dispatchEvent(new Event('login-success'));
-                        }, 50);
-                     } else {
-                        showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
-                     }
-                  })
-                  .catch((error) => {
+                        window.dispatchEvent(new Event('login-success'));
+                     }, 50);
+                   } else {
+                     showLoginToast("Đăng nhập thất bại. Vui lòng kiểm tra lại.");
+                   }
+                 })
+                 .catch((error) => {
+                   // Nếu trả về message "Account is locked !"
+                   if (error && error.message === "Account is locked !") {
+                     showLoginToast("Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.");
+                   } else {
                      showLoginToast("Đăng nhập thất bại. Vui lòng thử lại.");
-                  });
+                   }
+                 });
             });
-         }
+          }
 
       });
 

@@ -125,7 +125,9 @@
                                  <thead>
                                     <tr>
                                        <th></th>
-                                       <th></th>
+                                       <th class="back-order">
+                                          <a id="back-to-order-list" href="#"><i class="fa-solid fa-arrow-left" style="font-size: 20px;"></i></a>
+                                       </th>
                                        <th class="w-50">products</th>
                                        <th>price</th>
                                        <th>qty</th>
@@ -158,199 +160,199 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
-                     </div>
-                     <div class="col-12 col-lg-4" bis_skin_checked="1">
-                        <div class="card mb-6" bis_skin_checked="1">
-                           <div class="card-body" bis_skin_checked="1">
-                              <h5 class="card-title mb-6">Customer details</h5>
-                              <div class="d-flex justify-content-start align-items-center mb-6" bis_skin_checked="1">
-                                 <div class="avatar me-3" bis_skin_checked="1">
-                                    <img id="customer-avatar" src="./assets/img/OrderDetails/1.png" alt="Avatar"
-                                       class="rounded-circle" />
-                                 </div>
-                                 <div class="d-flex flex-column" bis_skin_checked="1">
-                                    <a href="#">
-                                       <h6 class="mb-0" id="customer-name">Customer Name</h6>
-                                    </a>
-                                    <span id="customer-id">Customer ID: #</span>
-                                 </div>
-                              </div>
-                              <!-- <div class="d-flex justify-content-start align-items-center mb-6" bis_skin_checked="1">
-                                 <span
-                                    class="avatar rounded-circle bg-label-success me-3 d-flex align-items-center justify-content-center"><i
-                                       class="ri-shopping-cart-line ri-24px"></i></span>
-                                 <h6 class="text-nowrap mb-0" id="customer-orders">0 Orders</h6>
-                              </div> -->
-                              <div class="d-flex justify-content-between" bis_skin_checked="1">
-                                 <h6 class="mb-1">Contact info</h6>
-                              </div>
-                              <p class="mb-1" id="customer-email">Email: </p>
-                              <p class="mb-0" id="customer-phone">Mobile: </p>
                            </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="card mb-6" bis_skin_checked="1">
-                           <div class="card-header" bis_skin_checked="1">
-                              <h5 class="card-title m-0">Shipping activity</h5>
                            </div>
-                           <div class="card-body mt-3" bis_skin_checked="1">
-                              <ul class="timeline pb-0 mb-0" id="order-timeline">
-                                 <!-- Timeline sẽ được render bằng JS -->
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <script>
-                  const urlParams = new URLSearchParams(window.location.search);
-                  const orderId = urlParams.get('orderId');
-                  const API_URL = `http://localhost:8080/api/v1/order/${orderId}`;
-
-                  const ORDER_STATUS_STEPS = [
-                     {
-                        key: "PENDING",
-                        label: "Order was placed",
-                        desc: "Your order has been placed successfully"
-                     },
-                     {
-                        key: "PROCESSING",
-                        label: "Processing",
-                        desc: "Your order is being processed"
-                     },
-                     {
-                        key: "SHIPPING",
-                        label: "Shipped",
-                        desc: "Order is been shipped"
-                     },
-                     {
-                        key: "DELIVERED",
-                        label: "Delivered",
-                        desc: "Order delivered to customer"
-                     },
-                     {
-                        key: "CANCELLED",
-                        label: "Cancelled",
-                        desc: "Order has been cancelled"
-                     },
-                     {
-                        key: "RETURNED",
-                        label: "Returned",
-                        desc: "Order has been returned"
-                     },
-                     {
-                        key: "REFUNDED",
-                        label: "Refunded",
-                        desc: "Order has been refunded"
-                     }
-                  ];
-
-                  function formatMoney(amount) {
-                     return amount ? amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : '0';
-                  }
-
-                  function formatDate(ts) {
-                     if (!ts) return '';
-                     const d = new Date(ts);
-                     return d.toLocaleString();
-                  }
-
-                  function renderOrderItems(items) {
-                     return items.map(item => `
-                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                           <div class="d-flex justify-content-start align-items-center product-name">
-                              <div class="avatar-wrapper me-3">
-                                 <div class="avatar avatar-sm rounded-2 bg-label-secondary">
-                                    <img src="${item.imageUrl || './assets/img/OrderDetails/woodenchair.png'}" alt="product-${item.productName}" class="rounded-2" />
+                           <div class="col-12 col-lg-4" bis_skin_checked="1">
+                              <div class="card mb-6" bis_skin_checked="1">
+                                 <div class="card-body" bis_skin_checked="1">
+                                    <h5 class="card-title mb-6">Customer details</h5>
+                                    <div class="d-flex justify-content-start align-items-center mb-6" bis_skin_checked="1">
+                                       <div class="avatar me-3" bis_skin_checked="1">
+                                          <img id="customer-avatar" src="./assets/img/OrderDetails/1.png" alt="Avatar"
+                                             class="rounded-circle" />
+                                       </div>
+                                       <div class="d-flex flex-column" bis_skin_checked="1">
+                                          <a href="#">
+                                             <h6 class="mb-0" id="customer-name">Customer Name</h6>
+                                          </a>
+                                          <span id="customer-id">Customer ID: #</span>
+                                       </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between" bis_skin_checked="1">
+                                       <h6 class="mb-1">Contact info</h6>
+                                    </div>
+                                    <p class="mb-1" id="customer-email">Email: </p>
+                                    <p class="mb-0" id="customer-phone">Mobile: </p>
                                  </div>
                               </div>
-                              <div class="d-flex flex-column">
-                                 <span class="text-nowrap text-heading fw-medium">${item.productName}</span>
+                           </div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="card mb-6" bis_skin_checked="1">
+                                    <div class="card-header" bis_skin_checked="1">
+                                       <h5 class="card-title m-0">Shipping activity</h5>
+                                    </div>
+                                    <div class="card-body mt-3" bis_skin_checked="1">
+                                       <ul class="timeline pb-0 mb-0" id="order-timeline">
+                                          <!-- Timeline sẽ được render bằng JS -->
+                                       </ul>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
-                        </td>
-                        <td><span>${formatMoney(item.unitPrice)}</span></td>
-                        <td><span>${item.quantity}</span></td>
-                        <td><span>${formatMoney(item.unitPrice * item.quantity)}</span></td>
-                     </tr>
-                  `).join('');
-                  }
-
-                  function renderTimeline(status, order) {
-                     // Chỉ highlight đến trạng thái hiện tại
-                     const statusIndex = ORDER_STATUS_STEPS.findIndex(s => s.key === status);
-                     let steps = [];
-                     if (statusIndex === -1) {
-                        // Nếu không khớp trạng thái, chỉ hiển thị trạng thái đầu tiên
-                        steps = [ORDER_STATUS_STEPS[0]];
-                     } else if (status === "CANCELLED" || status === "RETURNED" || status === "REFUNDED") {
-                        // Nếu là trạng thái kết thúc sớm, chỉ hiển thị các bước đến trạng thái đó
-                        steps = ORDER_STATUS_STEPS.slice(0, statusIndex + 1);
-                     } else {
-                        steps = ORDER_STATUS_STEPS.slice(0, statusIndex + 1);
-                     }
-
-                     return steps.map((step, idx) => {
-                        let borderClass = (idx === steps.length - 1 && (status === "CANCELLED" || status === "RETURNED" || status === "REFUNDED")) ? "border-danger" : "border-primary";
-                        let pointClass = (idx === steps.length - 1 && (status === "CANCELLED" || status === "RETURNED" || status === "REFUNDED")) ? "timeline-point-danger" : "timeline-point-primary";
-                        let time = "";
-                        if (idx === 0 && order.orderDate) time = formatDate(order.orderDate);
-                        else if (idx === steps.length - 1 && order.updatedAt) time = formatDate(order.updatedAt);
-                        return `
-                        <li class="timeline-item timeline-item-transparent ${borderClass}">
-                           <span class="timeline-point ${pointClass}"></span>
-                           <div class="timeline-event">
-                              <div class="timeline-header mb-1">
-                                 <h6 class="mb-0">${step.label}${idx === 0 ? ` (Order ID: #${order.id.slice(0, 6)})` : ""}</h6>
-                                 <small class="text-muted">${time}</small>
-                              </div>
-                              <p class="mt-1 mb-3">${step.desc}</p>
                            </div>
-                        </li>
-                     `;
-                     }).join('');
-                  }
 
-                  fetch(API_URL)
-                     .then(res => res.json())
-                     .then(json => {
-                        if (json.statusCode !== 200) throw new Error(json.message);
-                        const order = json.data;
+                           <script>
+                              const urlParams = new URLSearchParams(window.location.search);
+                              const orderId = urlParams.get('orderId');
+                              const API_URL = `http://localhost:8080/api/v1/order/${orderId}`;
 
-                        // Render sản phẩm
-                        document.getElementById('order-items-body').innerHTML = renderOrderItems(order.items);
+                              const ORDER_STATUS_STEPS = [
+                                 {
+                                    key: "PENDING",
+                                    label: "Order was placed",
+                                    desc: "Your order has been placed successfully"
+                                 },
+                                 {
+                                    key: "PROCESSING",
+                                    label: "Processing",
+                                    desc: "Your order is being processed"
+                                 },
+                                 {
+                                    key: "SHIPPING",
+                                    label: "Shipped",
+                                    desc: "Order is been shipped"
+                                 },
+                                 {
+                                    key: "DELIVERED",
+                                    label: "Delivered",
+                                    desc: "Order delivered to customer"
+                                 },
+                                 {
+                                    key: "CANCELLED",
+                                    label: "Cancelled",
+                                    desc: "Order has been cancelled"
+                                 },
+                                 {
+                                    key: "RETURNED",
+                                    label: "Returned",
+                                    desc: "Order has been returned"
+                                 },
+                                 {
+                                    key: "REFUNDED",
+                                    label: "Refunded",
+                                    desc: "Order has been refunded"
+                                 }
+                              ];
 
-                        // Render tổng tiền
-                        document.getElementById('order-subtotal').textContent = formatMoney(order.totalPrice);
-                        document.getElementById('order-discount').textContent = formatMoney(0);
-                        document.getElementById('order-tax').textContent = formatMoney(0);
-                        document.getElementById('order-total').textContent = formatMoney(order.totalPrice);
+                              function formatMoney(amount) {
+                                 return amount ? amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : '0';
+                              }
 
-                        // Render thông tin khách hàng
-                        if (order.user) {
-                           document.getElementById('customer-name').textContent = `${order.user.firstName} ${order.user.lastName}`;
-                           document.getElementById('customer-id').textContent = `Customer ID: #${order.user.uid}`;
-                           document.getElementById('customer-email').textContent = `Email: ${order.user.email}`;
-                           document.getElementById('customer-phone').textContent = `Mobile: ${order.user.phone}`;
-                           document.getElementById('customer-avatar').src = order.user.avatar || './assets/img/OrderDetails/1.png';
-                        }
+                              function formatDate(ts) {
+                                 if (!ts) return '';
+                                 const d = new Date(ts);
+                                 return d.toLocaleString();
+                              }
 
-                        // Render timeline
-                        document.getElementById('order-timeline').innerHTML = renderTimeline(order.orderStatus, order);
-                     })
-                     .catch(err => {
-                        document.getElementById('order-timeline').innerHTML = `<li><span class="text-danger">Không thể tải đơn hàng: ${err.message}</span></li>`;
-                     });
-               </script>
+                              function renderOrderItems(items) {
+                                 return items.map(item => `
+                                    <tr>
+                                       <td></td>
+                                       <td></td>
+                                       <td>
+                                          <div class="d-flex justify-content-start align-items-center product-name">
+                                             <div class="avatar-wrapper me-3">
+                                                <div class="avatar avatar-sm rounded-2 bg-label-secondary">
+                                                   <img src="${item.imageUrl || './assets/img/OrderDetails/woodenchair.png'}" alt="product-${item.productName}" class="rounded-2" />
+                                                </div>
+                                             </div>
+                                             <div class="d-flex flex-column">
+                                                <span class="text-nowrap text-heading fw-medium">${item.productName}</span>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td><span>${formatMoney(item.unitPrice)}</span></td>
+                                       <td><span>${item.quantity}</span></td>
+                                       <td><span>${formatMoney(item.unitPrice * item.quantity)}</span></td>
+                                    </tr>
+                                 `).join('');
+                              }
+
+                              function renderTimeline(status, order) {
+                                 // Chỉ highlight đến trạng thái hiện tại
+                                 const statusIndex = ORDER_STATUS_STEPS.findIndex(s => s.key === status);
+                                 let steps = [];
+                                 if (statusIndex === -1) {
+                                    // Nếu không khớp trạng thái, chỉ hiển thị trạng thái đầu tiên
+                                    steps = [ORDER_STATUS_STEPS[0]];
+                                 } else if (status === "CANCELLED" || status === "RETURNED" || status === "REFUNDED") {
+                                    // Nếu là trạng thái kết thúc sớm, chỉ hiển thị các bước đến trạng thái đó
+                                    steps = ORDER_STATUS_STEPS.slice(0, statusIndex + 1);
+                                 } else {
+                                    steps = ORDER_STATUS_STEPS.slice(0, statusIndex + 1);
+                                 }
+
+                                 return steps.map((step, idx) => {
+                                    let borderClass = (idx === steps.length - 1 && (status === "CANCELLED" || status === "RETURNED" || status === "REFUNDED")) ? "border-danger" : "border-primary";
+                                    let pointClass = (idx === steps.length - 1 && (status === "CANCELLED" || status === "RETURNED" || status === "REFUNDED")) ? "timeline-point-danger" : "timeline-point-primary";
+                                    let time = "";
+                                    if (idx === 0 && order.orderDate) time = formatDate(order.orderDate);
+                                    else if (idx === steps.length - 1 && order.updatedAt) time = formatDate(order.updatedAt);
+                                    return `
+                                       <li class="timeline-item timeline-item-transparent ${borderClass}">
+                                          <span class="timeline-point ${pointClass}"></span>
+                                          <div class="timeline-event">
+                                             <div class="timeline-header mb-1">
+                                                <h6 class="mb-0">${step.label}${idx === 0 ? ` (Order ID: #${order.id.slice(0, 6)})` : ""}</h6>
+                                                <small class="text-muted">${time}</small>
+                                             </div>
+                                             <p class="mt-1 mb-3">${step.desc}</p>
+                                          </div>
+                                       </li>
+                                    `;
+                                 }).join('');
+                              }
+
+                              fetch(API_URL)
+                                 .then(res => res.json())
+                                 .then(json => {
+                                    if (json.statusCode !== 200) throw new Error(json.message);
+                                    const order = json.data;
+
+                                    // Render sản phẩm
+                                    document.getElementById('order-items-body').innerHTML = renderOrderItems(order.items);
+
+                                    // Render tổng tiền
+                                    document.getElementById('order-subtotal').textContent = formatMoney(order.totalPrice);
+                                    document.getElementById('order-discount').textContent = formatMoney(0);
+                                    document.getElementById('order-tax').textContent = formatMoney(0);
+                                    document.getElementById('order-total').textContent = formatMoney(order.totalPrice);
+
+                                    // Render thông tin khách hàng
+                                    if (order.user) {
+                                       document.getElementById('customer-name').textContent = `${order.user.firstName} ${order.user.lastName}`;
+                                       document.getElementById('customer-id').textContent = `Customer ID: #${order.user.uid}`;
+                                       document.getElementById('customer-email').textContent = `Email: ${order.user.email}`;
+                                       document.getElementById('customer-phone').textContent = `Mobile: ${order.user.phone}`;
+                                       document.getElementById('customer-avatar').src = order.user.avatar || './assets/img/OrderDetails/1.png';
+
+                                       // Gán link quay lại OrderList.html với userUid
+                                       const backBtn = document.getElementById('back-to-order-list');
+                                       if (backBtn) {
+                                          backBtn.href = `OrderList.html?userUid=${encodeURIComponent(order.user.uid)}`;
+                                       }
+                                    }
+
+                                    // Render timeline
+                                    document.getElementById('order-timeline').innerHTML = renderTimeline(order.orderStatus, order);
+                                 })
+                                 .catch(err => {
+                                    document.getElementById('order-timeline').innerHTML = `<li><span class="text-danger">Không thể tải đơn hàng: ${err.message}</span></li>`;
+                                 });
+                           </script>
                <!-- / Content -->
 
                <!-- Footer -->
