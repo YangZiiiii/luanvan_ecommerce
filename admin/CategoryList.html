@@ -65,7 +65,13 @@
 
    <!-- Page CSS -->
 
+   
+
    <link rel="stylesheet" href="./assets/css/app-ecommerce.css" />
+
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
 
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
@@ -290,7 +296,7 @@
 
                      // Render category table
                      function renderCategoryTable() {
-                        fetch('http://localhost:8080/api/v1/category?page=0&size=10')
+                        fetch(`http://${changeServer}:8080/api/v1/category?page=0&size=10`)
                            .then(response => response.json())
                            .then(data => {
                               const tableBody = document.getElementById('category-table-body');
@@ -365,7 +371,7 @@
                               alert('Please fill all required fields');
                               return;
                            }
-                           fetch('http://localhost:8080/api/v1/category', {
+                           fetch(`http://${changeServer}:8080/api/v1/category`, {
                               method: 'POST',
                               headers: {
                                  'Content-Type': 'application/json'
@@ -451,7 +457,7 @@
                            currentEditCategoryId = categoryId;
 
                            // Fetch category by id
-                           fetch(`http://localhost:8080/api/v1/category/${categoryId}`)
+                           fetch(`http://${changeServer}:8080/api/v1/category/${categoryId}`)
                               .then(res => res.json())
                               .then(result => {
                                  if (result.data) {
@@ -468,7 +474,7 @@
                         const status = this.value;
                         if (!currentEditCategoryId || !status) return;
                         try {
-                           const res = await fetch(`http://localhost:8080/api/v1/category/changeStatus/${currentEditCategoryId}`, {
+                           const res = await fetch(`http://${changeServer}:8080/api/v1/category/changeStatus/${currentEditCategoryId}`, {
                               method: 'PUT',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({ status })
@@ -495,7 +501,7 @@
                            alert('Please fill all required fields');
                            return;
                         }
-                        fetch(`http://localhost:8080/api/v1/category/${currentEditCategoryId}`, {
+                        fetch(`http://${changeServer}:8080/api/v1/category/${currentEditCategoryId}`, {
                            method: 'PUT',
                            headers: { 'Content-Type': 'application/json' },
                            body: JSON.stringify({ name, status })
@@ -674,7 +680,7 @@
       }
 
       try {
-      const response = await fetch(`http://localhost:8080/api/v1/category/${categoryId}`, {
+      const response = await fetch(`http://${changeServer}:8080/api/v1/category/${categoryId}`, {
          method: 'DELETE'
       });
 

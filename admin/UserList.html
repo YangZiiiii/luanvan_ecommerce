@@ -59,6 +59,10 @@
 
    <!-- Page CSS -->
 
+   <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
@@ -204,94 +208,11 @@
                   </div> -->
                   <!-- Users List Table -->
                   <div class="card" bis_skin_checked="1">
-                     <!-- <div class="card-header border-bottom" bis_skin_checked="1">
-                        <h6 class="card-title mb-0">Filters</h6>
-                        <div class="d-flex justify-content-between align-items-center row pt-4 pb-2 gap-4 gap-md-0 gx-5"
-                           bis_skin_checked="1">
-                           <div class="col-md-4 user_role" bis_skin_checked="1">
-                              <select id="UserRole" class="form-select text-capitalize">
-                                 <option value="">Select Role</option>
-                                 <option value="Admin">Admin</option>
-                                 <option value="Author">Author</option>
-                                 <option value="Editor">Editor</option>
-                                 <option value="Maintainer">
-                                    Maintainer
-                                 </option>
-                                 <option value="Subscriber">
-                                    Subscriber
-                                 </option>
-                              </select>
-                           </div>
-                           <div class="col-md-4 user_plan" bis_skin_checked="1">
-                              <select id="UserPlan" class="form-select text-capitalize">
-                                 <option value="">Select Plan</option>
-                                 <option value="Basic">Basic</option>
-                                 <option value="Company">Company</option>
-                                 <option value="Enterprise">
-                                    Enterprise
-                                 </option>
-                                 <option value="Team">Team</option>
-                              </select>
-                           </div>
-                           <div class="col-md-4 user_status" bis_skin_checked="1">
-                              <select id="FilterTransaction" class="form-select text-capitalize">
-                                 <option value="">Select Status</option>
-                                 <option value="Pending" class="text-capitalize">
-                                    Pending
-                                 </option>
-                                 <option value="Active" class="text-capitalize">
-                                    Active
-                                 </option>
-                                 <option value="Inactive" class="text-capitalize">
-                                    Inactive
-                                 </option>
-                              </select>
-                           </div>
-                        </div>
-                     </div> -->
+                     
                      <div class="card-datatable table-responsive" bis_skin_checked="1">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                            bis_skin_checked="1">
-                           <!-- <div class="row mx-1" bis_skin_checked="1">
-                              <div
-                                 class="col-md-2 d-flex align-items-center justify-content-md-start justify-content-center ps-4"
-                                 bis_skin_checked="1">
-                                 <div class="dt-action-buttons mt-4 mt-md-0" bis_skin_checked="1">
-                                    <div class="dt-buttons btn-group flex-wrap" bis_skin_checked="1">
-                                       <div class="btn-group" bis_skin_checked="1">
-                                          <button
-                                             class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-4 waves-effect waves-light"
-                                             tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                             aria-haspopup="dialog" aria-expanded="false">
-                                             <span><i class="ri-download-line ri-16px me-1"></i>
-                                                <span class="d-none d-sm-inline-block">Export</span></span>
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-md-10" bis_skin_checked="1">
-                                 <div class="d-flex align-items-center justify-content-md-end justify-content-center"
-                                    bis_skin_checked="1">
-                                    <div class="me-4" bis_skin_checked="1">
-                                       <div id="DataTables_Table_0_filter" class="dataTables_filter"
-                                          bis_skin_checked="1">
-                                          <label><input type="search" class="form-control form-control-sm"
-                                                placeholder="Search User" aria-controls="DataTables_Table_0" /></label>
-                                       </div>
-                                    </div>
-                                    <div class="add-new" bis_skin_checked="1">
-                                       <button class="btn btn-primary waves-effect waves-light"
-                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser">
-                                          <i class="ri-add-line me-0 me-sm-1 d-inline-block d-sm-none"></i><span
-                                             class="d-none d-sm-inline-block">
-                                             Add New User
-                                          </span>
-                                       </button>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div> -->
+                          
                            <table class="table dataTable no-footer dtr-column" id="DataTables_Table_0"
                               aria-describedby="DataTables_Table_0_info" style="width: 1394px">
                               <thead>
@@ -328,7 +249,7 @@
                               </thead>
                               <tbody>
                                  <script>
-                                    fetch('http://localhost:8080/api/v1/user')
+                                    fetch(`http://${changeServer}:8080/api/v1/user`)
                                        .then(response => response.json())
                                        .then(data => {
                                           const tableBody = document.querySelector('#DataTables_Table_0 tbody');
@@ -421,7 +342,7 @@
                                                 e.preventDefault();
                                                 const uid = this.getAttribute('data-uid');
                                                 const value = this.getAttribute('data-value');
-                                                fetch(`http://localhost:8080/api/v1/user/lock/${uid}`, {
+                                                fetch(`http://${changeServer}:8080/api/v1/user/lock/${uid}`, {
                                                    method: 'PUT',
                                                    headers: {
                                                       'Content-Type': 'application/json'

@@ -61,6 +61,9 @@
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
+   <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
 
 
    <!-- Template Navigation -->
@@ -146,7 +149,7 @@
                                           formData.append('avatar', file);
 
                                           try {
-                                             const res = await fetch(`http://localhost:8080/api/v1/user/avatar/${userAdminId}`, {
+                                             const res = await fetch(`http://${changeServer}:8080/api/v1/user/avatar/${userAdminId}`, {
                                                 method: 'PUT',
                                                 body: formData
                                              });
@@ -199,7 +202,7 @@
                                   // Replace this with your actual userAdminId
                                   const userAdminId = localStorage.getItem("userAdminId");
                                   try {
-                                    const response = await fetch(`http://localhost:8080/api/v1/user/uid/${userAdminId}`);
+                                    const response = await fetch(`http://${changeServer}:8080/api/v1/user/uid/${userAdminId}`);
                                     if (!response.ok) throw new Error("Network response was not ok");
                                     const result = await response.json();
                                     if (result.statusCode === 200 && result.data) {
@@ -222,7 +225,7 @@
                                     const lastName = document.getElementById("lastName").value;
                                     const phone = document.getElementById("phoneNumber").value;
                                     try {
-                                       const res = await fetch(`http://localhost:8080/api/v1/user/${userAdminId}`, {
+                                       const res = await fetch(`http://${changeServer}:8080/api/v1/user/${userAdminId}`, {
                                          method: "PUT",
                                          headers: {
                                            "Content-Type": "application/json"

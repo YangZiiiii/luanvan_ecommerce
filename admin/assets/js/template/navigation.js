@@ -126,7 +126,7 @@ class NavigationApp extends HTMLElement {
                         href="javascript:void(0);"
                         class="menu-link menu-toggle waves-effect"
                      >
-                    		<i class="menu-icon tf-icons ri-store-line"></i>
+                    		<i class="menu-icon tf-icons ri-message-3-line"></i>
                         <div data-i18n="Bình luận, đánh giá" bis_skin_checked="1">
                            Bình luận, đánh giá
                         </div>

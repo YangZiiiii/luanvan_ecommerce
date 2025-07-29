@@ -61,6 +61,10 @@
 
    <!-- Page CSS -->
 
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
@@ -369,7 +373,7 @@
                                     document.getElementById("productCategory").addEventListener("mousedown", function (e) {
                                        // Gọi API khi select đang ở trạng thái mặc định (value = "")
                                        if (!hasLoadedCategory && this.value === "") {
-                                          fetch("http://localhost:8080/api/v1/category")
+                                          fetch(`http://${changeServer}:8080/api/v1/category`)
                                              .then(response => response.json())
                                              .then(data => {
                                                 let options = `<option value="">Chọn loại sản phẩm</option>`;
@@ -452,7 +456,7 @@
                                        if (!hasLoadedBrand && this.value === "") {
                                           const selectElement = this;
 
-                                          fetch("http://localhost:8080/api/v1/brand/list/all")
+                                          fetch(`http://${changeServer}:8080/api/v1/brand/list/all`)
                                              .then(response => response.json())
                                              .then(data => {
                                                 console.log("Data from API:", data);
@@ -787,7 +791,7 @@
                // API để tạo sản phẩm
                async function createProduct(productData) {
                  console.log("🧾 Final productData gửi lên:", JSON.stringify(productData, null, 2));
-                 const res = await fetch("http://localhost:8080/api/v1/product", {
+                 const res = await fetch(`http://${changeServer}:8080/api/v1/product`, {
                    method: "POST",
                    headers: { "Content-Type": "application/json" },
                    body: JSON.stringify(productData)
@@ -813,7 +817,7 @@
                  });
 
                  try {
-                   const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
+                   const res = await fetch(`http://${changeServer}:8080/api/v1/product/${productId}/upload-images`, {
                      method: "POST",
                      body: formData
                    });

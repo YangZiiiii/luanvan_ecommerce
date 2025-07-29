@@ -59,6 +59,10 @@
 
    <!-- Page CSS -->
 
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
@@ -157,7 +161,7 @@
                               </thead>
                               <tbody>
                                  <script>
-                                    fetch('http://localhost:8080/api/v1/comment?page=0&size=1000&sortBy&direction')
+                                    fetch(`http://${changeServer}:8080/api/v1/comment?page=0&size=1000&sortBy&direction`)
                                        .then(response => response.json())
                                        .then(data => {
                                           const tableBody = document.querySelector('#DataTables_Table_0 tbody');
@@ -210,7 +214,7 @@
                                                 e.preventDefault();
                                                 const commentId = this.getAttribute('data-cid');
                                                 const value = this.getAttribute('data-value');
-                                                fetch(`http://localhost:8080/api/v1/comment/approve/${commentId}`, {
+                                                fetch(`http://${changeServer}:8080/api/v1/comment/approve/${commentId}`, {
                                                    method: 'PUT',
                                                    headers: { 'Content-Type': 'application/json' },
                                                    body: JSON.stringify({ commentStatus: value })
@@ -228,7 +232,7 @@
                                              btn.addEventListener('click', function () {
                                                 const commentId = this.getAttribute('data-cid');
                                                 const userUid = this.getAttribute('data-uid');
-                                                fetch(`http://localhost:8080/api/v1/comment/delete/${commentId}?userUid=${userUid}`, {
+                                                fetch(`http://${changeServer}:8080/api/v1/comment/delete/${commentId}?userUid=${userUid}`, {
                                                    method: 'DELETE'
                                                 })
                                                    .then(res => {

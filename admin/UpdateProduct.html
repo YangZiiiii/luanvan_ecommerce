@@ -61,6 +61,10 @@
 
    <!-- Page CSS -->
 
+   <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
@@ -652,7 +656,7 @@
 
          try {
             // 1. Fetch product data
-            const response = await fetch(`http://localhost:8080/api/v1/product/${productId}`);
+            const response = await fetch(`http://${changeServer}:8080/api/v1/product/${productId}`);
             const result = await response.json();
 
             if (!result.data) {
@@ -711,7 +715,7 @@
                }
 
                // Gửi PUT để cập nhật
-               const res = await fetch(`http://localhost:8080/api/v1/product/${productId}`, {
+               const res = await fetch(`http://${changeServer}:8080/api/v1/product/${productId}`, {
                  method: "PUT",
                  headers: { "Content-Type": "application/json" },
                  body: JSON.stringify(updatedProductData)
@@ -743,7 +747,7 @@
             const newStatus = this.value;
             if (!newStatus) return;
             try {
-               const res = await fetch(`http://localhost:8080/api/v1/product/${productId}/status`, {
+               const res = await fetch(`http://${changeServer}:8080/api/v1/product/${productId}/status`, {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ status: newStatus })
@@ -761,7 +765,7 @@
          });
          //  Load category
          function loadCategories(product) {
-            fetch("http://localhost:8080/api/v1/category")
+            fetch(`http://${changeServer}:8080/api/v1/category`)
                .then(res => res.json())
                .then(data => {
                   const select = document.getElementById("productCategory");
@@ -787,7 +791,7 @@
 
          //  Load brands
          function loadBrands(product) {
-            fetch("http://localhost:8080/api/v1/brand/list/all")
+            fetch(`http://${changeServer}:8080/api/v1/brand/list/all`)
                .then(res => res.json())
                .then(data => {
                   const select = document.getElementById("productBrand");
@@ -880,7 +884,7 @@
             const formData = new FormData();
             filesArray.forEach(file => formData.append("files", file));
 
-            const uploadRes = await fetch(`http://localhost:8080/api/v1/product/${productId}/upload-images`, {
+            const uploadRes = await fetch(`http://${changeServer}:8080/api/v1/product/${productId}/upload-images`, {
                method: "POST",
                body: formData
             });

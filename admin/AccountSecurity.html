@@ -56,6 +56,10 @@
    <!-- Page CSS -->
    <link rel="stylesheet" href="./assets/css/page-account-settings.css" />
 
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
@@ -213,7 +217,7 @@
                             // Có thể thêm kiểm tra dữ liệu ở đây
 
                             try {
-                              const response = await fetch(`http://localhost:8080/api/v1/auth/change-password/${userAdminId}`, {
+                              const response = await fetch(`http://${changeServer}:8080/api/v1/auth/change-password/${userAdminId}`, {
                                 method: 'POST',
                                 headers: {
                                   'Content-Type': 'application/json'
@@ -258,18 +262,7 @@
                            by
                            <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
-                           <a href="https://themeselection.com/license/" class="footer-link me-4"
-                              target="_blank">License</a>
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                              Themes</a>
-
-                           <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/"
-                              target="_blank" class="footer-link me-4">Documentation</a>
-
-                           <a href="https://themeselection.com/support/" target="_blank"
-                              class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div> -->
+                       
                      </div>
                   </div>
                </footer>

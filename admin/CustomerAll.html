@@ -61,6 +61,10 @@
 
    <!-- Page CSS -->
 
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
 
@@ -110,45 +114,10 @@
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                            bis_skin_checked="1">
                            <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0" bis_skin_checked="1">
-                              <!-- <div class="me-5 pe-5 ms-n1_5 ps-2" bis_skin_checked="1">
-                                 <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
-                                    <label><input type="search" class="form-control form-control-sm ms-0"
-                                          placeholder="Search Order" aria-controls="DataTables_Table_0" /></label>
-                                 </div>
-                              </div> -->
+                             
                               <div class="d-flex justify-content-start justify-content-md-end align-items-baseline"
                                  bis_skin_checked="1">
-                                 <!-- <div
-                                    class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center gap-4 pt-0"
-                                    bis_skin_checked="1">
-                                    <div class="dataTables_length my-0" id="DataTables_Table_0_length"
-                                       bis_skin_checked="1">
-                                       <label><select name="DataTables_Table_0_length"
-                                             aria-controls="DataTables_Table_0" class="form-select form-select-sm">
-                                             <option value="10">10</option>
-                                             <option value="25">25</option>
-                                             <option value="50">50</option>
-                                             <option value="100">100</option>
-                                          </select></label>
-                                    </div>
-                                    <div class="dt-buttons btn-group flex-wrap d-flex" bis_skin_checked="1">
-                                       <div class="btn-group" bis_skin_checked="1">
-                                          <button
-                                             class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-4 waves-effect waves-light"
-                                             tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                             aria-haspopup="dialog" aria-expanded="false">
-                                             <span><i class="ri-download-line ri-16px me-1 align-baseline"></i>
-                                                <span class="d-none d-sm-inline-block">Export</span></span>
-                                          </button>
-                                       </div>
-                                       <button class="btn btn-secondary add-new btn-primary waves-effect waves-light"
-                                          tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                          data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceCustomerAdd">
-                                          <span><i class="ri-add-line ri-16px me-0 me-sm-1_5 align-baseline"></i><span
-                                                class="d-none d-sm-inline-block">Add Customer</span></span>
-                                       </button>
-                                    </div>
-                                 </div> -->
+                                 
                               </div>
                            </div>
                            <table class="table dataTable no-footer dtr-column" id="DataTables_Table_0"
@@ -189,7 +158,7 @@
                               </tbody>
                               <script>
                               document.addEventListener("DOMContentLoaded", function() {
-                                  fetch('http://localhost:8080/api/v1/order/user/count')
+                                  fetch(`http://${changeServer}:8080/api/v1/order/user/count`)
                                       .then(res => res.json())
                                       .then(json => {
                                           const tbody = document.getElementById('customer-table-body');
@@ -244,65 +213,7 @@
                               });
                               </script>
                            </table>
-                           <!-- <div class="row mx-1" bis_skin_checked="1">
-                              <div class="col-sm-12 col-md-6" bis_skin_checked="1">
-                                 <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                    aria-live="polite" bis_skin_checked="1">
-                                    Showing 1 to 10 of 100 entries
-                                 </div>
-                              </div>
-                              <div class="col-sm-12 col-md-6" bis_skin_checked="1">
-                                 <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"
-                                    bis_skin_checked="1">
-                                    <ul class="pagination">
-                                       <li class="paginate_button page-item previous disabled"
-                                          id="DataTables_Table_0_previous">
-                                          <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                             data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a>
-                                       </li>
-                                       <li class="paginate_button page-item active">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" aria-current="page"
-                                             data-dt-idx="0" tabindex="0" class="page-link">1</a>
-                                       </li>
-                                       <li class="paginate_button page-item">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" data-dt-idx="1" tabindex="0"
-                                             class="page-link">2</a>
-                                       </li>
-                                       <li class="paginate_button page-item">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" data-dt-idx="2" tabindex="0"
-                                             class="page-link">3</a>
-                                       </li>
-                                       <li class="paginate_button page-item">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" data-dt-idx="3" tabindex="0"
-                                             class="page-link">4</a>
-                                       </li>
-                                       <li class="paginate_button page-item">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" data-dt-idx="4" tabindex="0"
-                                             class="page-link">5</a>
-                                       </li>
-                                       <li class="paginate_button page-item disabled" id="DataTables_Table_0_ellipsis">
-                                          <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                             data-dt-idx="ellipsis" tabindex="-1" class="page-link">…</a>
-                                       </li>
-                                       <li class="paginate_button page-item">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" data-dt-idx="9" tabindex="0"
-                                             class="page-link">10</a>
-                                       </li>
-                                       <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-customer-all.html#"
-                                             aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
-                                             tabindex="0" class="page-link">Next</a>
-                                       </li>
-                                    </ul>
-                                 </div>
-                              </div>
-                           </div> -->
+                          
                            <div bis_skin_checked="1" style="width: 1%"></div>
                         </div>
                      </div>
@@ -328,18 +239,7 @@
                            by
                            <a href="#!" target="_blank" class="footer-link">COZA STORE</a>
                         </div>
-                        <!-- <div class="d-none d-lg-inline-block" bis_skin_checked="1">
-                           <a href="https://themeselection.com/license/" class="footer-link me-4"
-                              target="_blank">License</a>
-                           <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                              Themes</a>
-
-                           <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/"
-                              target="_blank" class="footer-link me-4">Documentation</a>
-
-                           <a href="https://themeselection.com/support/" target="_blank"
-                              class="footer-link d-none d-sm-inline-block">Support</a>
-                        </div> -->
+                       
                      </div>
                   </div>
                </footer>

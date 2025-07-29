@@ -59,7 +59,12 @@
 
    <!-- Page CSS -->
 
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
+    
    <script src="./assets/js/helpers.js"></script>
    <script bis_use="true" type="text/javascript" charset="utf-8"
       data-bis-config='["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com","docs.google.com","contacts.google.com","github.com","mail.google.com","chat.google.com","audio.xpleer.com","keepa.com","static.xx.fbcdn.net","sas.selleramp.com","1plus1.video","console.googletagservices.com","//lnkd.demdex.net/","//radar.cedexis.com/","//li.protechts.net/","challenges.cloudflare.com/","ogs.google.com"]'
@@ -108,7 +113,7 @@
                <div class="container-xxl flex-grow-1 container-p-y" bis_skin_checked="1">
                   <!-- Order List Widget -->
 
-                  <!-- <div class="card mb-6" bis_skin_checked="1">
+                
                      <div class="card-widget-separator-wrapper" bis_skin_checked="1">
                         <div class="card-body card-widget-separator" bis_skin_checked="1">
                            <div class="row gy-4 gy-sm-1" bis_skin_checked="1">
@@ -182,43 +187,7 @@
                      <div class="card-datatable table-responsive" bis_skin_checked="1" style="padding-bottom: 10rem;">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                            bis_skin_checked="1">
-                           <!-- <div
-                              class="card-header d-flex flex-column flex-md-row align-items-start align-items-md-center py-0 pb-5 pb-md-0"
-                              bis_skin_checked="1">
-                              <div bis_skin_checked="1">
-                                 <div id="DataTables_Table_0_filter" class="dataTables_filter" bis_skin_checked="1">
-                                    <label><input type="search" class="form-control form-control-sm ms-0"
-                                          placeholder="Search Order" aria-controls="DataTables_Table_0" /></label>
-                                 </div>
-                              </div>
-                              <div class="d-flex align-items-md-baseline justify-content-md-end gap-4"
-                                 bis_skin_checked="1">
-                                 <div class="dataTables_length my-0" id="DataTables_Table_0_length"
-                                    bis_skin_checked="1">
-                                    <label><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
-                                          class="form-select form-select-sm">
-                                          <option value="10">10</option>
-                                          <option value="40">40</option>
-                                          <option value="60">60</option>
-                                          <option value="80">80</option>
-                                          <option value="100">100</option>
-                                       </select></label>
-                                 </div>
-                                 <div class="dt-action-buttons pt-0" bis_skin_checked="1">
-                                    <div class="dt-buttons btn-group flex-wrap" bis_skin_checked="1">
-                                       <div class="btn-group" bis_skin_checked="1">
-                                          <button
-                                             class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary waves-effect waves-light"
-                                             tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                             aria-haspopup="dialog" aria-expanded="false">
-                                             <span><i class="ri-download-line ri-16px me-2"></i>
-                                                <span class="d-none d-sm-inline-block">Export</span></span>
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div> -->
+                           
                            <table class="table dataTable no-footer dtr-column" id="DataTables_Table_0"
                               aria-describedby="DataTables_Table_0_info" style="width: 1396px">
                               <thead>
@@ -320,7 +289,7 @@
                                        { value: 'DELIVERED', text: 'Delivered', class: 'bg-label-success' },
                                     ];
 
-                                    fetch(`http://localhost:8080/api/v1/order/user/${userUid}`)
+                                    fetch(`http://${changeServer}:8080/api/v1/order/user/${userUid}`)
                                        .then(res => res.json())
                                        .then(json => {
                                           if (!json.data || !Array.isArray(json.data)) return;
@@ -451,7 +420,7 @@
 
                                              if (type === 'status') {
                                                 // Gọi API cập nhật trạng thái đơn hàng
-                                                fetch(`http://localhost:8080/api/v1/order/${orderId}/status?orderStatus=${value}&userId=${userUid}`, {
+                                                fetch(`http://${changeServer}:8080/api/v1/order/${orderId}/status?orderStatus=${value}&userId=${userUid}`, {
                                                    method: 'PUT'
                                                 })
                                                    .then(res => {
@@ -464,7 +433,7 @@
                                                    });
                                              } else if (type === 'payment') {
                                                 // Gọi API cập nhật trạng thái thanh toán
-                                                fetch(`http://localhost:8080/api/v1/order/${orderId}/pay/status?payStatus=${value}`, {
+                                                fetch(`http://${changeServer}:8080/api/v1/order/${orderId}/pay/status?payStatus=${value}`, {
                                                    method: 'PUT'
                                                 })
                                                    .then(res => {

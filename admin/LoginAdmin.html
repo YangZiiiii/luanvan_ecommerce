@@ -45,6 +45,10 @@
   <!-- Page -->
   <link rel="stylesheet" href="./assets/css/page-auth.css">
 
+     <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
 
 
 
@@ -138,7 +142,7 @@
               const username = document.getElementById('email').value.trim();
               const password = document.getElementById('password').value;
               try {
-              const res = await fetch('http://localhost:8080/api/v1/auth/login-admin', {
+              const res = await fetch(`http://${changeServer}:8080/api/v1/auth/login-admin`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })

@@ -67,6 +67,11 @@
 
    <link rel="stylesheet" href="./assets/css/app-ecommerce.css" />
 
+
+      <!-- Change Sever -->
+
+   <Script src="./assets/js/change-sever.js"></Script>
+
    <!-- Helpers -->
    <script src="./assets/js/helpers.js"></script>
    <script bis_use="true" type="text/javascript" charset="utf-8"
@@ -180,7 +185,7 @@
                                        // Lưu brands vào biến toàn cục để dùng lại khi update
                                        let brandsData = [];
 
-                                       fetch('http://localhost:8080/api/v1/brand')
+                                       fetch(`http://${changeServer}:8080/api/v1/brand`)
                                           .then(response => response.json())
                                           .then(data => {
                                              brandsData = data.data.content || [];
@@ -244,7 +249,7 @@
                                                    const brandId = this.getAttribute('data-brand-id');
                                                    if (!brandId) return;
                                                    try {
-                                                     const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`);
+                                                     const res = await fetch(`http://${changeServer}:8080/api/v1/brand/${brandId}`);
                                                      const result = await res.json();
                                                      if (result && result.data) {
                                                        // Gán dữ liệu vào modal update
@@ -275,7 +280,7 @@
                                                    const newStatus = statusSelect.value;
                                                    if (!brandId || !newStatus) return;
                                                    try {
-                                                      const res = await fetch(`http://localhost:8080/api/v1/brand/${brandId}/status`, {
+                                                      const res = await fetch(`http://${changeServer}:8080/api/v1/brand/${brandId}/status`, {
                                                          method: 'PUT',
                                                          headers: { 'Content-Type': 'application/json' },
                                                          body: JSON.stringify({ status: newStatus })
@@ -416,7 +421,7 @@
                            }
 
                            try {
-                              const response = await fetch('http://localhost:8080/api/v1/brand', {
+                              const response = await fetch(`http://${changeServer}:8080/api/v1/brand`, {
                                  method: 'POST',
                                  headers: {
                                     'Content-Type': 'application/json'
@@ -543,7 +548,7 @@
                            }
 
                            try {
-                              const response = await fetch(`http://localhost:8080/api/v1/brand/${brandId}`, {
+                              const response = await fetch(`http://${changeServer}:8080/api/v1/brand/${brandId}`, {
                                  method: 'PUT',
                                  headers: { 'Content-Type': 'application/json' },
                                  body: JSON.stringify({
